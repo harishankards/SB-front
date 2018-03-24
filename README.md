@@ -1,5 +1,27 @@
-We will build the node.js based frontend web app using AngularJS or React or Vue.js.
+# webapp
 
-We will then build the dist as a package and then place it on public folder of the Rails backend-api.
+> A Vue.js project
 
-At one point, we will move everything in to Rails backend-api using Rails 5 + Node.JS
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run unit tests
+npm run unit
+
+# run all tests
+npm test
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
