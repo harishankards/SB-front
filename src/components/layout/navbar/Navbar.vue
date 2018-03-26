@@ -13,8 +13,8 @@
         <a class="menu-icon i-menu-collapsed" href="#" @click.prevent="toggleSidebar(true)" v-else></a>
       </div>
 
-      <div class="navbar-text offset-md-1 col-md-7 d-none d-lg-flex align-items-center justify-content-center">
-       {{'navbar.messageUs' | translate}}&nbsp;<a href="mailto:hello@epicmax.co">hello@epicmax.co</a>
+      <div class="navbar-text offset-md-1 col-md-8 d-none d-lg-flex align-items-center justify-content-center">
+       Student Burger
       </div>
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
@@ -56,7 +56,6 @@
           </div>
         </div>
       </div>
-      <language-selector :options="langs"></language-selector>
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#" @click.prevent="closeMenu">
           <span class="avatar-container">
@@ -80,28 +79,14 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import LanguageSelector from './LanguageSelector'
 
   export default {
     name: 'navbar',
 
-    components: {
-      LanguageSelector
-    },
+    components: {},
 
     data () {
-      return {
-        langs: [
-          {
-            code: 'gb',
-            name: 'english'
-          },
-          {
-            code: 'es',
-            name: 'spanish'
-          }
-        ]
-      }
+      return {}
     },
 
     computed: {
