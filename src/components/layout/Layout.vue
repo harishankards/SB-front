@@ -63,7 +63,6 @@
     margin-left: $content-wrap-ml;
     padding: $content-wrap-pt $content-wrap-pr $content-wrap-pb 0;
     transition: margin-left 0.3s ease;
-    padding-top: 0;
 
     .pre-loader {
       position: absolute;
