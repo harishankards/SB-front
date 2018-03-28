@@ -127,6 +127,7 @@
   left: $sidebar-left;
   transition: all 0.2s ease;
   opacity: 1;
+  position: fixed;
 
   .sidebar-hidden_without-animation & {
     transition: none;

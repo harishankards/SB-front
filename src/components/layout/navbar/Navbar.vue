@@ -123,6 +123,7 @@
     padding-left: $nav-padding-left;
     padding-right: $nav-padding-right;
     background-color: $top-nav-bg;
+    position: fixed; top: 0; width: 100%; z-index: 1;
 
     .avatar-container {
       display: inline-block;
