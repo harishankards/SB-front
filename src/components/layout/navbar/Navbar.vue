@@ -14,7 +14,7 @@
       </div>
 
       <div class="navbar-text offset-md-1 col-md-8 d-none d-lg-flex align-items-center justify-content-center">
-       Student Burger
+        <!-- Student Burger -->
       </div>
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
