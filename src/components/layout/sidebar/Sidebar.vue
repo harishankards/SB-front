@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <vuestic-scrollbar>
       <ul class="sidebar-menu">
-        <li v-for="item in menuItems" :key="item.name">
+        <li v-for="(item, index) in menuItems" :key="item.name">
           <router-link
             class="sidebar-link"
             :to="item.path"
