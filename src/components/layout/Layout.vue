@@ -12,7 +12,7 @@
     </div>
 
     <div class="made-by-footer">
-      ©2018. Made by&nbsp;<a href="http://spritle.com" target="_blank">Spritle</a>
+      ©2018. Made by&nbsp;<a href="http://www.spritle.com" target="_blank">Spritle</a>
     </div>
   </div>
 </template>
