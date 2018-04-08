@@ -1,19 +1,17 @@
 <template>
   <div class="row dashboard-info-widgets">
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-8 col-xl-4"> 
       <vuestic-widget class="info-widget">
-        <div class="info-widget-inner">
-          <div class="stats">
-            <div class="stats-number">
-              <i class="ion ion-arrow-up-c text-primary stats-icon"></i>
-              59
-            </div>
-            <div class="stats-title">{{'dashboard.elements' | translate}}</div>
-          </div>
+        <div class="uv-project-header">
+          <h6 class=""> Most upvoted project today <i class="fa fa-thumbs-up"></i></h6>
+        </div>
+        <div class="uv-project-content">
+          <div class="uv-project-title"><a href="#">Polymorphism in plants</a></div>
+          <div><small>This projects provides better analysis of polymorphism in plants and also the...</small></div>
         </div>
       </vuestic-widget>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-8 col-xl-4">
       <vuestic-widget class="info-widget">
         <div class="info-widget-inner">
           <div class="stats">
@@ -26,7 +24,7 @@
         </div>
       </vuestic-widget>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-8 col-xl-4">
       <vuestic-widget class="info-widget brand-danger">
         <div class="info-widget-inner">
           <div class="info-widget-inner has-chart">
@@ -40,19 +38,6 @@
               <vuestic-progress-bar type="circle" ref="circleProgress" :colorName="'white'" :backgroundColorName="'danger'"
                             :startColorName="'danger'"></vuestic-progress-bar>
             </div>
-          </div>
-        </div>
-      </vuestic-widget>
-    </div>
-    <div class="col-md-6 col-xl-3">
-      <vuestic-widget class="info-widget brand-info">
-        <div class="info-widget-inner">
-          <div class="stats">
-            <div class="stats-number">
-              <i class="ion ion-android-people stats-icon icon-wide"></i>
-              5
-            </div>
-            <div class="stats-title">{{'dashboard.teamMembers' | translate}}</div>
           </div>
         </div>
       </vuestic-widget>
@@ -75,6 +60,13 @@
 
   .stats-number, .stats-title {
     line-height: 1;
+  }
+  .project-header{
+    padding: 1%;
+  }
+
+  .uv-project-title{
+    font-size: 1.5em;
   }
 
   .info-widget-inner {
