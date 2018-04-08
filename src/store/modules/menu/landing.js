@@ -6,7 +6,7 @@ export default {
   component: lazyLoading('landing/Landing'),
   meta: {
     default: true,
-    title: 'Landing',
+    title: 'menu.landing',
     iconClass: 'vuestic-icon vuestic-icon-dashboard'
   }
 }
