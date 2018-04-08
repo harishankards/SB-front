@@ -3,7 +3,8 @@
     <div class="col-md-8 col-xl-4"> 
       <vuestic-widget class="info-widget">
         <div class="uv-project-header">
-          <h6 class=""> Most upvoted project today <i class="fa fa-thumbs-up"></i></h6>
+          <span class="uv-project-header-title"> Most upvoted project today </span>
+          <i class="fa fa-thumbs-up uv-project-header-icon"></i>
         </div>
         <div class="uv-project-content">
           <div class="uv-project-title"><a href="#">Polymorphism in plants</a></div>
@@ -13,14 +14,13 @@
     </div>
     <div class="col-md-8 col-xl-4">
       <vuestic-widget class="info-widget">
-        <div class="info-widget-inner">
-          <div class="stats">
-            <div class="stats-number">
-              <i class="ion ion-arrow-down-c text-danger stats-icon"></i>
-              12
-            </div>
-            <div class="stats-title">{{'dashboard.versions' | translate}}</div>
-          </div>
+        <div class="searched-contest-header">
+          <span class="searched-contest-header-title"> Most searched contest today </span>
+          <i class="fa fa-bolt searched-contest-header-icon"></i>
+        </div>
+        <div class="searched-contest-content">
+          <div class="searched-contest-title"><a href="#">Google summer of code 2018</a></div>
+          
         </div>
       </vuestic-widget>
     </div>
@@ -61,11 +61,42 @@
   .stats-number, .stats-title {
     line-height: 1;
   }
-  .project-header{
-    padding: 1%;
+  .info-widget{
+    max-height: 80%;
+  }
+
+  .uv-project-header-title{
+    display: inline-block;
+    font-size: 1em; 
+  }
+  .uv-project-header-icon{
+    font-size: 2em;
+    float: right;
+  }
+
+  .uv-project-header{
+    padding-bottom: 2%;
   }
 
   .uv-project-title{
+    font-size: 1.5em;
+  }
+
+
+  .searched-contest-header-title{
+    display: inline-block;
+    font-size: 1em; 
+  }
+  .searched-contest-header-icon{
+    font-size: 2em;
+    float: right;
+  }
+
+  .searched-contest-header{
+    padding-bottom: 2%;
+  }
+
+  .searched-contest-title{
     font-size: 1.5em;
   }
 
