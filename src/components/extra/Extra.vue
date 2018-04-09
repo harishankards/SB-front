@@ -46,14 +46,10 @@
 </template>
 
 <script>
-  import OverviewTab from 'components/dashboard/features-tab/FeaturesTab.vue'
-  import SetupProfileTab from 'components/dashboard/setup-profile-tab/SetupProfileTab.vue'
 
   export default {
     name: 'extra',
     components: {
-      SetupProfileTab,
-      OverviewTab
     },
     data () {
       return {
