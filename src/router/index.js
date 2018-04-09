@@ -11,7 +11,8 @@ export default new Router({
     ...generateRoutesFromMenu(menuModule.state.items),
     {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }},
     {path: '/testing', component: testing}
-  ]
+  ],
+  mode: 'history'
 })
 
 function generateRoutesFromMenu (menu = [], routes = []) {
