@@ -2,15 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import menuModule from 'vuex-store/modules/menu'
-import testing from '../components/landing/Landing.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     ...generateRoutesFromMenu(menuModule.state.items),
-    {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }},
-    {path: '/testing', component: testing}
+    {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }}
   ],
   mode: 'history'
 })
