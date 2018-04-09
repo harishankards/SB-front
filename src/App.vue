@@ -25,7 +25,7 @@
         return this.$route.path.match('auth')
       },
       isLanding () {
-        return this.$route.path.match('/')
+        return this.$route.path.match('root')
       }
     }
   }

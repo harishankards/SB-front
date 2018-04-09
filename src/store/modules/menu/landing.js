@@ -2,7 +2,7 @@ import lazyLoading from './lazyLoading'
 
 export default {
   name: 'Landing',
-  path: '/',
+  path: '/root',
   component: lazyLoading('landing/Landing'),
   meta: {
     default: true,
