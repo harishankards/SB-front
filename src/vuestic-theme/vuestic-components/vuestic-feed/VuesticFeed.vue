@@ -76,7 +76,7 @@
         height: 3.5rem;
         .text {
           overflow: hidden;
-          white-space: nowrap;
+          white-space: normal;
           text-overflow: ellipsis;
           .name {
             font-weight: $font-weight-bold;

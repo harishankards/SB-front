@@ -10,8 +10,8 @@
         </vuestic-widget>
       </div>
       <div class="col-md-4">
-        <vuestic-widget class="" headerText="Live feeds">
-          <vuestic-feed :initialPosts="posts"></vuestic-feed>
+        <vuestic-widget class="live-feed" headerText="Live feeds">
+          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
         </vuestic-widget>
       </div>
     </div>
@@ -31,17 +31,17 @@
     data () {
       return {
         posts: [
-        {
-          photoURL: "https://goo.gl/iHPU9a",
-          name: "HS",
-          text: "registered for a contest"
-        },
-        {
-          photoURL: "https://goo.gl/1nKusR",
-          name: "Balaji",
-          text: "upvoted for a project"
-        }
-      ]
+          {
+            photoURL: 'https://goo.gl/iHPU9a',
+            name: 'HS',
+            text: 'registered for a contest'
+          },
+          {
+            photoURL: 'https://goo.gl/1nKusR',
+            name: 'Balaji',
+            text: 'upvoted for a project'
+          }
+        ]
       }
     },
 
@@ -51,8 +51,8 @@
 
 <style lang="scss" scoped>
   @import "../../sass/_variables.scss";
-  .vuestic-header{
-    font-size: 1rem !important;
+  .newsfeed-page{
+    padding-left: 0rem !important;
   }
-
+   
 </style>
