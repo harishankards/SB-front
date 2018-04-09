@@ -3,9 +3,18 @@
 
     <dashboard-info-widgets></dashboard-info-widgets>
 
-    <vuestic-feed :initialPosts="posts">
-     
-    </vuestic-feed>
+    <div class="row">
+      <div class="col-md-8">
+        <vuestic-widget class="">
+         
+        </vuestic-widget>
+      </div>
+      <div class="col-md-4">
+        <vuestic-widget class="" headerText="Live feeds">
+          <vuestic-feed :initialPosts="posts"></vuestic-feed>
+        </vuestic-widget>
+      </div>
+    </div>
 
 
   </div>
@@ -22,31 +31,28 @@
     data () {
       return {
         posts: [
-          {
-            photoURL: 'URL of user\'s avatar',
-            name: 'Name of user',
-            text: 'Description'
-          }]
+        {
+          photoURL: "https://goo.gl/iHPU9a",
+          name: "HS",
+          text: "registered for a contest"
+        },
+        {
+          photoURL: "https://goo.gl/1nKusR",
+          name: "Balaji",
+          text: "upvoted for a project"
+        }
+      ]
       }
     },
 
-    methods: {
-      launchEpicmaxToast () {
-        this.showToast(`Let's work together!`, {
-          icon: 'fa-star-o',
-          position: 'top-right',
-          duration: Infinity,
-          action: {
-            text: 'Hire us',
-            href: 'http://epicmax.co/#/contact',
-            class: 'vuestic-toasted-link'
-          }
-        })
-      }
-    }
+    methods: {}
   }
 </script>
 
 <style lang="scss" scoped>
   @import "../../sass/_variables.scss";
+  .vuestic-header{
+    font-size: 1rem !important;
+  }
+
 </style>
