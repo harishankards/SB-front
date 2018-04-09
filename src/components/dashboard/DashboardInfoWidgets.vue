@@ -25,21 +25,15 @@
       </vuestic-widget>
     </div>
     <div class="col-md-8 col-xl-4">
-      <vuestic-widget class="info-widget brand-danger">
-        <div class="info-widget-inner">
-          <div class="info-widget-inner has-chart">
-            <div class="stats">
-              <div class="stats-number">
-                425
-              </div>
-              <div class="stats-title">Commits</div>
-            </div>
-            <div class="chart-container">
-              <vuestic-progress-bar type="circle" ref="circleProgress" :colorName="'white'" :backgroundColorName="'danger'"
-                            :startColorName="'danger'"></vuestic-progress-bar>
-            </div>
-          </div>
+      <vuestic-widget class="info-widget">
+        <div class="ad-header">
+          <span class="ad-header-title"> Hot topic around internet </span>
+          <i class="fa fa-fire ad-header-icon"></i>
         </div>
+        <div class="ad-content">
+          <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
+        </div>        
+
       </vuestic-widget>
     </div>
   </div>
@@ -100,6 +94,22 @@
     font-size: 1.5em;
   }
 
+  .ad-header-title{
+    display: inline-block;
+    font-size: 1em; 
+  }
+  .ad-header-icon{
+    font-size: 2em;
+    float: right;
+  }
+
+  .ad-header{
+    padding-bottom: 2%;
+  }
+
+  .ad-title{
+    font-size: 1.1em;
+  }
   .info-widget-inner {
     display: flex;
     flex-direction: row;
