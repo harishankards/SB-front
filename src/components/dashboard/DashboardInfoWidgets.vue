@@ -41,11 +41,7 @@
 
 <script>
   export default {
-    name: 'dashboard-info-widgets',
-
-    mounted () {
-      this.$refs.circleProgress.$data.value = 70
-    }
+    name: 'dashboard-info-widgets'
   }
 </script>
 

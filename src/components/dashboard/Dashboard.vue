@@ -4,9 +4,7 @@
     <dashboard-info-widgets></dashboard-info-widgets>
 
     <vuestic-feed :initialPosts="posts">
-      <!-- <div v-for="post in posts">
-        <h1>Name: {{post.photoURL}}</h1>
-      </div> -->
+     
     </vuestic-feed>
 
 
@@ -21,13 +19,15 @@
     components: {
       DashboardInfoWidgets
     },
-    data(){
-      posts: [
-        {
-          photoURL: "URL of user's avatar",
-          name: "Name of user",
-          text: "Description",
-        }]
+    data () {
+      return {
+        posts: [
+          {
+            photoURL: 'URL of user\'s avatar',
+            name: 'Name of user',
+            text: 'Description'
+          }]
+      }
     },
 
     methods: {
