@@ -16,7 +16,9 @@
               <span class="feed-card-username"><strong><a href="#">{{post.name}}</a> </strong></span><br>
               <span class="feed-card-time">{{post.calender}}</span>
             </div>
-            
+          </div>
+          <div id="post-content-div">
+            <p id="post-description">{{post.post_desc}}</p>
           </div>
           
         </vuestic-widget>
@@ -50,7 +52,8 @@
             text: 'registered for a contest',
             action: 'upvoted',
             by: 'Balaji',
-            calender: '32m'
+            calender: '32m',
+            post_desc: 'Happy to upload my final year project'
           },
           {
             id: 1,
@@ -59,7 +62,8 @@
             text: 'upvoted for a project',
             action: 'commented',
             by: 'Surendran',
-            calender: '3h'
+            calender: '3h',
+            post_desc: 'Uploaded my dream project'
           },
           {
             id: 2,
@@ -68,7 +72,8 @@
             text: 'upvoted for a project',
             action: 'upvoted',
             by: 'HS',
-            calender: '2d'
+            calender: '2d',
+            post_desc: 'Woohoo!!!! Finally uploaded the project ^_^'
           }
         ]
       }
@@ -109,6 +114,10 @@
   #feed-card-user-name-div{
     display: inline-block;
     margin-left: 0.4rem;
+  }
+
+  #post-content-div{
+    margin-top: 0.5rem;
   }
    
 </style>
