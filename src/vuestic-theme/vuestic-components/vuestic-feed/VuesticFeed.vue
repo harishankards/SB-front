@@ -76,13 +76,14 @@
         height: 3.5rem;
         .text {
           overflow: hidden;
-          white-space: normal;
+          white-space: nowrap;
           text-overflow: ellipsis;
           .name {
             font-weight: $font-weight-bold;
           }
         }
         .close-btn {
+          font-size: 3px;
           margin-left: 1rem;
           i {
             left: 10.5px;
