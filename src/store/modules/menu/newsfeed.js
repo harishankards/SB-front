@@ -1,12 +1,12 @@
 import lazyLoading from './lazyLoading'
 
 export default {
-  name: 'Dashboard',
-  path: '/dashboard',
-  component: lazyLoading('dashboard/Dashboard'),
+  name: 'Newsfeed',
+  path: '/newsfeed',
+  component: lazyLoading('newsfeed/Newsfeed'),
   meta: {
     default: false,
-    title: 'menu.dashboard',
+    title: 'menu.newsfeed',
     iconClass: 'vuestic-icon vuestic-icon-dashboard'
   }
 }

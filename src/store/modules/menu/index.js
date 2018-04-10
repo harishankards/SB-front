@@ -1,7 +1,7 @@
 import * as types from '../../mutation-types'
 import statistics from './statistics'
 import forms from './forms'
-import dashboard from './dashboard'
+import newsfeed from './newsfeed'
 import ui from './ui'
 import maps from './maps'
 import tables from './tables'
@@ -11,7 +11,7 @@ import landing from './landing'
 
 const state = {
   items: [
-    dashboard,
+    newsfeed,
     statistics,
     forms,
     tables,

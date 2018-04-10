@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
 
-    <dashboard-info-widgets></dashboard-info-widgets>
+    <newsfeed-info-widgets></newsfeed-info-widgets>
 
     <div class="row">
       <div class="col-md-8">
@@ -35,12 +35,12 @@
 </template>
 
 <script>
-  import DashboardInfoWidgets from './DashboardInfoWidgets'
+  import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
 
   export default {
     name: 'dashboard',
     components: {
-      DashboardInfoWidgets
+      NewsfeedInfoWidgets
     },
     data () {
       return {
