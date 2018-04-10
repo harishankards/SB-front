@@ -11,9 +11,12 @@
             <hr>
           </div>
           <div>
-            <div class="feed-card-image">{{giveInitial(post)}}</div>
-            <span class="feed-card-username"><strong><a href="#">{{post.name}}</a> </strong></span><br>
-            <span class="feed-card-time">{{post.calender}}</span>
+            <div id="feed-card-image">{{giveInitial(post)}}</div>
+            <div id="feed-card-user-name-div">
+              <span class="feed-card-username"><strong><a href="#">{{post.name}}</a> </strong></span><br>
+              <span class="feed-card-time">{{post.calender}}</span>
+            </div>
+            
           </div>
           
         </vuestic-widget>
@@ -72,9 +75,9 @@
     },
 
     methods: {
-      giveInitial: function(post){
-        let initial = post.name.charAt(0);
-        return initial;
+      giveInitial: function (post) {
+        let initial = post.name.charAt(0)
+        return initial
       }
     }
   }
@@ -89,7 +92,8 @@
     margin-top: 3px;
     color: #a29e9e;
   }
-  .feed-card-image{
+  #feed-card-image{
+    display: inline-block;
     border: 1px solid #a29e9e;
     border-radius: 50%;
     background: #CA3C25;
@@ -99,7 +103,12 @@
     padding-left: 0.95rem;
     padding-top: 0.3rem;
     color: #e8dfdf;
+    vertical-align: top;
+  }
 
+  #feed-card-user-name-div{
+    display: inline-block;
+    margin-left: 0.4rem;
   }
    
 </style>
