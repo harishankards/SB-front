@@ -155,7 +155,9 @@
   "menu": {
     "auth": "Auth",
     "buttons": "Buttons",
-    "charts": "Charts",
+    "projects": "Projects",
+    "newProject": "New Project",
+    "projectList": "Projects history",
     "newsfeed": "Newsfeed",
     "extra": "Extra",
     "formElements": "Form Elements",

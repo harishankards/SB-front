@@ -8,10 +8,12 @@ import tables from './tables'
 import auth from './auth'
 import extra from './extra'
 import landing from './landing'
+import projects from './projects'
 
 const state = {
   items: [
     newsfeed,
+    projects,
     statistics,
     forms,
     tables,
