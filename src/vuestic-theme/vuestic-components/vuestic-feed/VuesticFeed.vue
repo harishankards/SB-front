@@ -73,10 +73,11 @@
         border-bottom: $light-gray2 2px solid;
         overflow: hidden;
         padding-right: 0.7rem;
-        height: 3.5rem;
+        min-height: 3.5rem;
+        height: inherit;
         .text {
           overflow: hidden;
-          white-space: nowrap;
+          white-space: inherit;
           text-overflow: ellipsis;
           .name {
             font-weight: $font-weight-bold;
