@@ -27,10 +27,14 @@
      <div slot="page4" class="form-wizard-tab-content">
         <button class="btn btn-info btn-with-icon">
           <div class="btn-with-icon-content">
-            <i class="ion-android-close ion"></i>
+            <i class="fa fa-upload"></i>
             Upload files
           </div>
         </button>
+     </div>
+     <div slot="page5" class="form-wizard-tab-content">
+       <multiselect></multiselect>
+       
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
           <h4>Add slot="wizardCompleted" to your wizard's last step,
@@ -39,13 +43,18 @@
 </vuestic-wizard>
 
 
+
 </template>
 
 <script>
+  import Multiselect from './Multiselect'
   import editor from './Editor'
   export default {
     name: 'newProject',
-    components: {editor},
+    components: {
+      editor,
+      Multiselect
+    },
     data () {
       return {
         // how your steps should look like:
@@ -122,6 +131,9 @@
     }
   }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
 
 <style lang="scss">
   .new{
