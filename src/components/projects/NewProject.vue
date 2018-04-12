@@ -25,7 +25,12 @@
         <editor></editor>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
-        
+        <button class="btn btn-info btn-with-icon">
+          <div class="btn-with-icon-content">
+            <i class="ion-android-close ion"></i>
+            Upload files
+          </div>
+        </button>
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
           <h4>Add slot="wizardCompleted" to your wizard's last step,
