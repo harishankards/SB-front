@@ -6,16 +6,26 @@
      class="new">
 
      <div slot="page1" class="form-wizard-tab-content">
-          <p>Add Page 1 content here!</p>    
+        <div class="form-group col-md-8">
+          <div class="input-group">
+              <input id="simple-input" required/>
+              <label class="control-label" for="simple-input">Name of the project</label><i class="bar"></i>
+          </div>
+        </div> 
      </div>
      <div slot="page2" class="form-wizard-tab-content">
-          <p>Add Page 2 content here!</p>    
+        <div class="form-group col-md-8">
+          <div class="input-group">
+            <textarea type="text" id="simple-textarea" required></textarea>
+            <label class="control-label" for="simple-textarea">Abstract (2-3 lines max)</label><i class="bar"></i>
+          </div>
+        </div>    
      </div>
      <div slot="page3" class="form-wizard-tab-content">
-          <p>Add Page 3 content here!</p>    
+        <editor></editor>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
-       <p>Add Page 3 content here!</p>    
+        
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
           <h4>Add slot="wizardCompleted" to your wizard's last step,
@@ -27,8 +37,10 @@
 </template>
 
 <script>
+  import editor from './Editor'
   export default {
     name: 'newProject',
+    components: {editor},
     data () {
       return {
         // how your steps should look like:
