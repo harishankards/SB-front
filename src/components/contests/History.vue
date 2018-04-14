@@ -1,7 +1,8 @@
 <template>
   <vuestic-widget :headerText="$t('menu.projects.yourProjects')">
 
-    <vuestic-data-table :apiUrl="apiUrl"
+    <vuestic-data-table
+                :tableData ="tableData"
                 :tableFields="tableFields"
                 :itemsPerPage="itemsPerPage"
                 :sortFunctions="sortFunctions"
@@ -15,21 +16,16 @@ export default{
   name: 'contestHistory',
   data () {
     return {
-      apiUrl: 'https://vuetable.ratiw.net/api/users', // Api retuns table data
-      apiMode: true, // Choose api mode or just pass array in data-table component
+      // apiUrl: 'https://vuetable.ratiw.net/api/users', // Api retuns table data
+      apiMode: false, // Choose api mode or just pass array in data-table component
       tableFields: [
         {
-          name: '__component:badge-column',
-          title: '',
-          dataClass: 'text-center'
-        },
-        {
-          name: 'name', // Object property name in your data e.g. (data[0].name)
-          sortField: 'name' // Object property name in your data which will be used for sorting
+          name: 'contestName', // Object property name in your data e.g. (data[0].name)
+          sortField: 'contestName' // Object property name in your data which will be used for sorting
         },
         {
           name: 'email',
-          sortField: 'email'
+          sortField: 'A'
         },
         {
           name: 'address.line2',
@@ -59,7 +55,13 @@ export default{
           return item1 >= item2 ? 1 : -1
         }
       },
-      paginationPath: ''
+      paginationPath: '',
+      tableData: [
+        {
+          contestName: 'Google Summer of Code',
+          contestSponsor: 'Google'
+        }
+      ]
     }
   }
 }
