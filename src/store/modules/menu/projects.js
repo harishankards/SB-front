@@ -5,7 +5,7 @@ export default {
   meta: {
     expanded: false,
     title: 'menu.projects.parent',
-    iconClass: 'vuestic-icon vuestic-icon-statistics'
+    iconClass: 'fa fa-rocket'
   },
 
   children: [

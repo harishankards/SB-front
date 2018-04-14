@@ -7,6 +7,6 @@ export default {
   meta: {
     default: false,
     title: 'menu.newsfeed',
-    iconClass: 'vuestic-icon vuestic-icon-dashboard'
+    iconClass: 'fa fa-newspaper-o'
   }
 }
