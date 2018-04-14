@@ -1,27 +1,13 @@
 import * as types from '../../mutation-types'
-import statistics from './statistics'
-import forms from './forms'
 import newsfeed from './newsfeed'
-import ui from './ui'
-import maps from './maps'
-import tables from './tables'
 import auth from './auth'
-import extra from './extra'
-import landing from './landing'
 import projects from './projects'
 
 const state = {
   items: [
     newsfeed,
     projects,
-    statistics,
-    forms,
-    tables,
-    ui,
-    extra,
-    auth,
-    maps,
-    landing
+    auth
   ]
 }
 

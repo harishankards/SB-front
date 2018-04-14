@@ -10,7 +10,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     ...generateRoutesFromMenu(menuModule.state.items),
-    {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }},
+    // {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }},
     {path: '/', component: landing, name: 'landing'}
   ],
   mode: 'history'
@@ -29,17 +29,17 @@ function generateRoutesFromMenu (menu = [], routes = []) {
   return routes
 }
 
-function getDefaultRoute (menu = []) {
-  let defaultRoute
+// function getDefaultRoute (menu = []) {
+//   let defaultRoute
 
-  menu.forEach((item) => {
-    if (item.meta.default) {
-      defaultRoute = item
-    } else if (item.children) {
-      let defaultChild = item.children.find((i) => i.meta.default)
-      defaultRoute = defaultChild || defaultRoute
-    }
-  })
+//   menu.forEach((item) => {
+//     if (item.meta.default) {
+//       defaultRoute = item
+//     } else if (item.children) {
+//       let defaultChild = item.children.find((i) => i.meta.default)
+//       defaultRoute = defaultChild || defaultRoute
+//     }
+//   })
 
-  return defaultRoute
-}
+//   return defaultRoute
+// }
