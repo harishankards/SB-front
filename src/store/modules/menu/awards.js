@@ -1,12 +1,12 @@
 import lazyLoading from './lazyLoading'
 
 export default {
-  name: 'Landing',
-  path: '/',
-  component: lazyLoading('landing/Landing'),
+  name: 'Awards',
+  path: '/awards',
+  component: lazyLoading('awards/Index'),
   meta: {
-    default: true,
-    title: 'menu.landing',
+    default: false,
+    title: 'menu.awards',
     iconClass: 'vuestic-icon vuestic-icon-dashboard'
   }
 }
