@@ -4,25 +4,25 @@ export default {
   name: 'Projects',
   meta: {
     expanded: false,
-    title: 'menu.projects',
+    title: 'menu.projects.parent',
     iconClass: 'vuestic-icon vuestic-icon-statistics'
   },
 
   children: [
     {
-      name: 'menu.newProject',
+      name: 'menu.projects.newProject',
       path: '/projects/new',
       component: lazyLoading('projects/NewProject'),
       meta: {
-        title: 'menu.newProject'
+        title: 'menu.projects.newProject'
       }
     },
     {
-      name: 'menu.projectList',
+      name: 'menu.projects.projectList',
       path: '/projects/project-list',
       component: lazyLoading('projects/ProjectList'),
       meta: {
-        title: 'menu.projectList'
+        title: 'menu.projects.projectList'
       }
     }
   ]

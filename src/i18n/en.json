@@ -154,29 +154,20 @@
   },
   "menu": {
     "auth": "Auth",
-    "buttons": "Buttons",
-    "projects": "Projects",
-    "newProject": "New Project",
-    "projectList": "Projects history",
+    "projects": {
+      "parent": "Projects",
+      "newProject": "New Project",
+      "projectList": "Projects history"
+    },
+    "contests": {
+      "parent": "Contests",
+      "upcoming": "Upcoming Contests",
+      "history": "Contests history"
+    },
+    
     "newsfeed": "Newsfeed",
-    "extra": "Extra",
-    "formElements": "Form Elements",
-    "forms": "Forms",
-    "formWizards": "Form Wizards",
-    "mediumEditor": "Medium Editor",
-    "grid": "Grid",
-    "icons": "Icons",
-    "spinners": "Spinners",
     "login": "Login",
-    "maps": "Maps",
-    "modals": "Modals",
-    "notifications": "Notifications",
-    "progressBars": "Progress Bars",
     "signUp": "Sign up",
-    "statistics": "Statistics",
-    "tables": "Tables",
-    "typography": "Typography",
-    "uiElements": "UI Elements",
     "landing": "Landing page"
   },
   "messages": {
