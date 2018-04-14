@@ -7,6 +7,7 @@ import awards from './awards'
 import favorites from './favorites'
 import messages from './messages'
 import stats from './stats'
+import settings from './settings'
 
 const state = {
   items: [
@@ -17,6 +18,7 @@ const state = {
     messages,
     favorites,
     stats,
+    settings,
     auth
   ]
 }

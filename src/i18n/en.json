@@ -171,7 +171,8 @@
     "signUp": "Sign up",
     "landing": "Landing page",
     "messages": "Messages",
-    "stats": "Stats"
+    "stats": "Stats",
+    "settings": "Settings"
   },
   "messages": {
     "all": "See all messages",
