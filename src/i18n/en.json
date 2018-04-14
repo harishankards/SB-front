@@ -157,7 +157,8 @@
     "projects": {
       "parent": "Projects",
       "newProject": "New Project",
-      "projectList": "Projects history"
+      "projectList": "Projects history",
+      "yourProjects": "Your projects"
     },
     "contests": {
       "parent": "Contests",

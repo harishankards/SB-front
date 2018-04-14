@@ -1,10 +1,10 @@
 export default {
   itemsPerPage: [
     {
-      value: 5
+      value: 2
     },
     {
-      value: 6
+      value: 5
     },
     {
       value: 10
