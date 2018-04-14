@@ -169,7 +169,8 @@
     "newsfeed": "Newsfeed",
     "login": "Login",
     "signUp": "Sign up",
-    "landing": "Landing page"
+    "landing": "Landing page",
+    "messages": "Messages"
   },
   "messages": {
     "all": "See all messages",

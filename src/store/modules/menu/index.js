@@ -5,6 +5,7 @@ import projects from './projects'
 import contests from './contests'
 import awards from './awards'
 import favorites from './favorites'
+import messages from './messages'
 
 const state = {
   items: [
@@ -12,6 +13,7 @@ const state = {
     projects,
     contests,
     awards,
+    messages,
     favorites,
     auth
   ]
