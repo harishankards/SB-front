@@ -5,7 +5,7 @@ export default {
   meta: {
     expanded: false,
     title: 'menu.contests.parent',
-    iconClass: 'fa fa-hourglass'
+    iconClass: 'fa fa-flag'
   },
 
   children: [

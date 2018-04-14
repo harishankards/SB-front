@@ -170,7 +170,8 @@
     "login": "Login",
     "signUp": "Sign up",
     "landing": "Landing page",
-    "messages": "Messages"
+    "messages": "Messages",
+    "stats": "Stats"
   },
   "messages": {
     "all": "See all messages",
