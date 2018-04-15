@@ -1,6 +1,5 @@
 import * as types from '../../mutation-types'
 import newsfeed from './newsfeed'
-import auth from './auth'
 import projects from './projects'
 import contests from './contests'
 import awards from './awards'
@@ -18,8 +17,7 @@ const state = {
     messages,
     favorites,
     stats,
-    settings,
-    auth
+    settings
   ]
 }
 

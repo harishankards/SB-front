@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h2>{{'auth.welcome' | translate}} Company</h2>
-    <form method="post" action="/auth/login" name="login">
+    <form method="post" action="/auth/company/login" name="companylogin">
       <div class="form-group">
         <div class="input-group">
           <input type="text" id="email" required="required"/>
