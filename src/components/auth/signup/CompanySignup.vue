@@ -1,16 +1,16 @@
 <template>
   <div class="signup">
     <h2>{{'auth.createNewAccount' | translate}}</h2>
-    <form method="post" action="sendSignup" name="companysignup" @submit.prevent="studentSignup">
+    <form method="post" name="companysignup" @submit.prevent="sendSignupData">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" id="email" required="required"/>
+          <input type="text" id="email" v-model="signupData.email" required="required"/>
           <label class="control-label" for="email">{{'auth.email' | translate}}</label><i class="bar"></i>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
-          <input type="password" id="password" required="required"/>
+          <input type="password" v-model="signupData.password" id="password" required="required"/>
           <label class="control-label" for="password">{{'auth.password' | translate}}</label><i class="bar"></i>
         </div>
       </div>
@@ -21,7 +21,7 @@
         </label>
       </div>
       <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between down-container">
-        <button class="btn btn-primary" type="submit">
+        <button class="btn btn-primary" type="submit" @submit="sendSignup">
           {{'auth.signUp' | translate}}
         </button>
         <router-link class='link' :to="{name: 'companylogin'}">{{'auth.alreadyJoined' | translate}}</router-link>
@@ -33,9 +33,18 @@
 <script>
   export default {
     name: 'companysignup',
+    data () {
+      return {
+        signupData: {
+          email: '',
+          password: ''
+        }
+      }
+    },
+
     methods: {
-      sendSignup: function (data) {
-        console.log('data da', data)
+      sendSignupData: function () {
+        console.log('signup data', this.signupData.email, this.signupData.password)
       }
     }
   }

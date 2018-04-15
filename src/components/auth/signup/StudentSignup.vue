@@ -1,16 +1,16 @@
 <template>
   <div class="signup">
     <h2>{{'auth.createNewAccount' | translate}}</h2>
-    <form method="post" action="/auth/student/signup" name="studentsignup">
+    <form method="post" name="studentsignup" @submit.prevent="sendSignupData">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" id="email" required="required"/>
+          <input type="text" v-model="signupData.email" id="email" required="required"/>
           <label class="control-label" for="email">{{'auth.email' | translate}}</label><i class="bar"></i>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
-          <input type="password" id="password" required="required"/>
+          <input type="password" v-model="signupData.password" id="password" required="required"/>
           <label class="control-label" for="password">{{'auth.password' | translate}}</label><i class="bar"></i>
         </div>
       </div>
@@ -32,7 +32,20 @@
 
 <script>
   export default {
-    name: 'signup'
+    name: 'signup',
+    data () {
+      return {
+        signupData: {
+          email: '',
+          password: ''
+        }
+      }
+    },
+    methods: {
+      sendSignupData: function () {
+        console.log('data:', this.signupData.email, this.signupData.password)
+      }
+    }
   }
 </script>
 
