@@ -1,16 +1,16 @@
 <template>
     <div class="row">
       <div class="col-md-8">
-        <vuestic-widget class="" v-for="post in posts" :key="post.id">
+        <vuestic-widget class="" v-for="project in projects" :key="project.id">
           <div>
-            <div id="feed-card-image">{{giveInitial(post)}}</div>
-            <div id="feed-card-user-name-div">
-              <span class="feed-card-username"><strong><a href="#">{{post.name}}</a> </strong></span><br>
-              <span class="feed-card-time">{{post.calender}}</span>
+            
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="#">{{project.name}}</a> </strong></span><br>
+              <span class="projects-time">{{project.calender}}</span>
             </div>
           </div>
-          <div id="post-content-div">
-            <p id="post-description">{{post.post_desc}}</p>
+          <div id="projects-content-div">
+            <span id="projects-description">{{project.post_desc}}</span>
           </div>
           
         </vuestic-widget>
@@ -18,7 +18,7 @@
       <div class="col-md-4">
         <vuestic-widget class="createproject-div">
           <div class="col-md-offset-6 col-md-12">
-            <h5>Got something new?</h5>
+            <h5 class="gotnew">Got something new?</h5>
             <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>    
           </div>
         </vuestic-widget>
@@ -35,46 +35,50 @@
     component: {},
     data () {
       return {
+        projects: [
+          {
+            id: 0,
+            name: 'Geo visual ranking approximation using machine learning',
+            calender: '3mo',
+            post_desc: 'Happy to upload my final year project'
+          },
+          {
+            id: 1,
+            name: 'Nodal analysis in optical image processing',
+            calender: '6mo',
+            post_desc: 'Uploaded my dream project'
+          },
+          {
+            id: 2,
+            name: 'Character identifier using moods using map cluster algorithm',
+            calender: '1y',
+            post_desc: 'Woohoo!!!! Finally uploaded the project ^_^'
+          }
+        ],
         posts: [
           {
             id: 0,
             photoURL: 'https://goo.gl/KnVxVY',
             name: 'Harishankar',
-            text: 'registered for a contest',
-            action: 'upvoted',
-            by: 'Balaji',
-            calender: '32m',
-            post_desc: 'Happy to upload my final year project'
+            text: 'registered for a contest'
           },
           {
             id: 1,
             photoURL: 'https://goo.gl/1nKusR',
             name: 'Balaji D Loganathan',
-            text: 'upvoted for a project',
-            action: 'commented',
-            by: 'Surendran',
-            calender: '3h',
-            post_desc: 'Uploaded my dream project'
+            text: 'upvoted for a project'
           },
           {
             id: 2,
             photoURL: 'https://goo.gl/Ckaexc',
             name: 'Surendran S',
-            text: 'upvoted for a project',
-            action: 'upvoted',
-            by: 'HS',
-            calender: '2d',
-            post_desc: 'Woohoo!!!! Finally uploaded the project ^_^'
+            text: 'upvoted for a project'
           }
         ]
       }
     },
 
     methods: {
-      giveInitial: function (post) {
-        let initial = post.name.charAt(0)
-        return initial
-      },
       createNew: function () {
         this.$router.push('/projects/new')
       }
@@ -91,30 +95,21 @@
   .newsfeed-page{
     padding-left: 0rem !important;
   }
-  .feed-card-time{
+  .projects-time{
     margin-top: 3px;
     color: #a29e9e;
   }
-  #feed-card-image{
-    display: inline-block;
-    border: 1px solid #a29e9e;
-    border-radius: 50%;
-    background: #CA3C25;
-    font-size: 1.5rem;
-    height: 3rem;
-    width: 3rem;
-    padding-left: 0.95rem;
-    padding-top: 0.3rem;
-    color: #e8dfdf;
-    vertical-align: top;
-  }
 
-  #feed-card-user-name-div{
+  #projects-name-div{
     display: inline-block;
     margin-left: 0.4rem;
   }
 
-  #post-content-div{
+  #projects-content-div{
     margin-top: 0.5rem;
+  }
+
+  .gotnew{
+    margin-bottom: 1.5rem;
   }
 </style>
