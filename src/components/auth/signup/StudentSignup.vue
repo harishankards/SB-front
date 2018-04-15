@@ -1,7 +1,7 @@
 <template>
-  <div class="login">
-    <h2>{{'auth.welcome' | translate}} {{this.$store.state.category}} !</h2>
-    <form method="post" action="/auth/login" name="login">
+  <div class="signup">
+    <h2>{{'auth.createNewAccount' | translate}}</h2>
+    <form method="post" action="/auth/signup" name="signup">
       <div class="form-group">
         <div class="input-group">
           <input type="text" id="email" required="required"/>
@@ -14,11 +14,17 @@
           <label class="control-label" for="password">{{'auth.password' | translate}}</label><i class="bar"></i>
         </div>
       </div>
+      <div class="form-check abc-checkbox abc-checkbox-primary">
+        <input class="form-check-input" id="checkbox1" type="checkbox" checked>
+        <label class="form-check-label" for="checkbox1">
+          <span class="abc-label-text">{{'auth.agree' | translate}} <router-link to="">{{'auth.termsOfUse' | translate}}</router-link></span>
+        </label>
+      </div>
       <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between down-container">
         <button class="btn btn-primary" type="submit">
-          {{'auth.login' | translate}}
+          {{'auth.signUp' | translate}}
         </button>
-        <router-link class='link' :to="{name: 'Signup'}">{{'auth.createAccount' | translate}}</router-link>
+        <router-link class='link' :to="{name: 'studentlogin'}">{{'auth.alreadyJoined' | translate}}</router-link>
       </div>
     </form>
   </div>
@@ -26,7 +32,7 @@
 
 <script>
   export default {
-    name: 'login'
+    name: 'signup'
   }
 </script>
 
@@ -35,7 +41,8 @@
   @import '../../../../node_modules/bootstrap/scss/mixins/breakpoints';
   @import "../../../../node_modules/bootstrap/scss/functions";
   @import '../../../../node_modules/bootstrap/scss/variables';
-  .login {
+
+  .signup {
     @include media-breakpoint-down(md) {
       width: 100%;
       padding-right: 2rem;
@@ -53,7 +60,7 @@
     width: 21.375rem;
 
     .down-container {
-      margin-top: 3.125rem;
+      margin-top: 2.6875rem;
     }
   }
 </style>

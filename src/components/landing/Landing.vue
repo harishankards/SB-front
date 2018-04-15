@@ -7,14 +7,13 @@
       <div class="col-md-12">
         <h2 class="col-md-6 offset-5">Are you a?</h2>
         <div class="button-div col-md-6 offset-3">
-        <router-link class="i-vuestic" :to="{path: '/auth/login'}"> 
+
           <button @click="student" class="btn btn-primary btn-with-icon">
             <div class="btn-with-icon-content">
               <i class="fa fa-graduation-cap"></i>
               Student
             </div>
           </button>
-        </router-link>
         <!-- <router-link class="i-vuestic" :to="{path: '/auth/login'}">  -->
         
           <button @click="company" class="btn btn-primary btn-with-icon">
@@ -38,6 +37,7 @@
       student: function () {
         this.$store.state.category = 'student'
         console.log('clicked student components', this.$store.state.category)
+        this.$router.push('/auth/student/login')
       },
       company: function () {
         this.$store.state.category = 'company'
