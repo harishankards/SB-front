@@ -7,19 +7,23 @@
       <div class="col-md-12">
         <h2 class="col-md-6 offset-5">Are you a?</h2>
         <div class="button-div col-md-6 offset-3">
+        <router-link class="i-vuestic" :to="{path: '/auth/login'}"> 
           <button @click="student" class="btn btn-primary btn-with-icon">
             <div class="btn-with-icon-content">
               <i class="fa fa-graduation-cap"></i>
               Student
             </div>
           </button>
+        </router-link>
+        <router-link class="i-vuestic" :to="{path: '/auth/login'}"> 
+        
           <button @click="company" class="btn btn-primary btn-with-icon">
             <div class="btn-with-icon-content">
               <i class="fa fa-building"></i>
               Company
             </div>
           </button>
-
+        </router-link>
         </div>
         
       </div>
@@ -33,6 +37,7 @@
     methods: {
       student: function () {
         console.log('clicked student components')
+        // this.$route.router.go('/auth/login')
       },
       company: function () {
         console.log('clicked company components')
