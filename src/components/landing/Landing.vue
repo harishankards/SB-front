@@ -15,7 +15,7 @@
             </div>
           </button>
         </router-link>
-        <router-link class="i-vuestic" :to="{path: '/auth/login'}"> 
+        <!-- <router-link class="i-vuestic" :to="{path: '/auth/login'}">  -->
         
           <button @click="company" class="btn btn-primary btn-with-icon">
             <div class="btn-with-icon-content">
@@ -23,7 +23,7 @@
               Company
             </div>
           </button>
-        </router-link>
+        <!-- </router-link> -->
         </div>
         
       </div>
@@ -41,7 +41,7 @@
       },
       company: function () {
         this.$store.state.category = 'company'
-        console.log('clicked company components', this.$store.state.category)
+        this.$router.push('/auth/company/login')
       }
 
     }
