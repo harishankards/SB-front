@@ -24,13 +24,13 @@
         <div class="dropdown-menu">
           <div class="dropdown-menu-content">
             <a class="dropdown-item" href="#">
-              <span class="ellipsis">{{$t('notifications.sentMessage', {name: 'Vasily S'})}}</span>
+              <span class="ellipsis">{{$t('notifications.sentMessage', {name: 'HS'})}}</span>
             </a>
             <a class="dropdown-item" href="#">
-              <span class="ellipsis">{{$t('notifications.uploadedZip', { name: "Oleg M", type: "typography component"})}}</span>
+              <span class="ellipsis">{{$t('notifications.uploadedZip', { name: "Balaji", type: "typography component"})}}</span>
             </a>
             <a class="dropdown-item" href="#">
-              <span class="ellipsis">{{$t('notifications.startedTopic',{name: "Andrei H"}) }}</span>
+              <span class="ellipsis">{{$t('notifications.startedTopic',{name: "Surendran"}) }}</span>
             </a>
             <div class="dropdown-item plain-link-item">
               <a class="plain-link" href="#">{{'notifications.all' | translate}}</a>
