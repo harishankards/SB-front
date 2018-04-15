@@ -1,5 +1,5 @@
 <template>
-  <vuestic-widget :headerText="$t('menu.projects.yourProjects')">
+  <vuestic-widget headerText="Your contests">
 
     <vuestic-data-table
                 :tableData ="tableData"
@@ -20,20 +20,24 @@ export default{
       apiMode: false, // Choose api mode or just pass array in data-table component
       tableFields: [
         {
-          name: 'contestName', // Object property name in your data e.g. (data[0].name)
-          sortField: 'contestName' // Object property name in your data which will be used for sorting
+          name: 'contestname', // Object property name in your data e.g. (data[0].name)
+          sortField: 'contestname' // Object property name in your data which will be used for sorting
         },
         {
-          name: 'email',
-          sortField: 'A'
+          name: 'sponsor',
+          sortField: 'sponsor'
         },
         {
-          name: 'address.line2',
-          title: 'city' // Title of column
+          name: 'mode',
+          title: 'mode' // Title of column
         },
         {
-          name: 'salary',
-          title: 'score'
+          name: 'date',
+          title: 'date'
+        },
+        {
+          name: 'finalstatus',
+          title: 'finalstatus'
         }
       ],
       itemsPerPage: [  // values in dropdown "Items Per Page"
