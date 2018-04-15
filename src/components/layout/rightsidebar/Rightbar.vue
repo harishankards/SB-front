@@ -1,0 +1,27 @@
+<template>
+
+</template>
+
+<script>
+  export default{
+    name: 'rightbar'
+  }
+</script>
+
+<style scoped>
+  .navbar-nav {
+      flex-direction: row;
+    }
+    
+    .nav-link {
+      padding-right: .5rem !important;
+      padding-left: .5rem !important;
+    }
+    
+    /* Fixes dropdown menus placed on the right side */
+    .ml-auto .dropdown-menu {
+      left: auto !important;
+      right: 0px;
+    }
+</style>
+
