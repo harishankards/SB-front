@@ -1,7 +1,7 @@
 <template>
   <div class="signup">
     <h2>{{'auth.createNewAccount' | translate}}</h2>
-    <form method="post" action="/auth/company/signup" name="companysignup">
+    <form method="post" action="sendSignup" name="companysignup">
       <div class="form-group">
         <div class="input-group">
           <input type="text" id="email" required="required"/>
@@ -32,7 +32,12 @@
 
 <script>
   export default {
-    name: 'companysignup'
+    name: 'companysignup',
+    methods: {
+      sendSignup: function (data) {
+        console.log('data da', data)
+      }
+    }
   }
 </script>
 

@@ -1,9 +1,9 @@
 <template>
-  <h1>coming soon</h1>
+  <h4>coming soon</h4>
 </template>
 
 <script>
-    export default{
-        name: 'settings'
-    }
+	export default {
+	  name: 'settings'
+	}
 </script>
