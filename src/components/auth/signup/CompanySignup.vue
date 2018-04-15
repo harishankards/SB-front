@@ -1,7 +1,7 @@
 <template>
   <div class="signup">
     <h2>{{'auth.createNewAccount' | translate}}</h2>
-    <form method="post" action="sendSignup" name="companysignup">
+    <form method="post" action="sendSignup" name="companysignup" @submit.prevent="studentSignup">
       <div class="form-group">
         <div class="input-group">
           <input type="text" id="email" required="required"/>
