@@ -19,7 +19,7 @@
         <vuestic-widget class="createproject-div">
           <div class="col-md-offset-6 col-md-12">
             <h5>Got something new?</h5>
-            <button class="btn btn-primary btn-micro"> New project</button>            
+            <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>         
           </div>
         </vuestic-widget>
         <vuestic-widget class="live-feed" headerText="Live feeds">
@@ -74,6 +74,9 @@
       giveInitial: function (post) {
         let initial = post.name.charAt(0)
         return initial
+      },
+      createNew: function () {
+        this.$router.push('/projects/new')
       }
     }
   }

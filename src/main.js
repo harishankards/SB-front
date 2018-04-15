@@ -8,8 +8,12 @@ import router from './router'
 import { sync } from 'vuex-router-sync'
 import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 import './i18n'
+import VModal from 'vue-js-modal'
 
 Vue.use(VuesticPlugin)
+
+// For vuemodal 2
+Vue.use(VModal)
 
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})

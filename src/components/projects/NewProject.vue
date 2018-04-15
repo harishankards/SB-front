@@ -1,4 +1,9 @@
 <template>
+  <div>
+    <button class="btn btn-danger backbtn" @click="sendBack">
+        <i class="fa fa-caret-left"></i>
+        Back
+    </button>
     <vuestic-wizard 
      :steps="vrSteps" 
      wizard-layout="horizontal" 
@@ -37,10 +42,11 @@
        
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
-          <h4>Add slot="wizardCompleted" to your wizard's last step,
-           to show this step after wizard completed!</h4>
+          <h4>Thanks guys</h4>
      </div>
 </vuestic-wizard>
+
+  </div>
 
 
 
@@ -68,6 +74,9 @@
             isValid: () => {
               // condition for moving to the next step
               return true
+            },
+            onBack: () => {
+              // method is called when moving to the previous step
             }
           },
           {
@@ -128,6 +137,11 @@
           }
         ]
       }
+    },
+    methods: {
+      sendBack: function () {
+        this.$router.push('/projects/project-list')
+      }
     }
   }
 </script>
@@ -141,5 +155,10 @@
     padding-top: 15px;
     padding-right: 15px;
     padding-left: 15px;
+  }
+  .backbtn{
+    margin-bottom: 1rem;
+    padding: 0.8rem 1.9rem;
+    border-radius: 5%;
   }
 </style>
