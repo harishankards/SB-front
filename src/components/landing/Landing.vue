@@ -36,11 +36,12 @@
     name: 'landing',
     methods: {
       student: function () {
-        console.log('clicked student components')
-        // this.$route.router.go('/auth/login')
+        this.$store.state.category = 'student'
+        console.log('clicked student components', this.$store.state.category)
       },
       company: function () {
-        console.log('clicked company components')
+        this.$store.state.category = 'company'
+        console.log('clicked company components', this.$store.state.category)
       }
 
     }

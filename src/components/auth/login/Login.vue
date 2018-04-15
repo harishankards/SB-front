@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h2>{{'auth.welcome' | translate}}</h2>
+    <h2>{{'auth.welcome' | translate}} {{this.$store.state.category}} !</h2>
     <form method="post" action="/auth/login" name="login">
       <div class="form-group">
         <div class="input-group">
