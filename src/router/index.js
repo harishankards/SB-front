@@ -9,6 +9,8 @@ import CompanySignup from 'components/auth/signup/CompanySignup'
 import StudentLogin from 'components/auth/login/StudentLogin'
 import StudentSignup from 'components/auth/signup/StudentSignup'
 
+import NewProject from 'components/projects/NewProject'
+
 Vue.use(Router)
 
 export default new Router({
@@ -19,7 +21,8 @@ export default new Router({
     {path: '/auth/company/login', component: CompanyLogin, name: 'companylogin'},
     {path: '/auth/company/signup', component: CompanySignup, name: 'companysignup'},
     {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
-    {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'}
+    {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
+    {path: '/projects/new', component: NewProject, name: 'newproject'}
   ],
   mode: 'history'
 })
