@@ -1,16 +1,16 @@
 <template>
   <div class="login">
     <h2>{{'auth.welcome' | translate}} Company</h2>
-    <form method="post" action="/auth/company/login" name="companylogin">
+    <form method="post" @submit.prevent="sendLoginData" name="companylogin">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" id="email" required="required"/>
+          <input type="text" v-model="loginData.email" id="email" required="required"/>
           <label class="control-label" for="email">{{'auth.email' | translate}}</label><i class="bar"></i>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
-          <input type="password" id="password" required="required"/>
+          <input type="password" v-model="loginData.password" id="password" required="required"/>
           <label class="control-label" for="password">{{'auth.password' | translate}}</label><i class="bar"></i>
         </div>
       </div>
@@ -26,7 +26,21 @@
 
 <script>
   export default {
-    name: 'companyLogin'
+    name: 'companyLogin',
+    data () {
+      return {
+        loginData: {
+          email: '',
+          password: ''
+        }
+      }
+    },
+    methods: {
+      sendLoginData: function () {
+        console.log('data da:', this.loginData.email, this.loginData.password)
+      }
+    }
+
   }
 </script>
 
