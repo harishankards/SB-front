@@ -1,5 +1,5 @@
 <template>
-  <h4>coming soon</h4>
+  <h3>coming soon...</h3>
 </template>
 
 <script>

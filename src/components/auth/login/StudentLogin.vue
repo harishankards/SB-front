@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h2>{{'auth.welcome' | translate}} {{this.$store.state.category}} !</h2>
+    <h2>{{'auth.welcome' | translate}} Student!</h2>
     <form method="post" @submit.prevent="sendLoginData" name="studentlogin">
       <div class="form-group">
         <div class="input-group">
