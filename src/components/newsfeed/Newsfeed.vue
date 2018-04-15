@@ -49,7 +49,7 @@
             id: 0,
             photoURL: 'https://goo.gl/KnVxVY',
             name: 'Harishankar',
-            text: 'registered for a contest',
+            text: 'is going for a contest',
             action: 'upvoted',
             by: 'Balaji',
             calender: '32m',

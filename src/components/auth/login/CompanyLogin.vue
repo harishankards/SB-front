@@ -5,7 +5,7 @@
       <div class="form-group">
         <div class="input-group">
           <input type="text" v-model="loginData.email" id="email" required="required"/>
-          <label class="control-label" for="email">{{'auth.email' | translate}}</label><i class="bar"></i>
+          <label class="control-label" for="email">Username</label><i class="bar"></i>
         </div>
       </div>
       <div class="form-group">

@@ -5,7 +5,7 @@
       <div class="form-group">
         <div class="input-group">
           <input type="text" v-model="loginData.email" id="email" required="required"/>
-          <label class="control-label" for="email">{{'auth.email' | translate}}</label><i class="bar"></i>
+          <label class="control-label" for="email">Username</label><i class="bar"></i>
         </div>
       </div>
       <div class="form-group">
@@ -38,6 +38,9 @@
     methods: {
       sendLoginData: function () {
         console.log('data da:', this.loginData.email, this.loginData.password)
+        if (this.loginData.email === 'hs@spritle.com' && this.loginData.password === 'spritle') {
+          this.$router.push('/newsfeed')
+        }
       }
     }
   }
