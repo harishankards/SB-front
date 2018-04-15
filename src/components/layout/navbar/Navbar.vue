@@ -19,24 +19,6 @@
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#" @click.prevent="closeMenu">
-          <span class="i-nav-messages notify"></span>
-        </a>
-        <div class="dropdown-menu">
-          <div class="dropdown-menu-content">
-            <a class="dropdown-item" href="#">
-              <span class="ellipsis">{{ $t('messages.new', {name: "Oleg M"})}}</span>
-            </a>
-            <a class="dropdown-item" href="#">
-              <span class="ellipsis">{{ $t('messages.new', {name: "Andrei H"})}}</span>
-            </a>
-            <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#">{{'messages.all' | translate}}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
-        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#" @click.prevent="closeMenu">
           <span class="i-nav-notification notify"></span>
         </a>
         <div class="dropdown-menu">
