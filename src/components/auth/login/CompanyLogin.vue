@@ -39,7 +39,7 @@
       sendLoginData: function () {
         console.log('data da:', this.loginData.email, this.loginData.password)
         if (this.loginData.email === 'info@spritle.com' && this.loginData.password === 'spritle') {
-          this.router.push('/company/newsfeed')
+          this.$router.push('/company/newsfeed')
         }
       }
     }

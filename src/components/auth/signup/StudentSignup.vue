@@ -27,6 +27,14 @@
         <router-link class='link' :to="{name: 'studentlogin'}">{{'auth.alreadyJoined' | translate}}</router-link>
       </div>
     </form>
+    <div class="col-md-12">
+      <h2 class="ortext">or</h2>
+      <button class="btn btn-info fbbtn"><i class="fa fa-facebook-official"></i>  Sign up with Facebook</button>
+      <button class="btn btn-dark ghbtn"><i class="fa fa-github"></i> Sign up with  Github</button>
+      <button class="btn btn-danger libtn"><i class="fa fa-linkedin-square"></i> Sign up with Linkedin</button>
+      
+      
+    </div>
   </div>
 </template>
 
@@ -76,4 +84,36 @@
       margin-top: 2.6875rem;
     }
   }
+
+  .ortext {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .fbbtn {
+    margin-bottom: 1rem;
+    padding: 0.8rem 1.9rem;
+    border-radius: 2%;
+  }
+
+  .btn.btn-info {
+    background-color: #3B5998;
+  }
+
+  .ghbtn {
+    margin-bottom: 1rem;
+    padding: 0.8rem 2.7rem;
+    border-radius: 2%;
+  }
+
+  .btn.btn-danger {
+    background-color: #0077b5    
+  }
+
+  .libtn {
+    margin-bottom: 1rem;
+    padding: 0.8rem 2.15rem;
+    border-radius: 2%;
+  }
+
 </style>
