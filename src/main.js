@@ -8,12 +8,25 @@ import router from './router'
 import { sync } from 'vuex-router-sync'
 import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 import './i18n'
-import VModal from 'vue-js-modal'
+
+// For auth
+import VueAxios from 'vue-axios'
+import VueAuthenticate from 'vue-authenticate'
+import axios from 'axios'
+
+Vue.use(VueAxios, axios)
+Vue.use(VueAuthenticate, {
+  baseUrl: 'http://localhost:3000',
+  providers: {
+    linkedin: {
+      clientId: '',
+      redirectUri: 'http://localhost:8080/auth/callback'
+    }
+  }
+})
 
 Vue.use(VuesticPlugin)
 
-// For vuemodal 2
-Vue.use(VModal)
 
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
