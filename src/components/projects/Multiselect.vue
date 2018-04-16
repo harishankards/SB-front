@@ -1,5 +1,5 @@
 <template>
-  <multiselect v-model="value" :options="options" :taggable=true tag-placeholder="Add this as new tag"></multiselect>        
+   <multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
 </template>
 
 <script>
@@ -13,12 +13,13 @@ export default {
   data () {
     return {
       value: [
-        { name: 'Javascript', code: 'js' }
+        { name: 'Computer Science', code: 'cse' }
       ],
       options: [
-        { name: 'Vue.js', code: 'vu' },
-        { name: 'Javascript', code: 'js' },
-        { name: 'Open Source', code: 'os' }
+        {name: 'Computer Science', code: 'cse'},
+        { name: 'Electronics', code: 'elec' },
+        { name: 'Mechanical', code: 'mech' },
+        { name: 'Biotechnology', code: 'Biot' }
       ]
     }
   },
