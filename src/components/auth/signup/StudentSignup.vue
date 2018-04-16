@@ -30,10 +30,8 @@
     <div class="col-md-12">
       <h2 class="ortext">or</h2>
       <button class="btn btn-info fbbtn"><i class="fa fa-facebook-official"></i>  Sign up with Facebook</button>
-      <button class="btn btn-dark ghbtn"><i class="fa fa-github"></i> Sign up with  Github</button>
+      <!-- <button class="btn btn-dark ghbtn"><i class="fa fa-github"></i> Sign up with  Github</button> -->
       <button class="btn btn-danger libtn"><i class="fa fa-linkedin-square"></i> Sign up with Linkedin</button>
-      
-      
     </div>
   </div>
 </template>
