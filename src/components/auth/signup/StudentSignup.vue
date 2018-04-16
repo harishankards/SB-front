@@ -57,7 +57,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../../../sass/variables';
   @import '../../../../node_modules/bootstrap/scss/mixins/breakpoints';
   @import "../../../../node_modules/bootstrap/scss/functions";
