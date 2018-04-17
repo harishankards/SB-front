@@ -8,25 +8,11 @@ import router from './router'
 import { sync } from 'vuex-router-sync'
 import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 import './i18n'
-import VueResource from 'vue-resource'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-Vue.use(VueResource)
-
-// For auth
-// import VueAxios from 'vue-axios'
-// import VueAuthenticate from 'vue-authenticate'
-// import axios from 'axios'
-
-// Vue.use(VueAxios, axios)
-// Vue.use(VueAuthenticate, {
-//   baseUrl: 'http://localhost:3000',
-//   providers: {
-//     linkedin: {
-//       clientId: '',
-//       redirectUri: 'http://localhost:8080/auth/callback'
-//     }
-//   }
-// })
+//For http requests
+Vue.use(VueAxios, axios)
 
 Vue.use(VuesticPlugin)
 

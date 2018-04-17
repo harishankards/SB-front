@@ -50,7 +50,7 @@
       }
     },
     mounted () {
-      this.$http.get('https://localhost:3000/students', { headers: { 'content-type': 'application/json' } })
+      this.$http.get('http://localhost:3000/students', { headers: { 'content-type': 'application/json' } })
       .then(function (data) {
         console.log('data', data)
       })
