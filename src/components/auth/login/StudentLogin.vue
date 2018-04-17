@@ -25,7 +25,7 @@
       <h2 class="ortext">or</h2>
       <button class="btn btn-info fbbtn"><i class="fa fa-facebook-official"></i>  Sign in with Facebook</button>
       <!-- <button class="btn btn-dark ghbtn"><i class="fa fa-github"></i> Sign in with  Github</button> -->
-      <button class="btn btn-danger libtn"><i class="fa fa-linkedin-square"></i> Sign in with Linkedin</button>
+      <button class="btn btn-danger libtn" @click.prevent="linkedinLogin"><i class="fa fa-linkedin-square"></i> Sign in with Linkedin</button>
     </div>
   </div>
 </template>
@@ -48,6 +48,15 @@
           this.$router.push('/newsfeed')
         }
       }
+    },
+    mounted () {
+      this.$http.get('https://localhost:3000/students', { headers: { 'content-type': 'application/json' } })
+      .then(function (data) {
+        console.log('data', data)
+      })
+      .catch(function (err) {
+        console.log('err', err)
+      })
     }
   }
 </script>
