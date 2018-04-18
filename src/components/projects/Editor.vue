@@ -1,39 +1,21 @@
 
 <template>
-  <vuestic-medium-editor @initialized="handleEditorInitialization" :editor-options="editorOptions" data-placeholder="Type your description here">
-    
-  </vuestic-medium-editor>
+  <vue-editor v-model="content"></vue-editor>
 </template>
 
-<script>
+ <script>
+  import { VueEditor } from 'vue2-editor'
+
   export default {
-    name: 'editor',
+    components: {
+      VueEditor
+    },
 
     data () {
       return {
-        editor: {},
-        editorOptions: {
-          buttonLabels: 'fontawesome',
-          autoLink: true,
-          toolbar: {
-            buttons: [
-              'bold',
-              'italic',
-              'underline',
-              'anchor',
-              'h1',
-              'h2',
-              'h3'
-            ]
-          }
-        }
-      }
-    },
-
-    methods: {
-      handleEditorInitialization (editor) {
-        this.editor = editor
+        content: '<p>Here goes the desciption</p>'
       }
     }
+
   }
-</script>
+ </script>

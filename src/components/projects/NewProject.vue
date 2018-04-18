@@ -27,7 +27,7 @@
         </div>    
      </div>
      <div slot="page3" class="form-wizard-tab-content">
-        <editor></editor>
+        <editor v-model="projectData.description"></editor>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
         <button class="btn btn-info btn-with-icon">
@@ -64,6 +64,7 @@
       editor,
       Multiselect
     },
+    props: ['value'],
     data () {
       return {
         projectData: {
@@ -71,7 +72,7 @@
           abstract: '',
           description: '',
           files: '',
-          tags: []
+          tags: this.value
         },
         vrSteps: [
           {
@@ -107,12 +108,14 @@
             slot: 'page3', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
+              console.log('project desc', this.projectData.description)
             },
             isValid: () => {
               // condition for moving to the next step
               return true
             },
             onBack: () => {
+              console.log('project desc', this.projectData.description)
               // method is called when moving to the previous step
             }
           },
