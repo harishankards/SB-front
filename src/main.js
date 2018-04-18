@@ -11,7 +11,7 @@ import './i18n'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-//For http requests
+// For http requests
 Vue.use(VueAxios, axios)
 
 Vue.use(VuesticPlugin)

@@ -20,6 +20,15 @@
           <div id="post-content-div">
             <p id="post-description">{{post.post_desc}}</p>
           </div>
+          <hr>
+          <div id="user-interaction-div">
+            <div>
+              <button class=""> <i class="fa fa-thumbs-up"></i> Upvote</button>
+            </div>
+            <div id="comments-div">
+              <vue-disqus shortname="student-burger.disqus.com"></vue-disqus>
+            </div>
+          </div>
           
         </vuestic-widget>
       </div>
@@ -35,12 +44,14 @@
 </template>
 
 <script>
+  import VueDisqus from 'vue-disqus/VueDisqus.vue'
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
 
   export default {
     name: 'dashboard',
     components: {
-      NewsfeedInfoWidgets
+      NewsfeedInfoWidgets,
+      VueDisqus
     },
     data () {
       return {

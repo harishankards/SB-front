@@ -47,10 +47,23 @@
         if (this.loginData.email === 'hs@spritle.com' && this.loginData.password === 'spritle') {
           this.$router.push('/newsfeed')
         }
+      },
+      linkedinLogin: function () {
+        this.$http.get('http://localhost:3000/auth/linkedin', {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
+        .then(function (linkedindata) {
+          console.log('linkedindata', linkedindata)
+        })
+        .catch(function (linkedinErr) {
+          console.log('linkedin err', linkedinErr)
+        })
       }
     },
     mounted () {
-      this.$http.get('http://localhost:3000/students', { headers: { 'content-type': 'application/json' } })
+      this.$http.get('http://localhost:3000/students')
       .then(function (data) {
         console.log('data', data)
       })
