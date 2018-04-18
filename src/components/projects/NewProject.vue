@@ -13,7 +13,7 @@
      <div slot="page1" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-              <input id="simple-input" required/>
+              <input id="simple-input" v-model="projectData.title" required/>
               <label class="control-label" for="simple-input">Name of the project</label><i class="bar"></i>
           </div>
         </div> 
@@ -21,7 +21,7 @@
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <textarea type="text" id="simple-textarea" required></textarea>
+            <textarea type="text" id="simple-textarea" v-model="projectData.abstract" required></textarea>
             <label class="control-label" for="simple-textarea">Abstract (2-3 lines max)</label><i class="bar"></i>
           </div>
         </div>    
@@ -41,8 +41,11 @@
        <multiselect></multiselect>
        
      </div>
+     <div slot="page6" class="form-wizard-tab-content">
+       <h4>Are you sure to submit?</h4>
+     </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
-          <h4>Thanks guys</h4>
+          <h4>Your project has been created</h4>
      </div>
 </vuestic-wizard>
 
@@ -63,7 +66,13 @@
     },
     data () {
       return {
-        // how your steps should look like:
+        projectData: {
+          title: '',
+          abstract: '',
+          description: '',
+          files: '',
+          tags: []
+        },
         vrSteps: [
           {
             label: 'Title',
@@ -126,6 +135,32 @@
             slot: 'page5', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
+            },
+            isValid: () => {
+              // condition for moving to the next step
+              return true
+            },
+            onBack: () => {
+              // method is called when moving to the previous step
+            }
+          },
+          {
+            label: 'Confirmation',
+            slot: 'page6', // the same name as in attribute "slot" of wizard's step
+            onNext: () => {
+              console.log('this projectdata', this.projectData)
+              // method is called when moving to the next step
+              this.$http.post('http://localhost:3000/projects/new', this.projectData, {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+              .then(function (projectCreationSuccess) {
+                console.log('projectCreation success', projectCreationSuccess)
+              })
+              .catch(function (projectCreationError) {
+                console.log('projectcreation error', projectCreationError)
+              })
             },
             isValid: () => {
               // condition for moving to the next step
