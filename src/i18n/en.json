@@ -175,6 +175,11 @@
     "stats": "Stats",
     "settings": "Settings"
   },
+  "company": {
+    "awards": "Awards",
+    "messages": "Messages",
+    "favorites": "Favorites"
+  },
   "messages": {
     "all": "See all messages",
     "new": "New messages from {name}"

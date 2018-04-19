@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <vuestic-scrollbar>
       <ul class="sidebar-menu">
-        <li v-if="isStudent()" v-for="(item, index) in menuItems" :key="item.name">
+        <li v-show="isStudent()" v-for="(item, index) in menuItems" :key="item.name">
           <router-link
             class="sidebar-link"
             :to="item.path"
@@ -34,7 +34,7 @@
             </ul>
           </expanding>
         </li>
-        <li v-else-if="isCompany" v-for="(item, index) in menuItems" :key="item.name">
+        <li v-show="isCompany()" v-for="(item, index) in companyMenuItems" :key="item.name">
           <router-link
             class="sidebar-link"
             :to="item.path"
@@ -97,7 +97,6 @@
         return this.$route.path.match('company')
       },
       isStudent () {
-        console.log('this.route name', this.$route.path)
         return this.$route.path.match('student')
       }
     },
@@ -120,9 +119,88 @@
     data () {
       return {
         show: false,
-        companyMenuItems: [{
-
-        }]
+        companyMenuItems: [
+          {
+            name: 'Company Newsfeed',
+            path: '/company/newsfeed',
+            component: 'company/newsfeed/Newsfeed',
+            meta: {
+              expanded: false,
+              title: 'menu.newsfeed',
+              iconClass: 'fa fa-newspaper-o'
+            }
+          },
+          {
+            name: 'Company Contests',
+            path: '/company/contests',
+            component: 'company/contest/Contest',
+            meta: {
+              expanded: false,
+              title: 'menu.contests.parent',
+              iconClass: 'fa fa-flag'
+            }
+          },
+          {
+            name: 'Company Projects',
+            path: '/company/projects',
+            component: 'company/projects/Project',
+            meta: {
+              expanded: false,
+              title: 'menu.projects.parent',
+              iconClass: 'fa fa-rocket'
+            }
+          },
+          {
+            name: 'Company Awards',
+            path: '/company/awards',
+            component: 'company/awards/Award',
+            meta: {
+              expanded: false,
+              title: 'company.awards',
+              iconClass: 'fa fa-trophy'
+            }
+          },
+          {
+            name: 'Company Messages',
+            path: '/company/messages',
+            component: 'company/messages/Message',
+            meta: {
+              expanded: false,
+              title: 'company.messages',
+              iconClass: 'fa fa-paper-plane'
+            }
+          },
+          {
+            name: 'Company Favorites',
+            path: '/company/favorites',
+            component: 'company/favorites/Favorite',
+            meta: {
+              expanded: false,
+              title: 'company.favorites',
+              iconClass: 'fa fa-heart'
+            }
+          },
+          {
+            name: 'Company Stats',
+            path: '/company/stats',
+            component: 'company/stats/Stats',
+            meta: {
+              expanded: false,
+              title: 'menu.stats',
+              iconClass: 'fa fa-pie-chart'
+            }
+          },
+          {
+            name: 'Company Settings',
+            path: '/company/settings',
+            component: 'company/settings/Settings',
+            meta: {
+              expanded: false,
+              title: 'menu.settings',
+              iconClass: 'fa fa-gear'
+            }
+          }
+        ]
       }
     }
   }

@@ -11,7 +11,7 @@ import StudentSignup from 'components/auth/signup/StudentSignup'
 
 import NewProject from 'components/projects/NewProject'
 
-import CompanyNewsfeed from 'components/company/Newsfeed'
+import CompanyNewsfeed from 'components/company/newsfeed/Newsfeed'
 
 Vue.use(Router)
 
@@ -25,7 +25,8 @@ export default new Router({
     {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
     {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
     {path: '/projects/new', component: NewProject, name: 'newproject'},
-    {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'companyNewsfeed'}
+    // Company things
+    {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed'}
   ],
   mode: 'history'
 })
