@@ -1,8 +1,8 @@
 import lazyLoading from './lazyLoading'
 
 export default {
-  name: 'Projects',
-  path: '/projects/project-list',
+  name: 'Student Projects',
+  path: '/student/projects/project-list',
   component: lazyLoading('projects/ProjectList'),
   meta: {
     default: false,

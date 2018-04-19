@@ -1,8 +1,8 @@
 import lazyLoading from './lazyLoading'
 
 export default {
-  name: 'Stats',
-  path: '/stats',
+  name: 'Student Stats',
+  path: '/student/stats',
   component: lazyLoading('stats/Index'),
   meta: {
     default: false,

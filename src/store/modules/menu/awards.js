@@ -1,8 +1,8 @@
 import lazyLoading from './lazyLoading'
 
 export default {
-  name: 'Awards',
-  path: '/awards',
+  name: 'Student Awards',
+  path: '/student/awards',
   component: lazyLoading('awards/Index'),
   meta: {
     default: false,

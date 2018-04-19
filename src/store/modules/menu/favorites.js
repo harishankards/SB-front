@@ -1,8 +1,8 @@
 import lazyLoading from './lazyLoading'
 
 export default {
-  name: 'Favorites',
-  path: '/favorites',
+  name: 'Student Favorites',
+  path: '/student/favorites',
   component: lazyLoading('favorites/Index'),
   meta: {
     default: false,
