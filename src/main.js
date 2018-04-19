@@ -10,11 +10,19 @@ import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 import './i18n'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueCsrf from 'vue-csrf'
 
 // For http requests
 Vue.use(VueAxios, axios)
 axios.defaults.baseURL = 'http://localhost:3000'
 Vue.use(VuesticPlugin)
+
+// for CSRF
+
+Vue.use(VueCsrf, {
+  selector: 'meta[name="csrf-token"]', // selector of csrf element with csrf-token value
+  attribute: 'content' // attribute of csrf-token element
+})
 
 
 // NOTE: workaround for VeeValidate + vuetable-2

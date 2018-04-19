@@ -55,6 +55,7 @@
           email: this.signupData.email,
           password: this.signupData.password
         }, {
+          '_csrf': this.$csrfToken,
           'Content-type': 'application/json'
         })
         .then(function (signupSuccess) {
