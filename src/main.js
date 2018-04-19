@@ -27,6 +27,7 @@ Vue.use(VueCsrf, {
 
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
+Vue.use(VeeValidate)
 
 sync(store, router)
 

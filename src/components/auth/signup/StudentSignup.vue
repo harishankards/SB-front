@@ -4,8 +4,10 @@
     <form method="post" name="studentsignup" @submit.prevent="sendSignupData">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" v-model="signupData.email" id="email" required="required"/>
+          <input type="text" v-model="signupData.email" id="email" v-validate="'required|email'" data-vv-delay="500" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" required="required"/>
           <label class="control-label" for="email">{{'auth.email' | translate}}</label><i class="bar"></i>
+          <i v-show="errors.has('email')" class="fa fa-warning"></i>
+          <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
         </div>
       </div>
       <div class="form-group">

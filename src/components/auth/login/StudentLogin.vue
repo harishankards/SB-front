@@ -4,8 +4,10 @@
     <form method="post" @submit.prevent="sendLoginData" name="studentlogin">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" v-model="loginData.email" id="email" required="required"/>
+          <input type="text" v-validate="'required|email'" data-vv-delay="500" :class="{'input': true, 'is-danger': errors.has('email') }" v-model="loginData.email" name="email" id="email" required="required"/>
           <label class="control-label" for="email">Username</label><i class="bar"></i>
+          <i v-show="errors.has('email')" class="fa fa-warning"></i>
+          <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
         </div>
       </div>
       <div class="form-group">
@@ -61,15 +63,6 @@
           console.log('linkedin err', linkedinErr)
         })
       }
-    },
-    mounted () {
-      this.$http.get('/students')
-      .then(function (data) {
-        console.log('data', data)
-      })
-      .catch(function (err) {
-        console.log('err', err)
-      })
     }
   }
 </script>
