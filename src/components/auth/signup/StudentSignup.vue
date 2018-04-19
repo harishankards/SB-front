@@ -49,17 +49,22 @@
     },
     methods: {
       sendSignupData: function () {
+        var defaultThis = this
         console.log('data:', this.signupData.email, this.signupData.password)
         console.log('going to send post request')
         this.$http.post('/student/signup', {
           email: this.signupData.email,
           password: this.signupData.password
         }, {
-          '_csrf': this.$csrfToken,
           'Content-type': 'application/json'
         })
         .then(function (signupSuccess) {
-          console.log('signupSuccess', signupSuccess)
+          if (signupSuccess.data === 'signup_success') {
+            console.log('signupSuccess', signupSuccess)
+            defaultThis.$router.push('/newsfeed')
+          } else {
+            console.log('something else', signupSuccess)
+          }
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)
