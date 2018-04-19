@@ -50,6 +50,19 @@
     methods: {
       sendSignupData: function () {
         console.log('data:', this.signupData.email, this.signupData.password)
+        console.log('going to send post request')
+        this.$http.post('/student/signup', {
+          email: this.signupData.email,
+          password: this.signupData.password
+        }, {
+          'Content-type': 'application/json'
+        })
+        .then(function (signupSuccess) {
+          console.log('signupSuccess', signupSuccess)
+        })
+        .catch(function (signupError) {
+          console.log('signuperror', signupError)
+        })
       }
     }
   }

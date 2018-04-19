@@ -49,7 +49,7 @@
         }
       },
       linkedinLogin: function () {
-        this.$http.get('http://localhost:3000/auth/linkedin', {
+        this.$http.get('/auth/linkedin', {
           headers: {
             'Access-Control-Allow-Origin': '*'
           }
@@ -63,7 +63,7 @@
       }
     },
     mounted () {
-      this.$http.get('http://localhost:3000/students')
+      this.$http.get('/students')
       .then(function (data) {
         console.log('data', data)
       })

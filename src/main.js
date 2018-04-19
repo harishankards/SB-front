@@ -13,7 +13,7 @@ import VueAxios from 'vue-axios'
 
 // For http requests
 Vue.use(VueAxios, axios)
-
+axios.defaults.baseURL = 'http://localhost:3000'
 Vue.use(VuesticPlugin)
 
 

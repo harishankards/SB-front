@@ -64,7 +64,7 @@
       editor,
       Multiselect
     },
-    props: ['value'],
+    props: ['content'],
     data () {
       return {
         projectData: {
@@ -72,7 +72,7 @@
           abstract: '',
           description: '',
           files: '',
-          tags: this.value
+          tags: this.props.content
         },
         vrSteps: [
           {
