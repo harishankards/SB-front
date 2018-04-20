@@ -15,11 +15,13 @@
     <div class="col-md-8 col-xl-4">
       <vuestic-widget class="info-widget">
         <div class="searched-contest-header">
-          <span class="searched-contest-header-title"> Most searched contest today </span>
+          <span class="searched-contest-header-title"> Most searched student today </span>
           <i class="fa fa-bolt searched-contest-header-icon"></i>
         </div>
         <div class="searched-contest-content">
-          <div class="searched-contest-title"><a href="#">Google summer of code 2018</a></div>
+          <div class="searched-contest-title"><a href="#">Ruben Mathew</a></div>
+          <div><span>Metallurgy department,</span></div>
+          <div><span>Madurai Kamaraj University</span></div>
           
         </div>
       </vuestic-widget>
@@ -31,7 +33,7 @@
           <i class="fa fa-fire ad-header-icon"></i>
         </div>
         <div class="ad-content">
-          <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
+          <div class="ad-title"><a href="#">70% companies in Chennai are using Freshsales as their Customer Relationship software</a></div>
         </div>        
 
       </vuestic-widget>

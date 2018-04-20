@@ -6,10 +6,6 @@
     <div class="row">
       <div class="col-md-8">
         <vuestic-widget class="" v-for="post in posts" :key="post.id">
-          <div >
-            <p class="feed-card-info"> <strong> {{post.by}}</strong> {{post.action}} this</p>
-            <hr>
-          </div>
           <div>
             <div id="feed-card-image">{{giveInitial(post)}}</div>
             <div id="feed-card-user-name-div">
@@ -60,7 +56,7 @@
             id: 0,
             photoURL: 'https://goo.gl/KnVxVY',
             name: 'Harishankar',
-            text: 'is going for a contest',
+            text: 'registered for your contest SpriteXtreme',
             action: 'upvoted',
             by: 'Balaji',
             calender: '32m',
@@ -70,7 +66,7 @@
             id: 1,
             photoURL: 'https://goo.gl/1nKusR',
             name: 'Balaji D Loganathan',
-            text: 'upvoted for a project',
+            text: 'was given an award by a company',
             action: 'commented',
             by: 'Surendran',
             calender: '3h',
@@ -80,7 +76,7 @@
             id: 2,
             photoURL: 'https://goo.gl/Ckaexc',
             name: 'Surendran S',
-            text: 'upvoted for a project',
+            text: 'has the most upvoted project which you upvoted',
             action: 'upvoted',
             by: 'HS',
             calender: '2d',
