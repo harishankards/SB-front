@@ -12,6 +12,13 @@ import StudentSignup from 'components/auth/signup/StudentSignup'
 import NewProject from 'components/projects/NewProject'
 
 import CompanyNewsfeed from 'components/company/newsfeed/Newsfeed'
+import CompanyContest from 'components/company/contest/Contest'
+import CompanyProjects from 'components/company/projects/Project'
+import CompanyAwards from 'components/company/awards/Award'
+import CompanyMessages from 'components/company/messages/Message'
+import CompanyFavorites from 'components/company/favorites/Favorite'
+import CompanyStats from 'components/company/stats/Stats'
+import CompanySettings from 'components/company/settings/Settings'
 
 Vue.use(Router)
 
@@ -26,7 +33,14 @@ export default new Router({
     {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
     {path: '/projects/new', component: NewProject, name: 'newproject'},
     // Company things
-    {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed'}
+    {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed'},
+    {path: '/company/contests', component: CompanyContest, name: 'Company Contests'},
+    {path: '/company/projects', component: CompanyProjects, name: 'Company Projects'},
+    {path: '/company/awards', component: CompanyAwards, name: 'Company Awards'},
+    {path: '/company/messages', component: CompanyMessages, name: 'Company Messages'},
+    {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites'},
+    {path: '/company/stats', component: CompanyStats, name: 'Company Stats'},
+    {path: '/company/settings', component: CompanySettings, name: 'Company Settings'}
   ],
   mode: 'history'
 })
