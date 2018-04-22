@@ -31,7 +31,7 @@ export default new Router({
     {path: '/auth/company/signup', component: CompanySignup, name: 'companysignup'},
     {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
     {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
-    {path: '/projects/new', component: NewProject, name: 'newproject'},
+    {path: '/student/projects/new', component: NewProject, name: 'newproject'},
     // Company things
     {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed'},
     {path: '/company/contests', component: CompanyContest, name: 'Company Contests'},

@@ -71,8 +71,8 @@
           title: '',
           abstract: '',
           description: '',
-          files: '',
-          tags: this.props.content
+          files: ''
+          // tags: this.props.content
         },
         vrSteps: [
           {
@@ -178,7 +178,7 @@
     },
     methods: {
       sendBack: function () {
-        this.$router.push('/projects/project-list')
+        this.$router.push('/student/projects/project-list')
       }
     }
   }

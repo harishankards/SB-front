@@ -80,7 +80,7 @@
 
     methods: {
       createNew: function () {
-        this.$router.push('/projects/new')
+        this.$router.push('/company/projects/new')
       }
     }
   }
