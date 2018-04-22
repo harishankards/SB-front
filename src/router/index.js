@@ -42,7 +42,7 @@ export default new Router({
     {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites'},
     {path: '/company/stats', component: CompanyStats, name: 'Company Stats'},
     {path: '/company/settings', component: CompanySettings, name: 'Company Settings'},
-    {path: '/company/projects/new', component: CompanyNewContest, name: 'Company new contest'}
+    {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest'}
   ],
   mode: 'history'
 })

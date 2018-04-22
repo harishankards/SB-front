@@ -14,7 +14,7 @@
         <div class="form-group col-md-8">
           <div class="input-group">
               <input id="simple-input" v-model="projectData.title" required/>
-              <label class="control-label" for="simple-input">Name of the project</label><i class="bar"></i>
+              <label class="control-label" for="simple-input">Name of the contest</label><i class="bar"></i>
           </div>
         </div> 
      </div>
@@ -22,20 +22,14 @@
         <div class="form-group col-md-8">
           <div class="input-group">
             <textarea type="text" id="simple-textarea" v-model="projectData.abstract" required></textarea>
-            <label class="control-label" for="simple-textarea">Abstract (2-3 lines max)</label><i class="bar"></i>
+            <label class="control-label" for="simple-textarea">About the contest</label><i class="bar"></i>
           </div>
         </div>    
      </div>
      <div slot="page3" class="form-wizard-tab-content">
-        <editor v-model="projectData.description"></editor>
+         <editor></editor>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
-        <button class="btn btn-info btn-with-icon">
-          <div class="btn-with-icon-content">
-            <i class="fa fa-upload"></i>
-            Upload files
-          </div>
-        </button>
      </div>
      <div slot="page5" class="form-wizard-tab-content">
        <multiselect></multiselect>
@@ -57,12 +51,12 @@
 
 <script>
   import Multiselect from './Multiselect'
-  import editor from './Editor'
+  import Editor from './Editor'
   export default {
-    name: 'newProject',
+    name: 'newContest',
     components: {
-      editor,
-      Multiselect
+      Multiselect,
+      Editor
     },
     props: ['content'],
     data () {
@@ -90,7 +84,7 @@
             }
           },
           {
-            label: 'Abstract',
+            label: 'About',
             slot: 'page2', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
@@ -104,7 +98,7 @@
             }
           },
           {
-            label: 'Description',
+            label: 'Rules & Format',
             slot: 'page3', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
@@ -120,7 +114,7 @@
             }
           },
           {
-            label: 'File upload',
+            label: 'Date',
             slot: 'page4', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
