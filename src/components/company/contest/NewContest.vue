@@ -30,6 +30,10 @@
          <editor></editor>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
+          <v-date-picker
+            mode='single'
+            v-model='selectedDate'>
+        </v-date-picker>
      </div>
      <div slot="page5" class="form-wizard-tab-content">
        <multiselect></multiselect>
@@ -68,6 +72,7 @@
           files: ''
           // tags: this.props.content
         },
+        selectedDate: new Date(),
         vrSteps: [
           {
             label: 'Title',
@@ -118,6 +123,7 @@
             slot: 'page4', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
+              console.log('this date', this.selectedDate)
             },
             isValid: () => {
               // condition for moving to the next step

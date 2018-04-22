@@ -11,6 +11,8 @@ import './i18n'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCsrf from 'vue-csrf'
+import VCalendar from 'v-calendar'
+import 'v-calendar/lib/v-calendar.min.css'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -24,6 +26,10 @@ Vue.use(VueCsrf, {
   attribute: 'content' // attribute of csrf-token element
 })
 
+// For v-calendar
+Vue.use(VCalendar, {
+  firstDayOfWeek: 2  // Monday
+})
 
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
