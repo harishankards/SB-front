@@ -19,6 +19,7 @@ import CompanyMessages from 'components/company/messages/Message'
 import CompanyFavorites from 'components/company/favorites/Favorite'
 import CompanyStats from 'components/company/stats/Stats'
 import CompanySettings from 'components/company/settings/Settings'
+import CompanyNewContest from 'components/company/contest/NewContest'
 
 Vue.use(Router)
 
@@ -40,7 +41,8 @@ export default new Router({
     {path: '/company/messages', component: CompanyMessages, name: 'Company Messages'},
     {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites'},
     {path: '/company/stats', component: CompanyStats, name: 'Company Stats'},
-    {path: '/company/settings', component: CompanySettings, name: 'Company Settings'}
+    {path: '/company/settings', component: CompanySettings, name: 'Company Settings'},
+    {path: '/company/projects/new', component: CompanyNewContest, name: 'Company new contest'}
   ],
   mode: 'history'
 })

@@ -38,21 +38,21 @@
         contests: [
           {
             id: 0,
-            name: 'Geo visual ranking approximation using machine learning',
+            name: 'SpriteXtreme',
             calender: '3mo',
-            post_desc: 'Happy to upload my final year project'
+            post_desc: 'A over night coding marathon to bring out the entrepreneur in you'
           },
           {
             id: 1,
-            name: 'Nodal analysis in optical image processing',
+            name: 'SpriteXchange',
             calender: '6mo',
-            post_desc: 'Uploaded my dream project'
+            post_desc: 'A knowledge sharing workshop for students'
           },
           {
             id: 2,
-            name: 'Character identifier using moods using map cluster algorithm',
+            name: 'Riddle of Sphinx',
             calender: '1y',
-            post_desc: 'Woohoo!!!! Finally uploaded the project ^_^'
+            post_desc: 'Solve the riddles and get to the top'
           }
         ],
         posts: [
@@ -80,7 +80,7 @@
 
     methods: {
       createNew: function () {
-        this.$router.push('/company/projects/new')
+        this.$router.push('/company/contests/new')
       }
     }
   }
