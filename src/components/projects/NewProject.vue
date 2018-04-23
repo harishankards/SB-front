@@ -71,8 +71,9 @@
           title: '',
           abstract: '',
           description: '',
-          files: '',
-          tags: []
+          // files: '',
+          // tags: [],
+          author: 'hs@spritle.com'
         },
         vrSteps: [
           {
@@ -152,7 +153,6 @@
             slot: 'page6', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               console.log('this projectdata', this.projectData)
-              // method is called when moving to the next step
               this.$http.post('http://localhost:3000/projects/new', this.projectData, {
                 headers: {
                   'Content-Type': 'application/json'
