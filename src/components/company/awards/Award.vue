@@ -76,6 +76,11 @@
           }
         ]
       }
+    },
+    methods: {
+      createNew: function () {
+        this.$router.push('/company/awards/new')
+      }
     }
   }
 </script>

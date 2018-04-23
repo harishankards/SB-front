@@ -20,6 +20,7 @@ import CompanyFavorites from 'components/company/favorites/Favorite'
 import CompanyStats from 'components/company/stats/Stats'
 import CompanySettings from 'components/company/settings/Settings'
 import CompanyNewContest from 'components/company/contest/NewContest'
+import CompanyNewAward from 'components/company/awards/NewAward'
 
 Vue.use(Router)
 
@@ -42,7 +43,8 @@ export default new Router({
     {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites'},
     {path: '/company/stats', component: CompanyStats, name: 'Company Stats'},
     {path: '/company/settings', component: CompanySettings, name: 'Company Settings'},
-    {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest'}
+    {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest'},
+    {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award'}
   ],
   mode: 'history'
 })

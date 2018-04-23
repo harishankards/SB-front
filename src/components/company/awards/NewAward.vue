@@ -13,37 +13,43 @@
      <div slot="page1" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-              <input id="simple-input" v-model="projectData.title" required/>
-              <label class="control-label" for="simple-input">Name of the contest</label><i class="bar"></i>
+              <input id="simple-input" v-model="awardData.title" required/>
+              <label class="control-label" for="simple-input">Name of the award</label><i class="bar"></i>
           </div>
         </div> 
      </div>
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <textarea type="text" id="simple-textarea" v-model="projectData.abstract" required></textarea>
-            <label class="control-label" for="simple-textarea">About the contest</label><i class="bar"></i>
+            <input id="simple-input" v-model="awardData.studentname" required/>
+            <label class="control-label" for="simple-input">Select student</label><i class="bar"></i>
           </div>
         </div>    
      </div>
      <div slot="page3" class="form-wizard-tab-content">
-         <editor></editor>
+        <div class="form-group col-md-8">
+          <div class="input-group">
+            <textarea type="text" id="simple-textarea" v-model="awardData.description" required></textarea>
+            <label class="control-label" for="simple-textarea">Description about the award</label><i class="bar"></i>
+          </div>
+        </div>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
-          <v-date-picker
-            mode='range'
-            v-model='selectedDate'>
-        </v-date-picker>
+        <button class="btn btn-info btn-with-icon">        
+          <div class="btn-with-icon-content">
+          <i class="fa fa-upload"></i>
+            Upload files
+          </div>
+        </button>
      </div>
      <div slot="page5" class="form-wizard-tab-content">
        <multiselect></multiselect>
-       
      </div>
      <div slot="page6" class="form-wizard-tab-content">
        <h4>Are you sure to submit?</h4>
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
-          <h4>Your contest has been published</h4>
+          <h4>Your award has been published</h4>
      </div>
 </vuestic-wizard>
 
@@ -54,25 +60,21 @@
 </template>
 
 <script>
-  import Multiselect from './Multiselect'
-  import Editor from './Editor'
+  import multiselect from './Multiselect'
   export default {
     name: 'newContest',
     components: {
-      Multiselect,
-      Editor
+      multiselect
     },
-    props: ['content'],
     data () {
       return {
-        projectData: {
+        awardData: {
           title: '',
-          abstract: '',
+          studentname: '',
           description: '',
           files: ''
           // tags: this.props.content
         },
-        selectedDate: new Date(),
         vrSteps: [
           {
             label: 'Title',
@@ -89,7 +91,7 @@
             }
           },
           {
-            label: 'About',
+            label: 'Student',
             slot: 'page2', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
@@ -103,27 +105,26 @@
             }
           },
           {
-            label: 'Rules & Format',
+            label: 'Description',
             slot: 'page3', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
-              console.log('project desc', this.projectData.description)
+              console.log('project desc', this.awardData.description)
             },
             isValid: () => {
               // condition for moving to the next step
               return true
             },
             onBack: () => {
-              console.log('project desc', this.projectData.description)
+              console.log('project desc', this.awardData.description)
               // method is called when moving to the previous step
             }
           },
           {
-            label: 'Date',
+            label: 'Certificate',
             slot: 'page4', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               // method is called when moving to the next step
-              console.log('this date', this.selectedDate)
             },
             isValid: () => {
               // condition for moving to the next step
