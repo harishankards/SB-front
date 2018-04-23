@@ -37,6 +37,9 @@ Vue.use(VeeValidate)
 
 sync(store, router)
 
+// For passing data between components
+export const eventBus = new Vue()
+
 let mediaHandler = () => {
   if (window.matchMedia(store.getters.config.windowMatchSizeLg).matches) {
     store.dispatch('toggleSidebar', true)

@@ -58,13 +58,13 @@
 <script>
   import Multiselect from './Multiselect'
   import editor from './Editor'
+  import { eventBus } from '../../main.js'
   export default {
     name: 'newProject',
     components: {
       editor,
       Multiselect
     },
-    props: ['content'],
     data () {
       return {
         projectData: {
@@ -180,6 +180,12 @@
       sendBack: function () {
         this.$router.push('/student/projects/project-list')
       }
+    },
+    created () {
+      eventBus.$on('editorContent', (data) => {
+        console.log('inside editorContet', data)
+        this.projectData.description = data
+      })
     }
   }
 </script>

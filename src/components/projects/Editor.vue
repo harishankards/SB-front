@@ -1,10 +1,11 @@
 
 <template>
-  <vue-editor :content="content" v-model="content"></vue-editor>
+  <vue-editor v-model="content"></vue-editor>
 </template>
 
  <script>
   import { VueEditor } from 'vue2-editor'
+  import { eventBus } from '../../main.js'
 
   export default {
     components: {
@@ -15,7 +16,9 @@
       return {
         content: '<p>Here goes the desciption</p>'
       }
+    },
+    updated () {
+      eventBus.$emit('editorContent', this.content)
     }
-
   }
  </script>
