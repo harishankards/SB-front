@@ -56,6 +56,7 @@
 <script>
   import Multiselect from './Multiselect'
   import Editor from './Editor'
+  import { eventBus } from '../../../main.js'
   export default {
     name: 'newContest',
     components: {
@@ -180,6 +181,16 @@
       sendBack: function () {
         this.$router.push('/company/contests')
       }
+    },
+    created () {
+      eventBus.$on('editorContent', (data) => {
+        console.log('inside editorContet', data)
+        this.projectData.description = data
+      })
+      eventBus.$on('multiselector', (data) => {
+        console.log('inside multiselector', data)
+        this.projectData.tags = data
+      })
     }
   }
 </script>

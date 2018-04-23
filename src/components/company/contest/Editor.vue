@@ -5,6 +5,7 @@
 
  <script>
   import { VueEditor } from 'vue2-editor'
+  import { eventBus } from '../../../main.js'
 
   export default {
     components: {
@@ -15,6 +16,9 @@
       return {
         content: '<p>Here goes the rules, format and special instructions</p>'
       }
+    },
+    updated () {
+      eventBus.$emit('editorContent', this.content)
     }
 
   }
