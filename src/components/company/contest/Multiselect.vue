@@ -37,7 +37,7 @@ export default {
     }
   },
   updated () {
-    eventBus.$emit('multiselector', this.value)
+    eventBus.$emit('multiselectorcontest', this.value)
   }
 }
 

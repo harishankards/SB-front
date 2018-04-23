@@ -182,11 +182,11 @@
       }
     },
     created () {
-      eventBus.$on('editorContent', (data) => {
+      eventBus.$on('editorContentproject', (data) => {
         console.log('inside editorContet', data)
         this.projectData.description = data
       })
-      eventBus.$on('multiselector', (data) => {
+      eventBus.$on('multiselectorproject', (data) => {
         console.log('inside multiselector', data)
         this.projectData.tags = data
       })

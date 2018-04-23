@@ -5,6 +5,7 @@
 <script>
 
 import Multiselect from 'vue-multiselect'
+import { eventBus } from '../../../main.js'
 
 export default {
   components: {
@@ -33,6 +34,9 @@ export default {
       this.options.push(tag)
       this.value.push(tag)
     }
+  },
+  updated () {
+    eventBus.$emit('multiselectoraward', this.value)
   }
 }
 

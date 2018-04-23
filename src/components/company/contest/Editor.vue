@@ -18,7 +18,7 @@
       }
     },
     updated () {
-      eventBus.$emit('editorContent', this.content)
+      eventBus.$emit('editorContentcontest', this.content)
     }
 
   }
