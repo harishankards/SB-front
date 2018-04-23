@@ -31,8 +31,8 @@
      </div>
      <div slot="page4" class="form-wizard-tab-content">
           <v-date-picker
-            mode='range'
-            v-model='selectedDate'>
+            mode='single'
+            v-model='projectData.date'>
         </v-date-picker>
      </div>
      <div slot="page5" class="form-wizard-tab-content">
@@ -68,12 +68,11 @@
       return {
         projectData: {
           title: '',
-          abstract: '',
           description: '',
-          files: ''
+          date: new Date(),
+          host: 'hs@spritle.com'
           // tags: this.props.content
         },
-        selectedDate: new Date(),
         vrSteps: [
           {
             label: 'Title',
@@ -154,7 +153,7 @@
             onNext: () => {
               console.log('this projectdata', this.projectData)
               // method is called when moving to the next step
-              this.$http.post('http://localhost:3000/projects/new', this.projectData, {
+              this.$http.post('http://localhost:3000/contests/new', this.projectData, {
                 headers: {
                   'Content-Type': 'application/json'
                 }
