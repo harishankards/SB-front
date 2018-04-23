@@ -60,19 +60,22 @@
             id: 0,
             photoURL: 'https://goo.gl/KnVxVY',
             name: 'Harishankar',
-            text: 'is going for a contest'
+            text: 'registered for your contest SpriteXtreme',
+            action: 'upvoted'
           },
           {
             id: 1,
             photoURL: 'https://goo.gl/1nKusR',
             name: 'Balaji D Loganathan',
-            text: 'upvoted for a project'
+            text: 'was given an award by a company',
+            action: 'commented'
           },
           {
             id: 2,
             photoURL: 'https://goo.gl/Ckaexc',
             name: 'Surendran S',
-            text: 'upvoted for a project'
+            text: 'has the most upvoted project which you upvoted',
+            action: 'upvoted'
           }
         ]
       }
