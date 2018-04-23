@@ -31,7 +31,7 @@
      </div>
      <div slot="page4" class="form-wizard-tab-content">
           <v-date-picker
-            mode='single'
+            mode='range'
             v-model='selectedDate'>
         </v-date-picker>
      </div>
