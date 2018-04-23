@@ -1,10 +1,11 @@
 <template>
-   <multiselect :value="value" v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+   <multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
 </template>
 
 <script>
 
 import Multiselect from 'vue-multiselect'
+import { eventBus } from '../../main.js'
 
 export default {
   components: {
@@ -33,6 +34,9 @@ export default {
       this.options.push(tag)
       this.value.push(tag)
     }
+  },
+  updated () {
+    eventBus.$emit('multiselector', this.value)
   }
 }
 

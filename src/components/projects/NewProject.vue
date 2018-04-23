@@ -71,8 +71,8 @@
           title: '',
           abstract: '',
           description: '',
-          files: ''
-          // tags: this.props.content
+          files: '',
+          tags: []
         },
         vrSteps: [
           {
@@ -185,6 +185,10 @@
       eventBus.$on('editorContent', (data) => {
         console.log('inside editorContet', data)
         this.projectData.description = data
+      })
+      eventBus.$on('multiselector', (data) => {
+        console.log('inside multiselector', data)
+        this.projectData.tags = data
       })
     }
   }
