@@ -68,7 +68,7 @@
           title: '',
           abstract: '',
           description: '',
-          // files: '',
+          files: [],
           // tags: [],
           author: 'hs@spritle.com'
         },
@@ -186,6 +186,10 @@
       eventBus.$on('multiselectorproject', (data) => {
         console.log('inside multiselector', data)
         this.projectData.tags = data
+      })
+      eventBus.$on('uploadedFile', (data) => {
+        console.log('inside upload file', data)
+        this.projectData.files = data
       })
     }
   }
