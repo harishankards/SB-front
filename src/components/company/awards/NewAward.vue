@@ -73,8 +73,8 @@
         awardData: {
           title: '',
           studentname: '',
-          description: '',
-          files: ''
+          description: ''
+          // files: ''
           // tags: this.props.content
         },
         vrSteps: [

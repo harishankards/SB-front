@@ -152,7 +152,6 @@
             slot: 'page6', // the same name as in attribute "slot" of wizard's step
             onNext: () => {
               console.log('this projectdata', this.projectData)
-              // method is called when moving to the next step
               this.$http.post('http://localhost:3000/contests/new', this.projectData, {
                 headers: {
                   'Content-Type': 'application/json'
@@ -183,11 +182,9 @@
     },
     created () {
       eventBus.$on('editorContentcontest', (data) => {
-        console.log('inside editorContet', data)
         this.projectData.description = data
       })
       eventBus.$on('multiselectorcontest', (data) => {
-        console.log('inside multiselector', data)
         this.projectData.tags = data
       })
     }
