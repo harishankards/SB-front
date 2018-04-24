@@ -18,7 +18,9 @@
           url: 'https://httpbin.org/post',
           thumbnailWidth: 150,
           maxFilesize: 0.5,
-          headers: { 'My-Awesome-Header': 'header value' }
+          headers: { 'My-Awesome-Header': 'header value' },
+          addRemoveLinks: true,
+          dictDefaultMessage: "<i class='fa fa-cloud-upload'></i>UPLOAD ME"
         }
       }
     }

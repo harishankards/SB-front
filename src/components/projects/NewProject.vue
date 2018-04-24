@@ -30,12 +30,7 @@
         <editor v-model="projectData.description"></editor>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
-        <button class="btn btn-info btn-with-icon">
-          <div class="btn-with-icon-content">
-            <i class="fa fa-upload"></i>
-            Upload files
-          </div>
-        </button>
+        <upload></upload>
      </div>
      <div slot="page5" class="form-wizard-tab-content">
        <multiselect></multiselect>
@@ -58,12 +53,14 @@
 <script>
   import Multiselect from './Multiselect'
   import editor from './Editor'
+  import upload from './Upload'
   import { eventBus } from '../../main.js'
   export default {
     name: 'newProject',
     components: {
       editor,
-      Multiselect
+      Multiselect,
+      upload
     },
     data () {
       return {
