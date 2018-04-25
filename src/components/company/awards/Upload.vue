@@ -6,7 +6,7 @@
 <script>
   import vue2Dropzone from 'vue2-dropzone'
   import 'vue2-dropzone/dist/vue2Dropzone.css'
-  import { eventBus } from '../../main.js'
+  import { eventBus } from '../../../main.js'
 
   export default {
     name: 'upload',
