@@ -35,12 +35,7 @@
         </div>
      </div>
      <div slot="page4" class="form-wizard-tab-content">
-        <button class="btn btn-info btn-with-icon">        
-          <div class="btn-with-icon-content">
-          <i class="fa fa-upload"></i>
-            Upload files
-          </div>
-        </button>
+        <upload></upload>
      </div>
      <div slot="page5" class="form-wizard-tab-content">
        <multiselect></multiselect>
@@ -62,19 +57,21 @@
 <script>
   import multiselect from './Multiselect'
   import { eventBus } from '../../../main.js'
+  import upload from './Upload'
   
   export default {
     name: 'newContest',
     components: {
-      multiselect
+      multiselect,
+      upload
     },
     data () {
       return {
         awardData: {
           title: '',
           studentname: '',
-          description: ''
-          // files: ''
+          description: '',
+          files: ''
           // tags: this.props.content
         },
         vrSteps: [
@@ -188,6 +185,10 @@
       eventBus.$on('multiselectoraward', (data) => {
         console.log('inside multiselector', data)
         this.projectData.tags = data
+      })
+      eventBus.$on('uploadedFileAwards', (data) => {
+        console.log('inside upload file awards', data)
+        this.projectData.files = data
       })
     }
   }
