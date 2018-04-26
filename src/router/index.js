@@ -10,6 +10,7 @@ import StudentLogin from 'components/auth/login/StudentLogin'
 import StudentSignup from 'components/auth/signup/StudentSignup'
 
 import NewProject from 'components/projects/NewProject'
+import SeparateProject from 'components/projects/Separate'
 
 import CompanyNewsfeed from 'components/company/newsfeed/Newsfeed'
 import CompanyContest from 'components/company/contest/Contest'
@@ -34,6 +35,8 @@ export default new Router({
     {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
     {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
     {path: '/student/projects/new', component: NewProject, name: 'newproject'},
+    // Project
+    {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView'},
     // Company things
     {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed'},
     {path: '/company/contests', component: CompanyContest, name: 'Company Contests'},
