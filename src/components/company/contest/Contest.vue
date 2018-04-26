@@ -35,6 +35,7 @@
     component: {},
     data () {
       return {
+        contestArray: [],
         contests: [
           {
             id: 0,
@@ -85,6 +86,29 @@
       createNew: function () {
         this.$router.push('/company/contests/new')
       }
+    },
+    created () {
+      var email = 'hs@spritle.com'
+      this.$http.get('/companies/get?email=' + email)
+      .then((companyData) => {
+        console.log('student Data', companyData.data)
+        const contestArr = companyData.data[0].contests
+        console.log('contestArr', contestArr)
+        contestArr.map(contest => {
+          console.log('single contest', contest)
+          this.$http.get('/contests/get?id=' + contest)
+          .then((contestData) => {
+            console.log('contest data', contestData)
+            this.contestArray.push(contestData)
+            console.log('contest array', this.contestArray)
+          })
+          .catch((contestErr) => {
+            console.log('contestErr', contestErr)
+          })
+        })
+      }).catch((companyErr) => {
+        console.log('student err', companyErr)
+      })
     }
   }
 </script>

@@ -96,10 +96,10 @@
       console.log('inside created')
       var email = 'hs@spritle.com'
       this.$http.get('/companies/get?email=' + email)
-      .then((studentData) => {
-        console.log('student Data', studentData.data)
-      }).catch((studentErr) => {
-        console.log('student err', studentErr)
+      .then((companyData) => {
+        console.log('student Data', companyData.data)
+      }).catch((companyErr) => {
+        console.log('student err', companyErr)
       })
     }
   }
