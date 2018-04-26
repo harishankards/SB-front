@@ -91,6 +91,16 @@
         let initial = post.name.charAt(0)
         return initial
       }
+    },
+    created () {
+      console.log('inside created')
+      var email = 'hs@spritle.com'
+      this.$http.get('/companies/get?email=' + email)
+      .then((studentData) => {
+        console.log('student Data', studentData.data)
+      }).catch((studentErr) => {
+        console.log('student err', studentErr)
+      })
     }
   }
 </script>
