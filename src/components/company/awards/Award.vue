@@ -32,6 +32,7 @@
     name: 'companyawards',
     data () {
       return {
+        awardArray: [],
         awards: [
           {
             id: 0,
@@ -81,6 +82,26 @@
       createNew: function () {
         this.$router.push('/company/awards/new')
       }
+    },
+    created () {
+      const email = 'hs@spritle.com'
+      this.$http.get('/companies/get?email=' + email)
+      .then((companyData) => {
+        console.log('company Data', companyData.data)
+        const awardsArr = companyData.data[0].awards
+        awardsArr.map(award => {
+          this.$http.get('/awards/get?id=' + award)
+          .then((awardData) => {
+            this.awardArray.push(awardData.data)
+            console.log('award array', this.awardArray)
+          })
+          .catch((awardErr) => {
+            console.log('awarderr', awardErr)
+          })
+        })
+      }).catch((companyErr) => {
+        console.log('company err', companyErr)
+      })
     }
   }
 </script>
