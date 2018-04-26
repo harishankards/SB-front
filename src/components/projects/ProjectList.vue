@@ -35,6 +35,7 @@
     component: {},
     data () {
       return {
+        projectArray: [],
         projects: [
           {
             id: 0,
@@ -82,6 +83,29 @@
       createNew: function () {
         this.$router.push('/student/projects/new')
       }
+    },
+    created () {
+      var email = 'hs@spritle.com'
+      this.$http.get('/students/get?email=' + email)
+      .then((studentData) => {
+        console.log('student Data', studentData.data)
+        const projectArr = studentData.data[0].projects
+        console.log('projectArr', projectArr)
+        projectArr.map(project => {
+          console.log('single project', project)
+          this.$http.get('/projects/get?id=' + project)
+          .then((projectData) => {
+            console.log('project data', projectData)
+            this.projectArray.push(projectData.data)
+            console.log('project array', this.projectArray)
+          })
+          .catch((projectErr) => {
+            console.log('project err', projectErr)
+          })
+        })
+      }).catch((studentErr) => {
+        console.log('student err', studentErr)
+      })
     }
   }
 </script>

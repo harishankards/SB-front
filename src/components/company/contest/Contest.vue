@@ -91,7 +91,7 @@
       var email = 'hs@spritle.com'
       this.$http.get('/companies/get?email=' + email)
       .then((companyData) => {
-        console.log('student Data', companyData.data)
+        console.log('company Data', companyData.data)
         const contestArr = companyData.data[0].contests
         console.log('contestArr', contestArr)
         contestArr.map(contest => {
@@ -99,7 +99,7 @@
           this.$http.get('/contests/get?id=' + contest)
           .then((contestData) => {
             console.log('contest data', contestData)
-            this.contestArray.push(contestData)
+            this.contestArray.push(contestData.data)
             console.log('contest array', this.contestArray)
           })
           .catch((contestErr) => {
@@ -107,7 +107,7 @@
           })
         })
       }).catch((companyErr) => {
-        console.log('student err', companyErr)
+        console.log('company err', companyErr)
       })
     }
   }
