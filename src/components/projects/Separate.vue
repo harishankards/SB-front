@@ -1,5 +1,6 @@
 <template>
 	<vuestic-widget class="col-md-9" :headerText="this.projectData.title">
+    <p>Author: {{this.authorData.email}}</p>
     <p>{{this.projectData.abstract}}</p>
     <p>{{this.projectData.description}}</p>
     <hr>
@@ -15,7 +16,8 @@
     data () {
       return {
         projectData: '',
-        projectId: ''
+        projectId: '',
+        authorData: ''
       }
     },
     created () {
@@ -26,6 +28,15 @@
       .then(function (projectDetails) {
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
+        secondthis.$http.get('/students/get?id=' + projectDetails.data.author)
+        .then(function (studentData) {
+          console.log('student data', studentData.data[0])
+          secondthis.authorData = studentData.data[0]
+          console.log('studet', secondthis.authorData.email)
+        })
+        .catch(function (studentDataErr) {
+          console.log('student data err', studentDataErr)
+        })
       })
       .catch(function (projectDataErr) {
         console.log('projectdataerr', projectDataErr)
