@@ -5,7 +5,15 @@
     <p>{{this.projectData.description}}</p>
     <hr>
     <div>
+      <div class="comment-section">
       <i class="fa fa-heart"></i> {{this.projectData.upvotes.length}} upvotes
+      </div>
+      <div class="comment-section">
+        <i class="fa fa-comment"></i> Comments
+      </div>
+      <div class="comment-section">
+        <i class="fa fa-share"></i> Share
+      </div>
     </div>
   </vuestic-widget>
 </template>
@@ -44,3 +52,10 @@
     }
   }
 </script>
+
+<style scoped>
+  .comment-section {
+    display: inline-block;
+    padding-right: 1rem;
+  }
+</style>
