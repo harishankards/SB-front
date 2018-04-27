@@ -9,18 +9,22 @@
       <i class="fa fa-heart"></i> {{this.projectData.upvotes.length}} upvotes
       </div>
       <div class="comment-section">
-        <i class="fa fa-comment"></i> Comments
-      </div>
-      <div class="comment-section">
         <i class="fa fa-share"></i> Share
       </div>
     </div>
+    <vue-disqus shortname="student-burger"></vue-disqus>
+    
   </vuestic-widget>
 </template>
 
 <script>
+  import VueDisqus from 'vue-disqus/VueDisqus.vue'
+
   export default {
     name: 'separateProject',
+    components: {
+      VueDisqus
+    },
     data () {
       return {
         projectData: '',

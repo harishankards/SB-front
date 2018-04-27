@@ -26,7 +26,6 @@
               <button class=""> <i class="fa fa-thumbs-up"></i> Upvote</button>
             </div>
             <div id="comments-div">
-              <vue-disqus shortname="student-burger"></vue-disqus>
             </div>
           </div>
           
@@ -44,14 +43,12 @@
 </template>
 
 <script>
-  import VueDisqus from 'vue-disqus/VueDisqus.vue'
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
 
   export default {
     name: 'dashboard',
     components: {
-      NewsfeedInfoWidgets,
-      VueDisqus
+      NewsfeedInfoWidgets
     },
     data () {
       return {
