@@ -13,6 +13,7 @@ import VueAxios from 'vue-axios'
 import VueCsrf from 'vue-csrf'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
+import Storage from 'vue-ls'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -29,6 +30,13 @@ Vue.use(VueCsrf, {
 // For v-calendar
 Vue.use(VCalendar, {
   firstDayOfWeek: 2  // Monday
+})
+
+// For local storage
+Vue.use(Storage, {
+  namespace: 'vuejs_',
+  name: 'ls',
+  storage: 'local'
 })
 
 // NOTE: workaround for VeeValidate + vuetable-2
