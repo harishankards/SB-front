@@ -45,10 +45,16 @@
     },
     methods: {
       sendLoginData: function () {
-        console.log('data da:', this.loginData.email, this.loginData.password)
-        if (this.loginData.email === 'info@spritle.com' && this.loginData.password === 'spritle') {
-          this.$router.push('/company/newsfeed')
-        }
+        console.log('data da:', this.loginData)
+        this.$http.post('/student/login', this.loginData)
+        .then(function (loginSuccess) {
+          console.log('login success', loginSuccess.data)
+          const authToken = loginSuccess.data.token
+          console.log('auth token', authToken)
+        })
+        .catch(function (loginErr) {
+          console.log('login err', loginErr)
+        })
       }
     }
 
