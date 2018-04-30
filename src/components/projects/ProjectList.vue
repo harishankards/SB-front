@@ -86,14 +86,24 @@
     },
     created () {
       var email = 'hs@spritle.com'
-      this.$http.get('/students/get?email=' + email)
+      const lsToken = this.$ls.get('token')
+      console.log('ls token', lsToken)
+      this.$http.get('/students/get?email=' + email, {
+        headers: {
+          'Authorization': 'Bearer ' + lsToken
+        }
+      })
       .then((studentData) => {
         console.log('student Data', studentData.data)
         const projectArr = studentData.data[0].projects
         console.log('projectArr', projectArr)
         projectArr.map(project => {
           console.log('single project', project)
-          this.$http.get('/projects/get?id=' + project)
+          this.$http.get('/projects/get?id=' + project, {
+            headers: {
+              'Authorization': 'Bearer ' + lsToken
+            }
+          })
           .then((projectData) => {
             console.log('project data', projectData)
             this.projectArray.push(projectData.data)
