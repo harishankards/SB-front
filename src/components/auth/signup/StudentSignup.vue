@@ -51,22 +51,14 @@
     },
     methods: {
       sendSignupData: function () {
-        var defaultThis = this
+        // var defaultThis = this
         console.log('data:', this.signupData.email, this.signupData.password)
         console.log('going to send post request')
-        this.$http.post('/student/signup', {
-          email: this.signupData.email,
-          password: this.signupData.password
-        }, {
-          'Content-type': 'application/json'
-        })
+        this.$http.post('/student/signup', this.signupData)
         .then(function (signupSuccess) {
-          if (signupSuccess.data === 'signup_success') {
-            console.log('signupSuccess', signupSuccess)
-            defaultThis.$router.push('/newsfeed')
-          } else {
-            console.log('something else', signupSuccess)
-          }
+          console.log('something else', signupSuccess.data)
+          const authToken = signupSuccess.data.token
+          console.log('auth token', authToken)
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)
