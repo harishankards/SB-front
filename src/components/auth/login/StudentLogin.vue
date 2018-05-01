@@ -49,6 +49,7 @@
         console.log('data da:', this.loginData)
         this.$http.post('/student/login', this.loginData)
         .then(function (loginSuccess) {
+          secondThis.$router.push('/student/newsfeed')
           console.log('login success', loginSuccess.data)
           const authToken = loginSuccess.data.token
           console.log('auth token', authToken)

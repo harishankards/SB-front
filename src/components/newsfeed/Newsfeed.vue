@@ -96,7 +96,14 @@
     created () {
       console.log('inside created')
       var email = 'hs@spritle.com'
-      this.$http.get('/students/get?email=' + email)
+      const token = this.$ls.get('token')
+      console.log('token', token)
+      const header = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      }
+      this.$http.get('/students/get?email=' + email, header)
       .then((studentData) => {
         console.log('student Data', studentData.data)
       }).catch((studentErr) => {

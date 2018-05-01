@@ -94,8 +94,15 @@
     },
     created () {
       console.log('inside created')
-      var email = 'hs@spritle.com'
-      this.$http.get('/companies/get?email=' + email)
+      const email = 'hs@spritle.com'
+      const token = this.$ls.get('token')
+      console.log('token', token)
+      const header = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      }
+      this.$http.get('/companies/get?email=' + email, header)
       .then((companyData) => {
         console.log('student Data', companyData.data)
       }).catch((companyErr) => {
