@@ -61,6 +61,8 @@
           const authToken = signupSuccess.data.token
           console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
+          secondThis.$ls.set('company', 'true')
+          this.$store.dispatch('login')
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)
