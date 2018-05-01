@@ -52,6 +52,7 @@
 
     methods: {
       sendSignupData: function () {
+        const secondThis = this
         console.log('data:', this.signupData)
         console.log('going to send post request')
         this.$http.post('/company/signup', this.signupData)
@@ -59,6 +60,7 @@
           console.log('something else', signupSuccess.data)
           const authToken = signupSuccess.data.token
           console.log('auth token', authToken)
+          secondThis.$ls.set('token', authToken)
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)

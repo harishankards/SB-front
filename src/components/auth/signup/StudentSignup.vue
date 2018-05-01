@@ -51,14 +51,14 @@
     },
     methods: {
       sendSignupData: function () {
-        // var defaultThis = this
+        var secondThis = this
         console.log('data:', this.signupData.email, this.signupData.password)
         console.log('going to send post request')
         this.$http.post('/student/signup', this.signupData)
         .then(function (signupSuccess) {
           console.log('something else', signupSuccess.data)
           const authToken = signupSuccess.data.token
-          console.log('auth token', authToken)
+          secondThis.$ls.set('token', authToken)
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)

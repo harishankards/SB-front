@@ -45,12 +45,14 @@
     },
     methods: {
       sendLoginData: function () {
+        const secondThis = this
         console.log('data da:', this.loginData)
         this.$http.post('/student/login', this.loginData)
         .then(function (loginSuccess) {
           console.log('login success', loginSuccess.data)
           const authToken = loginSuccess.data.token
           console.log('auth token', authToken)
+          secondThis.$ls.set('token', authToken)
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)
