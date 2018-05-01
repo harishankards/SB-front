@@ -54,6 +54,7 @@
           const authToken = loginSuccess.data.token
           console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
+          secondThis.$ls.set('student', 'true')
           const lsToken = secondThis.$ls.get('token')
           this.$store.dispatch('login')
           console.log('ls token', lsToken)

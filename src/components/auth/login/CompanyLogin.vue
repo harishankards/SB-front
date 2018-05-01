@@ -53,7 +53,7 @@
           const authToken = loginSuccess.data.token
           console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
-          this.$store.dispatch('login')          
+          this.$store.dispatch('login')
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)

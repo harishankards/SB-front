@@ -13,6 +13,13 @@ const isLoggedIn = state => {
   return state.isLoggedIn
 }
 
+const student = state => {
+  return state.student
+}
+
+const company = state => {
+  return state.company
+}
 export {
   menuItems,
   toggleWithoutAnimation,
@@ -21,5 +28,7 @@ export {
   palette,
   isLoading,
   breadcrumbs,
-  isLoggedIn
+  isLoggedIn,
+  student,
+  company
 }

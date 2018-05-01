@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="app">
-    <auth-layout v-if="isAuth"></auth-layout>
-    <landing v-else-if="isLanding"></landing>
-    <layout v-else></layout>
+    <auth-layout v-if="isAuth && !isLoggedIn"></auth-layout>
+    <landing v-else-if="isLanding && !isLoggedIn"></landing>
+    <layout v-else ></layout>
   </div>
 </template>
 
@@ -27,6 +27,9 @@
       isLanding () {
         console.log('this route name', this.$route.name)
         return this.$route.name === 'landing'
+      },
+      isLoggedIn () {
+        return this.$store.getters.isLoggedIn
       }
     }
   }
