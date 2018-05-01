@@ -45,7 +45,7 @@
     },
     methods: {
       sendLoginData: function () {
-        var secondThis = this
+        const secondThis = this
         console.log('data da:', this.loginData)
         this.$http.post('/student/login', this.loginData)
         .then(function (loginSuccess) {
@@ -55,6 +55,7 @@
           console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
           const lsToken = secondThis.$ls.get('token')
+          this.$store.dispatch('login')
           console.log('ls token', lsToken)
         })
         .catch(function (loginErr) {
@@ -73,6 +74,19 @@
         .catch(function (linkedinErr) {
           console.log('linkedin err', linkedinErr)
         })
+      }
+    },
+    computed: {
+      isLoggedin () {
+        return this.$store.getters.isLoggedIn
+      }
+    },
+    created () {
+      // this.$store.dispatch('logout')
+      if (this.$store.getters.isLoggedIn) {
+        console.log('loggedin', this.$store.getters.isLoggedIn)
+      } else {
+        console.log('not logged in')
       }
     }
   }
