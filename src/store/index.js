@@ -40,9 +40,7 @@ const store = new Vuex.Store({
   actions: {
     login: context => {
       context.commit(LOGIN) // show spinner
-      setTimeout(() => {
-        context.commit(LOGIN_SUCCESS)
-      }, 1000)
+      context.commit(LOGIN_SUCCESS)
     },
     logout: context => {
       console.log('logout action dispatched')
