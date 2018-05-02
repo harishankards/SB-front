@@ -49,14 +49,14 @@
         console.log('data da:', this.loginData)
         this.$http.post('/student/login', this.loginData)
         .then(function (loginSuccess) {
-          secondThis.$router.push('/student/newsfeed')
           console.log('login success', loginSuccess.data)
           const authToken = loginSuccess.data.token
           console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
           secondThis.$ls.set('student', 'true')
           const lsToken = secondThis.$ls.get('token')
-          this.$store.dispatch('login')
+          secondThis.$store.dispatch('login')
+          secondThis.$router.push('/student/newsfeed')
           console.log('ls token', lsToken)
         })
         .catch(function (loginErr) {
@@ -83,7 +83,6 @@
       }
     },
     created () {
-      // this.$store.dispatch('logout')
       if (this.$store.getters.isLoggedIn) {
         console.log('loggedin', this.$store.getters.isLoggedIn)
       } else {

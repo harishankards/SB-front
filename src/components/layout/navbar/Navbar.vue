@@ -50,7 +50,7 @@
               <a class="plain-link" href="#">{{'user.profile' | translate}}</a>
             </div>
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#">{{'user.logout' | translate}}</a>
+              <a class="plain-link" href="#" @click.prevent="logout" >{{'user.logout' | translate}}</a>
             </div>
           </div>
         </div>
@@ -83,7 +83,12 @@
         'closeMenu',
         'toggleSidebar',
         'isToggleWithoutAnimation'
-      ])
+      ]),
+      logout () {
+        console.log('logout clicked')
+        this.$store.dispatch('logout')
+        this.$router.push('/')
+      }
     }
   }
 </script>

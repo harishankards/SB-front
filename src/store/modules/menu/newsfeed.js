@@ -7,6 +7,7 @@ export default {
   meta: {
     default: false,
     title: 'menu.newsfeed',
-    iconClass: 'fa fa-newspaper-o'
+    iconClass: 'fa fa-newspaper-o',
+    requiresAuth: true
   }
 }

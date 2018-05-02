@@ -58,11 +58,15 @@ let mediaHandler = () => {
 
 router.beforeEach((to, from, next) => {
   store.commit('setLoading', true)
-  if (!store.getters.isLoggedIn) {
-    console.log('not logged from router beforeeaatch')
-    next()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.isLoggedIn) {
+      console.log('not logged from router beforeeach')
+      next({path: '/', query: { redirect: to.fullPath }})
+    } else {
+      console.log('logged in from beforeach')
+      next()
+    }
   } else {
-    console.log('logged in from beforeach')
     next()
   }
 })
