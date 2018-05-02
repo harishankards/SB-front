@@ -58,6 +58,7 @@ let mediaHandler = () => {
 
 router.beforeEach((to, from, next) => {
   store.commit('setLoading', true)
+  console.log('to matched some', to.matched.some(record => record.meta.requiresAuth))
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.isLoggedIn) {
       console.log('not logged from router beforeeach')

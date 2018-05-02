@@ -34,20 +34,20 @@ export default new Router({
     {path: '/auth/company/signup', component: CompanySignup, name: 'companysignup'},
     {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
     {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
-    {path: '/student/projects/new', component: NewProject, name: 'newproject', requiresAuth: true},
+    {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
     // Project
-    {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', requiresAuth: true},
+    {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', meta: { requiresAuth: true }},
     // Company things
-    {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed', requiresAuth: true},
-    {path: '/company/contests', component: CompanyContest, name: 'Company Contests', requiresAuth: true},
-    {path: '/company/projects', component: CompanyProjects, name: 'Company Projects', requiresAuth: true},
-    {path: '/company/awards', component: CompanyAwards, name: 'Company Awards', requiresAuth: true},
-    {path: '/company/messages', component: CompanyMessages, name: 'Company Messages', requiresAuth: true},
-    {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites', requiresAuth: true},
-    {path: '/company/stats', component: CompanyStats, name: 'Company Stats', requiresAuth: true},
-    {path: '/company/settings', component: CompanySettings, name: 'Company Settings', requiresAuth: true},
-    {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest', requiresAuth: true},
-    {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', requiresAuth: true}
+    {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed', meta: { requiresAuth: true }},
+    {path: '/company/contests', component: CompanyContest, name: 'Company Contests', meta: { requiresAuth: true }},
+    {path: '/company/projects', component: CompanyProjects, name: 'Company Projects', meta: { requiresAuth: true }},
+    {path: '/company/awards', component: CompanyAwards, name: 'Company Awards', meta: { requiresAuth: true }},
+    {path: '/company/messages', component: CompanyMessages, name: 'Company Messages', meta: { requiresAuth: true }},
+    {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites', meta: { requiresAuth: true }},
+    {path: '/company/stats', component: CompanyStats, name: 'Company Stats', meta: { requiresAuth: true }},
+    {path: '/company/settings', component: CompanySettings, name: 'Company Settings', meta: { requiresAuth: true }},
+    {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest', meta: { requiresAuth: true }},
+    {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', meta: { requiresAuth: true }}
   ],
   mode: 'history'
 })
