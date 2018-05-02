@@ -7,6 +7,7 @@ export default {
   meta: {
     default: false,
     title: 'menu.awards',
-    iconClass: 'fa fa-trophy'
+    iconClass: 'fa fa-trophy',
+    requiresAuth: true
   }
 }
