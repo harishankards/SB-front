@@ -7,6 +7,7 @@ export default {
   meta: {
     default: false,
     title: 'menu.settings',
-    iconClass: 'fa fa-gear'
+    iconClass: 'fa fa-gear',
+    requiresAuth: true
   }
 }
