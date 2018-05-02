@@ -7,6 +7,7 @@ export default {
   meta: {
     default: false,
     title: 'menu.messages',
-    iconClass: 'fa fa-paper-plane'
+    iconClass: 'fa fa-paper-plane',
+    requiresAuth: true
   }
 }
