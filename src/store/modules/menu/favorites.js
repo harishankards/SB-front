@@ -7,6 +7,7 @@ export default {
   meta: {
     default: false,
     title: 'menu.favorites',
-    iconClass: 'fa fa-heart'
+    iconClass: 'fa fa-heart',
+    requiresAuth: true
   }
 }
