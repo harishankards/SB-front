@@ -94,6 +94,12 @@
       }
     },
     created () {
+      if (this.$store.getters.isLoggedIn) {
+        console.log('loggedin', this.$store.getters.isLoggedIn)
+      } else {
+        console.log('not logged in')
+      }
+
       console.log('inside created')
       var email = 'hs@spritle.com'
       const token = this.$ls.get('token')

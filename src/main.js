@@ -58,7 +58,13 @@ let mediaHandler = () => {
 
 router.beforeEach((to, from, next) => {
   store.commit('setLoading', true)
-  next()
+  if (!store.getters.isLoggedIn) {
+    console.log('not logged from router beforeeaatch')
+    next()
+  } else {
+    console.log('logged in from beforeach')
+    next()
+  }
 })
 
 router.afterEach((to, from) => {
