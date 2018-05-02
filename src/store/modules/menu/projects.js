@@ -7,6 +7,7 @@ export default {
   meta: {
     default: false,
     title: 'menu.projects.parent',
-    iconClass: 'fa fa-rocket'
+    iconClass: 'fa fa-rocket',
+    requiresAuth: true
   }
 }
