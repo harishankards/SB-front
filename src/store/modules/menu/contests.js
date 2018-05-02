@@ -7,6 +7,7 @@ export default {
   meta: {
     expanded: false,
     title: 'menu.contests.parent',
-    iconClass: 'fa fa-flag'
+    iconClass: 'fa fa-flag',
+    requiresAuth: true
   }
 }
