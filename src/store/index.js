@@ -23,7 +23,7 @@ const store = new Vuex.Store({
   state: {
     isLoggedIn: !!localStorage.getItem('vuejs_token'),
     student: !!localStorage.getItem('vuejs_student'),
-    company: !!localStorage.getItem('company')
+    company: !!localStorage.getItem('vuejs_company')
   },
   mutations: {
     [LOGIN] (state) {

@@ -65,7 +65,22 @@ router.beforeEach((to, from, next) => {
       next({path: '/', query: { redirect: to.fullPath }})
     } else {
       console.log('logged in from beforeach')
-      next()
+      if (store.getters.student) {
+        console.log('to loca', to.fullPath)
+        if (to.fullPath.includes('student')) {
+          next()
+        } else {
+          next({path: '/student/newsfeed', query: { redirect: to.fullPath }})
+        }
+      } else if (store.getters.company) {
+        if (to.fullPath.includes('company')) {
+          next()
+        } else {
+          next({path: '/company/newsfeed', query: { redirect: to.fullPath }})
+        }
+      } else {
+        next()
+      }
     }
   } else {
     next()
