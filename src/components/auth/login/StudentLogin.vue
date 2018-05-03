@@ -1,6 +1,10 @@
 <template>
   <div class="login">
     <h2>{{'auth.welcome' | translate}} Student!</h2>
+    <vuestic-alert type="danger" :withCloseBtn="true" v-show="showError">
+      <span class="badge badge-pill badge-danger">Error</span>
+      Invalid email or password
+    </vuestic-alert>
     <form method="post" @submit.prevent="sendLoginData" name="studentlogin">
       <div class="form-group">
         <div class="input-group">
@@ -54,6 +58,7 @@
           console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
           secondThis.$ls.set('student', 'true')
+          secondThis.$ls.set('email', secondThis.loginData.email)
           const lsToken = secondThis.$ls.get('token')
           secondThis.$store.dispatch('login')
           secondThis.$router.push('/student/newsfeed')
@@ -61,6 +66,7 @@
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)
+          this.$options.computed.showError('show')
         })
       },
       linkedinLogin: function () {
@@ -80,12 +86,22 @@
     computed: {
       isLoggedin () {
         return this.$store.getters.isLoggedIn
+      },
+      showError (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          return true
+        } else {
+          return false
+        }
       }
     },
     created () {
       if (this.$store.getters.isLoggedIn) {
         console.log('loggedin', this.$store.getters.isLoggedIn)
+        this.showError('show')
       } else {
+        this.$options.computed.showError('show')
         console.log('not logged in')
       }
     }
