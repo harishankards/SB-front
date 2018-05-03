@@ -2,6 +2,7 @@
   <div id="app" class="app">
     <auth-layout v-if="isAuth"></auth-layout>
     <landing v-else-if="isLanding"></landing>
+    <not-found v-else-if="isNotFound"></not-found>
     <layout v-else ></layout>
   </div>
 </template>
@@ -11,6 +12,7 @@
   import AuthLayout from 'components/layout/AuthLayout'
   import VuesticPreLoader from 'vuestic-components/vuestic-preloader/VuesticPreLoader.vue'
   import Landing from 'components/landing/Landing.vue'
+  import NotFound from 'components/404/NotFound'
 
   export default {
     name: 'app',
@@ -18,15 +20,19 @@
       VuesticPreLoader,
       AuthLayout,
       Layout,
-      Landing
+      Landing,
+      NotFound
     },
     computed: {
       isAuth () {
         return this.$route.path.match('auth')
       },
       isLanding () {
-        console.log('this route name', this.$route.name)
         return this.$route.name === 'landing'
+      },
+      isNotFound () {
+        console.log('this route name', this.$route.name)
+        return this.$route.name === '404'
       }
     }
   }

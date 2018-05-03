@@ -22,6 +22,7 @@ import CompanyStats from 'components/company/stats/Stats'
 import CompanySettings from 'components/company/settings/Settings'
 import CompanyNewContest from 'components/company/contest/NewContest'
 import CompanyNewAward from 'components/company/awards/NewAward'
+import NotFound from 'components/404/NotFound'
 
 Vue.use(Router)
 
@@ -47,7 +48,8 @@ export default new Router({
     {path: '/company/stats', component: CompanyStats, name: 'Company Stats', meta: { requiresAuth: true }},
     {path: '/company/settings', component: CompanySettings, name: 'Company Settings', meta: { requiresAuth: true }},
     {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest', meta: { requiresAuth: true }},
-    {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', meta: { requiresAuth: true }}
+    {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', meta: { requiresAuth: true }},
+    {path: '*', component: NotFound, name: '404'}
   ],
   mode: 'history'
 })
