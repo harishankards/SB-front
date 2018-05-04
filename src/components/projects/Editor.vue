@@ -1,6 +1,6 @@
 
 <template>
-  <vue-editor v-model="content"></vue-editor>
+  <vue-editor v-model="content" placeholder='Type your description here'></vue-editor>
 </template>
 
  <script>
@@ -14,7 +14,7 @@
 
     data () {
       return {
-        content: '<p>Here goes the desciption</p>'
+        content: ''
       }
     },
     updated () {

@@ -98,32 +98,36 @@
           },
           {
             label: 'Abstract',
-            slot: 'page2', // the same name as in attribute "slot" of wizard's step
+            slot: 'page2',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
-              return true
+              if (this.projectData.abstract === '') {
+                this.showError('show')
+                this.errorMessage = 'The Abstract field can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Description',
-            slot: 'page3', // the same name as in attribute "slot" of wizard's step
+            slot: 'page3',
             onNext: () => {
-              // method is called when moving to the next step
-              console.log('project desc', this.projectData.description)
             },
             isValid: () => {
-              // condition for moving to the next step
-              return true
+              if (this.projectData.description === '') {
+                this.showError('show')
+                this.errorMessage = 'The description can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
-              console.log('project desc', this.projectData.description)
-              // method is called when moving to the previous step
             }
           },
           {
