@@ -1,9 +1,9 @@
 <template>
   <div class="login">
     <h2>{{'auth.welcome' | translate}} Student!</h2>
-    <vuestic-alert type="danger" :withCloseBtn="true" v-show="error">
+    <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
       <span class="badge badge-pill badge-danger">Error</span>
-      Invalid email or password
+      {{this.errorMessage}}
     </vuestic-alert>
     <form method="post" @submit.prevent="sendLoginData" name="studentlogin">
       <div class="form-group">
@@ -45,7 +45,8 @@
           email: '',
           password: ''
         },
-        error: false
+        errorAlert: false,
+        errorMessage: ''
       }
     },
     methods: {
@@ -67,6 +68,7 @@
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)
+          secondThis.errorMessage = loginErr.response.data
           secondThis.showError('show')
         })
       },
@@ -86,7 +88,7 @@
       showError (nudge) {
         if (nudge === 'show') {
           console.log('yes show')
-          this.error = true
+          this.errorAlert = true
         } else {
           console.log('this is not show')
         }

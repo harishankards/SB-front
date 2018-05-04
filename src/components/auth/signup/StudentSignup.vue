@@ -1,6 +1,10 @@
 <template>
   <div class="signup">
     <h2>{{'auth.createNewAccount' | translate}}</h2>
+    <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
+      <span class="badge badge-pill badge-danger">Error</span>
+      {{this.errorMessage}}
+    </vuestic-alert>
     <form method="post" name="studentsignup" @submit.prevent="sendSignupData">
       <div class="form-group">
         <div class="input-group">
@@ -46,7 +50,9 @@
         signupData: {
           email: '',
           password: ''
-        }
+        },
+        errorAlert: false,
+        errorMessage: ''
       }
     },
     methods: {
@@ -66,8 +72,19 @@
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)
+          secondThis.errorMessage = signupError.response.data
+          secondThis.showError('show')
         })
+      },
+      showError (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.errorAlert = true
+        } else {
+          console.log('this is not show')
+        }
       }
+
     }
   }
 </script>
