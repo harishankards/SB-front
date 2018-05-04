@@ -1,32 +1,32 @@
 <template>
-    <div class="row">
-      <div class="col-md-8">
-        <vuestic-widget class="" v-for="project in projects" :key="project.id">
-          <div>
-            
-            <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="#">{{project.name}}</a> </strong></span><br>
-              <span class="projects-time">{{project.calender}}</span>
-            </div>
-          </div>
-          <div id="projects-content-div">
-            <span id="projects-description">{{project.post_desc}}</span>
-          </div>
+  <div class="row">
+    <div class="col-md-8">
+      <vuestic-widget class="" v-for="project in projects" :key="project.id">
+        <div>
           
-        </vuestic-widget>
-      </div>
-      <div class="col-md-4">
-        <vuestic-widget class="createproject-div">
-          <div class="col-md-offset-6 col-md-12">
-            <h5 class="gotnew">Got something new?</h5>
-            <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>    
+          <div id="projects-name-div">
+            <span class="projects-name"><strong><a href="#">{{project.name}}</a> </strong></span><br>
+            <span class="projects-time">{{project.calender}}</span>
           </div>
-        </vuestic-widget>
-        <vuestic-widget class="live-feed" headerText="Live feeds">
-          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-        </vuestic-widget>
-      </div>
+        </div>
+        <div id="projects-content-div">
+          <span id="projects-description">{{project.post_desc}}</span>
+        </div>
+        
+      </vuestic-widget>
     </div>
+    <div class="col-md-4">
+      <vuestic-widget class="createproject-div">
+        <div class="col-md-offset-6 col-md-12">
+          <h5 class="gotnew">Got something new?</h5>
+          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>    
+        </div>
+      </vuestic-widget>
+      <vuestic-widget class="live-feed" headerText="Live feeds">
+        <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
+      </vuestic-widget>
+    </div>
+  </div>
 </template>
 
 <script>
