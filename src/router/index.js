@@ -23,6 +23,7 @@ import CompanySettings from 'components/company/settings/Settings'
 import CompanyNewContest from 'components/company/contest/NewContest'
 import CompanyNewAward from 'components/company/awards/NewAward'
 import NotFound from 'components/404/NotFound'
+import PostSignup from 'components/profile/PostSignup'
 
 Vue.use(Router)
 
@@ -36,6 +37,7 @@ export default new Router({
     {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
     {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
     {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
+    {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
     // Project
     {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', meta: { requiresAuth: true }},
     // Company things

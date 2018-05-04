@@ -56,11 +56,13 @@
         console.log('going to send post request')
         this.$http.post('/student/signup', this.signupData)
         .then(function (signupSuccess) {
-          console.log('something else', signupSuccess.data)
+          console.log('signup success', signupSuccess.data)
           const authToken = signupSuccess.data.token
           secondThis.$ls.set('token', authToken)
-          this.$store.dispatch('login')
           secondThis.$ls.set('student', 'true')
+          secondThis.$ls.set('email', secondThis.signupData.email)
+          secondThis.$store.dispatch('login')
+          secondThis.$router.push('/student/postsignup')
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)
