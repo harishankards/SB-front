@@ -68,7 +68,7 @@
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)
-          secondThis.errorMessage = loginErr.response.data
+          secondThis.errorMessage = 'Invalid email or password'
           secondThis.showError('show')
         })
       },

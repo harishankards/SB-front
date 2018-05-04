@@ -4,12 +4,16 @@
         <i class="fa fa-caret-left"></i>
         Back
     </button>
+    <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
+      <span class="badge badge-pill badge-danger">Error</span>
+      {{this.errorMessage}}
+    </vuestic-alert>  
     <vuestic-wizard 
      :steps="vrSteps" 
      wizard-layout="horizontal" 
      wizard-type="simple"
      class="new">
-
+      
      <div slot="page1" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
@@ -72,19 +76,24 @@
           // tags: [],
           author: 'hs@spritle.com'
         },
+        errorMessage: '',
+        errorAlert: false,
         vrSteps: [
           {
             label: 'Title',
-            slot: 'page1', // the same name as in attribute "slot" of wizard's step
+            slot: 'page1',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
-              return true
+              if (this.projectData.title === '') {
+                this.showError('show')
+                this.errorMessage = 'The Title field can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
@@ -176,6 +185,14 @@
     methods: {
       sendBack: function () {
         this.$router.push('/student/projects/project-list')
+      },
+      showError (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.errorAlert = true
+        } else {
+          console.log('this is not show')
+        }
       }
     },
     created () {

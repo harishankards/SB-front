@@ -1,71 +1,68 @@
 <template>
-  <div class="row">
-    <vuestic-widget class="col-md-10">
-      <vuestic-wizard 
-        :steps="vrSteps" 
-        wizard-layout="vertical" 
-        wizard-type="simple"
-        class="new">
+  <vuestic-widget>
+    <vuestic-wizard 
+      :steps="vrSteps" 
+      wizard-layout="vertical" 
+      wizard-type="simple">
 
-        <div slot="page1" class="form-wizard-tab-content">
+      <div slot="page1" class="form-wizard-tab-content">
+      <div class="form-group">
+        <div class="input-group">
+        <input id="simple-input" required/>
+        <label class="control-label" for="simple-input">First Name</label><i class="bar"></i>
+        </div>
+      </div> 
+      <div class="form-group">
+        <div class="input-group">
+        <input id="simple-input" required/>
+        <label class="control-label" for="simple-input">Last Name</label><i class="bar"></i>
+        </div>
+      </div> 
+      <div class="form-group">
+        <div class="input-group">
+        <input id="simple-input" required/>
+        <label class="control-label" for="simple-input">Username</label><i class="bar"></i>
+        </div>
+      </div> 
+      <div class="form-group align-gender">
+        <div class="input-group">
+          <div class="radio abc-radio abc-radio-primary">
+            <input type="radio" name="male" id="male" value="male" checked>
+            <label for="male">
+              <span class="abc-label-text">Male</span>
+            </label>
+            <input type="radio" name="female" id="female" value="female">
+            <label for="female">
+              <span class="abc-label-text">Female</span>
+            </label>
+            <input type="radio" name="others" id="others" value="others">
+            <label for="others">
+              <span class="abc-label-text">Others</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group">
           <div class="input-group">
-          <input id="simple-input" required/>
-          <label class="control-label" for="simple-input">First Name</label><i class="bar"></i>
+            <input id="simple-input" required/>
+            <label class="control-label" for="simple-input">College Name</label><i class="bar"></i>
           </div>
-        </div> 
+        </div>
         <div class="form-group">
           <div class="input-group">
-          <input id="simple-input" required/>
-          <label class="control-label" for="simple-input">Last Name</label><i class="bar"></i>
+            <input id="simple-input" required/>
+            <label class="control-label" for="simple-input">University</label><i class="bar"></i>
           </div>
         </div> 
-        <div class="form-group">
-          <div class="input-group">
-          <input id="simple-input" required/>
-          <label class="control-label" for="simple-input">Username</label><i class="bar"></i>
-          </div>
-        </div> 
-        <div class="form-group align-gender">
-          <div class="input-group">
-            <div class="radio abc-radio abc-radio-primary">
-              <input type="radio" name="male" id="male" value="male" checked>
-              <label for="male">
-                <span class="abc-label-text">Male</span>
-              </label>
-              <input type="radio" name="female" id="female" value="female">
-              <label for="female">
-                <span class="abc-label-text">Female</span>
-              </label>
-              <input type="radio" name="others" id="others" value="others">
-              <label for="others">
-                <span class="abc-label-text">Others</span>
-              </label>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div slot="page2" class="form-wizard-tab-content">
-          <div class="form-group">
-            <div class="input-group">
-              <input id="simple-input" required/>
-              <label class="control-label" for="simple-input">College Name</label><i class="bar"></i>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <input id="simple-input" required/>
-              <label class="control-label" for="simple-input">University</label><i class="bar"></i>
-            </div>
-          </div> 
-        </div>
-        <div slot="wizardCompleted" class="form-wizard-tab-content">
-              <h4>Add slot="wizardCompleted" to your wizard's last step,
-              to show this step after wizard completed!</h4>
-        </div>
-      </vuestic-wizard>
-    </vuestic-widget>
-  </div>
+      </div>
+      <div slot="wizardCompleted" class="form-wizard-tab-content">
+            <h4>Add slot="wizardCompleted" to your wizard's last step,
+            to show this step after wizard completed!</h4>
+      </div>
+    </vuestic-wizard>
+  </vuestic-widget>
 </template>
 
 <script>
