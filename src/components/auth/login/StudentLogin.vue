@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h2>{{'auth.welcome' | translate}} Student!</h2>
-    <vuestic-alert type="danger" :withCloseBtn="true" v-show="showError">
+    <vuestic-alert type="danger" :withCloseBtn="true" v-show="error">
       <span class="badge badge-pill badge-danger">Error</span>
       Invalid email or password
     </vuestic-alert>
@@ -44,7 +44,8 @@
         loginData: {
           email: '',
           password: ''
-        }
+        },
+        error: false
       }
     },
     methods: {
@@ -66,7 +67,7 @@
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)
-          this.$options.computed.showError('show')
+          secondThis.showError('show')
         })
       },
       linkedinLogin: function () {
@@ -81,19 +82,19 @@
         .catch(function (linkedinErr) {
           console.log('linkedin err', linkedinErr)
         })
+      },
+      showError (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.error = true
+        } else {
+          console.log('this is not show')
+        }
       }
     },
     computed: {
       isLoggedin () {
         return this.$store.getters.isLoggedIn
-      },
-      showError (nudge) {
-        if (nudge === 'show') {
-          console.log('yes show')
-          return true
-        } else {
-          return false
-        }
       }
     },
     created () {
@@ -101,7 +102,6 @@
         console.log('loggedin', this.$store.getters.isLoggedIn)
         this.showError('show')
       } else {
-        this.$options.computed.showError('show')
         console.log('not logged in')
       }
     }
