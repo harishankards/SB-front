@@ -138,6 +138,7 @@
                 .catch(function (studentsErr) {
                   console.log('students err', studentsErr)
                 })
+                return true
               }
             },
             onBack: () => {
@@ -149,7 +150,13 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              if (this.awardData.description === '') {
+                this.showError('show')
+                this.errorMessage = 'The description can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
