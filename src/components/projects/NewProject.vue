@@ -183,7 +183,7 @@
             onNext: () => {
               console.log('this projectdata', this.projectData)
               const authToken = this.$ls.get('token')
-              this.$http.post('http://localhost:3000/projects/new', this.projectData, {
+              this.$http.post('/projects/new', this.projectData, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + authToken

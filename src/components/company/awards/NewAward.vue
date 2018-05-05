@@ -29,7 +29,7 @@
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <input id="simple-input" v-model="awardData.studentname" required/>
+            <input id="simple-input" v-model="awardData.student" required/>
             <label class="control-label" for="simple-input">Select student</label><i class="bar"></i>
           </div>
         </div>    
@@ -77,10 +77,11 @@
       return {
         awardData: {
           title: '',
-          studentname: '',
+          student: '',
           description: '',
           files: [],
-          tags: []
+          tags: [],
+          company: ''
         },
         counter: 0,
         errorMessage: '',
@@ -110,7 +111,7 @@
             onNext: () => {
             },
             isValid: () => {
-              const studentEmail = this.awardData.studentname
+              const studentEmail = this.awardData.student
               const token = this.$ls.get('token')
               const self = this
               if (studentEmail === '') {
@@ -204,7 +205,8 @@
             onNext: () => {
               console.log('this projectdata', this.awardData)
               const authToken = this.$ls.get('token')
-              this.$http.post('http://localhost:3000/projects/new', this.awardData, {
+              this.awardData.company = this.$ls.get('email')
+              this.$http.post('/awards/new', this.awardData, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + authToken
