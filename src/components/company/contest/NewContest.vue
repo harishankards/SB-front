@@ -144,7 +144,13 @@
               console.log('this date', this.contestData.date)
             },
             isValid: () => {
-              return true
+              if (this.contestData.date === '') {
+                this.showError('show')
+                this.errorMessage = 'The Date can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
@@ -155,7 +161,13 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              if (this.contestData.tags.length === 0) {
+                this.showError('show')
+                this.errorMessage = 'The tags need to be selected'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
