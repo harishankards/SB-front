@@ -187,7 +187,13 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              if (this.awardData.tags.length === 0) {
+                this.showError('show')
+                this.errorMessage = 'The tags need to be selected'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
@@ -196,17 +202,19 @@
             label: 'Confirmation',
             slot: 'page6',
             onNext: () => {
-              console.log('this projectdata', this.projectData)
-              this.$http.post('http://localhost:3000/projects/new', this.projectData, {
+              console.log('this projectdata', this.awardData)
+              const authToken = this.$ls.get('token')
+              this.$http.post('http://localhost:3000/projects/new', this.awardData, {
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + authToken
                 }
               })
-              .then(function (projectCreationSuccess) {
-                console.log('projectCreation success', projectCreationSuccess)
+              .then(function (awardCreationSuccess) {
+                console.log('award creation success', awardCreationSuccess)
               })
-              .catch(function (projectCreationError) {
-                console.log('projectcreation error', projectCreationError)
+              .catch(function (awardCreationError) {
+                console.log('award creation error', awardCreationError)
               })
             },
             isValid: () => {
