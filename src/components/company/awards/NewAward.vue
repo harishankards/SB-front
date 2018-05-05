@@ -53,6 +53,10 @@
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
           <h4>Your award has been published</h4>
+          <button class="btn btn-info" @click="sendBack">
+              <i class="fa fa-home"></i>
+              Awards Home
+          </button>
      </div>
 </vuestic-wizard>
 
@@ -230,7 +234,7 @@
     },
     methods: {
       sendBack: function () {
-        this.$router.push('/company/contests')
+        this.$router.push('/company/awards')
       },
       showError (nudge) {
         if (nudge === 'show') {
