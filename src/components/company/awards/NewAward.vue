@@ -167,6 +167,15 @@
             onNext: () => {
             },
             isValid: () => {
+              if (this.awardData.files.length === 0) {
+                if (this.counter === 0) {
+                  this.errorMessage = 'A certificate/letter talks for a student more than a post. You sure you don\'t want to proceed without them?'
+                  this.counter++
+                  this.showInfo('show')
+                  return false
+                }
+                return true
+              }
               return true
             },
             onBack: () => {
@@ -238,11 +247,11 @@
     created () {
       eventBus.$on('multiselectoraward', (data) => {
         console.log('inside multiselector', data)
-        this.projectData.tags = data
+        this.awardData.tags = data
       })
       eventBus.$on('uploadedFileAwards', (data) => {
         console.log('inside upload file awards', data)
-        this.projectData.files = data
+        this.awardData.files = data
       })
     }
   }
