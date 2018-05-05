@@ -79,7 +79,8 @@
           about: '',
           rulesFormat: '',
           date: '',
-          host: 'hs@spritle.com'
+          host: '',
+          tags: ''
         },
         counter: 0,
         errorMessage: '',
@@ -176,17 +177,20 @@
             label: 'Confirmation',
             slot: 'page6',
             onNext: () => {
-              console.log('this projectdata', this.projectData)
-              this.$http.post('http://localhost:3000/contests/new', this.projectData, {
+              const authToken = this.$ls.get('token')
+              this.contestData.host = this.$ls.get('email')
+              console.log('this contestData', this.contestData)
+              this.$http.post('http://localhost:3000/contests/new', this.contestData, {
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + authToken
                 }
               })
-              .then(function (projectCreationSuccess) {
-                console.log('projectCreation success', projectCreationSuccess)
+              .then(function (contestCreationSuccess) {
+                console.log('contestCreationSuccess success', contestCreationSuccess)
               })
-              .catch(function (projectCreationError) {
-                console.log('projectcreation error', projectCreationError)
+              .catch(function (contestCreationError) {
+                console.log('contestCreationError error', contestCreationError)
               })
             },
             isValid: () => {
