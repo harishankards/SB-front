@@ -49,6 +49,10 @@
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
           <h4>Your project has been created</h4>
+          <button class="btn btn-info" @click="sendBack">
+              <i class="fa fa-home"></i>
+              Project Home
+          </button>
      </div>
 </vuestic-wizard>
 
