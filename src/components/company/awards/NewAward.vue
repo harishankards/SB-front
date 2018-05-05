@@ -93,7 +93,13 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              if (this.awardData.title === '') {
+                this.showError('show')
+                this.errorMessage = 'The Title field can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
@@ -176,6 +182,10 @@
         if (nudge === 'show') {
           console.log('yes show')
           this.errorAlert = true
+          const self = this
+          setTimeout(() => {
+            self.errorAlert = false
+          }, 3000)
         } else {
           console.log('this is not show')
         }
