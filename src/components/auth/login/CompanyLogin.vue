@@ -47,13 +47,16 @@
       sendLoginData: function () {
         const secondThis = this
         console.log('data da:', this.loginData)
-        this.$http.post('/student/login', this.loginData)
+        this.$http.post('/company/login', this.loginData)
         .then(function (loginSuccess) {
           console.log('login success', loginSuccess.data)
           const authToken = loginSuccess.data.token
           console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
-          this.$store.dispatch('login')
+          secondThis.$ls.set('company', 'true')
+          secondThis.$ls.set('email', secondThis.loginData.email)
+          secondThis.$store.dispatch('login')
+          secondThis.$router.push('/company/newsfeed')
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)
