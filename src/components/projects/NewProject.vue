@@ -11,7 +11,7 @@
     <vuestic-alert type="info" :withCloseBtn="true" v-show="infoAlert">
       <span class="badge badge-pill badge-info">Tips</span>
       {{this.errorMessage}}
-    </vuestic-alert>  
+    </vuestic-alert>
     <vuestic-wizard 
      :steps="vrSteps" 
      wizard-layout="horizontal" 

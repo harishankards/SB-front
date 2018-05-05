@@ -4,6 +4,14 @@
         <i class="fa fa-caret-left"></i>
         Back
     </button>
+    <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
+      <span class="badge badge-pill badge-danger">Error</span>
+      {{this.errorMessage}}
+    </vuestic-alert> 
+    <vuestic-alert type="info" :withCloseBtn="true" v-show="infoAlert">
+      <span class="badge badge-pill badge-info">Tips</span>
+      {{this.errorMessage}}
+    </vuestic-alert>
     <vuestic-wizard 
      :steps="vrSteps" 
      wizard-layout="horizontal" 
@@ -72,6 +80,10 @@
           date: new Date(),
           host: 'hs@spritle.com'
         },
+        counter: 0,
+        errorMessage: '',
+        errorAlert: false,
+        infoAlert: false,
         vrSteps: [
           {
             label: 'Title',
@@ -79,7 +91,13 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              if (this.contestData.title === '') {
+                this.showError('show')
+                this.errorMessage = 'The Title field can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
@@ -160,6 +178,22 @@
     methods: {
       sendBack: function () {
         this.$router.push('/company/contests')
+      },
+      showError (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.errorAlert = true
+        } else {
+          console.log('this is not show')
+        }
+      },
+      showInfo (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.infoAlert = true
+        } else {
+          console.log('this is not show')
+        }
       }
     },
     created () {
