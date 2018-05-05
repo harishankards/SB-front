@@ -150,7 +150,8 @@
                   return false
                 }
                 return true
-                }
+              }
+              return true
             },
             onBack: () => {
             }
@@ -174,12 +175,14 @@
           },
           {
             label: 'Confirmation',
-            slot: 'page6', // the same name as in attribute "slot" of wizard's step
+            slot: 'page6',
             onNext: () => {
               console.log('this projectdata', this.projectData)
+              const authToken = this.$ls.get('token')
               this.$http.post('http://localhost:3000/projects/new', this.projectData, {
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + authToken
                 }
               })
               .then(function (projectCreationSuccess) {
@@ -190,11 +193,9 @@
               })
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           }
         ]
