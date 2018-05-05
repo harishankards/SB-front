@@ -7,6 +7,10 @@
     <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
       <span class="badge badge-pill badge-danger">Error</span>
       {{this.errorMessage}}
+    </vuestic-alert> 
+    <vuestic-alert type="info" :withCloseBtn="true" v-show="infoAlert">
+      <span class="badge badge-pill badge-info">Tips</span>
+      {{this.errorMessage}}
     </vuestic-alert>  
     <vuestic-wizard 
      :steps="vrSteps" 
@@ -73,11 +77,13 @@
           abstract: '',
           description: '',
           files: [],
-          // tags: [],
+          tags: [],
           author: 'hs@spritle.com'
         },
+        counter: 0,
         errorMessage: '',
         errorAlert: false,
+        infoAlert: false,
         vrSteps: [
           {
             label: 'Title',
@@ -132,16 +138,19 @@
           },
           {
             label: 'File upload',
-            slot: 'page4', // the same name as in attribute "slot" of wizard's step
+            slot: 'page4',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
+              if (this.counter === 0) {
+                this.errorMessage = 'Most of the projects yield attraction when having supporting images and PDFs. You sure you don\'t want to proceed without them?'
+                this.counter++
+                this.showInfo('show')
+                return false
+              }
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
@@ -194,6 +203,14 @@
         if (nudge === 'show') {
           console.log('yes show')
           this.errorAlert = true
+        } else {
+          console.log('this is not show')
+        }
+      },
+      showInfo (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.infoAlert = true
         } else {
           console.log('this is not show')
         }
