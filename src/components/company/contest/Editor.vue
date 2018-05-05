@@ -1,6 +1,6 @@
 
 <template>
-  <vue-editor :content="content" v-model="content"></vue-editor>
+  <vue-editor :content="content" v-model="content" placeholder='Type the rules and format here'></vue-editor>
 </template>
 
  <script>
@@ -14,7 +14,7 @@
 
     data () {
       return {
-        content: '<p>Here goes the rules, format and special instructions</p>'
+        content: ''
       }
     },
     updated () {

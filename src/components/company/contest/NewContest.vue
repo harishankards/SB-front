@@ -29,7 +29,7 @@
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <textarea type="text" id="simple-textarea" v-model="contestData.abstract" required></textarea>
+            <textarea type="text" id="simple-textarea" v-model="contestData.about" required></textarea>
             <label class="control-label" for="simple-textarea">About the contest</label><i class="bar"></i>
           </div>
         </div>    
@@ -76,7 +76,8 @@
       return {
         contestData: {
           title: '',
-          description: '',
+          about: '',
+          rulesFormat: '',
           date: new Date(),
           host: 'hs@spritle.com'
         },
@@ -108,7 +109,13 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              if (this.contestData.about === '') {
+                this.showError('show')
+                this.errorMessage = 'The About field can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
@@ -119,7 +126,13 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              if (this.contestData.rulesFormat === '') {
+                this.showError('show')
+                this.errorMessage = 'The Rules and Formats can\'t be empty'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
             }
@@ -198,10 +211,10 @@
     },
     created () {
       eventBus.$on('editorContentcontest', (data) => {
-        this.projectData.description = data
+        this.contestData.rulesFormat = data
       })
       eventBus.$on('multiselectorcontest', (data) => {
-        this.projectData.tags = data
+        this.contestData.tags = data
       })
     }
   }
