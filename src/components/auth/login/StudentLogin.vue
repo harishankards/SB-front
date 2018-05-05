@@ -102,7 +102,6 @@
     created () {
       if (this.$store.getters.isLoggedIn) {
         console.log('loggedin', this.$store.getters.isLoggedIn)
-        this.showError('show')
       } else {
         console.log('not logged in')
       }
