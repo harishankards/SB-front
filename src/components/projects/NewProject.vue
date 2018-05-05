@@ -210,7 +210,7 @@
       })
       eventBus.$on('uploadedFile', (data) => {
         console.log('inside upload file', data)
-        this.projectData.files = data
+        this.projectData.files.push(data)
       })
     }
   }
