@@ -71,88 +71,70 @@
           title: '',
           studentname: '',
           description: '',
-          files: ''
-          // tags: this.props.content
+          files: '',
+          tags: ''
         },
         vrSteps: [
           {
             label: 'Title',
-            slot: 'page1', // the same name as in attribute "slot" of wizard's step
+            slot: 'page1',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Student',
-            slot: 'page2', // the same name as in attribute "slot" of wizard's step
+            slot: 'page2',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Description',
-            slot: 'page3', // the same name as in attribute "slot" of wizard's step
+            slot: 'page3',
             onNext: () => {
-              // method is called when moving to the next step
-              console.log('project desc', this.awardData.description)
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              console.log('project desc', this.awardData.description)
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Certificate',
-            slot: 'page4', // the same name as in attribute "slot" of wizard's step
+            slot: 'page4',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Tags',
-            slot: 'page5', // the same name as in attribute "slot" of wizard's step
+            slot: 'page5',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Confirmation',
-            slot: 'page6', // the same name as in attribute "slot" of wizard's step
+            slot: 'page6',
             onNext: () => {
               console.log('this projectdata', this.projectData)
-              // method is called when moving to the next step
               this.$http.post('http://localhost:3000/projects/new', this.projectData, {
                 headers: {
                   'Content-Type': 'application/json'
@@ -166,11 +148,9 @@
               })
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           }
         ]
