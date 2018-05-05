@@ -39,7 +39,7 @@
      </div>
      <div slot="page4" class="form-wizard-tab-content">
           <v-date-picker
-            mode='single'
+            mode='range'
             v-model='contestData.date'>
         </v-date-picker>
      </div>
@@ -78,7 +78,7 @@
           title: '',
           about: '',
           rulesFormat: '',
-          date: new Date(),
+          date: '',
           host: 'hs@spritle.com'
         },
         counter: 0,
@@ -141,7 +141,7 @@
             label: 'Date',
             slot: 'page4',
             onNext: () => {
-              console.log('this date', this.selectedDate)
+              console.log('this date', this.contestData.date)
             },
             isValid: () => {
               return true
@@ -178,11 +178,9 @@
               })
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           }
         ]
