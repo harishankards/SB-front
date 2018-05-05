@@ -155,16 +155,19 @@
           },
           {
             label: 'Tags',
-            slot: 'page5', // the same name as in attribute "slot" of wizard's step
+            slot: 'page5',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
-              return true
+              if (this.projectData.tags.length === 0) {
+                this.showError('show')
+                this.errorMessage = 'The tags need to be selected'
+                return false
+              } else {
+                return true
+              }
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
@@ -224,6 +227,7 @@
       eventBus.$on('multiselectorproject', (data) => {
         console.log('inside multiselector', data)
         this.projectData.tags = data
+        console.log('project data tags', this.projectData.tags)
       })
       eventBus.$on('uploadedFile', (data) => {
         console.log('inside upload file', data)
