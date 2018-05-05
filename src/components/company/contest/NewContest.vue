@@ -13,7 +13,7 @@
      <div slot="page1" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-              <input id="simple-input" v-model="projectData.title" required/>
+              <input id="simple-input" v-model="contestData.title" required/>
               <label class="control-label" for="simple-input">Name of the contest</label><i class="bar"></i>
           </div>
         </div> 
@@ -21,7 +21,7 @@
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <textarea type="text" id="simple-textarea" v-model="projectData.abstract" required></textarea>
+            <textarea type="text" id="simple-textarea" v-model="contestData.abstract" required></textarea>
             <label class="control-label" for="simple-textarea">About the contest</label><i class="bar"></i>
           </div>
         </div>    
@@ -32,7 +32,7 @@
      <div slot="page4" class="form-wizard-tab-content">
           <v-date-picker
             mode='single'
-            v-model='projectData.date'>
+            v-model='contestData.date'>
         </v-date-picker>
      </div>
      <div slot="page5" class="form-wizard-tab-content">
@@ -66,90 +66,72 @@
     props: ['content'],
     data () {
       return {
-        projectData: {
+        contestData: {
           title: '',
           description: '',
           date: new Date(),
           host: 'hs@spritle.com'
-          // tags: this.props.content
         },
         vrSteps: [
           {
             label: 'Title',
-            slot: 'page1', // the same name as in attribute "slot" of wizard's step
+            slot: 'page1',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'About',
-            slot: 'page2', // the same name as in attribute "slot" of wizard's step
+            slot: 'page2',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Rules & Format',
-            slot: 'page3', // the same name as in attribute "slot" of wizard's step
+            slot: 'page3',
             onNext: () => {
-              // method is called when moving to the next step
-              console.log('project desc', this.projectData.description)
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              console.log('project desc', this.projectData.description)
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Date',
-            slot: 'page4', // the same name as in attribute "slot" of wizard's step
+            slot: 'page4',
             onNext: () => {
-              // method is called when moving to the next step
               console.log('this date', this.selectedDate)
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Tags',
-            slot: 'page5', // the same name as in attribute "slot" of wizard's step
+            slot: 'page5',
             onNext: () => {
-              // method is called when moving to the next step
             },
             isValid: () => {
-              // condition for moving to the next step
               return true
             },
             onBack: () => {
-              // method is called when moving to the previous step
             }
           },
           {
             label: 'Confirmation',
-            slot: 'page6', // the same name as in attribute "slot" of wizard's step
+            slot: 'page6',
             onNext: () => {
               console.log('this projectdata', this.projectData)
               this.$http.post('http://localhost:3000/contests/new', this.projectData, {
