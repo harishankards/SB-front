@@ -45,9 +45,9 @@ const store = new Vuex.Store({
     logout: context => {
       console.log('logout action dispatched')
       localStorage.removeItem('vuejs_token')
-      console.log('removed token')
       localStorage.removeItem('vuejs_student')
       localStorage.removeItem('vuejs_company')
+      localStorage.removeItem('vuejs_email')
       context.commit(LOGOUT)
     }
   }
