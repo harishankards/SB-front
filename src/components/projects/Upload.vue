@@ -15,11 +15,12 @@
     },
     data: function () {
       return {
+        token: this.$ls.get('token'),
         dropzoneOptions: {
-          url: 'https://httpbin.org/post',
+          url: 'http://localhost:3000',
           thumbnailWidth: 150,
           maxFilesize: 0.5,
-          headers: { 'My-Awesome-Header': 'header value' },
+          headers: { 'Authorization': this.token },
           addRemoveLinks: true,
           dictDefaultMessage: "<i class='fa fa-cloud-upload'></i>UPLOAD ME"
         }
