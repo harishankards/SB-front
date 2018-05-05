@@ -110,7 +110,35 @@
             onNext: () => {
             },
             isValid: () => {
-              return true
+              const studentEmail = this.awardData.studentname
+              const token = this.$ls.get('token')
+              const self = this
+              if (studentEmail === '') {
+                this.showError('show')
+                this.errorMessage = 'Student\'s email address is mandatory'
+                return false
+              } else {
+                this.$http.get('/students/all', {
+                  headers: {
+                    'Authorization': 'Bearer ' + token
+                  }
+                })
+                .then(function (studentsData) {
+                  console.log('studentData', studentsData.data.students)
+                  if (studentsData.data.students.filter((student) => { return studentEmail === student.email }).length > 0) {
+                    console.log('matched')
+                    return true
+                  } else {
+                    console.log('dint match')
+                    self.showError('show')
+                    self.errorMessage = 'The email provided is not associated with any student'
+                    return false
+                  }
+                })
+                .catch(function (studentsErr) {
+                  console.log('students err', studentsErr)
+                })
+              }
             },
             onBack: () => {
             }
