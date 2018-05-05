@@ -142,13 +142,15 @@
             onNext: () => {
             },
             isValid: () => {
-              if (this.counter === 0) {
-                this.errorMessage = 'Most of the projects yield attraction when having supporting images and PDFs. You sure you don\'t want to proceed without them?'
-                this.counter++
-                this.showInfo('show')
-                return false
-              }
-              return true
+              if (this.projectData.files.length === 0) {
+                if (this.counter === 0) {
+                  this.errorMessage = 'Most of the projects yield attraction when having supporting images and PDFs. You sure you don\'t want to proceed without them?'
+                  this.counter++
+                  this.showInfo('show')
+                  return false
+                }
+                return true
+                }
             },
             onBack: () => {
             }
@@ -221,13 +223,10 @@
     },
     created () {
       eventBus.$on('editorContentproject', (data) => {
-        console.log('inside editorContet', data)
         this.projectData.description = data
       })
       eventBus.$on('multiselectorproject', (data) => {
-        console.log('inside multiselector', data)
         this.projectData.tags = data
-        console.log('project data tags', this.projectData.tags)
       })
       eventBus.$on('uploadedFile', (data) => {
         console.log('inside upload file', data)
