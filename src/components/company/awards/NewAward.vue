@@ -209,6 +209,7 @@
       showError (nudge) {
         if (nudge === 'show') {
           console.log('yes show')
+          this.errorAlert = false
           this.errorAlert = true
           const self = this
           setTimeout(() => {
