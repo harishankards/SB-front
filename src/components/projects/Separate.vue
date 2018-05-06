@@ -1,7 +1,7 @@
 <template>
 	<vuestic-widget class="col-md-9" :headerText="this.projectData.title">
     <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
-    <p><strong> Description</strong><br>{{this.projectData.description}}</p>
+    <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
     <p><strong> Author</strong><br> {{this.authorData.email}}</p>
     <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
     <hr>
