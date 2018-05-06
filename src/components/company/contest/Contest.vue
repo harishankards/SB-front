@@ -2,21 +2,25 @@
     <div class="row">
       <div class="col-md-8">
         <div class="noContests" v-show="noContests">
-          <h4> Oops! You have no Projects to view. </h4>
-          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>              
+          <h4> Oops! You have no Contests to view. </h4>
+          <button class="btn btn-primary btn-micro" @click="createNew"> New Contests</button>              
       </div>
-        <vuestic-widget class="" v-for="contest in contests" :key="contest.id">
+        <vuestic-widget class="" v-for="contest in contestArray" :key="contest.id">
           <div>
             
             <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="#">{{contest.name}}</a> </strong></span><br>
-              <span class="projects-time">{{contest.calender}}</span>
+              <span class="projects-name"><strong><a href="#">{{contest.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
             </div>
           </div>
           <div id="projects-content-div">
-            <span id="projects-description">{{contest.post_desc}}</span>
+            <p id="projects-description">{{contest.about}}</p>
+            <p>Starts on: {{contest.date.start}}</p>
+            <p>Ends on: {{contest.date.end}}</p>            
           </div>
-          
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
         </vuestic-widget>
       </div>
       <div class="col-md-4">
@@ -126,7 +130,7 @@
 
   #projects-name-div{
     display: inline-block;
-    margin-left: 0.4rem;
+    // margin-left: 0.4rem;
   }
 
   #projects-content-div{
@@ -140,5 +144,16 @@
     text-align: center;
     font-weight: bold;
     margin-top: 7rem;
+  }
+  #tagDiv {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .tagNames {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    background: #ff0081;
+    color: white;
+    border-radius: 5%;
   }
 </style>
