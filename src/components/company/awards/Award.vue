@@ -1,14 +1,14 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <div class="noContests" v-show="noContests">
-        <h4> Oops! You have no Contests to view. </h4>
+      <div class="noContests" v-show="noAwards">
+        <h4> Oops! You have no Awards to view. </h4>
         <button class="btn btn-primary btn-micro" @click="createNew"> New Award</button>              
       </div>
       <vuestic-widget class="" v-for="award in awardArray" :key="award.id">
         <div>
           <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="#">{{award.title}}</a> </strong></span><br>
+            <span class="projects-name"><strong><a href="" @click="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
           </div>
         </div>
@@ -41,7 +41,7 @@
     data () {
       return {
         awardArray: [],
-        noContests: false,
+        noAwards: false,
         posts: [
           {
             id: 0,
@@ -71,7 +71,7 @@
       createNew: function () {
         this.$router.push('/company/awards/new')
       },
-      viewContest: function (awardId) {
+      viewAward: function (awardId) {
         this.$router.push('/company/award/' + awardId)
       }
     },
@@ -87,6 +87,9 @@
       .then((companyData) => {
         console.log('company Data', companyData.data)
         const awardsArr = companyData.data[0].awards
+        if (awardsArr.length === 0) {
+          this.noAwards = true
+        }
         awardsArr.map(award => {
           this.$http.get('/awards/get?id=' + award, headers)
           .then((awardData) => {

@@ -92,6 +92,9 @@
         // console.log('company Data', companyData.data)
         const contestArr = companyData.data[0].contests
         // console.log('contestArr', contestArr)
+        if (contestArr.length === 0) {
+          this.noContests = true
+        }
         contestArr.map(contest => {
           // console.log('single contest', contest)
           this.$http.get('/contests/get?id=' + contest, {

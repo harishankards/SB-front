@@ -1,16 +1,14 @@
 <template>
 	<vuestic-widget class="col-md-9" :headerText="this.awardData.title">
-    <p><strong> About</strong><br>{{this.awardData.about}}</p>
-    <p><strong> Rules and Format</strong><br><span v-html="this.awardData.description"></span></p>
-    <p><strong> Hosted by</strong><br> {{this.hostData.email}}</p>
-    <p><strong>Starts on:</strong>  {{this.awardData.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
-    <p><strong>Ends on: </strong> {{this.awardData.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
+    <p><strong> Award given to</strong><br>{{this.studentData.email}}</p>
+    <p><strong> Provided by</strong><br> {{this.companyData.email}}</p>    
+    <p><strong> Description</strong><br><span v-html="this.awardData.description"></span></p>
     <strong>Tags:</strong><span v-for="tag in awardData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
     <p class="published">Published: <timeago :since="this.awardData.createdAt" :auto-update="60"></timeago></p>
     <hr>
     <div>
       <div class="comment-section">
-      <i class="fa fa-child"></i> {{this.awardData.registrations.length}} people registered
+      <!-- <i class="fa fa-child"></i> {{this.awardData.registrations.length}} people registered -->
       </div>
       <div class="comment-section">
         <i class="fa fa-share"></i> Share
@@ -33,7 +31,8 @@
       return {
         awardData: '',
         awardId: '',
-        hostData: ''
+        companyData: '',
+        studentData: ''
       }
     },
     created () {
@@ -49,18 +48,32 @@
       .then(function (awardDetails) {
         console.log('awardData', awardDetails.data)
         secondthis.awardData = awardDetails.data
-        secondthis.$http.get('/companies/get?id=' + awardDetails.data.host, {
+        secondthis.$http.get('/companies/get?id=' + awardDetails.data.provider, {
           headers: {
             'Authorization': 'Bearer ' + authToken
           }
         })
         .then(function (companyData) {
           console.log('company data', companyData.data[0])
-          secondthis.hostData = companyData.data[0]
-          console.log('company', secondthis.hostData.email)
+          secondthis.companyData = companyData.data[0]
+          console.log('company', secondthis.companyData.email)
         })
         .catch(function (companyDataErr) {
           console.log('company data err', companyDataErr)
+        })
+
+        secondthis.$http.get('/students/get?id=' + awardDetails.data.receiver, {
+          headers: {
+            'Authorization': 'Bearer ' + authToken
+          }
+        })
+        .then(function (studentData) {
+          console.log('student data', studentData.data[0])
+          secondthis.studentData = studentData.data[0]
+          console.log('student', secondthis.studentData.email)
+        })
+        .catch(function (studentDataErr) {
+          console.log('student data err', studentDataErr)
         })
       })
       .catch(function (awardDataErr) {
