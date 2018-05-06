@@ -34,7 +34,7 @@ Vue.use(VCalendar, {
 })
 
 //  For vue-moment
-Vue.use(require('vue-moment'));
+Vue.use(require('vue-moment'))
 
 // For local storage
 Vue.use(Storage, {
