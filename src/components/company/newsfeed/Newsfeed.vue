@@ -94,7 +94,7 @@
     },
     created () {
       console.log('inside created')
-      const email = 'hs@spritle.com'
+      const email = this.$ls.get('email')
       const token = this.$ls.get('token')
       console.log('token', token)
       const header = {
@@ -104,9 +104,9 @@
       }
       this.$http.get('/companies/get?email=' + email, header)
       .then((companyData) => {
-        console.log('student Data', companyData.data)
+        console.log('company Data', companyData.data)
       }).catch((companyErr) => {
-        console.log('student err', companyErr)
+        console.log('company err', companyErr)
       })
     }
   }

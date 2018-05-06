@@ -46,7 +46,7 @@
     methods: {
       sendLoginData: function () {
         const secondThis = this
-        console.log('data da:', this.loginData)
+        console.log('company data da:', this.loginData)
         this.$http.post('/company/login', this.loginData)
         .then(function (loginSuccess) {
           console.log('login success', loginSuccess.data)
@@ -55,6 +55,7 @@
           secondThis.$ls.set('token', authToken)
           secondThis.$ls.set('company', 'true')
           secondThis.$ls.set('email', secondThis.loginData.email)
+          console.log('set the tokens for company')
           secondThis.$store.dispatch('login')
           secondThis.$router.push('/company/newsfeed')
         })
