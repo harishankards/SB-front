@@ -35,6 +35,8 @@ const store = new Vuex.Store({
     },
     [LOGOUT] (state) {
       state.isLoggedIn = false
+      state.student = false
+      state.company = false
     }
   },
   actions: {
