@@ -1,6 +1,10 @@
 <template>
     <div class="row">
       <div class="col-md-8">
+        <div class="noContests" v-show="noContests">
+          <h4> Oops! You have no Projects to view. </h4>
+          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>              
+      </div>
         <vuestic-widget class="" v-for="contest in contests" :key="contest.id">
           <div>
             
@@ -36,26 +40,7 @@
     data () {
       return {
         contestArray: [],
-        contests: [
-          {
-            id: 0,
-            name: 'SpriteXtreme',
-            calender: '3mo',
-            post_desc: 'A over night coding marathon to bring out the entrepreneur in you'
-          },
-          {
-            id: 1,
-            name: 'SpriteXchange',
-            calender: '6mo',
-            post_desc: 'A knowledge sharing workshop for students'
-          },
-          {
-            id: 2,
-            name: 'Riddle of Sphinx',
-            calender: '1y',
-            post_desc: 'Solve the riddles and get to the top'
-          }
-        ],
+        noContests: false,
         posts: [
           {
             id: 0,
@@ -85,18 +70,30 @@
     methods: {
       createNew: function () {
         this.$router.push('/company/contests/new')
+      },
+      viewContest: function (contestId) {
+        this.$router.push('/company/contest/' + contestId)
       }
     },
     created () {
-      var email = 'hs@spritle.com'
-      this.$http.get('/companies/get?email=' + email)
+      const email = this.$ls.get('email')
+      const authToken = this.$ls.get('token')
+      this.$http.get('/companies/get?email=' + email, {
+        headers: {
+          'Authorization': 'Bearer ' + authToken
+        }
+      })
       .then((companyData) => {
-        console.log('company Data', companyData.data)
+        // console.log('company Data', companyData.data)
         const contestArr = companyData.data[0].contests
-        console.log('contestArr', contestArr)
+        // console.log('contestArr', contestArr)
         contestArr.map(contest => {
-          console.log('single contest', contest)
-          this.$http.get('/contests/get?id=' + contest)
+          // console.log('single contest', contest)
+          this.$http.get('/contests/get?id=' + contest, {
+            headers: {
+              'Authorization': 'Bearer ' + authToken
+            }
+          })
           .then((contestData) => {
             console.log('contest data', contestData)
             this.contestArray.push(contestData.data)
@@ -138,5 +135,10 @@
 
   .gotnew{
     margin-bottom: 1.5rem;
+  }
+  .noContests {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 7rem;
   }
 </style>
