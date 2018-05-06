@@ -1,18 +1,19 @@
 <template>
 	<vuestic-widget class="col-md-9" :headerText="this.projectData.title">
-    <p>Author: {{this.authorData.email}}</p>
-    <p>{{this.projectData.abstract}}</p>
-    <p>{{this.projectData.description}}</p>
+    <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
+    <p><strong> Description</strong><br>{{this.projectData.description}}</p>
+    <p><strong> Author</strong><br> {{this.authorData.email}}</p>
+    <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
     <hr>
     <div>
       <div class="comment-section">
-      <i class="fa fa-heart"></i> {{this.projectData.upvotes.length}} upvotes
+      <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
       </div>
       <div class="comment-section">
         <i class="fa fa-share"></i> Share
       </div>
     </div>
-    <vue-disqus shortname="student-burger"></vue-disqus>
+    <!-- <vue-disqus shortname="student-burger"></vue-disqus> -->
     
   </vuestic-widget>
 </template>
@@ -70,5 +71,16 @@
   .comment-section {
     display: inline-block;
     padding-right: 1rem;
+  }
+  #tagDiv {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .tagNames {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    background: #ff0081;
+    color: white;
+    border-radius: 5%;
   }
 </style>
