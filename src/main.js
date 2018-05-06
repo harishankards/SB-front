@@ -14,6 +14,7 @@ import VueCsrf from 'vue-csrf'
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
 import Storage from 'vue-ls'
+import VueTimeago from 'vue-timeago'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -42,6 +43,15 @@ Vue.use(Storage, {
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
 Vue.use(VeeValidate)
+
+// For using time fields in projects and contests
+Vue.use(VueTimeago, {
+  name: 'timeago',
+  locale: 'en-US',
+  locales: {
+    'en-US': require('vue-timeago/locales/en-US.json')
+  }
+})
 
 sync(store, router)
 
