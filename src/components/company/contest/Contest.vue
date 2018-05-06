@@ -9,7 +9,7 @@
           <div>
             
             <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="#">{{contest.title}}</a> </strong></span><br>
+              <span class="projects-name"><strong><a href="#" @click="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
             </div>
           </div>
@@ -18,6 +18,7 @@
             <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
             <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
           </div>
+          <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
