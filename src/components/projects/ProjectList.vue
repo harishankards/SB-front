@@ -6,7 +6,7 @@
           
           <div id="projects-name-div">
             <span class="projects-name"><strong><a href="#">{{project.title}}</a> </strong></span><br>
-            <span class="projects-time">{{project.calender}}</span>
+            <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
           </div>
         </div>
         <div id="projects-content-div">
@@ -73,7 +73,7 @@
         }
       })
       .then((studentData) => {
-        // console.log('student Data', studentData.data)
+        console.log('student Data', studentData.data)
         const projectArr = studentData.data[0].projects
         // console.log('projectArr', projectArr)
         projectArr.map(project => {
