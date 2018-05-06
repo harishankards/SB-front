@@ -12,6 +12,7 @@ import StudentSignup from 'components/auth/signup/StudentSignup'
 import NewProject from 'components/projects/NewProject'
 import SeparateProject from 'components/projects/Separate'
 import SeparateContest from 'components/company/contest/Separate'
+import SeparateAward from 'components/company/awards/Separate'
 
 import CompanyNewsfeed from 'components/company/newsfeed/Newsfeed'
 import CompanyContest from 'components/company/contest/Contest'
@@ -43,6 +44,8 @@ export default new Router({
     {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', meta: { requiresAuth: true }},
     // Contest
     {path: '/company/contest/:id', component: SeparateContest, name: 'SeparateContestView', meta: { requiresAuth: true }},
+    // Award
+    {path: '/company/award/:id', component: SeparateAward, name: 'SeparateAwardView', meta: { requiresAuth: true }},
     // Company things
     {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed', meta: { requiresAuth: true }},
     {path: '/company/contests', component: CompanyContest, name: 'Company Contests', meta: { requiresAuth: true }},
