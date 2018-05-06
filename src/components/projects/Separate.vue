@@ -35,12 +35,21 @@
     created () {
       var secondthis = this
       const projectId = this.$route.params.id
+      const authToken = this.$ls.get('token')
       this.projectId = projectId
-      this.$http.get('projects/get?id=' + projectId)
+      this.$http.get('projects/get?id=' + projectId, {
+        headers: {
+          'Authorization': 'Bearer ' + authToken
+        }
+      })
       .then(function (projectDetails) {
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
-        secondthis.$http.get('/students/get?id=' + projectDetails.data.author)
+        secondthis.$http.get('/students/get?id=' + projectDetails.data.author, {
+          headers: {
+            'Authorization': 'Bearer ' + authToken
+          }
+        })
         .then(function (studentData) {
           console.log('student data', studentData.data[0])
           secondthis.authorData = studentData.data[0]

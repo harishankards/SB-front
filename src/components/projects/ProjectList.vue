@@ -9,12 +9,13 @@
         <div>
           
           <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="#">{{project.title}}</a> </strong></span><br>
+            <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
           </div>
         </div>
         <div id="projects-content-div">
           <span id="projects-description">{{project.abstract}}</span>
+          <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>          
         </div>
         <div id="tagDiv">
           <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
@@ -70,6 +71,9 @@
     methods: {
       createNew: function () {
         this.$router.push('/student/projects/new')
+      },
+      viewProject: function (projectId) {
+        this.$router.push('/student/project/' + projectId)
       }
     },
     created () {
@@ -126,7 +130,7 @@
 
   #projects-name-div{
     display: inline-block;
-    margin-left: 0.4rem;
+    // margin-left: 0.4rem;
   }
 
   #projects-content-div{
@@ -151,5 +155,9 @@
     background: #ff0081;
     color: white;
     border-radius: 5%;
+  }
+
+  .viewMoreBtn {
+    display: block;
   }
 </style>
