@@ -1,7 +1,7 @@
 <template>
 	<vuestic-widget class="col-md-9" :headerText="this.contestData.title">
     <p><strong> About</strong><br>{{this.contestData.about}}</p>
-    <p><strong> Rules and Format</strong><br><span v-html="this.contestData.description"></span></p>
+    <p><strong> Rules and Format</strong><br><span v-html="this.contestData.rulesFormat"></span></p>
     <p><strong> Hosted by</strong><br> {{this.hostData.email}}</p>
     <p><strong>Starts on:</strong>  {{this.contestData.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
     <p><strong>Ends on: </strong> {{this.contestData.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
