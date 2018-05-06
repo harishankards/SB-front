@@ -1,16 +1,16 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <vuestic-widget class="" v-for="project in projects" :key="project.id">
+      <vuestic-widget class="" v-for="project in projectArray" :key="project.id">
         <div>
           
           <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="#">{{project.name}}</a> </strong></span><br>
+            <span class="projects-name"><strong><a href="#">{{project.title}}</a> </strong></span><br>
             <span class="projects-time">{{project.calender}}</span>
           </div>
         </div>
         <div id="projects-content-div">
-          <span id="projects-description">{{project.post_desc}}</span>
+          <span id="projects-description">{{project.abstract}}</span>
         </div>
         
       </vuestic-widget>
@@ -36,26 +36,6 @@
     data () {
       return {
         projectArray: [],
-        projects: [
-          {
-            id: 0,
-            name: 'Geo visual ranking approximation using machine learning',
-            calender: '3mo',
-            post_desc: 'Happy to upload my final year project'
-          },
-          {
-            id: 1,
-            name: 'Nodal analysis in optical image processing',
-            calender: '6mo',
-            post_desc: 'Uploaded my dream project'
-          },
-          {
-            id: 2,
-            name: 'Character identifier using moods using map cluster algorithm',
-            calender: '1y',
-            post_desc: 'Woohoo!!!! Finally uploaded the project ^_^'
-          }
-        ],
         posts: [
           {
             id: 0,
@@ -85,18 +65,17 @@
       }
     },
     created () {
-      var email = 'hs@spritle.com'
+      const email = this.$ls.get('email')
       const lsToken = this.$ls.get('token')
-      console.log('ls token', lsToken)
       this.$http.get('/students/get?email=' + email, {
         headers: {
           'Authorization': 'Bearer ' + lsToken
         }
       })
       .then((studentData) => {
-        console.log('student Data', studentData.data)
+        // console.log('student Data', studentData.data)
         const projectArr = studentData.data[0].projects
-        console.log('projectArr', projectArr)
+        // console.log('projectArr', projectArr)
         projectArr.map(project => {
           console.log('single project', project)
           this.$http.get('/projects/get?id=' + project, {
@@ -105,7 +84,7 @@
             }
           })
           .then((projectData) => {
-            console.log('project data', projectData)
+            // console.log('project data', projectData)
             this.projectArray.push(projectData.data)
             console.log('project array', this.projectArray)
           })
