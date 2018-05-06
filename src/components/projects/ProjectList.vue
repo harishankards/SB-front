@@ -1,6 +1,10 @@
 <template>
   <div class="row">
     <div class="col-md-8">
+      <div class="noProjects" v-show="noProjects">
+          <h4> Oops! You have no Projects to view. </h4>
+          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>              
+      </div>
       <vuestic-widget class="" v-for="project in projectArray" :key="project.id">
         <div>
           
@@ -36,6 +40,7 @@
     data () {
       return {
         projectArray: [],
+        noProjects: false,
         posts: [
           {
             id: 0,
@@ -76,6 +81,9 @@
         console.log('student Data', studentData.data)
         const projectArr = studentData.data[0].projects
         // console.log('projectArr', projectArr)
+        if (projectArr.length === 0) {
+          this.noProjects = true
+        }
         projectArr.map(project => {
           console.log('single project', project)
           this.$http.get('/projects/get?id=' + project, {
@@ -124,5 +132,10 @@
 
   .gotnew{
     margin-bottom: 1.5rem;
+  }
+  .noProjects {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 7rem;
   }
 </style>
