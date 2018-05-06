@@ -16,6 +16,9 @@
         <div id="projects-content-div">
           <span id="projects-description">{{project.abstract}}</span>
         </div>
+        <div id="tagDiv">
+          <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+        </div>
         
       </vuestic-widget>
     </div>
@@ -137,5 +140,16 @@
     text-align: center;
     font-weight: bold;
     margin-top: 7rem;
+  }
+  #tagDiv {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .tagNames {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    background: #ff0081;
+    color: white;
+    border-radius: 5%;
   }
 </style>
