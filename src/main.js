@@ -33,6 +33,9 @@ Vue.use(VCalendar, {
   firstDayOfWeek: 2  // Monday
 })
 
+//  For vue-moment
+Vue.use(require('vue-moment'));
+
 // For local storage
 Vue.use(Storage, {
   namespace: 'vuejs_',
