@@ -1,15 +1,23 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <vuestic-widget class="" v-for="award in awards" :key="award.id">
+      <div class="noContests" v-show="noContests">
+        <h4> Oops! You have no Contests to view. </h4>
+        <button class="btn btn-primary btn-micro" @click="createNew"> New Award</button>              
+      </div>
+      <vuestic-widget class="" v-for="award in awardArray" :key="award.id">
         <div>
           <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="#">{{award.name}}</a> </strong></span><br>
-            <span class="projects-time">{{award.calender}}</span>
+            <span class="projects-name"><strong><a href="#">{{award.title}}</a> </strong></span><br>
+            <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
           </div>
         </div>
         <div id="projects-content-div">
-          <span id="projects-description">{{award.post_desc}}</span>
+          <span id="projects-description">{{award.description}}</span>
+        </div>
+        <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+        <div id="tagDiv">
+          <strong>Tags:</strong><span v-for="tag in award.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
         </div>
       </vuestic-widget>
     </div>
@@ -33,26 +41,7 @@
     data () {
       return {
         awardArray: [],
-        awards: [
-          {
-            id: 0,
-            name: 'Best intern award - Summer',
-            calender: '3mo',
-            post_desc: 'Best internship award based on the student\'s performance during summer internship '
-          },
-          {
-            id: 1,
-            name: 'Best intern award - Winter',
-            calender: '6mo',
-            post_desc: 'Best internship award based on the student\'s performance during summer internship'
-          },
-          {
-            id: 2,
-            name: 'Best programmer',
-            calender: '1y',
-            post_desc: 'For solving complex algorithms and performance optimisation during Autumn contest'
-          }
-        ],
+        noContests: false,
         posts: [
           {
             id: 0,
@@ -81,16 +70,25 @@
     methods: {
       createNew: function () {
         this.$router.push('/company/awards/new')
+      },
+      viewContest: function (awardId) {
+        this.$router.push('/company/award/' + awardId)
       }
     },
     created () {
-      const email = 'hs@spritle.com'
-      this.$http.get('/companies/get?email=' + email)
+      const email = this.$ls.get('email')
+      const authToken = this.$ls.get('token')
+      const headers = {
+        headers: {
+          'Authorization': 'Bearer ' + authToken
+        }
+      }
+      this.$http.get('/companies/get?email=' + email, headers)
       .then((companyData) => {
         console.log('company Data', companyData.data)
         const awardsArr = companyData.data[0].awards
         awardsArr.map(award => {
-          this.$http.get('/awards/get?id=' + award)
+          this.$http.get('/awards/get?id=' + award, headers)
           .then((awardData) => {
             this.awardArray.push(awardData.data)
             console.log('award array', this.awardArray)
@@ -122,7 +120,7 @@
 
   #projects-name-div{
     display: inline-block;
-    margin-left: 0.4rem;
+    // margin-left: 0.4rem;
   }
 
   #projects-content-div{
@@ -131,5 +129,21 @@
 
   .gotnew{
     margin-bottom: 1.5rem;
+  }
+  .noContests {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 7rem;
+  }
+  #tagDiv {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .tagNames {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    background: #ff0081;
+    color: white;
+    border-radius: 5%;
   }
 </style>
