@@ -12,7 +12,8 @@ import StudentSignup from 'components/auth/signup/StudentSignup'
 import NewProject from 'components/projects/NewProject'
 import SeparateProjectStudent from 'components/projects/Separate'
 import SeparateContestCompany from 'components/company/contest/Separate'
-import SeparateAward from 'components/company/awards/Separate'
+import SeparateAwardCompany from 'components/company/awards/Separate'
+import SeparateAwardStudent from 'components/awards/Separate'
 
 import SeparateStudentContest from 'components/contests/Separate'
 import SeparateProjectCompany from 'components/company/projects/Separate'
@@ -44,13 +45,14 @@ export default new Router({
     {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
     {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
     // Project
-    {path: '/company/project/:id', component: SeparateProjectCompany, name: 'SeparateProjectView', meta: { requiresAuth: true }},
-    {path: '/student/project/:id', component: SeparateProjectStudent, name: 'SeparateProjectView', meta: { requiresAuth: true }},
+    {path: '/company/project/:id', component: SeparateProjectCompany, name: 'SeparateProjectViewCompany', meta: { requiresAuth: true }},
+    {path: '/student/project/:id', component: SeparateProjectStudent, name: 'SeparateProjectViewStudent', meta: { requiresAuth: true }},
     // Contest
     {path: '/company/contest/:id', component: SeparateContestCompany, name: 'SeparateContestViewCompany', meta: { requiresAuth: true }},
     {path: '/student/contest/:id', component: SeparateStudentContest, name: 'SeparateContestViewStudent', meta: { requiresAuth: true }},
     // Award
-    {path: '/company/award/:id', component: SeparateAward, name: 'SeparateAwardView', meta: { requiresAuth: true, shared: true }},
+    {path: '/company/award/:id', component: SeparateAwardCompany, name: 'SeparateAwardViewCompany', meta: { requiresAuth: true }},
+    {path: '/student/award/:id', component: SeparateAwardStudent, name: 'SeparateAwardViewStudent', meta: { requiresAuth: true }},
     // Company things
     {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed', meta: { requiresAuth: true }},
     {path: '/company/contests', component: CompanyContest, name: 'Company Contests', meta: { requiresAuth: true }},

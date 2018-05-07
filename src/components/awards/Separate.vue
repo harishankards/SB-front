@@ -29,7 +29,7 @@
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
 
   export default {
-    name: 'separateAwardCompany',
+    name: 'separateAwardStudent',
     components: {
       VueDisqus
     },
@@ -90,7 +90,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../sass/_variables.scss";
+  @import "../../sass/_variables.scss";
 
   .comment-section {
     display: inline-block;
