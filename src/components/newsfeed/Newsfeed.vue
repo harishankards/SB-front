@@ -110,6 +110,22 @@
       .then((studentData) => {
         console.log('student Data', studentData.data)
         self.studentData = studentData.data
+        self.$http.get('/projects/all', header)
+        .then(function (projectsData) {
+          console.log('projects data', projectsData.data.projects)
+          self.projectsData = projectsData.data.projects
+        })
+        .catch(function (projectsDataErr) {
+          console.log('projects data err', projectsDataErr)
+        })
+        self.$http.get('/contests/all', header)
+        .then(function (contestsData) {
+          console.log('contests data', contestsData.data.contests)
+          self.contestsData = contestsData.data.contests
+        })
+        .catch(function (contestsDataErr) {
+          console.log('contests data err', contestsDataErr)
+        })
       }).catch((studentErr) => {
         console.log('student err', studentErr)
       })
