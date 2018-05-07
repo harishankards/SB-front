@@ -8,7 +8,24 @@
     </vuestic-switch>
     <div class="row">
       <div class="col-md-8">
-        <vuestic-widget class="" v-for="post in posts" :key="post.id">
+        <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="isProjects">
+          <div>
+            
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
+            </div>
+          </div>
+          <div id="projects-content-div">
+            <span id="projects-description">{{project.abstract}}</span>
+            <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>          
+          </div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+          
+        </vuestic-widget>
+        <!-- <vuestic-widget class="" v-for="post in posts" :key="post.id" v-show="showProjects">
           <div >
             <p class="feed-card-info"> <strong> {{post.by}}</strong> {{post.action}} this</p>
             <hr>
@@ -32,7 +49,7 @@
             </div>
           </div>
           
-        </vuestic-widget>
+        </vuestic-widget> -->
       </div>
       <div class="col-md-4">
         <vuestic-widget class="live-feed" headerText="Live feeds">
@@ -138,10 +155,12 @@
     updated () {
       if (this.isProjects) {
         console.log('it is projects')
+        this.showContests = false
         this.showProjects = true
       } else {
         console.log('it is contests')
-        this.showContests = false
+        this.showProjects = false
+        this.showContests = true
       }
     }
 
@@ -182,5 +201,21 @@
    
   .switch {
     margin-bottom: 1rem;
+  }
+
+  #tagDiv {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .tagNames {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    background: #ff0081;
+    color: white;
+    border-radius: 5%;
+  }
+
+  .viewMoreBtn {
+    display: block;
   }
 </style>
