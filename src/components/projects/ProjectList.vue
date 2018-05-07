@@ -7,12 +7,15 @@
       </div>
       <vuestic-widget class="" v-for="project in projectArray" :key="project.id">
         <div>
-          
           <div id="projects-name-div">
             <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
           </div>
+          <div class="deleteIconDiv">
+            <i class="fa fa-trash deleteIcon"></i>
+          </div>
         </div>
+
         <div id="projects-content-div">
           <span id="projects-description">{{project.abstract}}</span>
           <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>          
@@ -159,5 +162,12 @@
 
   .viewMoreBtn {
     display: block;
+  }
+  .deleteIconDiv {
+    float: right;
+    cursor: pointer;
+  }
+  .deleteIcon {
+    font-size: 1.2rem;
   }
 </style>
