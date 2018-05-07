@@ -87,7 +87,7 @@
         return initial
       },
       viewProject: function (projectId) {
-        this.$router.push('/student/project/' + projectId)
+        this.$router.push('/company/project/' + projectId)
       }
     },
     created () {

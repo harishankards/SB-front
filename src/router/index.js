@@ -10,11 +10,12 @@ import StudentLogin from 'components/auth/login/StudentLogin'
 import StudentSignup from 'components/auth/signup/StudentSignup'
 
 import NewProject from 'components/projects/NewProject'
-import SeparateProject from 'components/projects/Separate'
-import SeparateContest from 'components/company/contest/Separate'
+import SeparateProjectStudent from 'components/projects/Separate'
+import SeparateContestCompany from 'components/company/contest/Separate'
 import SeparateAward from 'components/company/awards/Separate'
 
 import SeparateStudentContest from 'components/contests/Separate'
+import SeparateProjectCompany from 'components/company/projects/Separate'
 
 import CompanyNewsfeed from 'components/company/newsfeed/Newsfeed'
 import CompanyContest from 'components/company/contest/Contest'
@@ -43,9 +44,10 @@ export default new Router({
     {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
     {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
     // Project
-    {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', meta: { requiresAuth: true, shared: true }},
+    {path: '/company/project/:id', component: SeparateProjectCompany, name: 'SeparateProjectView', meta: { requiresAuth: true }},
+    {path: '/student/project/:id', component: SeparateProjectStudent, name: 'SeparateProjectView', meta: { requiresAuth: true }},
     // Contest
-    {path: '/company/contest/:id', component: SeparateContest, name: 'SeparateContestViewCompany', meta: { requiresAuth: true }},
+    {path: '/company/contest/:id', component: SeparateContestCompany, name: 'SeparateContestViewCompany', meta: { requiresAuth: true }},
     {path: '/student/contest/:id', component: SeparateStudentContest, name: 'SeparateContestViewStudent', meta: { requiresAuth: true }},
     // Award
     {path: '/company/award/:id', component: SeparateAward, name: 'SeparateAwardView', meta: { requiresAuth: true, shared: true }},
