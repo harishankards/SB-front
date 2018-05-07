@@ -85,6 +85,9 @@
       giveInitial: function (post) {
         let initial = post.name.charAt(0)
         return initial
+      },
+      viewProject: function (projectId) {
+        this.$router.push('/student/project/' + projectId)
       }
     },
     created () {
