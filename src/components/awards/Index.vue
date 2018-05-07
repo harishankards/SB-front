@@ -37,6 +37,36 @@
         </vuestic-widget>
       </div>
     </div>
+    <div class="row" v-show="showGeneral">
+      <div class="col-md-8">
+        <vuestic-widget class="" v-for="award in totalAwardArray" :key="award.id">
+          <div>
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
+            </div>
+          </div>
+          <div id="projects-content-div">
+            <span id="projects-description">{{award.description}}</span>
+          </div>
+          <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in award.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+        </vuestic-widget>
+      </div>
+      <div class="col-md-4">
+        <vuestic-widget class="createproject-div">
+          <div class="col-md-offset-6 col-md-12">
+            <h5 class="gotnew">Want more Awards?</h5>
+            <h6>Read more about our tips..</h6>
+          </div>
+        </vuestic-widget>
+        <vuestic-widget class="live-feed" headerText="Live feeds">
+          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
+        </vuestic-widget>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,6 +76,7 @@
     data () {
       return {
         awardArray: [],
+        totalAwardArray: [],
         noAwards: false,
         isGeneral: true,
         showGeneral: true,
