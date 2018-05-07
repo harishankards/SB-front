@@ -2,7 +2,10 @@
   <div class="dashboard">
 
     <newsfeed-info-widgets></newsfeed-info-widgets>
-
+    <vuestic-switch class="col-md-4 switch" v-model="isProjects">
+      <span slot="trueTitle">Projects</span>
+      <span slot="falseTitle">Contests</span>
+    </vuestic-switch>
     <div class="row">
       <div class="col-md-8">
         <vuestic-widget class="" v-for="post in posts" :key="post.id">
@@ -55,6 +58,9 @@
         projectsData: '',
         contestsData: '',
         studentData: '',
+        isProjects: true,
+        showProjects: true,
+        showContests: false,
         posts: [
           {
             id: 0,
@@ -97,7 +103,6 @@
       }
     },
     created () {
-      console.log('inside created')
       const email = this.$ls.get('email')
       const token = this.$ls.get('token')
       const self = this
@@ -129,6 +134,15 @@
       }).catch((studentErr) => {
         console.log('student err', studentErr)
       })
+    },
+    updated () {
+      if (this.isProjects) {
+        console.log('it is projects')
+        this.showProjects = true
+      } else {
+        console.log('it is contests')
+        this.showContests = false
+      }
     }
 
   }
@@ -166,4 +180,7 @@
     margin-top: 0.5rem;
   }
    
+  .switch {
+    margin-bottom: 1rem;
+  }
 </style>
