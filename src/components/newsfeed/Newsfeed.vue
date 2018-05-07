@@ -201,7 +201,7 @@
   .tagNames {
     padding: 0.2rem 0.5rem;
     margin-left: 0.5rem;
-    background: #ff0081;
+    background: $tagcolor;
     color: white;
     border-radius: 5%;
   }

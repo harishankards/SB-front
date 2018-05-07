@@ -70,7 +70,8 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import "../../../sass/_variables.scss";
   .comment-section {
     display: inline-block;
     padding-right: 1rem;
@@ -82,7 +83,7 @@
   .tagNames {
     padding: 0.2rem 0.5rem;
     margin-left: 0.5rem;
-    background: #ff0081;
+    background: $tagcolor;
     color: white;
     border-radius: 5%;
   }
