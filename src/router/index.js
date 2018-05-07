@@ -41,11 +41,11 @@ export default new Router({
     {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
     {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
     // Project
-    {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', meta: { requiresAuth: true }},
+    {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', meta: { requiresAuth: true, shared: true }},
     // Contest
-    {path: '/company/contest/:id', component: SeparateContest, name: 'SeparateContestView', meta: { requiresAuth: true }},
+    {path: '/company/contest/:id', component: SeparateContest, name: 'SeparateContestView', meta: { requiresAuth: true, shared: true }},
     // Award
-    {path: '/company/award/:id', component: SeparateAward, name: 'SeparateAwardView', meta: { requiresAuth: true }},
+    {path: '/company/award/:id', component: SeparateAward, name: 'SeparateAwardView', meta: { requiresAuth: true, shared: true }},
     // Company things
     {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed', meta: { requiresAuth: true }},
     {path: '/company/contests', component: CompanyContest, name: 'Company Contests', meta: { requiresAuth: true }},
