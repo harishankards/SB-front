@@ -33,7 +33,7 @@
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
 
   export default {
-    name: 'separateContest',
+    name: 'separateContestCompany',
     components: {
       VueDisqus
     },
@@ -47,7 +47,7 @@
     methods: {
       showRegisterModal: function () {
         this.$swal(
-          this.contestData.registrations.length + 'people registered'
+          this.contestData.registrations.length + ' people registered'
         )
       }
     },

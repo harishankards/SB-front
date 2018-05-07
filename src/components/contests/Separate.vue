@@ -33,7 +33,7 @@
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
 
   export default {
-    name: 'separateContest',
+    name: 'separateContestStudent',
     components: {
       VueDisqus
     },
@@ -47,7 +47,7 @@
     methods: {
       showRegisterModal: function () {
         this.$swal(
-          'Great!',
+          'Success!',
           'You have registered for the contest!',
           'success'
         )
@@ -55,7 +55,11 @@
     },
     computed: {
       isStudent: function () {
-        return this.$store.getters.student
+        if (this.$store.getters.student) {
+          return true
+        } else {
+          return false
+        }
       }
     },
     created () {
@@ -77,9 +81,9 @@
           }
         })
         .then(function (companyData) {
-          console.log('company data', companyData.data[0])
+          // console.log('company data', companyData.data[0])
           secondthis.hostData = companyData.data[0]
-          console.log('company', secondthis.hostData.email)
+          // console.log('company', secondthis.hostData.email)
         })
         .catch(function (companyDataErr) {
           console.log('company data err', companyDataErr)
