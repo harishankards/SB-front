@@ -205,6 +205,19 @@
     color: white;
     border-radius: 5%;
   }
+  .projects-time{
+    margin-top: 3px;
+    color: #a29e9e;
+  }
+  
+  #projects-name-div{
+    display: inline-block;
+    // margin-left: 0.4rem;
+  }
+
+  #projects-content-div{
+    margin-top: 0.5rem;
+  }
 
   .viewMoreBtn {
     display: block;
