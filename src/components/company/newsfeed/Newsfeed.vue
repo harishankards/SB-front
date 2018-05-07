@@ -5,27 +5,20 @@
 
     <div class="row">
       <div class="col-md-8">
-        <vuestic-widget class="" v-for="post in posts" :key="post.id">
+        <vuestic-widget class="" v-for="project in projectsData" :key="project.id">
           <div>
-            <div id="feed-card-image">{{giveInitial(post)}}</div>
-            <div id="feed-card-user-name-div">
-              <span class="feed-card-username"><strong><a href="#">{{post.name}}</a> </strong></span><br>
-              <span class="feed-card-time">{{post.calender}}</span>
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
             </div>
           </div>
-          <div id="post-content-div">
-            <p id="post-description">{{post.post_desc}}</p>
+          <div id="projects-content-div">
+            <span id="projects-description">{{project.abstract}}</span>
+            <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>          
           </div>
-          <hr>
-          <div id="user-interaction-div">
-            <div>
-              <button class=""> <i class="fa fa-thumbs-up"></i> Upvote</button>
-            </div>
-            <div id="comments-div">
-              <vue-disqus shortname="student-burger"></vue-disqus>
-            </div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
-          
         </vuestic-widget>
       </div>
       <div class="col-md-4">
@@ -51,6 +44,8 @@
     },
     data () {
       return {
+        companyData: '',
+        projectsData: '',
         posts: [
           {
             id: 0,
@@ -93,10 +88,9 @@
       }
     },
     created () {
-      console.log('inside created')
       const email = this.$ls.get('email')
       const token = this.$ls.get('token')
-      console.log('token', token)
+      const self = this
       const header = {
         headers: {
           'Authorization': 'Bearer ' + token
@@ -105,6 +99,15 @@
       this.$http.get('/companies/get?email=' + email, header)
       .then((companyData) => {
         console.log('company Data', companyData.data)
+        self.companyData = companyData.data
+        self.$http.get('/projects/all', header)
+        .then(function (projectsData) {
+          console.log('projects data', projectsData.data.projects)
+          self.projectsData = projectsData.data.projects
+        })
+        .catch(function (projectsDataErr) {
+          console.log('projects data err', projectsDataErr)
+        })
       }).catch((companyErr) => {
         console.log('company err', companyErr)
       })
@@ -142,6 +145,35 @@
 
   #post-content-div{
     margin-top: 0.5rem;
+  }
+
+  #tagDiv {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .tagNames {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    background: $tagcolor;
+    color: white;
+    border-radius: 5%;
+  }
+  .projects-time{
+    margin-top: 3px;
+    color: #a29e9e;
+  }
+  
+  #projects-name-div{
+    display: inline-block;
+    // margin-left: 0.4rem;
+  }
+
+  #projects-content-div{
+    margin-top: 0.5rem;
+  }
+
+  .viewMoreBtn {
+    display: block;
   }
    
 </style>
