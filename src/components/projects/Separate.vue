@@ -1,21 +1,27 @@
 <template>
-	<vuestic-widget class="col-md-9" :headerText="this.projectData.title">
-    <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
-    <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
-    <p><strong> Author</strong><br> {{this.authorData.email}}</p>
-    <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
-    <hr>
-    <div>
-      <div class="comment-section">
-      <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
+	<div>
+    <button class="btn btn-danger backbtn" @click="$router.go(-1)">
+        <i class="fa fa-caret-left"></i>
+        Back
+    </button>
+    <vuestic-widget class="col-md-9" :headerText="this.projectData.title">
+      <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
+      <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
+      <p><strong> Author</strong><br> {{this.authorData.email}}</p>
+      <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+      <hr>
+      <div>
+        <div class="comment-section">
+        <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
+        </div>
+        <div class="comment-section">
+          <i class="fa fa-share"></i> Share
+        </div>
       </div>
-      <div class="comment-section">
-        <i class="fa fa-share"></i> Share
-      </div>
-    </div>
-    <!-- <vue-disqus shortname="student-burger"></vue-disqus> -->
-    
-  </vuestic-widget>
+      <!-- <vue-disqus shortname="student-burger"></vue-disqus> -->
+      
+    </vuestic-widget>
+  </div>
 </template>
 
 <script>
@@ -82,6 +88,11 @@
     margin-left: 0.5rem;
     background: $tagcolor;
     color: white;
+    border-radius: 5%;
+  }
+  .backbtn{
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 5%;
   }
 </style>
