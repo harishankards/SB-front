@@ -17,7 +17,7 @@
       return {
         token: this.$ls.get('token'),
         dropzoneOptions: {
-          url: 'http://localhost:3000',
+          url: 'http://localhost:3000/attachments/new',
           thumbnailWidth: 150,
           maxFilesize: 0.5,
           headers: { 'Authorization': this.token },

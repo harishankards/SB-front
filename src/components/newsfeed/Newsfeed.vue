@@ -52,6 +52,9 @@
     },
     data () {
       return {
+        projectsData: '',
+        contestsData: '',
+        studentData: '',
         posts: [
           {
             id: 0,
@@ -94,16 +97,10 @@
       }
     },
     created () {
-      if (this.$store.getters.isLoggedIn) {
-        console.log('loggedin', this.$store.getters.isLoggedIn)
-      } else {
-        console.log('not logged in')
-      }
-
       console.log('inside created')
-      var email = 'hs@spritle.com'
+      const email = this.$ls.get('email')
       const token = this.$ls.get('token')
-      console.log('token', token)
+      const self = this
       const header = {
         headers: {
           'Authorization': 'Bearer ' + token
@@ -112,6 +109,7 @@
       this.$http.get('/students/get?email=' + email, header)
       .then((studentData) => {
         console.log('student Data', studentData.data)
+        self.studentData = studentData.data
       }).catch((studentErr) => {
         console.log('student err', studentErr)
       })
