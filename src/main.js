@@ -83,7 +83,7 @@ router.beforeEach((to, from, next) => {
     } else {
       console.log('logged in from beforeach')
       if (store.getters.student) {
-        console.log('to loca', to.fullPath)
+        console.log('to location inside student', to.fullPath)
         if (to.matched.some(record => record.meta.shared)) {
           next()
         } else if (to.fullPath.includes('student')) {
@@ -92,6 +92,7 @@ router.beforeEach((to, from, next) => {
           next({path: '/student/newsfeed', query: { redirect: to.fullPath }})
         }
       } else if (store.getters.company) {
+        console.log('to location inside company', to.fullPath)
         if (to.matched.some(record => record.meta.shared)) {
           next()
         } else if (to.fullPath.includes('company')) {
