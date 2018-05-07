@@ -11,7 +11,7 @@
             <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
           </div>
-          <div class="deleteIconDiv">
+          <div class="deleteIconDiv" @click="showDeleteModal">
             <i class="fa fa-trash deleteIcon"></i>
           </div>
         </div>
@@ -77,6 +77,26 @@
       },
       viewProject: function (projectId) {
         this.$router.push('/student/project/' + projectId)
+      },
+      showDeleteModal: function () {
+        this.$swal({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#BA1F33',
+          cancelButtonColor: '#4ae387',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          console.log('result of swal', result)
+          if (result.value) {
+            this.$swal(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          }
+        })
       }
     },
     created () {
