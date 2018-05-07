@@ -117,7 +117,7 @@
         this.$router.push('/student/project/' + projectId)
       },
       viewContest: function (contestId) {
-        this.$router.push('/company/contest/' + contestId)
+        this.$router.push('/student/contest/' + contestId)
       }
     },
     created () {

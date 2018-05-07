@@ -13,7 +13,7 @@
       <strong>Tags:</strong><span v-for="tag in contestData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <p class="published">Published: <timeago :since="this.contestData.createdAt" :auto-update="60"></timeago></p>
       <div>
-        <button class="btn btn-info backbtn" v-show="isOwner" @click="showRegisterModal">View Registrations</button>
+        <button class="btn btn-info backbtn" v-show="isStudent" @click="showRegisterModal">Register</button>
       </div>
       <hr>
       <div>
@@ -47,14 +47,15 @@
     methods: {
       showRegisterModal: function () {
         this.$swal(
-          this.contestData.registrations.length + 'people registered'
+          'Great!',
+          'You have registered for the contest!',
+          'success'
         )
       }
     },
     computed: {
-      isOwner: function () {
-        const email = this.$ls.get('email')
-        return this.hostData.email === email
+      isStudent: function () {
+        return this.$store.getters.student
       }
     },
     created () {
@@ -92,7 +93,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../sass/_variables.scss";
+  @import "../../sass/_variables.scss";
   .comment-section {
     display: inline-block;
     padding-right: 1rem;

@@ -43,7 +43,8 @@ export default new Router({
     // Project
     {path: '/student/project/:id', component: SeparateProject, name: 'SeparateProjectView', meta: { requiresAuth: true, shared: true }},
     // Contest
-    {path: '/company/contest/:id', component: SeparateContest, name: 'SeparateContestView', meta: { requiresAuth: true, shared: true }},
+    {path: '/company/contest/:id', component: SeparateContest, name: 'SeparateContestViewCompany', meta: { requiresAuth: true }},
+    {path: '/student/contest/:id', component: SeparateContest, name: 'SeparateContestViewStudent', meta: { requiresAuth: true }},
     // Award
     {path: '/company/award/:id', component: SeparateAward, name: 'SeparateAwardView', meta: { requiresAuth: true, shared: true }},
     // Company things
