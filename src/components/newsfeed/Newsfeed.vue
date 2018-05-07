@@ -8,7 +8,7 @@
     </vuestic-switch>
     <div class="row">
       <div class="col-md-8">
-        <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="isProjects">
+        <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
           <div>
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>

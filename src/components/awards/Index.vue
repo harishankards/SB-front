@@ -1,35 +1,41 @@
 <template>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="noContests" v-show="noAwards">
-        <h4>Make yourself more harder and get awards</h4>             
-      </div>
-      <vuestic-widget class="" v-for="award in awardArray" :key="award.id">
-        <div>
-          <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="" @click="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
-            <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
+  <div>
+    <vuestic-switch class="col-md-4 switch" v-model="isGeneral">
+      <span slot="trueTitle">All awards</span>
+      <span slot="falseTitle">Your awards</span>
+    </vuestic-switch>
+    <div class="row" v-show="showYours">
+      <div class="col-md-8">
+        <div class="noContests" v-show="noAwards">
+          <h4>Make yourself more harder and get awards</h4>             
+        </div>
+        <vuestic-widget class="" v-for="award in awardArray" :key="award.id">
+          <div>
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
+            </div>
           </div>
-        </div>
-        <div id="projects-content-div">
-          <span id="projects-description">{{award.description}}</span>
-        </div>
-        <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
-        <div id="tagDiv">
-          <strong>Tags:</strong><span v-for="tag in award.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
-        </div>
-      </vuestic-widget>
-    </div>
-    <div class="col-md-4">
-      <vuestic-widget class="createproject-div">
-        <div class="col-md-offset-6 col-md-12">
-          <h5 class="gotnew">Want more Awards?</h5>
-          <h6>Read more about our tips..</h6>
-        </div>
-      </vuestic-widget>
-      <vuestic-widget class="live-feed" headerText="Live feeds">
-        <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-      </vuestic-widget>
+          <div id="projects-content-div">
+            <span id="projects-description">{{award.description}}</span>
+          </div>
+          <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in award.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+        </vuestic-widget>
+      </div>
+      <div class="col-md-4">
+        <vuestic-widget class="createproject-div">
+          <div class="col-md-offset-6 col-md-12">
+            <h5 class="gotnew">Want more Awards?</h5>
+            <h6>Read more about our tips..</h6>
+          </div>
+        </vuestic-widget>
+        <vuestic-widget class="live-feed" headerText="Live feeds">
+          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
+        </vuestic-widget>
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +47,9 @@
       return {
         awardArray: [],
         noAwards: false,
+        isGeneral: true,
+        showGeneral: true,
+        showYours: false,
         posts: [
           {
             id: 0,
@@ -68,7 +77,7 @@
     },
     methods: {
       viewAward: function (awardId) {
-        this.$router.push('/company/award/' + awardId)
+        this.$router.push('/student/award/' + awardId)
       }
     },
     created () {
@@ -80,9 +89,9 @@
         }
       }
       this.$http.get('/students/get?email=' + email, headers)
-      .then((companyData) => {
-        console.log('company Data', companyData.data)
-        const awardsArr = companyData.data[0].awards
+      .then((studentData) => {
+        console.log('student Data', studentData.data)
+        const awardsArr = studentData.data[0].awards
         if (awardsArr.length === 0) {
           this.noAwards = true
         }
@@ -96,9 +105,18 @@
             console.log('awarderr', awardErr)
           })
         })
-      }).catch((companyErr) => {
-        console.log('company err', companyErr)
+      }).catch((studentErr) => {
+        console.log('student err', studentErr)
       })
+    },
+    updated () {
+      if (this.isGeneral) {
+        this.showYours = false
+        this.showGeneral = true
+      } else {
+        this.showYours = true
+        this.showGeneral = false
+      }
     }
   }
 </script>
@@ -144,5 +162,8 @@
     background: $tagcolor;
     color: white;
     border-radius: 5%;
+  }
+  .switch {
+    margin-bottom: 1rem;
   }
 </style>

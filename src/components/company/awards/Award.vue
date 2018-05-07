@@ -15,7 +15,7 @@
         <div id="projects-content-div">
           <span id="projects-description">{{award.description}}</span>
         </div>
-        <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+        <!-- <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
         <div id="tagDiv">
           <strong>Tags:</strong><span v-for="tag in award.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
         </div>
