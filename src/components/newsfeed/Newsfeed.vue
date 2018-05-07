@@ -10,7 +10,6 @@
       <div class="col-md-8">
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="isProjects">
           <div>
-            
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
@@ -23,33 +22,25 @@
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
-          
         </vuestic-widget>
-        <!-- <vuestic-widget class="" v-for="post in posts" :key="post.id" v-show="showProjects">
-          <div >
-            <p class="feed-card-info"> <strong> {{post.by}}</strong> {{post.action}} this</p>
-            <hr>
-          </div>
+        <vuestic-widget class="" v-for="contest in contestsData" :key="contest.id" v-show="showContests">
           <div>
-            <div id="feed-card-image">{{giveInitial(post)}}</div>
-            <div id="feed-card-user-name-div">
-              <span class="feed-card-username"><strong><a href="#">{{post.name}}</a> </strong></span><br>
-              <span class="feed-card-time">{{post.calender}}</span>
+            
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="#" @click="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
             </div>
           </div>
-          <div id="post-content-div">
-            <p id="post-description">{{post.post_desc}}</p>
+          <div id="projects-content-div">
+            <p id="projects-description">{{contest.about}}</p>
+            <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
+            <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
           </div>
-          <hr>
-          <div id="user-interaction-div">
-            <div>
-              <button class=""> <i class="fa fa-thumbs-up"></i> Upvote</button>
-            </div>
-            <div id="comments-div">
-            </div>
+          <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
-          
-        </vuestic-widget> -->
+        </vuestic-widget>
       </div>
       <div class="col-md-4">
         <vuestic-widget class="live-feed" headerText="Live feeds">
