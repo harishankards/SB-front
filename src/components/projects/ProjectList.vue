@@ -9,7 +9,7 @@
         <div>
           <div id="projects-name-div">
             <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
-            <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
+            <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
           </div>
           <div class="deleteIconDiv" @click="showDeleteModal(project._id)">
             <i class="fa fa-trash deleteIcon"></i>
