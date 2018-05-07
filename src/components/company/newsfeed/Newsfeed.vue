@@ -14,7 +14,7 @@
           </div>
           <div id="projects-content-div">
             <span id="projects-description">{{project.abstract}}</span>
-            <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>          
+            <!-- <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>           -->
           </div>
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
@@ -169,6 +169,10 @@
   #projects-name-div{
     display: inline-block;
     // margin-left: 0.4rem;
+  }
+
+  .projects-name{
+    font-size: 1.3rem;
   }
 
   #projects-content-div{

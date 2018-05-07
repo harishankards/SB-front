@@ -17,10 +17,14 @@
           </div>
           <div id="projects-content-div">
             <span id="projects-description">{{project.abstract}}</span>
-            <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>          
+            <!-- <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>           -->
           </div>
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+          <hr>
+          <div class="userInteractionDiv">
+            <i class="fa fa-thumbs-up">{{project.upvotes.length}} Upvotes</i>
           </div>
         </vuestic-widget>
         <vuestic-widget class="" v-for="contest in contestsData" :key="contest.id" v-show="showContests">
@@ -36,7 +40,7 @@
             <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
             <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
           </div>
-          <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+          <!-- <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
@@ -221,6 +225,9 @@
     // margin-left: 0.4rem;
   }
 
+  .projects-name{
+    font-size: 1.3rem;
+  }
   #projects-content-div{
     margin-top: 0.5rem;
   }
