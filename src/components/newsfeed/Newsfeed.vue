@@ -11,7 +11,7 @@
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="isProjects">
           <div>
             <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+              <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
             </div>
           </div>
@@ -108,6 +108,12 @@
       giveInitial: function (post) {
         let initial = post.name.charAt(0)
         return initial
+      },
+      viewProject: function (projectId) {
+        this.$router.push('/student/project/' + projectId)
+      },
+      viewContest: function (contestId) {
+        this.$router.push('/company/contest/' + contestId)
       }
     },
     created () {
