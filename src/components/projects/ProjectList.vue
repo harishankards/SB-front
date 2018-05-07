@@ -11,7 +11,7 @@
             <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="project.created_at" :auto-update="60"></timeago></span>
           </div>
-          <div class="deleteIconDiv" @click="showDeleteModal">
+          <div class="deleteIconDiv" @click="showDeleteModal(project._id)">
             <i class="fa fa-trash deleteIcon"></i>
           </div>
         </div>
@@ -48,6 +48,7 @@
       return {
         projectArray: [],
         noProjects: false,
+        authToken: this.$ls.get('token'),
         posts: [
           {
             id: 0,
@@ -78,7 +79,9 @@
       viewProject: function (projectId) {
         this.$router.push('/student/project/' + projectId)
       },
-      showDeleteModal: function () {
+      showDeleteModal: function (projectId) {
+        const self = this
+        const authToken = this.$ls.get('token')
         this.$swal({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -87,15 +90,29 @@
           confirmButtonColor: '#BA1F33',
           cancelButtonColor: '#4ae387',
           confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          console.log('result of swal', result)
-          if (result.value) {
-            this.$swal(
+        }).then(() => {
+          console.log('auth token', self.authToken)
+          self.$http.delete('/projects/delete', {
+            'project': projectId
+          },
+            {
+              headers: {
+                'Authorization': 'Bearer ' + authToken,
+                'Content-Type': 'application/json'
+              }
+            }
+          )
+          .then(function (projectDeleted) {
+            console.log('project delete', projectDeleted)
+            self.$swal(
               'Deleted!',
               'Your file has been deleted.',
               'success'
             )
-          }
+          })
+          .catch(function (projectDeleteErr) {
+            console.log('projectDeleteErr', projectDeleteErr)
+          })
         })
       }
     },
