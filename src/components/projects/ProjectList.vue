@@ -8,7 +8,7 @@
       <vuestic-widget class="" v-for="project in projectArray" :key="project.id">
         <div>
           <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="#" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+            <span class="projects-name"><strong><a href="" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
           </div>
           <div class="deleteIconDiv" @click="showDeleteModal(project._id)">
@@ -18,7 +18,7 @@
 
         <div id="projects-content-div">
           <span id="projects-description">{{project.abstract}}</span>
-          <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>          
+          <!-- <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>           -->
         </div>
         <div id="tagDiv">
           <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>

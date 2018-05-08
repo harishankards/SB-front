@@ -9,7 +9,7 @@
           <div>
             
             <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="#" @click="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
+              <span class="projects-name"><strong><a href="" @click="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
             </div>
             <div class="deleteIconDiv" @click="showDeleteModal(contest._id)">
