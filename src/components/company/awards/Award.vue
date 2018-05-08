@@ -11,6 +11,9 @@
             <span class="projects-name"><strong><a href="" @click="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
           </div>
+          <div class="deleteIconDiv" @click="showDeleteModal(award._id)">
+            <i class="fa fa-trash deleteIcon"></i>
+          </div>
         </div>
         <div id="projects-content-div">
           <span id="projects-description">{{award.description}}</span>
@@ -73,6 +76,50 @@
       },
       viewAward: function (awardId) {
         this.$router.push('/company/award/' + awardId)
+      },
+      showDeleteModal: function (awardId) {
+        const self = this
+        const authToken = this.$ls.get('token')
+        this.$swal({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#BA1F33',
+          cancelButtonColor: '#4ae387',
+          confirmButtonText: 'Yes, delete it!'
+        }).then(() => {
+          self.$http({
+            method: 'delete',
+            url: '/awards/delete',
+            data: {
+              'award': awardId
+            },
+            headers: {
+              'Authorization': 'Bearer ' + authToken,
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(function (awardDeleted) {
+            console.log('award delete', awardDeleted)
+            self.awardArray.map((award) => {
+              if (award._id === awardId) {
+                const index = self.awardArray.indexOf(award)
+                if (index > -1) {
+                  self.awardArray.splice(index, 1)
+                }
+              }
+            })
+            self.$swal(
+              'Deleted!',
+              'Your contest has been deleted.',
+              'success'
+            )
+          })
+          .catch(function (awardDeleteErr) {
+            console.log('awardDeleteErr', awardDeleteErr)
+          })
+        })
       }
     },
     created () {
@@ -148,5 +195,12 @@
     background: $tagcolor;
     color: white;
     border-radius: 5%;
+  }
+  .deleteIconDiv {
+    float: right;
+    cursor: pointer;
+  }
+  .deleteIcon {
+    font-size: 1.2rem;
   }
 </style>
