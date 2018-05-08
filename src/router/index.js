@@ -10,6 +10,7 @@ import StudentLogin from 'components/auth/login/StudentLogin'
 import StudentSignup from 'components/auth/signup/StudentSignup'
 
 import NewProject from 'components/projects/NewProject'
+import EditProject from 'components/projects/EditProject'
 import SeparateProjectStudent from 'components/projects/Separate'
 import SeparateContestCompany from 'components/company/contest/Separate'
 import SeparateAwardCompany from 'components/company/awards/Separate'
@@ -43,6 +44,7 @@ export default new Router({
     {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
     {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
     {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
+    {path: '/student/projects/edit/:id', component: EditProject, name: 'editproject', meta: { requiresAuth: true }},
     {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
     // Project
     {path: '/company/project/:id', component: SeparateProjectCompany, name: 'SeparateProjectViewCompany', meta: { requiresAuth: true }},

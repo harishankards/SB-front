@@ -12,7 +12,7 @@
             <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
           </div>
           <div class="deleteIconDiv">
-            <i class="fa fa-edit editIcon" @click="takeToEdit()"></i>            
+            <i class="fa fa-edit editIcon" @click="takeToEdit(project._id)"></i>            
             <i class="fa fa-trash deleteIcon" @click="showDeleteModal(project._id)"></i>
           </div>
         </div>
@@ -80,8 +80,9 @@
       viewProject: function (projectId) {
         this.$router.push('/student/project/' + projectId)
       },
-      takeToEdit: function () {
-
+      takeToEdit: function (projectId) {
+        console.log('edit clicked', projectId)
+        this.$router.push('/student/projects/edit/' + projectId)
       },
       showDeleteModal: function (projectId) {
         const self = this
