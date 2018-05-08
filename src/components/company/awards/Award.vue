@@ -122,6 +122,11 @@
         })
       }
     },
+    updated () {
+      if (this.awardArray.length === 0) {
+        this.noAwards = true
+      }
+    },
     created () {
       const email = this.$ls.get('email')
       const authToken = this.$ls.get('token')

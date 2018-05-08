@@ -129,6 +129,11 @@
         })
       }
     },
+    updated () {
+      if (this.projectArray.length === 0) {
+        this.noProjects = true
+      }
+    },
     created () {
       const email = this.$ls.get('email')
       const lsToken = this.$ls.get('token')

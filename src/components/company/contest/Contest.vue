@@ -127,6 +127,11 @@
         })
       }
     },
+    updated () {
+      if (this.contestArray.length === 0) {
+        this.noContests = true
+      }
+    },
     created () {
       const email = this.$ls.get('email')
       const authToken = this.$ls.get('token')
