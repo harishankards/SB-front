@@ -12,13 +12,16 @@
               <span class="projects-name"><strong><a href="#" @click="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
             </div>
+            <div class="deleteIconDiv" @click="showDeleteModal(contest._id)">
+              <i class="fa fa-trash deleteIcon"></i>
+            </div>
           </div>
           <div id="projects-content-div">
             <p id="projects-description">{{contest.about}}</p>
             <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
             <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
           </div>
-          <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+          <!-- <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
@@ -78,6 +81,43 @@
       },
       viewContest: function (contestId) {
         this.$router.push('/company/contest/' + contestId)
+      },
+      showDeleteModal: function (contestId) {
+        const self = this
+        const authToken = this.$ls.get('token')
+        this.$swal({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#BA1F33',
+          cancelButtonColor: '#4ae387',
+          confirmButtonText: 'Yes, delete it!'
+        }).then(() => {
+          console.log('auth token', self.authToken)
+          self.$http({
+            method: 'delete',
+            url: '/contests/delete',
+            data: {
+              'contest': contestId
+            },
+            headers: {
+              'Authorization': 'Bearer ' + authToken,
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(function (contestDeleted) {
+            console.log('contest delete', contestDeleted)
+            self.$swal(
+              'Deleted!',
+              'Your contest has been deleted.',
+              'success'
+            )
+          })
+          .catch(function (contestDeleteErr) {
+            console.log('contestDeleteErr', contestDeleteErr)
+          })
+        })
       }
     },
     created () {
@@ -159,5 +199,12 @@
     background: $tagcolor;
     color: white;
     border-radius: 5%;
+  }
+  .deleteIconDiv {
+    float: right;
+    cursor: pointer;
+  }
+  .deleteIcon {
+    font-size: 1.2rem;
   }
 </style>

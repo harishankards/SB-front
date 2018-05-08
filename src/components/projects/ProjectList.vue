@@ -107,7 +107,7 @@
             console.log('project delete', projectDeleted)
             self.$swal(
               'Deleted!',
-              'Your file has been deleted.',
+              'Your project has been deleted.',
               'success'
             )
           })
