@@ -19,7 +19,7 @@
           <div id="projects-content-div">
             <span id="projects-description">{{award.description}}</span>
           </div>
-          <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+          <!-- <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in award.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
@@ -49,7 +49,7 @@
           <div id="projects-content-div">
             <span id="projects-description">{{award.description}}</span>
           </div>
-          <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div>
+          <!-- <div><a href="" class="viewMoreBtn" @click="viewAward(award._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in award.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
@@ -138,6 +138,16 @@
         })
       }).catch((studentErr) => {
         console.log('student err', studentErr)
+      })
+
+      this.$http.get('/awards/all', headers)
+      .then((awardData) => {
+        // console.log('all award data', awardData.data.awards)
+        this.totalAwardArray = awardData.data.awards
+        // console.log('award array all', this.totalAwardArray)
+      })
+      .catch((awardErr) => {
+        console.log('awarderr', awardErr)
       })
     },
     updated () {
