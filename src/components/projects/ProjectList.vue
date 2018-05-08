@@ -8,11 +8,12 @@
       <vuestic-widget class="" v-for="project in projectArray" :key="project.id">
         <div>
           <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="" @click="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+            <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
           </div>
-          <div class="deleteIconDiv" @click="showDeleteModal(project._id)">
-            <i class="fa fa-trash deleteIcon"></i>
+          <div class="deleteIconDiv">
+            <i class="fa fa-edit editIcon" @click="takeToEdit()"></i>            
+            <i class="fa fa-trash deleteIcon" @click="showDeleteModal(project._id)"></i>
           </div>
         </div>
 
@@ -78,6 +79,9 @@
       },
       viewProject: function (projectId) {
         this.$router.push('/student/project/' + projectId)
+      },
+      takeToEdit: function () {
+
       },
       showDeleteModal: function (projectId) {
         const self = this
@@ -215,5 +219,9 @@
   }
   .deleteIcon {
     font-size: 1.2rem;
+  }
+  .editIcon {
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
   }
 </style>

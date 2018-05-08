@@ -8,7 +8,7 @@
       <vuestic-widget class="" v-for="award in awardArray" :key="award.id">
         <div>
           <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="" @click="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
+            <span class="projects-name"><strong><a href="" @click.prevent="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
           </div>
           <div class="deleteIconDiv" @click="showDeleteModal(award._id)">
