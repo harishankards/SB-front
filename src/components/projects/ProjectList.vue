@@ -105,6 +105,14 @@
           })
           .then(function (projectDeleted) {
             console.log('project delete', projectDeleted)
+            self.projectArray.map((project) => {
+              if (project._id === projectId) {
+                const index = self.projectArray.indexOf(project)
+                if (index > -1) {
+                  self.projectArray.splice(index, 1)
+                }
+              }
+            })
             self.$swal(
               'Deleted!',
               'Your project has been deleted.',

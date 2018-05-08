@@ -94,7 +94,6 @@
           cancelButtonColor: '#4ae387',
           confirmButtonText: 'Yes, delete it!'
         }).then(() => {
-          console.log('auth token', self.authToken)
           self.$http({
             method: 'delete',
             url: '/contests/delete',
@@ -108,6 +107,14 @@
           })
           .then(function (contestDeleted) {
             console.log('contest delete', contestDeleted)
+            self.contestArray.map((contest) => {
+              if (contest._id === contestId) {
+                const index = self.contestArray.indexOf(contest)
+                if (index > -1) {
+                  self.contestArray.splice(index, 1)
+                }
+              }
+            })
             self.$swal(
               'Deleted!',
               'Your contest has been deleted.',
