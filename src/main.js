@@ -18,7 +18,6 @@ import VueTimeago from 'vue-timeago'
 import VueSweetalert2 from 'vue-sweetalert2'
 // For http requests
 Vue.use(VueAxios, axios)
-Vue.use(axios)
 axios.defaults.baseURL = 'http://localhost:3000'
 axios.defaults.headers = {
   'Content-Type': 'application/json'
