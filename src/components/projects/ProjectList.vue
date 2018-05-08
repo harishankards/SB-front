@@ -92,16 +92,17 @@
           confirmButtonText: 'Yes, delete it!'
         }).then(() => {
           console.log('auth token', self.authToken)
-          self.$http.delete('/projects/delete', {
-            'project': projectId
-          },
-            {
-              headers: {
-                'Authorization': 'Bearer ' + authToken,
-                'Content-Type': 'application/json'
-              }
+          self.$http({
+            method: 'delete',
+            url: '/projects/delete',
+            data: {
+              'project': projectId
+            },
+            headers: {
+              'Authorization': 'Bearer ' + authToken,
+              'Content-Type': 'application/json'
             }
-          )
+          })
           .then(function (projectDeleted) {
             console.log('project delete', projectDeleted)
             self.$swal(
