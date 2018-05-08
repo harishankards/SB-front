@@ -182,11 +182,11 @@
                   'Authorization': 'Bearer ' + authToken
                 }
               })
-              .then(function (projectCreationSuccess) {
-                console.log('projectCreation success', projectCreationSuccess)
+              .then(function (projectUpdationSuccess) {
+                console.log('projectUpdation success', projectUpdationSuccess)
               })
-              .catch(function (projectCreationError) {
-                console.log('projectcreation error', projectCreationError)
+              .catch(function (projectUpdationError) {
+                console.log('projectUpdation error', projectUpdationError)
               })
             },
             isValid: () => {
@@ -230,6 +230,12 @@
         console.log('inside upload file', data)
         this.projectData.files.push(data)
       })
+      eventBus.$on('projectToBeEdited', (data) => {
+        console.log('projectToBeEdited', data)
+        this.projectData = data
+        console.log('this proj desc from eventbus', this.projectData.description)
+        eventBus.$emit('projectDescriptionEdit', this.projectData.description)
+      })
       const secondthis = this
       const projectId = this.$route.params.id
       const authToken = this.$ls.get('token')
@@ -259,6 +265,9 @@
       .catch(function (projectDataErr) {
         console.log('projectdataerr', projectDataErr)
       })
+    },
+    mounted () {
+      // console.log('this proj desc', this.projectData.description)
     }
   }
 </script>

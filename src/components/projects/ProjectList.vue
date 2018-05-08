@@ -12,7 +12,7 @@
             <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
           </div>
           <div class="deleteIconDiv">
-            <i class="fa fa-edit editIcon" @click="takeToEdit(project._id)"></i>            
+            <i class="fa fa-edit editIcon" @click="takeToEdit(project)"></i>            
             <i class="fa fa-trash deleteIcon" @click="showDeleteModal(project._id)"></i>
           </div>
         </div>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+  import { eventBus } from '../../main.js'
   export default {
     name: 'projectList',
     component: {},
@@ -80,9 +81,10 @@
       viewProject: function (projectId) {
         this.$router.push('/student/project/' + projectId)
       },
-      takeToEdit: function (projectId) {
-        console.log('edit clicked', projectId)
-        this.$router.push('/student/projects/edit/' + projectId)
+      takeToEdit: function (project) {
+        this.$router.push('/student/projects/edit/' + project._id)
+        eventBus.$emit('projectDescriptionEdit', project.description)
+        eventBus.$emit('projectToBeEdited', project)
       },
       showDeleteModal: function (projectId) {
         const self = this
