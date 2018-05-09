@@ -19,6 +19,11 @@
     },
     updated () {
       eventBus.$emit('editorContentcontest', this.content)
+    },
+    created () {
+      if (this.$route.path.match('edit')) {
+        this.content = eventBus.contestToBeEdited.rulesFormat
+      }
     }
 
   }

@@ -15,7 +15,6 @@ export default {
   data () {
     return {
       value: [
-        { name: 'Computer Science', code: 'cse' }
       ],
       options: [
         {name: 'Computer Science', code: 'cse'},
@@ -38,6 +37,11 @@ export default {
   },
   updated () {
     eventBus.$emit('multiselectorcontest', this.value)
+  },
+  created () {
+    if (this.$route.path.match('edit')) {
+      this.value = eventBus.contestToBeEdited.tags
+    }
   }
 }
 

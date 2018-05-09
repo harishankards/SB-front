@@ -23,8 +23,6 @@
     },
     created () {
       if (this.$route.path.match('edit')) {
-        console.log('before matching')
-        console.log('yes matched ---------------------', eventBus.projectToBeEdited.description)
         this.content = eventBus.projectToBeEdited.description
       }
     }

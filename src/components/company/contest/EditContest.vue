@@ -78,7 +78,7 @@
           title: '',
           about: '',
           rulesFormat: '',
-          date: '',
+          date: {},
           host: '',
           tags: ''
         },
@@ -230,6 +230,12 @@
       eventBus.$on('multiselectorcontest', (data) => {
         this.contestData.tags = data
       })
+      this.contestData.title = eventBus.contestToBeEdited.title
+      this.contestData.about = eventBus.contestToBeEdited.about
+      this.contestData.files = eventBus.contestToBeEdited.files
+      this.contestData.rulesFormat = eventBus.contestToBeEdited.rulesFormat
+      this.contestData.date = eventBus.contestToBeEdited.date
+      this.contestData.tags = eventBus.contestToBeEdited.tags
     }
   }
 </script>
