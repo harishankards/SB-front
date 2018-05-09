@@ -19,8 +19,8 @@
           </div>
           <div id="projects-content-div">
             <p id="projects-description">{{contest.about}}</p>
-            <!-- <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
-            <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>             -->
+            <p v-show="contest.date.start"><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
+            <p v-show="contest.date.end"><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
           </div>
           <!-- <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
           <div id="tagDiv">

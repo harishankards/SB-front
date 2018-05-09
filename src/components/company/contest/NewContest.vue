@@ -78,7 +78,10 @@
           title: '',
           about: '',
           rulesFormat: '',
-          date: '',
+          date: {
+            start: new Date(),
+            end: new Date()
+          },
           host: '',
           tags: ''
         },
