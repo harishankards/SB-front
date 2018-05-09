@@ -86,7 +86,7 @@
       },
       takeToEdit: function (contest) {
         eventBus.contestToBeEdited = contest
-        this.$router.push('/company/contest/edit/' + contest._id)
+        this.$router.push('/company/contests/edit/' + contest._id)
       },
       showDeleteModal: function (contestId) {
         const self = this

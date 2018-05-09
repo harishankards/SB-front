@@ -28,6 +28,7 @@ import CompanyFavorites from 'components/company/favorites/Favorite'
 import CompanyStats from 'components/company/stats/Stats'
 import CompanySettings from 'components/company/settings/Settings'
 import CompanyNewContest from 'components/company/contest/NewContest'
+import CompanyEditContest from 'components/company/contest/EditContest'
 import CompanyNewAward from 'components/company/awards/NewAward'
 import CompanyEditAward from 'components/company/awards/EditAward'
 import NotFound from 'components/404/NotFound'
@@ -66,6 +67,7 @@ export default new Router({
     {path: '/company/stats', component: CompanyStats, name: 'Company Stats', meta: { requiresAuth: true }},
     {path: '/company/settings', component: CompanySettings, name: 'Company Settings', meta: { requiresAuth: true }},
     {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest', meta: { requiresAuth: true }},
+    {path: '/company/contests/edit/:id', component: CompanyEditContest, name: 'Company edit contest', meta: { requiresAuth: true }},
     {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', meta: { requiresAuth: true }},
     {path: '/company/awards/edit/:id', component: CompanyEditAward, name: 'Company edit award', meta: { requiresAuth: true }},
     {path: '*', component: NotFound, name: '404'}
