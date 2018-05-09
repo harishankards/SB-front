@@ -222,13 +222,14 @@
   }
   .deleteIconDiv {
     float: right;
-    cursor: pointer;
   }
   .deleteIcon {
     font-size: 1.2rem;
+    cursor: pointer;
   }
   .editIcon {
     font-size: 1.1rem;
     margin-right: 0.5rem;
+    cursor: pointer;
   }
 </style>

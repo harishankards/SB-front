@@ -11,8 +11,9 @@
             <span class="projects-name"><strong><a href="" @click.prevent="viewAward(award._id)">{{award.title}}</a> </strong></span><br>
             <span class="projects-time"><timeago :since="award.createdAt" :auto-update="60"></timeago></span>
           </div>
-          <div class="deleteIconDiv" @click="showDeleteModal(award._id)">
-            <i class="fa fa-trash deleteIcon"></i>
+          <div class="deleteIconDiv">
+            <i class="fa fa-edit editIcon" @click="takeToEdit(award)"></i>                        
+            <i class="fa fa-trash deleteIcon" @click="showDeleteModal(award)"></i>
           </div>
         </div>
         <div id="projects-content-div">
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+  import { eventBus } from '../../../main.js'
   export default {
     name: 'companyawards',
     data () {
@@ -76,6 +78,10 @@
       },
       viewAward: function (awardId) {
         this.$router.push('/company/award/' + awardId)
+      },
+      takeToEdit: function (award) {
+        eventBus.awardToBeEdited = award
+        this.$router.push('/company/awards/edit/' + award._id)
       },
       showDeleteModal: function (awardId) {
         const self = this
@@ -203,9 +209,14 @@
   }
   .deleteIconDiv {
     float: right;
-    cursor: pointer;
   }
   .deleteIcon {
     font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .editIcon {
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
   }
 </style>
