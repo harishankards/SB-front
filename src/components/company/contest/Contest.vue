@@ -12,14 +12,15 @@
               <span class="projects-name"><strong><a href="" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
             </div>
-            <div class="deleteIconDiv" @click="showDeleteModal(contest._id)">
-              <i class="fa fa-trash deleteIcon"></i>
+            <div class="deleteIconDiv">
+              <i class="fa fa-edit editIcon" @click="takeToEdit(contest)"></i>                          
+              <i class="fa fa-trash deleteIcon" @click="showDeleteModal(contest._id)"></i>
             </div>
           </div>
           <div id="projects-content-div">
             <p id="projects-description">{{contest.about}}</p>
-            <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
-            <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
+            <!-- <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
+            <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>             -->
           </div>
           <!-- <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
           <div id="tagDiv">
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+  import { eventBus } from '../../../main.js'
   export default {
     name: 'Contest',
     component: {},
@@ -81,6 +83,10 @@
       },
       viewContest: function (contestId) {
         this.$router.push('/company/contest/' + contestId)
+      },
+      takeToEdit: function (contest) {
+        eventBus.contestToBeEdited = contest
+        this.$router.push('/company/contest/edit/' + contest._id)
       },
       showDeleteModal: function (contestId) {
         const self = this
@@ -214,9 +220,15 @@
   }
   .deleteIconDiv {
     float: right;
-    cursor: pointer;
   }
+
   .deleteIcon {
     font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .editIcon {
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
   }
 </style>
