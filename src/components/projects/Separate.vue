@@ -34,7 +34,9 @@
     },
     data () {
       return {
-        projectData: '',
+        projectData: {
+          upvotes: []
+        },
         projectId: '',
         authorData: ''
       }

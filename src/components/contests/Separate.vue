@@ -39,7 +39,13 @@
     },
     data () {
       return {
-        contestData: '',
+        contestData: {
+          date: {
+            start: '',
+            end: ''
+          },
+          registrations: []
+        },
         contestId: '',
         hostData: ''
       }
