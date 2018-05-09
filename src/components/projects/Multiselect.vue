@@ -14,10 +14,10 @@ export default {
   data () {
     return {
       value: [
-        { name: 'Computer Science', code: 'cse' }
+        // { name: 'Computer Science', code: 'cse' }
       ],
       options: [
-        {name: 'Computer Science', code: 'cse'},
+        { name: 'Computer Science', code: 'cse' },
         { name: 'Electronics', code: 'elec' },
         { name: 'Mechanical', code: 'mech' },
         { name: 'Biotechnology', code: 'Biot' }
@@ -37,6 +37,13 @@ export default {
   },
   updated () {
     eventBus.$emit('multiselectorproject', this.value)
+  },
+  created () {
+    if (this.$route.path.match('edit')) {
+      console.log('before matching')
+      console.log('yes matched ---------------------', eventBus.projectToBeEdited.tags)
+      this.value = eventBus.projectToBeEdited.tags
+    }
   }
 }
 
