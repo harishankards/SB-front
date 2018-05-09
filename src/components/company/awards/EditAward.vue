@@ -52,7 +52,7 @@
        <h4>Are you sure to submit?</h4>
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
-          <h4>Your award has been published</h4>
+          <h4>Your award has been updated</h4>
           <button class="btn btn-info" @click="sendBack">
               <i class="fa fa-home"></i>
               Awards Home
@@ -259,6 +259,7 @@
       }
     },
     created () {
+      const self = this
       eventBus.$on('multiselectoraward', (data) => {
         console.log('inside multiselector', data)
         this.awardData.tags = data
@@ -266,6 +267,24 @@
       eventBus.$on('uploadedFileAwards', (data) => {
         console.log('inside upload file awards', data)
         this.awardData.files = data
+      })
+      this.awardData.title = eventBus.awardToBeEdited.title
+      this.awardData.description = eventBus.awardToBeEdited.description
+      this.awardData.tags = eventBus.awardToBeEdited.tags
+      this.awardData.files = eventBus.awardToBeEdited.files
+      console.log('award data to be edited', eventBus.awardToBeEdited)
+      const authToken = this.$ls.get('token')
+      this.$http.get('/students/get?id=' + eventBus.awardToBeEdited.receiver, {
+        headers: {
+          'Authorization': 'Bearer ' + authToken
+        }
+      })
+      .then(function (studentData) {
+        console.log('student data', studentData.data[0].email)
+        self.awardData.student = studentData.data[0].email
+      })
+      .catch(function (studentDataErr) {
+        console.log('studnet data err', studentDataErr)
       })
     }
   }

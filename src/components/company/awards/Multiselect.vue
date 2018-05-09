@@ -13,9 +13,7 @@ export default {
   },
   data () {
     return {
-      value: [
-        { name: 'Computer Science', code: 'cse' }
-      ],
+      value: [],
       options: [
         {name: 'Computer Science', code: 'cse'},
         { name: 'Electronics', code: 'elec' },
@@ -37,6 +35,11 @@ export default {
   },
   updated () {
     eventBus.$emit('multiselectoraward', this.value)
+  },
+  created () {
+    if (this.$route.path.match('edit')) {
+      this.value = eventBus.awardToBeEdited.tags
+    }
   }
 }
 
