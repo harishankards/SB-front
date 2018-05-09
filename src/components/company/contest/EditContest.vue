@@ -40,6 +40,7 @@
      <div slot="page4" class="form-wizard-tab-content">
           <v-date-picker
             mode='range'
+            :min-date='new Date()'            
             v-model='contestData.date'>
         </v-date-picker>
      </div>
@@ -78,7 +79,10 @@
           title: '',
           about: '',
           rulesFormat: '',
-          date: {},
+          date: {
+            start: new Date(),
+            end: new Date()
+          },
           host: '',
           tags: ''
         },
@@ -180,17 +184,17 @@
               const authToken = this.$ls.get('token')
               this.contestData.host = this.$ls.get('email')
               console.log('this contestData', this.contestData)
-              this.$http.post('http://localhost:3000/contests/new', this.contestData, {
+              this.$http.post('http://localhost:3000/contests/update', this.contestData, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + authToken
                 }
               })
-              .then(function (contestCreationSuccess) {
-                console.log('contestCreationSuccess success', contestCreationSuccess)
+              .then(function (contestUpdationSuccess) {
+                console.log('contestUpdationSuccess success', contestUpdationSuccess)
               })
-              .catch(function (contestCreationError) {
-                console.log('contestCreationError error', contestCreationError)
+              .catch(function (contestUpdationError) {
+                console.log('contestUpdationError error', contestUpdationError)
               })
             },
             isValid: () => {
@@ -234,7 +238,8 @@
       this.contestData.about = eventBus.contestToBeEdited.about
       this.contestData.files = eventBus.contestToBeEdited.files
       this.contestData.rulesFormat = eventBus.contestToBeEdited.rulesFormat
-      this.contestData.date = eventBus.contestToBeEdited.date
+      this.contestData.date.start = eventBus.contestToBeEdited.date.start
+      this.contestData.date.end = eventBus.contestToBeEdited.date.end
       this.contestData.tags = eventBus.contestToBeEdited.tags
     }
   }

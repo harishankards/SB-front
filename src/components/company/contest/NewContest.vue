@@ -40,6 +40,7 @@
      <div slot="page4" class="form-wizard-tab-content">
           <v-date-picker
             mode='range'
+            :min-date='new Date()'
             v-model='contestData.date'>
         </v-date-picker>
      </div>
