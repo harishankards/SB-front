@@ -8,8 +8,8 @@
       <p><strong> About</strong><br>{{this.contestData.about}}</p>
       <p><strong> Rules and Format</strong><br><span v-html="this.contestData.rulesFormat"></span></p>
       <p><strong> Hosted by</strong><br> {{this.hostData.email}}</p>
-      <p><strong>Starts on:</strong>  {{this.contestData.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
-      <p><strong>Ends on: </strong> {{this.contestData.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
+      <p v-show="this.contestData.date.start"><strong>Starts on:</strong>  {{this.contestData.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
+      <p v-show="this.contestData.date.end"><strong>Ends on: </strong> {{this.contestData.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
       <strong>Tags:</strong><span v-for="tag in contestData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <p class="published">Published: <timeago :since="this.contestData.createdAt" :auto-update="60"></timeago></p>
       <div>
@@ -39,7 +39,17 @@
     },
     data () {
       return {
-        contestData: '',
+        contestData: {
+          title: '',
+          about: '',
+          rulesFormat: '',
+          date: {
+            start: new Date(),
+            end: new Date()
+          },
+          tags: [],
+          registrations: []
+        },
         contestId: '',
         hostData: ''
       }
@@ -70,6 +80,13 @@
       .then(function (contestDetails) {
         console.log('contestData', contestDetails.data)
         secondthis.contestData = contestDetails.data
+        secondthis.contestData.title = contestDetails.data.title
+        secondthis.contestData.about = contestDetails.data.about
+        secondthis.contestData.rulesFormat = contestDetails.data.rulesFormat
+        secondthis.contestData.date.start = contestDetails.data.date.start
+        secondthis.contestData.date.end = contestDetails.data.date.end
+        secondthis.contestData.tags = contestDetails.data.tags
+        secondthis.contestData.registrations = contestDetails.data.registrations
         secondthis.$http.get('/companies/get?id=' + contestDetails.data.host, {
           headers: {
             'Authorization': 'Bearer ' + authToken
