@@ -230,12 +230,7 @@
         console.log('inside upload file', data)
         this.projectData.files.push(data)
       })
-      eventBus.$on('projectToBeEdited', (data) => {
-        console.log('projectToBeEdited', data)
-        this.projectData = data
-        console.log('this proj desc from eventbus', this.projectData.description)
-        eventBus.$emit('projectDescriptionEdit', this.projectData.description)
-      })
+      this.projectData = eventBus.projectToBeEdited
       const secondthis = this
       const projectId = this.$route.params.id
       const authToken = this.$ls.get('token')

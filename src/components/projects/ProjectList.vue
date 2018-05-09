@@ -82,9 +82,8 @@
         this.$router.push('/student/project/' + projectId)
       },
       takeToEdit: function (project) {
+        eventBus.projectToBeEdited = project
         this.$router.push('/student/projects/edit/' + project._id)
-        eventBus.$emit('projectDescriptionEdit', project.description)
-        eventBus.$emit('projectToBeEdited', project)
       },
       showDeleteModal: function (projectId) {
         const self = this

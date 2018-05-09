@@ -15,25 +15,18 @@
 
     data () {
       return {
-        content: 'shasdada'
-      }
-    },
-    methods: {
-      listenToTheEventBus: function () {
-        console.log('inside the editor of the -------------------------')
-        eventBus.$on('projectDescriptionEdit', (data) => {
-          this.content = data
-        })
+        content: ''
       }
     },
     updated () {
       eventBus.$emit('editorContentproject', this.content)
     },
     created () {
-      this.listenToTheEventBus()
-    },
-    mounted () {
-      console.log('inside the mounted of editor')
+      if (this.$route.path.match('edit')) {
+        console.log('before matching')
+        console.log('yes matched ---------------------', eventBus.projectToBeEdited.description)
+        this.content = eventBus.projectToBeEdited.description
+      }
     }
   }
  </script>
