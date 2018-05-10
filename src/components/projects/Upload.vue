@@ -51,7 +51,7 @@
         console.log('removed filepath', filepath)
         this.$http({
           method: 'delete',
-          url: '/attachments/delete',
+          url: '/attachments',
           data: {
             filepath: filepath
           },
