@@ -1,14 +1,22 @@
 <template>
   <div class="vuestic-pre-loader">
-    <canvas ref="canvas"></canvas>
+    <atom-spinner
+          :animation-duration="1000"
+          :size="120"
+          :color="'#4ae387'"
+     />
   </div>
 </template>
 
 <script>
   import {color, lightness} from 'kewler'
+  import {AtomSpinner} from 'epic-spinners'
 
   export default {
     name: 'vuestic-pre-loader',
+    components: {
+      AtomSpinner
+    },
     methods: {
       getPrevious (index) {
         if (index === 0) return this.points.length - 1

@@ -17,10 +17,10 @@
       return {
         token: this.$ls.get('token'),
         dropzoneOptions: {
-          url: 'http://localhost:3000/attachments/new',
+          url: 'http://localhost:3000/attachments',
           thumbnailWidth: 150,
           maxFilesize: 0.5,
-          headers: { 'Authorization': this.token },
+          headers: { 'Authorization': 'Bearer ' + this.token },
           addRemoveLinks: true,
           dictDefaultMessage: "<i class='fa fa-cloud-upload'></i>UPLOAD ME"
         }
@@ -28,8 +28,11 @@
     },
     methods: {
       vsuccess (file, response) {
-        console.log('it is success', file, response)
-        eventBus.$emit('uploadedFile', file)
+        // console.log('it is success', file, response)
+        eventBus.$emit('uploadedFile', {
+          file: file,
+          response: response
+        })
       }
     }
   }

@@ -80,8 +80,8 @@
           about: '',
           rulesFormat: '',
           date: {
-            start: new Date(),
-            end: new Date()
+            start: null,
+            end: null
           },
           host: '',
           tags: ''

@@ -3,7 +3,7 @@
   "version": "1.4.0",
   "description": "A student company social network",
   "author": "HS <hs@spritle.com>",
-  "private": false,
+  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
@@ -24,7 +24,7 @@
     "chart.js": "^2.6.0",
     "detect-browser": "^1.7.1",
     "element-resize-detector": "^1.1.12",
-    "epic-spinners": "^1.0.1",
+    "epic-spinners": "^1.0.3",
     "flag-icon-css": "^2.9.0",
     "font-awesome": "^4.7.0",
     "gemini-scrollbar": "^1.5.1",
