@@ -207,10 +207,9 @@
             label: 'Confirmation',
             slot: 'page6',
             onNext: () => {
-              console.log('this projectdata', this.awardData)
+              console.log('this awarddata', this.awardData)
               const authToken = this.$ls.get('token')
-              this.awardData.company = this.$ls.get('email')
-              this.$http.post('/awards/new', this.awardData, {
+              this.$http.put('/awards/update', this.awardData, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + authToken
@@ -272,6 +271,7 @@
       this.awardData.description = eventBus.awardToBeEdited.description
       this.awardData.tags = eventBus.awardToBeEdited.tags
       this.awardData.files = eventBus.awardToBeEdited.files
+      this.awardData._id = eventBus.awardToBeEdited._id
       console.log('award data to be edited', eventBus.awardToBeEdited)
       const authToken = this.$ls.get('token')
       this.$http.get('/students/get?id=' + eventBus.awardToBeEdited.receiver, {
