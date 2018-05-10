@@ -1,5 +1,5 @@
 <template>
-  <vue-dropzone ref="myVueDropzone" @vdropzone-success="vsuccess" id="dropzone" :options="dropzoneOptions">
+  <vue-dropzone ref="myVueDropzone" @vdropzone-success="vsuccess" @vdropzone-removed-file="vremoved" id="dropzone" :options="dropzoneOptions">
   </vue-dropzone>
 </template>
 
@@ -29,9 +29,41 @@
     methods: {
       vsuccess (file, response) {
         // console.log('it is success', file, response)
+        this.$store.state.projectUploadedFile = []
+        this.$store.state.projectUploadedFile.push({
+          filename: file.name,
+          filepath: response.filepath
+        })
+        console.log('this store filepath', this.$store.state.projectUploadedFile[0].filepath)
         eventBus.$emit('uploadedFile', {
           file: file,
           response: response
+        })
+      },
+      vremoved (file, error, xhr) {
+        console.log('file removed', file)
+        const filename = file.name
+        const filepath = this.$store.state.projectUploadedFile.map(item => {
+          if (item.filename === filename) {
+            return item.filepath
+          }
+        })
+        console.log('removed filepath', filepath)
+        this.$http({
+          method: 'delete',
+          url: '/attachments/delete',
+          data: {
+            filepath: filepath
+          },
+          headers: {
+            'Authorization': 'Bearer ' + this.token
+          }
+        })
+        .then(function (attachmentDeleted) {
+          console.log('attachment deleted', attachmentDeleted)
+        })
+        .catch(function (attachmentDeleteErr) {
+          console.log('unable to delete attachment', attachmentDeleteErr)
         })
       }
     }
