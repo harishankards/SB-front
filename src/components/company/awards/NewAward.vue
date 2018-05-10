@@ -265,7 +265,7 @@
       })
       eventBus.$on('uploadedFileAwards', (data) => {
         console.log('inside upload file awards', data)
-        this.awardData.files = data
+        this.awardData.files.push(data.response.filepath)
       })
     }
   }

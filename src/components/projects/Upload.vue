@@ -36,7 +36,6 @@
         })
         console.log('this store filepath', this.$store.state.projectUploadedFile[0].filepath)
         eventBus.$emit('uploadedFile', {
-          file: file,
           response: response
         })
       },
