@@ -52,7 +52,11 @@
        <h4>Are you sure to submit?</h4>
      </div>
      <div slot="wizardCompleted" class="form-wizard-tab-content">
-          <h4>Your contest has been published</h4>
+          <h4>Your contest has been updated</h4>
+          <button class="btn btn-info" @click="sendBack">
+              <i class="fa fa-home"></i>
+              Contest Home
+          </button>
      </div>
 </vuestic-wizard>
 
@@ -182,9 +186,9 @@
             slot: 'page6',
             onNext: () => {
               const authToken = this.$ls.get('token')
-              this.contestData.host = this.$ls.get('email')
+              // this.contestData.host = this.$ls.get('email')
               console.log('this contestData', this.contestData)
-              this.$http.post('http://localhost:3000/contests/update', this.contestData, {
+              this.$http.put('http://localhost:3000/contests/update', this.contestData, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + authToken
@@ -241,6 +245,8 @@
       this.contestData.date.start = eventBus.contestToBeEdited.date.start
       this.contestData.date.end = eventBus.contestToBeEdited.date.end
       this.contestData.tags = eventBus.contestToBeEdited.tags
+      this.contestData._id = eventBus.contestToBeEdited._id
+      this.contestData.host = eventBus.contestToBeEdited.host
     }
   }
 </script>

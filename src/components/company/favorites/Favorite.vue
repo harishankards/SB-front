@@ -4,6 +4,11 @@
 
 <script>
   export default {
-    name: 'companyfavorites'
+    name: 'companyfavorites',
+    beforeMount () {
+      setTimeout((a) => {
+        console.log('before mount')
+      }, 3000)
+    }
   }
 </script>
