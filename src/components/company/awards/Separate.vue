@@ -10,7 +10,11 @@
       <p><strong> Description</strong><br><span v-html="this.awardData.description"></span></p>
       <div>
         <img v-img v-for="file in this.awardData.files" :key="file.id" :src="'http://localhost:3000/'+file" />
+        <viewer :images="this.awardData.files">
+          <img v-for="src in this.awardData.files" :src="'https://yt3.ggpht.com/a-/AJLlDp0TFaxkKTbr1YMaEdj0KOLllMoFJcuWOIm4XA=s900-mo-c-c0xffffffff-rj-k-no'" :key="src">
+        </viewer>
       </div>
+
       <strong>Tags:</strong><span v-for="tag in awardData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <p class="published">Published: <timeago :since="this.awardData.createdAt" :auto-update="60"></timeago></p>
       <hr>
@@ -30,11 +34,15 @@
 
 <script>
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
+  import 'viewerjs/dist/viewer.css'
+  import Viewer from 'v-viewer'
+
 
   export default {
     name: 'separateAwardCompany',
     components: {
-      VueDisqus
+      VueDisqus,
+      Viewer
     },
     data () {
       return {

@@ -17,6 +17,9 @@ import Storage from 'vue-ls'
 import VueTimeago from 'vue-timeago'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VueImg from 'v-img'
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
+
 // For http requests
 Vue.use(VueAxios, axios)
 axios.defaults.baseURL = 'http://localhost:3000'
@@ -67,6 +70,7 @@ Vue.use(VueSweetalert2)
 // For image viewer
 Vue.use(VueImg)
 
+Vue.use(Viewer)
 
 sync(store, router)
 
