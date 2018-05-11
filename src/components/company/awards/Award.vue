@@ -94,37 +94,45 @@
           confirmButtonColor: '#BA1F33',
           cancelButtonColor: '#4ae387',
           confirmButtonText: 'Yes, delete it!'
-        }).then(() => {
-          self.$http({
-            method: 'delete',
-            url: '/awards/delete',
-            data: {
-              'award': awardId
-            },
-            headers: {
-              'Authorization': 'Bearer ' + authToken,
-              'Content-Type': 'application/json'
-            }
-          })
-          .then(function (awardDeleted) {
-            console.log('award delete', awardDeleted)
-            self.awardArray.map((award) => {
-              if (award._id === awardId) {
-                const index = self.awardArray.indexOf(award)
-                if (index > -1) {
-                  self.awardArray.splice(index, 1)
-                }
+        }).then((result) => {
+          if (result.value) {
+            self.$http({
+              method: 'delete',
+              url: '/awards/delete',
+              data: {
+                'award': awardId
+              },
+              headers: {
+                'Authorization': 'Bearer ' + authToken,
+                'Content-Type': 'application/json'
               }
             })
+            .then(function (awardDeleted) {
+              console.log('award delete', awardDeleted)
+              self.awardArray.map((award) => {
+                if (award._id === awardId) {
+                  const index = self.awardArray.indexOf(award)
+                  if (index > -1) {
+                    self.awardArray.splice(index, 1)
+                  }
+                }
+              })
+              self.$swal(
+                'Deleted!',
+                'Your contest has been deleted.',
+                'success'
+              )
+            })
+            .catch(function (awardDeleteErr) {
+              console.log('awardDeleteErr', awardDeleteErr)
+            })
+          } else if (result.dismiss === self.$swal.DismissReason.cancel) {
             self.$swal(
-              'Deleted!',
-              'Your contest has been deleted.',
-              'success'
+              'Cancelled',
+              'Your Project is safe :)',
+              'error'
             )
-          })
-          .catch(function (awardDeleteErr) {
-            console.log('awardDeleteErr', awardDeleteErr)
-          })
+          }
         })
       }
     },
