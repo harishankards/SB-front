@@ -8,6 +8,9 @@
       <p><strong> Award given to</strong><br>{{this.studentData.email}}</p>
       <p><strong> Provided by</strong><br> {{this.companyData.email}}</p>    
       <p><strong> Description</strong><br><span v-html="this.awardData.description"></span></p>
+      <div>
+        <img v-for="file in this.awardData.files" :key="file.id" :src="'http://localhost:3000/'+file" />
+      </div>
       <strong>Tags:</strong><span v-for="tag in awardData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <p class="published">Published: <timeago :since="this.awardData.createdAt" :auto-update="60"></timeago></p>
       <hr>
@@ -27,11 +30,13 @@
 
 <script>
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
+  import VEmbed from 'vue-embed'
 
   export default {
     name: 'separateAwardCompany',
     components: {
-      VueDisqus
+      VueDisqus,
+      VEmbed
     },
     data () {
       return {
