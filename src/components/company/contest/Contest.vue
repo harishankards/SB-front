@@ -99,37 +99,46 @@
           confirmButtonColor: '#BA1F33',
           cancelButtonColor: '#4ae387',
           confirmButtonText: 'Yes, delete it!'
-        }).then(() => {
-          self.$http({
-            method: 'delete',
-            url: '/contests/delete',
-            data: {
-              'contest': contestId
-            },
-            headers: {
-              'Authorization': 'Bearer ' + authToken,
-              'Content-Type': 'application/json'
-            }
-          })
-          .then(function (contestDeleted) {
-            console.log('contest delete', contestDeleted)
-            self.contestArray.map((contest) => {
-              if (contest._id === contestId) {
-                const index = self.contestArray.indexOf(contest)
-                if (index > -1) {
-                  self.contestArray.splice(index, 1)
-                }
+        })
+        .then((result) => {
+          if (result.value) {
+            self.$http({
+              method: 'delete',
+              url: '/contests/delete',
+              data: {
+                'contest': contestId
+              },
+              headers: {
+                'Authorization': 'Bearer ' + authToken,
+                'Content-Type': 'application/json'
               }
             })
+            .then(function (contestDeleted) {
+              console.log('contest delete', contestDeleted)
+              self.contestArray.map((contest) => {
+                if (contest._id === contestId) {
+                  const index = self.contestArray.indexOf(contest)
+                  if (index > -1) {
+                    self.contestArray.splice(index, 1)
+                  }
+                }
+              })
+              self.$swal(
+                'Deleted!',
+                'Your contest has been deleted.',
+                'success'
+              )
+            })
+            .catch(function (contestDeleteErr) {
+              console.log('contestDeleteErr', contestDeleteErr)
+            })
+          } else if (result.dismiss === self.$swal.DismissReason.cancel) {
             self.$swal(
-              'Deleted!',
-              'Your contest has been deleted.',
-              'success'
+              'Cancelled',
+              'Your Project is safe :)',
+              'error'
             )
-          })
-          .catch(function (contestDeleteErr) {
-            console.log('contestDeleteErr', contestDeleteErr)
-          })
+          }
         })
       }
     },

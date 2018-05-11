@@ -96,8 +96,8 @@
           confirmButtonColor: '#BA1F33',
           cancelButtonColor: '#4ae387',
           confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          console.log('result', result, self.$swal)
+        })
+        .then((result) => {
           if (result.value) {
             self.$http({
               method: 'delete',

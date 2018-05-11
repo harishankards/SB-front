@@ -110,6 +110,7 @@
         })
         .then(function (fileData) {
           console.log('filedata came', fileData)
+          secondthis.$ls.set('imageData', fileData.data)
         })
         .catch(function (fileDataErr) {
           console.log('fileDataerr', fileDataErr)
