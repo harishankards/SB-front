@@ -102,6 +102,18 @@
         .catch(function (studentDataErr) {
           console.log('student data err', studentDataErr)
         })
+
+        secondthis.$http.get('/attachments?filepath=/' + awardDetails.data.files[0], {
+          headers: {
+            'Authorization': 'Bearer ' + authToken
+          }
+        })
+        .then(function (fileData) {
+          console.log('filedata came', fileData)
+        })
+        .catch(function (fileDataErr) {
+          console.log('fileDataerr', fileDataErr)
+        })
       })
       .catch(function (awardDataErr) {
         console.log('awardDataErr', awardDataErr)
