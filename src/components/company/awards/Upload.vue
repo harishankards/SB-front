@@ -1,5 +1,5 @@
 <template>
-  <vue-dropzone ref="myVueDropzone" @vdropzone-success="vsuccess" id="dropzone" @vdropzone-removed-file="vremoved" :options="dropzoneOptions">
+  <vue-dropzone ref="myVueDropzone" :destroyDropzone="false" @vdropzone-success="vsuccess" id="dropzone" @vdropzone-removed-file="vremoved" :options="dropzoneOptions">
   </vue-dropzone>
 </template>
 
