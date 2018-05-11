@@ -96,38 +96,46 @@
           confirmButtonColor: '#BA1F33',
           cancelButtonColor: '#4ae387',
           confirmButtonText: 'Yes, delete it!'
-        }).then(() => {
-          console.log('auth token', self.authToken)
-          self.$http({
-            method: 'delete',
-            url: '/projects/delete',
-            data: {
-              'project': projectId
-            },
-            headers: {
-              'Authorization': 'Bearer ' + authToken,
-              'Content-Type': 'application/json'
-            }
-          })
-          .then(function (projectDeleted) {
-            console.log('project delete', projectDeleted)
-            self.projectArray.map((project) => {
-              if (project._id === projectId) {
-                const index = self.projectArray.indexOf(project)
-                if (index > -1) {
-                  self.projectArray.splice(index, 1)
-                }
+        }).then((result) => {
+          console.log('result', result, self.$swal)
+          if (result.value) {
+            self.$http({
+              method: 'delete',
+              url: '/projects/delete',
+              data: {
+                'project': projectId
+              },
+              headers: {
+                'Authorization': 'Bearer ' + authToken,
+                'Content-Type': 'application/json'
               }
             })
+            .then(function (projectDeleted) {
+              console.log('project delete', projectDeleted)
+              self.projectArray.map((project) => {
+                if (project._id === projectId) {
+                  const index = self.projectArray.indexOf(project)
+                  if (index > -1) {
+                    self.projectArray.splice(index, 1)
+                  }
+                }
+              })
+              self.$swal(
+                'Deleted!',
+                'Your project has been deleted.',
+                'success'
+              )
+            })
+            .catch(function (projectDeleteErr) {
+              console.log('projectDeleteErr', projectDeleteErr)
+            })
+          } else if (result.dismiss === self.$swal.DismissReason.cancel) {
             self.$swal(
-              'Deleted!',
-              'Your project has been deleted.',
-              'success'
+              'Cancelled',
+              'Your Project is safe :)',
+              'error'
             )
-          })
-          .catch(function (projectDeleteErr) {
-            console.log('projectDeleteErr', projectDeleteErr)
-          })
+          }
         })
       }
     },

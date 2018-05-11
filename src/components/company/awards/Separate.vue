@@ -9,9 +9,9 @@
       <p><strong> Provided by</strong><br> {{this.companyData.email}}</p>    
       <p><strong> Description</strong><br><span v-html="this.awardData.description"></span></p>
       <div>
-        <img v-img v-for="file in this.awardData.files" :key="file.id" :src="'http://localhost:3000/'+file" />
-        <viewer :images="this.awardData.files">
-          <img v-for="src in this.awardData.files" :src="'https://yt3.ggpht.com/a-/AJLlDp0TFaxkKTbr1YMaEdj0KOLllMoFJcuWOIm4XA=s900-mo-c-c0xffffffff-rj-k-no'" :key="src">
+        <!-- <img v-img v-for="file in this.awardData.files" :key="file.id" :src="'http://localhost:3000/'+file" /> -->
+        <viewer :images="awardData.files">
+          <img v-for="src in awardData.files" :src="'https://yt3.ggpht.com/a-/AJLlDp0TFaxkKTbr1YMaEdj0KOLllMoFJcuWOIm4XA=s900-mo-c-c0xffffffff-rj-k-no'" :key="src">
         </viewer>
       </div>
 
