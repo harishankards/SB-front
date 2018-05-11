@@ -16,6 +16,7 @@ import 'v-calendar/lib/v-calendar.min.css'
 import Storage from 'vue-ls'
 import VueTimeago from 'vue-timeago'
 import VueSweetalert2 from 'vue-sweetalert2'
+import VueImg from 'v-img'
 // For http requests
 Vue.use(VueAxios, axios)
 axios.defaults.baseURL = 'http://localhost:3000'
@@ -62,6 +63,9 @@ Vue.use(VueTimeago, {
 
 // For sweet alert
 Vue.use(VueSweetalert2)
+
+// For image viewer
+Vue.use(VueImg)
 
 
 sync(store, router)
