@@ -13,7 +13,7 @@
           </div>
           <div class="deleteIconDiv">
             <i class="fa fa-edit editIcon" @click="takeToEdit(award)"></i>                        
-            <i class="fa fa-trash deleteIcon" @click="showDeleteModal(award)"></i>
+            <i class="fa fa-trash deleteIcon" @click="showDeleteModal(award._id)"></i>
           </div>
         </div>
         <div id="projects-content-div">
