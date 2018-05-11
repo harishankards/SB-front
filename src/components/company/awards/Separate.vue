@@ -11,7 +11,7 @@
       <div>
         <!-- <img v-img v-for="file in this.awardData.files" :key="file.id" :src="'http://localhost:3000/'+file" /> -->
         <viewer :images="awardData.files">
-          <img v-for="src in awardData.files" :src="'https://yt3.ggpht.com/a-/AJLlDp0TFaxkKTbr1YMaEdj0KOLllMoFJcuWOIm4XA=s900-mo-c-c0xffffffff-rj-k-no'" :key="src">
+          <img v-for="src in awardData.files" :src="'http://localhost:3000/'+src" :key="src">
         </viewer>
       </div>
 
@@ -33,10 +33,12 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
   import 'viewerjs/dist/viewer.css'
-  import Viewer from 'v-viewer'
+  import Viewer from 'v-viewer/src/component.vue'
 
+  Vue.use(Viewer)
 
   export default {
     name: 'separateAwardCompany',
@@ -50,6 +52,14 @@
         awardId: '',
         companyData: '',
         studentData: ''
+      }
+    },
+    methods: {
+      inited (viewer) {
+        this.$viewer = viewer
+      },
+      show () {
+        this.$viewer.show()
       }
     },
     created () {
