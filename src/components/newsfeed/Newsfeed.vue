@@ -59,6 +59,7 @@
 
 <script>
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
+  import Swal2 from 'sweetalert2'
 
   export default {
     name: 'dashboard',
@@ -163,6 +164,19 @@
         this.showProjects = false
         this.showContests = true
       }
+    },
+    mounted () {
+      const toast = Swal2.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      })
+
+      toast({
+        type: 'success',
+        title: 'Signed in successfully'
+      })
     }
 
   }
