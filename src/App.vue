@@ -34,6 +34,9 @@
         console.log('this route name', this.$route.name)
         return this.$route.name === '404'
       }
+    },
+    created () {
+      this.$store.state.loginToastCounter = 0
     }
   }
 </script>
