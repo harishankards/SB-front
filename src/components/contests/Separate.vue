@@ -49,8 +49,8 @@
         },
         contestId: '',
         hostData: '',
-        isNotRegistered: true,
-        isRegistered: false
+        isNotRegistered: null,
+        isRegistered: null
       }
     },
     methods: {
@@ -181,6 +181,7 @@
       var secondthis = this
       const contestId = this.$route.params.id
       const authToken = this.$ls.get('token')
+      const studentEmail = this.$ls.get('email')
       this.contestId = contestId
       console.log('this contestid', this.contestId)
       this.$http.get('contests/get?id=' + contestId, {
@@ -197,12 +198,33 @@
           }
         })
         .then(function (companyData) {
-          // console.log('company data', companyData.data[0])
           secondthis.hostData = companyData.data[0]
-          // console.log('company', secondthis.hostData.email)
         })
         .catch(function (companyDataErr) {
           console.log('company data err', companyDataErr)
+        })
+
+        secondthis.$http.get('/students/get?email=' + studentEmail,
+          {
+            headers: {
+              'Authorization': 'Bearer ' + authToken,
+              'Content-Type': 'application/json'
+            }
+          })
+        .then(function (studentData) {
+          console.log('student data from created', studentData.data)
+          if (contestDetails.data.registrations.includes(studentData.data._id)) {
+            console.log('registered')
+            secondthis.isRegistered = true
+            secondthis.isNotRegistered = false
+          } else {
+            console.log('not registered')
+            secondthis.isNotRegistered = true
+            secondthis.isRegistered = false
+          }
+        })
+        .catch(function (studentDataErr) {
+          console.log('student data err', studentDataErr)
         })
       })
       .catch(function (contestDataErr) {
