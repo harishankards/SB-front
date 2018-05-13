@@ -31,31 +31,31 @@
         console.log('it is success', file, response)
         this.$store.state.projectUploadedFile.push({
           filename: file.name,
-          filepath: response.filepath
+          signedUrl: response.url
         })
         console.log('this store filepath', this.$store.state.projectUploadedFile)
         eventBus.$emit('uploadedFile', {
-          response: response
+          projectUploadedFiles: this.$store.state.projectUploadedFile
         })
       },
       vremoved (file, error, xhr) {
         // const self = this
         console.log('file removed', file)
         const filename = file.name
-        const filepath = this.$store.state.projectUploadedFile.map(item => {
+        const signedUrl = this.$store.state.projectUploadedFile.map(item => {
           if (item.filename === filename) {
-            console.log('item filname', item.filename)
+            console.log('item filname', item)
             const index = this.$store.state.projectUploadedFile.indexOf(item)
             this.$store.state.projectUploadedFile.splice(index, 1)
-            return item.filepath
+            return item.signedUrl
           }
         })
-        console.log('removed filepath', filepath)
+        console.log('removed signedUrl', signedUrl)
         this.$http({
           method: 'delete',
           url: '/attachments',
           data: {
-            filepath: filepath
+            // filepath: filepath
           },
           headers: {
             'Authorization': 'Bearer ' + this.token
