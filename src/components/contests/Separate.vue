@@ -13,7 +13,8 @@
       <strong>Tags:</strong><span v-for="tag in contestData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <p class="published">Published: <timeago :since="this.contestData.createdAt" :auto-update="60"></timeago></p>
       <div>
-        <button class="btn btn-info backbtn" v-show="isStudent" @click="showRegisterModal">Register</button>
+        <button class="btn btn-info backbtn" v-show="isStudent && isNotRegistered" @click="showRegisterModal">Register</button>
+        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal">Cancel registration</button>        
       </div>
       <hr>
       <div>
@@ -47,7 +48,9 @@
           registrations: []
         },
         contestId: '',
-        hostData: ''
+        hostData: '',
+        isNotRegistered: true,
+        isRegistered: false
       }
     },
     methods: {
@@ -57,6 +60,11 @@
           'You have registered for the contest!',
           'success'
         )
+        this.isRegistered = true
+        this.isNotRegistered = false
+      },
+      showUnregisterModal: function () {
+        console.log('unregister')
       }
     },
     computed: {
