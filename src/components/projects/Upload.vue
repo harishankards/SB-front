@@ -29,12 +29,11 @@
     methods: {
       vsuccess (file, response) {
         // console.log('it is success', file, response)
-        this.$store.state.projectUploadedFile = []
         this.$store.state.projectUploadedFile.push({
           filename: file.name,
           filepath: response.filepath
         })
-        console.log('this store filepath', this.$store.state.projectUploadedFile[0].filepath)
+        console.log('this store filepath', this.$store.state.projectUploadedFile)
         eventBus.$emit('uploadedFile', {
           response: response
         })
@@ -45,6 +44,8 @@
         const filepath = this.$store.state.projectUploadedFile.map(item => {
           if (item.filename === filename) {
             return item.filepath
+          } else {
+            return 'nothing'
           }
         })
         console.log('removed filepath', filepath)
@@ -65,6 +66,9 @@
           console.log('unable to delete attachment', attachmentDeleteErr)
         })
       }
+    },
+    created () {
+      this.$store.state.projectUploadedFile = []
     }
   }
 </script>
