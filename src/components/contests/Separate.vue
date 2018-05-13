@@ -83,7 +83,7 @@
               self.$http.post('/contests/registrations',
                 {
                   'contest': contestId,
-                  'student': studentData.data._id
+                  'student': studentData.data[0]._id
                 },
                 {
                   headers: {
@@ -133,11 +133,7 @@
         })
         .then((result) => {
           if (result.value) {
-            self.$http.post('/contests/registrations',
-              {
-                'contest': contestId,
-                'student': email
-              },
+            self.$http.get('/students/get?email=' + email,
               {
                 headers: {
                   'Authorization': 'Bearer ' + authToken,
@@ -145,18 +141,36 @@
                 }
               }
             )
-            .then(function (deregistered) {
-              console.log('contest deregistered', deregistered)
-              this.isRegistered = false
-              this.isNotRegistered = true
-              self.$swal(
-                'Deregistered!',
-                'Your registration to the contest has been deleted.',
-                'success'
+            .then(function (studentData) {
+              console.log('studetn data from deregister', studentData.data[0])
+              self.$http.post('/contests/registrations',
+                {
+                  'contest': contestId,
+                  'student': studentData.data[0]._id
+                },
+                {
+                  headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'Content-Type': 'application/json'
+                  }
+                }
               )
+              .then(function (deregistered) {
+                console.log('contest deregistered', deregistered)
+                this.isRegistered = false
+                this.isNotRegistered = true
+                self.$swal(
+                  'Deregistered!',
+                  'Your registration to the contest has been deleted.',
+                  'success'
+                )
+              })
+              .catch(function (projectDeleteErr) {
+                console.log('projectDeleteErr', projectDeleteErr)
+              })
             })
-            .catch(function (projectDeleteErr) {
-              console.log('projectDeleteErr', projectDeleteErr)
+            .catch(function (studentDataErr) {
+              console.log('student data err from deregister', studentDataErr)
             })
           } else if (result.dismiss === self.$swal.DismissReason.cancel) {
             self.$swal(
@@ -212,8 +226,8 @@
             }
           })
         .then(function (studentData) {
-          console.log('student data from created', studentData.data)
-          if (contestDetails.data.registrations.includes(studentData.data._id)) {
+          console.log('student data from created', studentData.data[0])
+          if (contestDetails.data.registrations.includes(studentData.data[0]._id)) {
             console.log('registered')
             secondthis.isRegistered = true
             secondthis.isNotRegistered = false
