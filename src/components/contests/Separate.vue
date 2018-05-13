@@ -13,8 +13,8 @@
       <strong>Tags:</strong><span v-for="tag in contestData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <p class="published">Published: <timeago :since="this.contestData.createdAt" :auto-update="60"></timeago></p>
       <div>
-        <button class="btn btn-info backbtn" v-show="isStudent && isNotRegistered" @click="showRegisterModal">Register</button>
-        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal(this.contestData._id)">Deregister</button>        
+        <button class="btn btn-info backbtn" v-show="isStudent && isNotRegistered" @click="showRegisterModal()">Register</button>
+        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal(this.contestId)">Deregister</button>        
       </div>
       <hr>
       <div>
@@ -55,13 +55,67 @@
     },
     methods: {
       showRegisterModal: function () {
-        this.$swal(
-          'Success!',
-          'You have registered for the contest!',
-          'success'
-        )
-        this.isRegistered = true
-        this.isNotRegistered = false
+        console.log('register')
+        const contestId = this.contestId
+        const self = this
+        const authToken = this.$ls.get('token')
+        const email = this.$ls.get('email')
+        this.$swal({
+          title: 'Are you sure?',
+          text: 'You want to register?',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#BA1F33',
+          cancelButtonColor: '#4ae387',
+          confirmButtonText: 'Yes, do it!'
+        })
+        .then((result) => {
+          if (result.value) {
+            self.$http.get('/students/get?email=' + email,
+              {
+                headers: {
+                  'Authorization': 'Bearer ' + authToken,
+                  'Content-Type': 'application/json'
+                }
+              })
+            .then(function (studentData) {
+              console.log('studentData', studentData.data)
+              self.$http.post('/contests/registrations',
+                {
+                  'contest': contestId,
+                  'student': studentData.data._id
+                },
+                {
+                  headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'Content-Type': 'application/json'
+                  }
+                })
+              .then(function (registered) {
+                console.log('contest registered', registered)
+                this.isRegistered = true
+                this.isNotRegistered = false
+                self.$swal(
+                  'Registered!',
+                  'Your registration to the contest is successful',
+                  'success'
+                )
+              })
+              .catch(function (contestRegistrationError) {
+                console.log('contestRegistrationError', contestRegistrationError)
+              })
+            })
+            .catch(function (studentDataErr) {
+              console.log('studentDataErr', studentDataErr.data)
+            })
+          } else if (result.dismiss === self.$swal.DismissReason.cancel) {
+            self.$swal(
+              'Cancelled',
+              'Your are not registered :)',
+              'error'
+            )
+          }
+        })
       },
       showUnregisterModal: function (contestId) {
         console.log('unregister')
@@ -128,6 +182,7 @@
       const contestId = this.$route.params.id
       const authToken = this.$ls.get('token')
       this.contestId = contestId
+      console.log('this contestid', this.contestId)
       this.$http.get('contests/get?id=' + contestId, {
         headers: {
           'Authorization': 'Bearer ' + authToken
