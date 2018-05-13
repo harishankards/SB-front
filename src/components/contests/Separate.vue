@@ -14,7 +14,7 @@
       <p class="published">Published: <timeago :since="this.contestData.createdAt" :auto-update="60"></timeago></p>
       <div>
         <button class="btn btn-info backbtn" v-show="isStudent && isNotRegistered" @click="showRegisterModal">Register</button>
-        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal">Cancel registration</button>        
+        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal(this.contestData._id)">Deregister</button>        
       </div>
       <hr>
       <div>
@@ -63,8 +63,55 @@
         this.isRegistered = true
         this.isNotRegistered = false
       },
-      showUnregisterModal: function () {
+      showUnregisterModal: function (contestId) {
         console.log('unregister')
+        const self = this
+        const authToken = this.$ls.get('token')
+        const email = this.$ls.get('email')
+        this.$swal({
+          title: 'Are you sure?',
+          text: 'You want to deregister?',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#BA1F33',
+          cancelButtonColor: '#4ae387',
+          confirmButtonText: 'Yes, do it!'
+        })
+        .then((result) => {
+          if (result.value) {
+            self.$http.post('/contests/registrations',
+              {
+                'contest': contestId,
+                'student': email
+              },
+              {
+                headers: {
+                  'Authorization': 'Bearer ' + authToken,
+                  'Content-Type': 'application/json'
+                }
+              }
+            )
+            .then(function (deregistered) {
+              console.log('contest deregistered', deregistered)
+              this.isRegistered = false
+              this.isNotRegistered = true
+              self.$swal(
+                'Deregistered!',
+                'Your registration to the contest has been deleted.',
+                'success'
+              )
+            })
+            .catch(function (projectDeleteErr) {
+              console.log('projectDeleteErr', projectDeleteErr)
+            })
+          } else if (result.dismiss === self.$swal.DismissReason.cancel) {
+            self.$swal(
+              'Cancelled',
+              'Your Registration is safe :)',
+              'error'
+            )
+          }
+        })
       }
     },
     computed: {
