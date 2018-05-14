@@ -14,7 +14,7 @@
       <p class="published">Published: <timeago :since="this.contestData.createdAt" :auto-update="60"></timeago></p>
       <div>
         <button class="btn btn-info backbtn" v-show="isStudent && isNotRegistered" @click="showRegisterModal()">Register</button>
-        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal(this.contestId)">Deregister</button>        
+        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal()">Deregister</button>        
       </div>
       <hr>
       <div>
@@ -93,8 +93,8 @@
                 })
               .then(function (registered) {
                 console.log('contest registered', registered)
-                this.isRegistered = true
-                this.isNotRegistered = false
+                self.isRegistered = true
+                self.isNotRegistered = false
                 self.$swal(
                   'Registered!',
                   'Your registration to the contest is successful',
@@ -117,9 +117,10 @@
           }
         })
       },
-      showUnregisterModal: function (contestId) {
+      showUnregisterModal: function () {
         console.log('unregister')
         const self = this
+        const contestId = this.contestId
         const authToken = this.$ls.get('token')
         const email = this.$ls.get('email')
         this.$swal({
@@ -143,7 +144,7 @@
             )
             .then(function (studentData) {
               console.log('studetn data from deregister', studentData.data[0])
-              self.$http.post('/contests/registrations',
+              self.$http.post('/contests/registrations/remove',
                 {
                   'contest': contestId,
                   'student': studentData.data[0]._id
@@ -157,8 +158,8 @@
               )
               .then(function (deregistered) {
                 console.log('contest deregistered', deregistered)
-                this.isRegistered = false
-                this.isNotRegistered = true
+                self.isRegistered = false
+                self.isNotRegistered = true
                 self.$swal(
                   'Deregistered!',
                   'Your registration to the contest has been deleted.',
