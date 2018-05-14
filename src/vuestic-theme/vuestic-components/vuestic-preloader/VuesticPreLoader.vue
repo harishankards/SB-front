@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import {color, lightness} from 'kewler'
+  import {color} from 'kewler'
   import {AtomSpinner} from 'epic-spinners'
 
   export default {
@@ -33,25 +33,25 @@
         let lighten = this.points[index].lighten
         this.points[index].lighten = lighten === 8 ? 1 : lighten + 1
       },
-      draw () {
-        let ctx = this.context
-        ctx.clearRect(0, 0, 140, 104)
-        let padding = 4
-        this.points.forEach(point => {
-          ctx.beginPath()
-          let delta = this.radius + padding
-          ctx.arc(point.x + delta, point.y + delta, this.radius, 0, Math.PI * 2, false)
-          ctx.fillStyle = this.color(lightness(point.lighten / 10 * 35))()
-          ctx.fill()
-        })
-        let main = this.points[this.mainIndex]
-        let delta = this.mainRadius - this.radius + padding
-        ctx.beginPath()
-        ctx.arc(main.x + delta, main.y + delta, this.mainRadius, 0, Math.PI * 2, false)
-        ctx.fillStyle = this.color()
-        ctx.fill()
-        ctx.closePath()
-      },
+      // draw () {
+      //   let ctx = this.context
+      //   ctx.clearRect(0, 0, 140, 104)
+      //   let padding = 4
+      //   this.points.forEach(point => {
+      //     ctx.beginPath()
+      //     let delta = this.radius + padding
+      //     ctx.arc(point.x + delta, point.y + delta, this.radius, 0, Math.PI * 2, false)
+      //     ctx.fillStyle = this.color(lightness(point.lighten / 10 * 35))()
+      //     ctx.fill()
+      //   })
+      //   let main = this.points[this.mainIndex]
+      //   let delta = this.mainRadius - this.radius + padding
+      //   ctx.beginPath()
+      //   ctx.arc(main.x + delta, main.y + delta, this.mainRadius, 0, Math.PI * 2, false)
+      //   ctx.fillStyle = this.color()
+      //   ctx.fill()
+      //   ctx.closePath()
+      // },
       calculate () {
         this.mainIndex = this.getNext(this.mainIndex)
         let prevIndex = this.mainIndex
@@ -62,7 +62,7 @@
       },
       update () {
         this.calculate()
-        this.draw()
+        // this.draw()
       },
       animate () {
         this.interval = setInterval(this.update, 30)
@@ -72,7 +72,7 @@
       }
     },
     mounted () {
-      this.context = this.$refs.canvas.getContext('2d')
+      // this.context = this.$refs.canvas.getContext('2d')
       this.points = this.points.map(point => {
         return {
           lighten: 8,
@@ -82,7 +82,7 @@
       for (let i = 1; i <= 7; i++) {
         this.points[this.mainIndex - i].lighten = i
       }
-      this.draw()
+      // this.draw()
       this.animate()
     },
     data () {
