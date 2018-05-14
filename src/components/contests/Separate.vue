@@ -13,8 +13,8 @@
       <strong>Tags:</strong><span v-for="tag in contestData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <p class="published">Published: <timeago :since="this.contestData.createdAt" :auto-update="60"></timeago></p>
       <div>
-        <button class="btn btn-info backbtn" v-show="isStudent && isNotRegistered" @click="showRegisterModal()">Register</button>
-        <button class="btn btn-info backbtn" v-show="isStudent && isRegistered" @click="showUnregisterModal()">Deregister</button>        
+        <button class="btn btn-info backbtn" v-show="isNotRegistered" @click="showRegisterModal()">Register</button>
+        <button class="btn btn-info backbtn" v-show="isRegistered" @click="showUnregisterModal()">Deregister</button>        
       </div>
       <hr>
       <div>
@@ -208,15 +208,6 @@
             )
           }
         })
-      }
-    },
-    computed: {
-      isStudent: function () {
-        if (this.$store.getters.student) {
-          return true
-        } else {
-          return false
-        }
       }
     },
     created () {
