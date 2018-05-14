@@ -4,6 +4,10 @@
       <div class="noProjects" v-show="noContests">
           <h4> Oops! You have no Contests to view. </h4>
       </div>
+      <vuestic-switch class="col-md-4 switch" v-model="isUpcoming">
+        <span slot="trueTitle">Upcoming</span>
+        <span slot="falseTitle">History</span>
+    </vuestic-switch>
       <vuestic-widget class="" v-for="contest in contestArray" :key="contest.id">
         <div>
           <div id="projects-name-div">
@@ -18,7 +22,6 @@
         <div id="tagDiv">
           <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
         </div>
-        
       </vuestic-widget>
     </div>
     <div class="col-md-4">
@@ -43,6 +46,9 @@
       return {
         contestArray: [],
         noContests: false,
+        isUpcoming: true,
+        showUpcoming: true,
+        showHistory: false,
         authToken: this.$ls.get('token'),
         posts: [
           {
@@ -75,6 +81,15 @@
     updated () {
       if (this.contestArray.length === 0) {
         this.noContests = true
+      }
+      if (this.isUpcoming) {
+        console.log('it is upcoming')
+        this.showUpcoming = true
+        this.showHistory = false
+      } else {
+        console.log('it is history')
+        this.showUpcoming = false
+        this.showHistory = true
       }
     },
     created () {
@@ -156,5 +171,8 @@
     background: $tagcolor;
     color: white;
     border-radius: 5%;
+  }
+  .switch {
+    margin-bottom: 1rem;
   }
 </style>
