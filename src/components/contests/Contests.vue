@@ -1,72 +1,160 @@
 <template>
-  <vuestic-widget headerText="Your contests">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="noProjects" v-show="noContests">
+          <h4> Oops! You have no Contests to view. </h4>
+      </div>
+      <vuestic-widget class="" v-for="contest in contestArray" :key="contest.id">
+        <div>
+          <div id="projects-name-div">
+            <span class="projects-name"><strong><a href="" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
+            <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
+          </div>
+        </div>
 
-    <vuestic-data-table
-                :tableData ="tableData"
-                :tableFields="tableFields"
-                :itemsPerPage="itemsPerPage"
-                :sortFunctions="sortFunctions"
-                :apiMode="apiMode"
-                :paginationPath="paginationPath" />
-  </vuestic-widget>
+        <div id="projects-content-div">
+          <span id="projects-description">{{contest.about}}</span>
+        </div>
+        <div id="tagDiv">
+          <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+        </div>
+        
+      </vuestic-widget>
+    </div>
+    <div class="col-md-4">
+      <vuestic-widget class="createproject-div">
+        <div class="col-md-offset-6 col-md-12">
+          <h5 class="gotnew">Google's GSOC is here!</h5>
+          <button class="btn btn-primary btn-micro"> Join now</button>    
+        </div>
+      </vuestic-widget>
+      <vuestic-widget class="live-feed" headerText="Live feeds">
+        <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
+      </vuestic-widget>
+    </div>
+  </div>
 </template>
 
 <script>
-export default{
-  name: 'contestHistory',
-  data () {
-    return {
-      // apiUrl: 'https://vuetable.ratiw.net/api/users', // Api retuns table data
-      apiMode: false, // Choose api mode or just pass array in data-table component
-      tableFields: [
-        {
-          name: 'contestname', // Object property name in your data e.g. (data[0].name)
-          sortField: 'contestname' // Object property name in your data which will be used for sorting
-        },
-        {
-          name: 'sponsor',
-          sortField: 'sponsor'
-        },
-        {
-          name: 'mode',
-          title: 'mode' // Title of column
-        },
-        {
-          name: 'date',
-          title: 'date'
-        },
-        {
-          name: 'finalstatus',
-          title: 'finalstatus'
+  export default {
+    name: 'projectList',
+    component: {},
+    data () {
+      return {
+        contestArray: [],
+        noContests: false,
+        authToken: this.$ls.get('token'),
+        posts: [
+          {
+            id: 0,
+            photoURL: 'https://goo.gl/KnVxVY',
+            name: 'Harishankar',
+            text: 'is going for a contest'
+          },
+          {
+            id: 1,
+            photoURL: 'https://goo.gl/1nKusR',
+            name: 'Balaji D Loganathan',
+            text: 'upvoted for a project'
+          },
+          {
+            id: 2,
+            photoURL: 'https://goo.gl/Ckaexc',
+            name: 'Surendran S',
+            text: 'upvoted for a project'
+          }
+        ]
+      }
+    },
+
+    methods: {
+      viewContest: function (contestId) {
+        this.$router.push('/student/contest/' + contestId)
+      }
+    },
+    updated () {
+      if (this.contestArray.length === 0) {
+        this.noContests = true
+      }
+    },
+    created () {
+      const email = this.$ls.get('email')
+      const lsToken = this.$ls.get('token')
+      this.$http.get('/students/get?email=' + email, {
+        headers: {
+          'Authorization': 'Bearer ' + lsToken
         }
-      ],
-      itemsPerPage: [  // values in dropdown "Items Per Page"
-        {
-          value: 2
-        },
-        {
-          value: 5
-        },
-        {
-          value: 10
+      })
+      .then((studentData) => {
+        console.log('student Data', studentData.data)
+        const contestArr = studentData.data[0].contests
+        // console.log('projectArr', projectArr)
+        if (contestArr.length === 0) {
+          this.noContests = true
         }
-      ],
-      sortFunctions: {       // use custom sorting functions for prefered fields
-        'name': function (item1, item2) {
-          return item1 >= item2 ? 1 : -1
-        },
-        'email': function (item1, item2) {
-          return item1 >= item2 ? 1 : -1
-        }
-      },
-      paginationPath: '',
-      tableData: [
-        {
-          contestName: 'Google Summer of Code',
-          contestSponsor: 'Google'
-        }
-      ]
+        contestArr.map(contest => {
+          console.log('single contest', contest)
+          this.$http.get('/contests/get?id=' + contest, {
+            headers: {
+              'Authorization': 'Bearer ' + lsToken
+            }
+          })
+          .then((contestData) => {
+            // console.log('project data', projectData)
+            this.contestArray.push(contestData.data)
+            console.log('contest array', this.contestArray)
+          })
+          .catch((contestErr) => {
+            console.log('contest err', contestErr)
+          })
+        })
+      }).catch((studentErr) => {
+        console.log('student err', studentErr)
+      })
     }
   }
-}
 </script>
+
+<style lang="scss" scoped>
+  @import "../../sass/_variables.scss";
+
+  .createproject-div{
+    text-align: center;
+  }
+  .newsfeed-page{
+    padding-left: 0rem !important;
+  }
+  .projects-time{
+    margin-top: 3px;
+    color: #a29e9e;
+  }
+
+  #projects-name-div{
+    display: inline-block;
+    // margin-left: 0.4rem;
+  }
+
+  #projects-content-div{
+    margin-top: 0.5rem;
+  }
+
+  .gotnew{
+    margin-bottom: 1.5rem;
+  }
+  .noProjects {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 7rem;
+  }
+  #tagDiv {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .tagNames {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    background: $tagcolor;
+    color: white;
+    border-radius: 5%;
+  }
+</style>
