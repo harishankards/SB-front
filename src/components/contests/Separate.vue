@@ -95,6 +95,7 @@
                 console.log('contest registered', registered)
                 self.isRegistered = true
                 self.isNotRegistered = false
+                self.contestData.registrations.length++
                 self.$swal(
                   'Registered!',
                   'Your registration to the contest is successful',
@@ -160,6 +161,7 @@
                 console.log('contest deregistered', deregistered)
                 self.isRegistered = false
                 self.isNotRegistered = true
+                self.contestData.registrations.length--
                 self.$swal(
                   'Deregistered!',
                   'Your registration to the contest has been deleted.',
