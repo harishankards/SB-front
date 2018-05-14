@@ -26,13 +26,9 @@
 </template>
 
 <script>
-  import VueDisqus from 'vue-disqus/VueDisqus.vue'
 
   export default {
     name: 'separateAwardStudent',
-    components: {
-      VueDisqus
-    },
     data () {
       return {
         awardData: '',

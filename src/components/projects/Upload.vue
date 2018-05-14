@@ -1,5 +1,10 @@
 <template>
-  <vue-dropzone ref="myVueDropzone" :destroyDropzone="false" @vdropzone-success="vsuccess" @vdropzone-removed-file="vremoved" id="dropzone" :options="dropzoneOptions">
+  <vue-dropzone ref="myVueDropzone" :destroyDropzone="false" 
+    @vdropzone-success="vsuccess" @vdropzone-removed-file="vremoved"
+    id="dropzone" :options="dropzoneOptions"
+    :awss3="awss3"
+    v-on:vdropzone-s3-upload-error="s3UploadError"
+    v-on:vdropzone-s3-upload-success="s3UploadSuccess">
   </vue-dropzone>
 </template>
 
@@ -23,6 +28,12 @@
           headers: { 'Authorization': 'Bearer ' + this.token },
           addRemoveLinks: true,
           dictDefaultMessage: "<i class='fa fa-cloud-upload'></i>UPLOAD ME"
+        },
+        awss3: {
+          signingURL: 'http://localhost:3000/attachments/signedUrlPut', // Where you will get signed url
+          headers: { 'Authorization': 'Bearer ' + this.token },
+          params: {},
+          sendFileToServer: false // If you want to upload file to your server along with s3
         }
       }
     },
@@ -68,6 +79,12 @@
         .catch(function (attachmentDeleteErr) {
           console.log('unable to delete attachment', attachmentDeleteErr)
         })
+      },
+      s3UploadError () {
+        console.log('s3UploadError')
+      },
+      s3UploadSuccess () {
+        console.log('s3UploadSuccess')
       }
     },
     created () {
