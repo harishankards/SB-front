@@ -18,6 +18,7 @@ import VueTimeago from 'vue-timeago'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VueImg from 'v-img'
 import SocialSharing from 'vue-social-sharing'
+import VTooltip from 'v-tooltip'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -71,6 +72,9 @@ Vue.use(VueImg)
 
 // For social sharing
 Vue.use(SocialSharing)
+
+// For tooltip and popover
+Vue.use(VTooltip)
 
 sync(store, router)
 

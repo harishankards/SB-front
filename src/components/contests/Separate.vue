@@ -22,16 +22,28 @@
         <i class="fa fa-child"></i> {{this.contestData.registrations.length}} people registered
         </div>
         <div class="comment-section">
+          <v-popover offset="16">
+            <button class="tooltip-target b3">Click me</button>
+
+            <template slot="popover">
+              <input class="tooltip-content" placeholder="Tooltip content" />
+              <p>
+                hello
+              </p>
+              <a v-close-popover>Close</a>
+            </template>
+          </v-popover>
+
           <i class="fa fa-share"></i> Share
            <social-sharing url="https://studentburger.com/"
-                      title="Student Burger"
-                      description="The Social Network for Students and Companies"
-                      quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
-                      hashtags="studentburger,socialnetwork,student,company"
-                      twitter-user="_studentburger"
-                      inline-template>
+                    title="Student Burger"
+                    description="The Social Network for Students and Companies"
+                    quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+                    hashtags="studentburger,socialnetwork,student,company"
+                    twitter-user="_studentburger"
+                    inline-template>
               <div>
-                <network network="email">
+                <network class="share-icon" network="email">
                     <i class="fa fa-envelope"></i> Email
                 </network>
                 <network network="facebook">
@@ -57,7 +69,17 @@
 
 <script>
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
+  import Vue from 'vue'
+  import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 
+  Vue.directive('tooltip', VTooltip)
+  Vue.directive('close-popover', VClosePopover)
+  Vue.component('v-popover', VPopover)
+
+  Vue.use(VTooltip)
+  VTooltip.options.defaultTemplate =
+    '<div class="foo" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+  
   export default {
     name: 'separateContestStudent',
     components: {
@@ -65,6 +87,7 @@
     },
     data () {
       return {
+        msg: 'ello',
         contestData: {
           date: {
             start: '',
@@ -263,6 +286,9 @@
       .catch(function (contestDataErr) {
         console.log('contestDataErr', contestDataErr)
       })
+    },
+    updated () {
+      console.log(VTooltip)
     }
   }
 </script>
@@ -292,5 +318,28 @@
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 5%;
+  }
+  .share-icon {
+    cursor: pointer;
+  }
+
+  .tooltip {
+  // ...
+
+    &.popover {
+      $color: #f9f9f9;
+
+      .popover-inner {
+        background: $color;
+        color: black;
+        padding: 24px;
+        border-radius: 5px;
+        box-shadow: 0 5px 30px rgba(black, .1);
+      }
+
+      .popover-arrow {
+        border-color: $color;
+      }
+    }
   }
 </style>
