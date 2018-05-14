@@ -17,6 +17,7 @@ import Storage from 'vue-ls'
 import VueTimeago from 'vue-timeago'
 import VueSweetalert2 from 'vue-sweetalert2'
 import VueImg from 'v-img'
+import SocialSharing from 'vue-social-sharing'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -68,6 +69,8 @@ Vue.use(VueSweetalert2)
 // For image viewer
 Vue.use(VueImg)
 
+// For social sharing
+Vue.use(SocialSharing)
 
 sync(store, router)
 
