@@ -176,7 +176,7 @@
             onNext: () => {
               console.log('this projectdata', this.projectData)
               const authToken = this.$ls.get('token')
-              this.$http.put('/projects/update', this.projectData, {
+              this.$http.put('/companyprojects', this.projectData, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + authToken
@@ -200,7 +200,7 @@
     },
     methods: {
       sendBack: function () {
-        this.$router.push('/student/projects/project-list')
+        this.$router.push('/company/projects')
       },
       showError (nudge) {
         if (nudge === 'show') {
@@ -235,7 +235,7 @@
       const projectId = this.$route.params.id
       const authToken = this.$ls.get('token')
       this.projectId = projectId
-      this.$http.get('projects/get?id=' + projectId, {
+      this.$http.get('/companyprojects?id=' + projectId, {
         headers: {
           'Authorization': 'Bearer ' + authToken
         }
@@ -249,12 +249,12 @@
           }
         })
         .then(function (companyData) {
-          console.log('student data', companyData.data[0])
+          console.log('company data', companyData.data[0])
           secondthis.authorData = companyData.data[0]
-          console.log('studet', secondthis.authorData.email)
+          console.log('company', secondthis.authorData.email)
         })
         .catch(function (companyDataErr) {
-          console.log('student data err', companyDataErr)
+          console.log('company data err', companyDataErr)
         })
       })
       .catch(function (projectDataErr) {
