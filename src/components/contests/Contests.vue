@@ -8,7 +8,7 @@
         <span slot="trueTitle">Upcoming</span>
         <span slot="falseTitle">History</span>
     </vuestic-switch>
-      <vuestic-widget class="" v-for="contest in contestArray" :key="contest.id">
+      <vuestic-widget class="" v-for="contest in upcomingContestArray" :key="contest.id" v-show="showUpcoming">
         <div>
           <div id="projects-name-div">
             <span class="projects-name"><strong><a href="" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
@@ -23,6 +23,28 @@
           <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
         </div>
       </vuestic-widget>
+      <div v-show="showHistory">
+        <div class="noProjects" v-if="noPreviousContests">
+          <h4>You have no Previous Contests to view. </h4>
+        </div>
+
+        <vuestic-widget class="" v-for="contest in previousContestArray" :key="contest.id" >
+          
+          <div>
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
+            </div>
+          </div>
+
+          <div id="projects-content-div">
+            <span id="projects-description">{{contest.about}}</span>
+          </div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+        </vuestic-widget>
+      </div>
     </div>
     <div class="col-md-4">
       <vuestic-widget class="createproject-div">
@@ -45,7 +67,10 @@
     data () {
       return {
         contestArray: [],
+        upcomingContestArray: [],
+        previousContestArray: [],
         noContests: false,
+        noPreviousContests: false,
         isUpcoming: true,
         showUpcoming: true,
         showHistory: false,
@@ -79,8 +104,12 @@
       }
     },
     updated () {
-      if (this.contestArray.length === 0) {
+      if (this.upcomingContestArray.length === 0) {
         this.noContests = true
+      }
+      if (this.previousContestArray.length === 0) {
+        console.log('no previous contests')
+        this.noPreviousContests = true
       }
       if (this.isUpcoming) {
         console.log('it is upcoming')
@@ -116,8 +145,14 @@
           })
           .then((contestData) => {
             // console.log('project data', projectData)
-            this.contestArray.push(contestData.data)
-            console.log('contest array', this.contestArray)
+            if (contestData.data.date.end < new Date()) {
+              console.log('project ended')
+              this.previousContestArray.push(contestData.data)
+            } else {
+              this.upcomingContestArray.push(contestData.data)
+            }
+            // this.contestArray.push(contestData.data)
+            // console.log('contest array', this.contestArray)
           })
           .catch((contestErr) => {
             console.log('contest err', contestErr)
