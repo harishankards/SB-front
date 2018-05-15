@@ -66,7 +66,7 @@
   import Multiselect from './Multiselect'
   import editor from './Editor'
   import upload from './Upload'
-  import { eventBus } from '../../main.js'
+  import { eventBus } from '../../../main.js'
   export default {
     name: 'newProject',
     components: {

@@ -5,7 +5,7 @@
 
  <script>
   import { VueEditor } from 'vue2-editor'
-  import { eventBus } from '../../main.js'
+  import { eventBus } from '../../../main.js'
 
   export default {
     name: 'editor',
