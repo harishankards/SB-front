@@ -161,7 +161,7 @@
         }
         projectArr.map(project => {
           console.log('single project', project)
-          this.$http.get('/projects/get?id=' + project, {
+          this.$http.get('/companyprojects?id=' + project, {
             headers: {
               'Authorization': 'Bearer ' + lsToken
             }
