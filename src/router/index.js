@@ -22,6 +22,8 @@ import SeparateProjectCompany from 'components/company/projects/Separate'
 import CompanyNewsfeed from 'components/company/newsfeed/Newsfeed'
 import CompanyContest from 'components/company/contest/Contest'
 import CompanyProjects from 'components/company/projects/Project'
+import CompanyProjectNew from 'components/company/projects/NewProject'
+import CompanyProjectEdit from 'components/company/projects/EditProject'
 import CompanyAwards from 'components/company/awards/Award'
 import CompanyMessages from 'components/company/messages/Message'
 import CompanyFavorites from 'components/company/favorites/Favorite'
@@ -60,7 +62,9 @@ export default new Router({
     // Company things
     {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed', meta: { requiresAuth: true }},
     {path: '/company/contests', component: CompanyContest, name: 'Company Contests', meta: { requiresAuth: true }},
-    {path: '/company/projects', component: CompanyProjects, name: 'Company Projects', meta: { requiresAuth: true }},
+    {path: '/company/projects', component: CompanyProjects, name: 'Company Project List', meta: { requiresAuth: true }},
+    {path: '/company/projects/new', component: CompanyProjectNew, name: 'Company Project New', meta: { requiresAuth: true }},
+    {path: '/company/projects/edit/:id', component: CompanyProjectEdit, name: 'Company Project Edit', meta: { requiresAuth: true }},
     {path: '/company/awards', component: CompanyAwards, name: 'Company Awards', meta: { requiresAuth: true }},
     {path: '/company/messages', component: CompanyMessages, name: 'Company Messages', meta: { requiresAuth: true }},
     {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites', meta: { requiresAuth: true }},
