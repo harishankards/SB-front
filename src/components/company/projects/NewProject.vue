@@ -82,7 +82,7 @@
           description: '',
           files: [],
           tags: [],
-          author: ''
+          author: this.$ls.get('email')
         },
         counter: 0,
         errorMessage: '',
@@ -183,7 +183,7 @@
             onNext: () => {
               console.log('this projectdata', this.projectData)
               const authToken = this.$ls.get('token')
-              this.$http.post('/projects/new', this.projectData, {
+              this.$http.post('/companyprojects', this.projectData, {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': 'Bearer ' + authToken
@@ -207,7 +207,7 @@
     },
     methods: {
       sendBack: function () {
-        this.$router.push('/student/projects/project-list')
+        this.$router.push('/company/projects')
       },
       showError (nudge) {
         if (nudge === 'show') {
