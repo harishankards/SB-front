@@ -8,21 +8,27 @@
         <span slot="trueTitle">Upcoming</span>
         <span slot="falseTitle">History</span>
     </vuestic-switch>
-      <vuestic-widget class="" v-for="contest in upcomingContestArray" :key="contest.id" v-show="showUpcoming">
-        <div>
-          <div id="projects-name-div">
-            <span class="projects-name"><strong><a href="" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
-            <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
-          </div>
+      <div v-show="showUpcoming">
+        <div class="noProjects" v-if="noUpcomingContests">
+          <h4>You have no Previous Contests to view. </h4>
         </div>
 
-        <div id="projects-content-div">
-          <span id="projects-description">{{contest.about}}</span>
-        </div>
-        <div id="tagDiv">
-          <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
-        </div>
-      </vuestic-widget>
+        <vuestic-widget class="" v-for="contest in upcomingContestArray" :key="contest.id">
+          <div>
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
+            </div>
+          </div>
+
+          <div id="projects-content-div">
+            <span id="projects-description">{{contest.about}}</span>
+          </div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+        </vuestic-widget>
+      </div>
       <div v-show="showHistory">
         <div class="noProjects" v-if="noPreviousContests">
           <h4>You have no Previous Contests to view. </h4>
@@ -71,6 +77,7 @@
         previousContestArray: [],
         noContests: false,
         noPreviousContests: false,
+        noUpcomingContests: false,
         isUpcoming: true,
         showUpcoming: true,
         showHistory: false,
@@ -108,15 +115,15 @@
         this.noContests = true
       }
       if (this.previousContestArray.length === 0) {
-        console.log('no previous contests')
         this.noPreviousContests = true
       }
+      if (this.upcomingContestArray.length === 0) {
+        this.noUpcomingContests = true
+      }
       if (this.isUpcoming) {
-        console.log('it is upcoming')
         this.showUpcoming = true
         this.showHistory = false
       } else {
-        console.log('it is history')
         this.showUpcoming = false
         this.showHistory = true
       }
