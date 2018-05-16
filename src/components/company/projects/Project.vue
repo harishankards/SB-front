@@ -79,7 +79,7 @@
         this.$router.push('/company/projects/new')
       },
       viewProject: function (projectId) {
-        this.$router.push('/company/project/' + projectId)
+        this.$router.push('/company/companyproject/' + projectId)
       },
       takeToEdit: function (project) {
         eventBus.projectToBeEdited = project
