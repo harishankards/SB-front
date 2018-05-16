@@ -17,6 +17,31 @@
         </div>
         <div class="comment-section">
           <i class="fa fa-share"></i> Share
+           <social-sharing url="https://studentburger.com/"
+                    title="Student Burger"
+                    description="The Social Network for Students and Companies"
+                    quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+                    hashtags="studentburger,socialnetwork,student,company"
+                    twitter-user="_studentburger"
+                    inline-template>
+              <div>
+                <network class="share-icon" network="email">
+                    <i class="fa fa-envelope"></i> Email
+                </network>
+                <network network="facebook">
+                  <i class="fa fa-facebook"></i> Facebook
+                </network>
+                <network network="googleplus">
+                  <i class="fa fa-google-plus"></i> Google +
+                </network>
+                <network network="linkedin">
+                  <i class="fa fa-linkedin"></i> LinkedIn
+                </network>
+                <network network="twitter">
+                  <i class="fa fa-twitter"></i> Twitter
+                </network>
+            </div>
+          </social-sharing>
         </div>
       </div>
       <!-- <vue-disqus shortname="student-burger"></vue-disqus> -->
