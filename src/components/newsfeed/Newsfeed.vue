@@ -11,7 +11,7 @@
         <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
           <div>
             <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+              <span class="projects-name"><strong><a href="" @click.prevent="viewCompanyProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
             </div>
           </div>
@@ -137,6 +137,9 @@
       },
       viewProject: function (projectId) {
         this.$router.push('/student/project/' + projectId)
+      },
+      viewCompanyProject: function (projectId) {
+        this.$router.push('/student/companyproject/' + projectId)
       },
       viewContest: function (contestId) {
         this.$router.push('/student/contest/' + contestId)
