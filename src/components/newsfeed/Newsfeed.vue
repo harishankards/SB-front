@@ -16,6 +16,7 @@
             </div>
           </div>
           <div id="projects-content-div">
+            <!-- <span id="projects-description"><strong>Posted by:</strong>  {{project.author}}</span> -->
             <span id="projects-description">{{project.abstract}}</span>
             <!-- <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>           -->
           </div>
