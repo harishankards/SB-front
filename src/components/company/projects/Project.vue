@@ -101,7 +101,7 @@
           if (result.value) {
             self.$http({
               method: 'delete',
-              url: '/projects/delete',
+              url: '/companyprojects',
               data: {
                 'project': projectId
               },

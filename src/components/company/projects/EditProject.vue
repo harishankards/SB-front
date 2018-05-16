@@ -76,7 +76,9 @@
     },
     data () {
       return {
-        projectData: {},
+        projectData: {
+          description: ''
+        },
         counter: 0,
         errorMessage: '',
         errorAlert: false,
@@ -221,6 +223,7 @@
     },
     created () {
       eventBus.$on('editorContentproject', (data) => {
+        console.log('from editproject', data)
         this.projectData.description = data
       })
       eventBus.$on('multiselectorproject', (data) => {

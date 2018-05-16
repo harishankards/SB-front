@@ -19,6 +19,7 @@
       }
     },
     updated () {
+      console.log('editor', this.content)
       eventBus.$emit('editorContentproject', this.content)
     },
     created () {
