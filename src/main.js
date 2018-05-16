@@ -19,6 +19,8 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import VueImg from 'v-img'
 import SocialSharing from 'vue-social-sharing'
 import VTooltip from 'v-tooltip'
+import VueSocketio from 'vue-socket.io-extended';
+import io from 'socket.io-client';
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -75,6 +77,9 @@ Vue.use(SocialSharing)
 
 // For tooltip and popover
 Vue.use(VTooltip)
+
+// For socket io - notifications and chat
+Vue.use(VueSocketio, io('http://socketserver.com:1923'));
 
 sync(store, router)
 
