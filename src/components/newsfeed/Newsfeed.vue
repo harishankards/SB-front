@@ -8,6 +8,25 @@
     </vuestic-switch>
     <div class="row">
       <div class="col-md-8">
+        <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
+          <div>
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
+            </div>
+          </div>
+          <div id="projects-content-div">
+            <span id="projects-description">{{project.abstract}}</span>
+            <!-- <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>           -->
+          </div>
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+          <hr>
+          <div v-if="project.upvotes" class="userInteractionDiv">
+            <i class="fa fa-thumbs-up">{{project.upvotes.length}} Upvotes</i>
+          </div>
+        </vuestic-widget>
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
           <div>
             <div id="projects-name-div">
@@ -27,6 +46,7 @@
             <i class="fa fa-thumbs-up">{{project.upvotes.length}} Upvotes</i>
           </div>
         </vuestic-widget>
+        
         <vuestic-widget class="" v-for="contest in contestsData" :key="contest.id" v-show="showContests">
           <div>
             
@@ -71,6 +91,7 @@
         projectsData: '',
         contestsData: '',
         studentData: '',
+        companyprojectsArray: '',
         isProjects: true,
         showProjects: true,
         showContests: false,
@@ -149,6 +170,14 @@
         })
         .catch(function (contestsDataErr) {
           console.log('contests data err', contestsDataErr)
+        })
+        self.$http.get('/companyprojects/all', header)
+        .then(function (companyprojectsData) {
+          console.log('company projects data', companyprojectsData.data.projects)
+          self.companyprojectsArray = companyprojectsData.data.projects
+        })
+        .catch(function (companyprojectsErr) {
+          console.log('companyprojects data err', companyprojectsErr)
         })
       }).catch((studentErr) => {
         console.log('student err', studentErr)

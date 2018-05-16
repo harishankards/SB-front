@@ -155,7 +155,7 @@
   "menu": {
     "auth": "Auth",
     "projects": {
-      "parent": "Projects",
+      "parent": "Your Projects",
       "newProject": "New Project",
       "projectList": "Projects history",
       "yourProjects": "Your projects"
