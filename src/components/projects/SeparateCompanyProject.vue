@@ -11,7 +11,7 @@
       <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <hr>
       <div>
-        <div v-if="this.projectData" class="comment-section">
+        <div class="comment-section">
         <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
         </div>
         <div class="comment-section">
@@ -28,13 +28,15 @@
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
 
   export default {
-    name: 'separateProjectCompany',
+    name: 'separateProjectStudent',
     components: {
       VueDisqus
     },
     data () {
       return {
-        projectData: '',
+        projectData: {
+          upvotes: []
+        },
         projectId: '',
         authorData: ''
       }
@@ -44,7 +46,7 @@
       const projectId = this.$route.params.id
       const authToken = this.$ls.get('token')
       this.projectId = projectId
-      this.$http.get('/companyprojects?id=' + projectId, {
+      this.$http.get('projects/get?id=' + projectId, {
         headers: {
           'Authorization': 'Bearer ' + authToken
         }
@@ -52,7 +54,7 @@
       .then(function (projectDetails) {
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
-        secondthis.$http.get('/companies/get?id=' + projectDetails.data.author, {
+        secondthis.$http.get('/students/get?id=' + projectDetails.data.author, {
           headers: {
             'Authorization': 'Bearer ' + authToken
           }
@@ -74,7 +76,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../sass/_variables.scss";
+  @import "../../sass/_variables.scss";
   .comment-section {
     display: inline-block;
     padding-right: 1rem;
