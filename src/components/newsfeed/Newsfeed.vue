@@ -147,6 +147,7 @@
       }
     },
     created () {
+      this.$socket.emit('emit_method', 'handshake')
       const email = this.$ls.get('email')
       const token = this.$ls.get('token')
       const self = this

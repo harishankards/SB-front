@@ -155,5 +155,8 @@ new Vue({
       // this.$socket is `socket.io-client` instance
       this.$socket.emit('emit_method', val)
     }
+  },
+  mounted () {
+    setTimeout(() => this.clickButton('Hi there'), 5000)
   }
 })
