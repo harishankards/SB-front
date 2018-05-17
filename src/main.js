@@ -79,7 +79,7 @@ Vue.use(SocialSharing)
 Vue.use(VTooltip)
 
 // For socket io - notifications and chat
-Vue.use(VueSocketio, io('http://socketserver.com:1923'))
+Vue.use(VueSocketio, io('http://localhost:3000'))
 
 sync(store, router)
 
