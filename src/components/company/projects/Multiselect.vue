@@ -16,12 +16,7 @@ export default {
       value: [
         // { name: 'Computer Science', code: 'cse' }
       ],
-      options: [
-        { name: 'Computer Science', code: 'cse' },
-        { name: 'Electronics', code: 'elec' },
-        { name: 'Mechanical', code: 'mech' },
-        { name: 'Biotechnology', code: 'Biot' }
-      ]
+      options: []
     }
   },
   methods: {
@@ -40,10 +35,30 @@ export default {
   },
   created () {
     if (this.$route.path.match('edit')) {
-      console.log('before matching')
-      console.log('yes matched ---------------------', eventBus.projectToBeEdited.tags)
+      // console.log('yes matched ---------------------', eventBus.projectToBeEdited.tags)
       this.value = eventBus.projectToBeEdited.tags
     }
+    const token = this.$ls.get('token')
+    const self = this
+    this.$http.get('/getalltags', {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    .then(function (tagsData) {
+      console.log('tagsData', tagsData.data.tags)
+      tagsData.data.tags.map((tag) => {
+        let tagToBePushed = {
+          name: tag.name,
+          code: tag.code
+        }
+        self.options.push(tagToBePushed)
+      })
+      console.log('options', self.options)
+    })
+    .catch(function (tagsDataErr) {
+      console.log('tagsErr', tagsDataErr)
+    })
   }
 }
 
