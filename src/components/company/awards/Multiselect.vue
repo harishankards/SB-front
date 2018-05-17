@@ -40,6 +40,27 @@ export default {
     if (this.$route.path.match('edit')) {
       this.value = eventBus.awardToBeEdited.tags
     }
+    const token = this.$ls.get('token')
+    const self = this
+    this.$http.get('/getalltags', {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    .then(function (tagsData) {
+      console.log('tagsData', tagsData.data.tags)
+      tagsData.data.tags.map((tag) => {
+        let tagToBePushed = {
+          name: tag.name,
+          code: tag.code
+        }
+        self.options.push(tagToBePushed)
+      })
+      console.log('options', self.options)
+    })
+    .catch(function (tagsDataErr) {
+      console.log('tagsErr', tagsDataErr)
+    })
   }
 }
 
