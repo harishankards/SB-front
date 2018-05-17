@@ -105,7 +105,7 @@
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
   .align-gender {
     padding-left: 1rem;
   }
@@ -114,5 +114,12 @@
     padding-top: 15px;
     padding-right: 15px;
     padding-left: 15px;
+  }
+  .form-wizard-page {
+    .form-group {
+      min-width: 200px;
+      max-width: 360px;
+      width: 80%;
+    }
   }
 </style>
