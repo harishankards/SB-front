@@ -21,6 +21,7 @@ import SocialSharing from 'vue-social-sharing'
 import VTooltip from 'v-tooltip'
 import VueSocketio from 'vue-socket.io-extended'
 import io from 'socket.io-client'
+import Toasted from 'vue-toasted'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -80,6 +81,9 @@ Vue.use(VTooltip)
 
 // For socket io - notifications and chat
 Vue.use(VueSocketio, io('http://localhost:3000'))
+
+// For toasted notifications
+Vue.use(Toasted)
 
 sync(store, router)
 
