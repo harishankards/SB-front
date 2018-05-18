@@ -147,7 +147,9 @@
       }
     },
     created () {
-      this.$socket.emit('emit_method', 'handshake')
+      this.$socket.on('project created', (data) => {
+        console.log('data from project created', data)
+      })
       const email = this.$ls.get('email')
       const token = this.$ls.get('token')
       const self = this

@@ -145,18 +145,6 @@ new Vue({
   sockets: {
     connect () {
       console.log('socket connected')
-    },
-    customEmit (val) {
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)', val)
     }
-  },
-  methods: {
-    clickButton (val) {
-      // this.$socket is `socket.io-client` instance
-      this.$socket.emit('emit_method', val)
-    }
-  },
-  mounted () {
-    setTimeout(() => this.clickButton('Hi there'), 5000)
   }
 })

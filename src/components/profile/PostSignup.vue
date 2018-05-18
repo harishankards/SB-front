@@ -1,5 +1,5 @@
 <template>
-  <vuestic-widget>
+  <vuestic-widget class="col-md-11">
     <form-wizard @on-complete="onComplete">
      <tab-content title="Personal details"
                   icon="ti-user"
