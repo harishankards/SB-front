@@ -1,30 +1,19 @@
 <template>
   <vuestic-widget>
-    <form-wizard @on-complete="onComplete"
-                  @on-loading="setLoading"
-                  @on-validate="handleValidation"
-                  @on-error="handleErrorMessage"
-                  shape="circle"
-                  color="gray"
-                  error-color="#e74c3c">
-      <tab-content title="Personal details"
-                  :before-change="validateAsync"
-                  icon="ti-user">
-              First tab
-      </tab-content>
-      <tab-content title="Additional Info"
+    <form-wizard @on-complete="onComplete">
+     <tab-content title="Personal details"
+                  icon="ti-user"
+                  :before-change="validateAsync">
+       My first tab content
+     </tab-content>
+     <tab-content title="Additional Info"
                   icon="ti-settings">
-              Second tab
-      </tab-content>
-      <tab-content title="Last step"
+       My second tab content
+     </tab-content>
+     <tab-content title="Last step"
                   icon="ti-check">
-              Third tab
-      </tab-content>
-
-      <div class="loader" v-if="loadingWizard"></div>
-      <div v-if="errorMsg">
-        <span class="error">{{errorMsg}}</span>
-      </div>
+       Yuhuuu! This seems pretty damn simple
+     </tab-content>
     </form-wizard>
   </vuestic-widget>
 </template>
@@ -41,36 +30,21 @@
     },
     data () {
       return {
-        loadingWizard: false,
-        errorMsg: null,
-        count: 0
+        counter: 0
       }
     },
     methods: {
       onComplete: function () {
         alert('Yay. Done!')
       },
-      setLoading: function (value) {
-        this.loadingWizard = value
-      },
-      handleValidation: function (isValid, tabIndex) {
-        console.log('Tab: ' + tabIndex + ' valid: ' + isValid)
-      },
-      handleErrorMessage: function (errorMsg) {
-        this.errorMsg = errorMsg
-      },
       validateAsync: function () {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            if (this.count < 1) {
-              this.count ++
-              reject(new Error('This is a custom validation error message. Click next again to get rid of the validation'))
-            } else {
-              this.count = 0
-              resolve(true)
-            }
-          }, 1000)
-        })
+        if (this.counter === 0) {
+          this.counter ++
+          console.log('its false')
+          return false
+        } else {
+          return true
+        }
       }
     }
   }
