@@ -37,6 +37,9 @@
     },
     created () {
       this.$store.state.loginToastCounter = 0
+      this.$socket.on('project created', (data) => {
+        console.log('data from project created', data)
+      })
     }
   }
 </script>
