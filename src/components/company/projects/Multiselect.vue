@@ -50,7 +50,8 @@ export default {
       tagsData.data.tags.map((tag) => {
         let tagToBePushed = {
           name: tag.name,
-          code: tag.code
+          code: tag.code,
+          id: tag._id
         }
         self.options.push(tagToBePushed)
       })
