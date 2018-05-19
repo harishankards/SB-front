@@ -38,9 +38,11 @@
     created () {
       const self = this
       this.$store.state.loginToastCounter = 0
+      let counter = 1
       this.$socket.on('project created', (data) => {
+        counter++
         console.log('data from project created', data)
-        self.$toasted.show('A project has been created')
+        self.$toasted.show('A project has been created' + counter)
       })
     }
   }
