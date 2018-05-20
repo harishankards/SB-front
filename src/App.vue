@@ -42,7 +42,16 @@
       this.$socket.on('project created', (data) => {
         counter++
         console.log('data from project created', data)
-        self.$toasted.show('A project has been created' + counter)
+        self.$toasted.info('A project has been created' + counter, {
+          position: 'top-right',
+          duration: 3000,
+          action: {
+            text: 'Visit',
+            onClick: (e, toastObject) => {
+              self.$router.push('/student/contests')
+            }
+          }
+        })
       })
     }
   }

@@ -189,11 +189,9 @@
     },
     updated () {
       if (this.isProjects) {
-        console.log('it is projects')
         this.showContests = false
         this.showProjects = true
       } else {
-        console.log('it is contests')
         this.showProjects = false
         this.showContests = true
       }
