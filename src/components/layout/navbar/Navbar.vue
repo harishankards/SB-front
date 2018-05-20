@@ -23,23 +23,17 @@
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-menu-content">
-            <a class="dropdown-item" href="">
-              <span class="ellipsis">{{$t('notifications.sentMessage', {name: 'HS'})}}</span>
-            </a>
-            <a class="dropdown-item" href="">
-              <span class="ellipsis">{{$t('notifications.uploadedZip', { name: "Balaji", type: "typography component"})}}</span>
-            </a>
-            <a class="dropdown-item" href="">
-              <span class="ellipsis">{{$t('notifications.startedTopic',{name: "Surendran"}) }}</span>
+            <a v-for="notification in notifications" :key="notification.id" class="dropdown-item" href="" @click.prevent="takeToProject(notification.link)">
+              <span class="ellipsis">{{notification.text}}</span>
             </a>
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#">{{'notifications.all' | translate}}</a>
+              <a class="plain-link" href="">{{'notifications.all' | translate}}</a>
             </div>
           </div>
         </div>
       </div>
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
-        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#" @click.prevent="closeMenu">
+        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="" @click.prevent="closeMenu">
           <span class="avatar-container">
             <img src="https://goo.gl/KnVxVY" />
           </span>
@@ -47,10 +41,10 @@
         <div class="dropdown-menu last">
           <div class="dropdown-menu-content">
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#">{{'user.profile' | translate}}</a>
+              <a class="plain-link" href="">{{'user.profile' | translate}}</a>
             </div>
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#" @click.prevent="logout" >{{'user.logout' | translate}}</a>
+              <a class="plain-link" href="" @click.prevent="logout" >{{'user.logout' | translate}}</a>
             </div>
           </div>
         </div>
@@ -68,7 +62,9 @@
     components: {},
 
     data () {
-      return {}
+      return {
+        notifications: []
+      }
     },
 
     computed: {
@@ -89,6 +85,33 @@
         console.log('logout clicked')
         this.$store.dispatch('logout')
         this.$router.push('/')
+      },
+      takeToProject (id) {
+        this.$router.push('/student/project/' + id)
+      }
+    },
+    created () {
+      const student = this.$ls.get('student')
+      const company = this.$ls.get('company')
+      const email = this.$ls.get('email')
+      const token = this.$ls.get('token')
+      const self = this
+      if (student) {
+        console.log('it is a student')
+        this.$http.get('/students/get?email=' + email, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then(function (studentData) {
+          console.log('student data', studentData.data[0].notifications)
+          self.notifications = studentData.data[0].notifications
+        })
+        .catch(function (studentDataErr) {
+          console.log('student data err', studentDataErr)
+        })
+      } else if (company) {
+        console.log('it is a company')
       }
     }
   }
