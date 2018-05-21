@@ -23,7 +23,7 @@
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-menu-content">
-            <a v-for="notification in notifications" :key="notification.id" class="dropdown-item" href="" @click.prevent="takeToProject(notification.link)">
+            <a v-for="notification in notifications" :key="notification.id" class="dropdown-item" href="" @click.prevent="takeToNoti(notification)">
               <span class="ellipsis">{{notification.text}}</span>
             </a>
             <div class="dropdown-item plain-link-item">
@@ -88,8 +88,16 @@
         this.$store.dispatch('logout')
         this.$router.push('/')
       },
-      takeToProject (id) {
-        this.$router.push('/student/project/' + id)
+      takeToNoti (notification) {
+        if (notification.type === 'project') {
+          this.$router.push('/student/project/' + notification.link)
+        } else if (notification.type === 'award') {
+          this.$router.push('/student/award/' + notification.link)
+        } else if (notification.type === 'contest') {
+          this.$router.push('/student/contest/' + notification.link)
+        } else if (notification.type === 'companyproject') {
+          this.$router.push('/student/companyproject/' + notification.link)
+        }
       },
       takeHome () {
         this.$router.push('/student/newsfeed')
@@ -106,7 +114,7 @@
       const self = this
       eventBus.$on('notificationData', (data) => {
         console.log('notifications data')
-        self.notifications = data
+        self.notifications = data.slice(0, 3)
       })
     }
   }
