@@ -55,6 +55,7 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
+  import { eventBus } from '../../../main'
 
   export default {
     name: 'navbar',
@@ -91,28 +92,11 @@
       }
     },
     created () {
-      const student = this.$ls.get('student')
-      const company = this.$ls.get('company')
-      const email = this.$ls.get('email')
-      const token = this.$ls.get('token')
       const self = this
-      if (student) {
-        console.log('it is a student')
-        this.$http.get('/students/get?email=' + email, {
-          headers: {
-            'Authorization': 'Bearer ' + token
-          }
-        })
-        .then(function (studentData) {
-          console.log('student data', studentData.data[0].notifications)
-          self.notifications = studentData.data[0].notifications
-        })
-        .catch(function (studentDataErr) {
-          console.log('student data err', studentDataErr)
-        })
-      } else if (company) {
-        console.log('it is a company')
-      }
+      eventBus.$on('notificationData', (data) => {
+        console.log('notifications data')
+        self.notifications = data
+      })
     }
   }
 </script>

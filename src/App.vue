@@ -13,6 +13,7 @@
   import VuesticPreLoader from 'vuestic-components/vuestic-preloader/VuesticPreLoader.vue'
   import Landing from 'components/landing/Landing.vue'
   import NotFound from 'components/404/NotFound'
+  import { eventBus } from './main.js'
 
   export default {
     name: 'app',
@@ -53,6 +54,29 @@
           }
         })
       })
+    },
+    updated () {
+      const student = this.$ls.get('student')
+      const company = this.$ls.get('company')
+      const email = this.$ls.get('email')
+      const token = this.$ls.get('token')
+      if (student) {
+        console.log('it is a student')
+        this.$http.get('/students/get?email=' + email, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then(function (studentData) {
+          console.log('student data', studentData.data[0].notifications)
+          eventBus.$emit('notificationData', studentData.data[0].notifications)
+        })
+        .catch(function (studentDataErr) {
+          console.log('student data err', studentDataErr)
+        })
+      } else if (company) {
+        console.log('it is a company')
+      }
     }
   }
 </script>
