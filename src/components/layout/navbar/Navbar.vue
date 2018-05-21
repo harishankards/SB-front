@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar app-navbar navbar-toggleable-md">
     <div class="navbar-brand-container d-flex align-items-center justify-content-start">
-      <a class="navbar-brand" href="#/dashboard">
+      <a class="navbar-brand" href="#" @click.prevent='takeHome()'>
         <i class="i-vuestic"></i>
       </a>
     </div>
@@ -89,6 +89,9 @@
       },
       takeToProject (id) {
         this.$router.push('/student/project/' + id)
+      },
+      takeHome () {
+        this.$router.push('/student/newsfeed')
       }
     },
     created () {

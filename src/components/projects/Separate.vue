@@ -11,7 +11,7 @@
       <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <hr>
       <div>
-        <div class="comment-section">
+        <div v-if="this.projectData.upvotes" class="comment-section">
         <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
         </div>
         <div class="comment-section">
