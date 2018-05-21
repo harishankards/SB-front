@@ -31,7 +31,7 @@
     data () {
       return {
         counter: 0,
-        studentId: '',
+        companyId: '',
         companyData: {
           tags: []
         }
@@ -56,8 +56,8 @@
           '5afce716bd80c12133c8d443',
           '5afce69ebd80c12133c8d43a'
         ]
-        console.log('this student data from update student', this.studentData)
-        this.$http.put('/company/update', this.companyData, {
+        console.log('this company data from update company', this.companyData)
+        this.$http.put('/companies/update', this.companyData, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + authToken
@@ -72,10 +72,10 @@
       }
     },
     mounted () {
-      const self = this
-      setTimeout(() => {
-        self.updateCompany()
-      }, 3000)
+      // const self = this
+      // setTimeout(() => {
+      //   self.updateCompany()
+      // }, 3000)
     },
     created () {
       const self = this
