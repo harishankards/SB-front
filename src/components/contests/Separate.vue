@@ -4,7 +4,11 @@
       <i class="fa fa-caret-left"></i>
       Back
     </button>
-    <vuestic-widget class="col-md-9" :headerText="this.contestData.title">
+    <div class="noProjects" v-show="!showContest">
+      <h4>Contest Not found</h4>
+      <img class="col-md-8" src="../../assets/vendor/leaflet/404.png" alt="">
+    </div>
+    <vuestic-widget v-show="showContest" class="col-md-9" :headerText="this.contestData.title">
       <p><strong> About</strong><br>{{this.contestData.about}}</p>
       <p><strong> Rules and Format</strong><br><span v-html="this.contestData.rulesFormat"></span></p>
       <p><strong> Hosted by</strong><br> {{this.hostData.email}}</p>
@@ -98,7 +102,8 @@
         contestId: '',
         hostData: '',
         isNotRegistered: null,
-        isRegistered: null
+        isRegistered: null,
+        showContest: null
       }
     },
     methods: {
@@ -246,6 +251,7 @@
         }
       })
       .then(function (contestDetails) {
+        secondthis.showContest = true
         console.log('contestData', contestDetails.data)
         secondthis.contestData = contestDetails.data
         secondthis.$http.get('/companies/get?id=' + contestDetails.data.host, {
@@ -284,6 +290,7 @@
         })
       })
       .catch(function (contestDataErr) {
+        secondthis.showContest = false
         console.log('contestDataErr', contestDataErr)
       })
     },
@@ -341,5 +348,10 @@
         border-color: $color;
       }
     }
+  }
+  .noProjects {
+    text-align: center;
+    font-weight: bold;
+    // margin-top: 7rem;
   }
 </style>

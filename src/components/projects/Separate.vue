@@ -68,7 +68,7 @@
         },
         projectId: '',
         authorData: '',
-        showProject: false
+        showProject: null
       }
     },
     created () {
@@ -82,6 +82,7 @@
         }
       })
       .then(function (projectDetails) {
+        secondthis.showProject = true
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
         secondthis.$http.get('/students/get?id=' + projectDetails.data.author, {
@@ -90,7 +91,6 @@
           }
         })
         .then(function (studentData) {
-          secondthis.showProject = true
           console.log('student data', studentData.data[0])
           secondthis.authorData = studentData.data[0]
           console.log('studet', secondthis.authorData.email)
@@ -100,6 +100,7 @@
         })
       })
       .catch(function (projectDataErr) {
+        secondthis.showProject = false
         console.log('projectdataerr', projectDataErr)
       })
     }

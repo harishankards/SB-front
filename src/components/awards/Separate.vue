@@ -64,7 +64,7 @@
         awardId: '',
         companyData: '',
         studentData: '',
-        showAward: false
+        showAward: null
       }
     },
     created () {
@@ -110,6 +110,7 @@
         })
       })
       .catch(function (awardDataErr) {
+        secondthis.showAward = false
         console.log('awardDataErr', awardDataErr)
       })
     }
