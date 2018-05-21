@@ -4,7 +4,11 @@
         <i class="fa fa-caret-left"></i>
         Back
     </button>
-    <vuestic-widget class="col-md-9" :headerText="this.projectData.title">
+    <div class="noProjects" v-show="!showProject">
+      <h4>Project Not found</h4>
+      <img class="col-md-8" src="../../../assets/vendor/leaflet/404.png" alt="">
+    </div>
+    <vuestic-widget v-show="showProject" class="col-md-9" :headerText="this.projectData.title">
       <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
       <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
       <p><strong> Author</strong><br> {{this.authorData.email}}</p>
@@ -36,7 +40,8 @@
       return {
         projectData: '',
         projectId: '',
-        authorData: ''
+        authorData: '',
+        showProject: null
       }
     },
     created () {
@@ -50,6 +55,7 @@
         }
       })
       .then(function (projectDetails) {
+        secondthis.showProject = true
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
         secondthis.$http.get('/companies/get?id=' + projectDetails.data.author, {
@@ -67,6 +73,7 @@
         })
       })
       .catch(function (projectDataErr) {
+        secondthis.showProject = false
         console.log('projectdataerr', projectDataErr)
       })
     }
@@ -94,5 +101,10 @@
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 5%;
+  }
+  .noProjects {
+    text-align: center;
+    font-weight: bold;
+    // margin-top: 7rem;
   }
 </style>
