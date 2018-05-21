@@ -37,6 +37,8 @@ import CompanyNewAward from 'components/company/awards/NewAward'
 import CompanyEditAward from 'components/company/awards/EditAward'
 import NotFound from 'components/404/NotFound'
 import PostSignup from 'components/profile/PostSignup'
+import StudentNotification from 'components/profile/Notifications'
+import CompanyNotification from 'components/company/profile/Notifications'
 
 Vue.use(Router)
 
@@ -52,6 +54,7 @@ export default new Router({
     {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
     {path: '/student/projects/edit/:id', component: EditProject, name: 'editproject', meta: { requiresAuth: true }},
     {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
+    {path: '/student/notifications', component: StudentNotification, name: 'Student Notifications', meta: { requiresAuth: true }},
     // Project
     {path: '/company/project/:id', component: SeparateStudentProjectCompany, name: 'SeparateStudentProjectViewCompany', meta: { requiresAuth: true }},
     {path: '/company/companyproject/:id', component: SeparateCompanyProjectCompany, name: 'SeparateCompanyProjectViewCompany', meta: { requiresAuth: true }},
@@ -78,6 +81,7 @@ export default new Router({
     {path: '/company/contests/edit/:id', component: CompanyEditContest, name: 'Company edit contest', meta: { requiresAuth: true }},
     {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', meta: { requiresAuth: true }},
     {path: '/company/awards/edit/:id', component: CompanyEditAward, name: 'Company edit award', meta: { requiresAuth: true }},
+    {path: '/company/notifications', component: CompanyNotification, name: 'Company Notifications', meta: { requiresAuth: true }},
     {path: '*', component: NotFound, name: '404'}
   ],
   mode: 'history'
