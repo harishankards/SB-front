@@ -19,7 +19,7 @@
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="" @click.prevent="closeMenu">
-          <span class="i-nav-notification notify"></span>
+          <span v-show="!isRead" class="i-nav-notification notify"></span>
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-menu-content">
@@ -64,7 +64,8 @@
 
     data () {
       return {
-        notifications: []
+        notifications: [],
+        isRead: false
       }
     },
 

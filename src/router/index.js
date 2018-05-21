@@ -37,6 +37,7 @@ import CompanyNewAward from 'components/company/awards/NewAward'
 import CompanyEditAward from 'components/company/awards/EditAward'
 import NotFound from 'components/404/NotFound'
 import PostSignup from 'components/profile/PostSignup'
+import PostSignupCompany from 'components/company/profile/PostSignup'
 import StudentNotification from 'components/profile/Notifications'
 import CompanyNotification from 'components/company/profile/Notifications'
 
@@ -82,6 +83,7 @@ export default new Router({
     {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', meta: { requiresAuth: true }},
     {path: '/company/awards/edit/:id', component: CompanyEditAward, name: 'Company edit award', meta: { requiresAuth: true }},
     {path: '/company/notifications', component: CompanyNotification, name: 'Company Notifications', meta: { requiresAuth: true }},
+    {path: '/company/postsignup', component: PostSignupCompany, name: 'postsignupcompany', meta: { requiresAuth: true }},
     {path: '*', component: NotFound, name: '404'}
   ],
   mode: 'history'
