@@ -92,6 +92,7 @@
           console.log('company', secondthis.companyData.email)
         })
         .catch(function (companyDataErr) {
+          secondthis.showProject = false
           console.log('company data err', companyDataErr)
         })
 
@@ -106,6 +107,7 @@
           console.log('student', secondthis.studentData.email)
         })
         .catch(function (studentDataErr) {
+          secondthis.showProject = false
           console.log('student data err', studentDataErr)
         })
 
@@ -119,6 +121,7 @@
           secondthis.$ls.set('imageData', fileData.data)
         })
         .catch(function (fileDataErr) {
+          secondthis.showProject = false
           console.log('fileDataerr', fileDataErr)
         })
       })

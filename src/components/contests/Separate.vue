@@ -286,6 +286,7 @@
           }
         })
         .catch(function (studentDataErr) {
+          secondthis.showContest = false
           console.log('student data err', studentDataErr)
         })
       })

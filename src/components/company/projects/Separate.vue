@@ -69,6 +69,7 @@
           console.log('studet', secondthis.authorData.email)
         })
         .catch(function (studentDataErr) {
+          secondthis.showProject = false
           console.log('student data err', studentDataErr)
         })
       })
