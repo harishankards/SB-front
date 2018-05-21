@@ -4,7 +4,11 @@
       <i class="fa fa-caret-left"></i>
       Back
     </button>
-    <vuestic-widget class="col-md-9" :headerText="this.awardData.title">
+    <div class="noProjects" v-show="!showAward">
+      <h4>Award Not found</h4>
+      <img class="col-md-8" src="../../assets/vendor/leaflet/404.png" alt="">
+    </div>
+    <vuestic-widget v-show="showAward" class="col-md-9" :headerText="this.awardData.title">
       <p><strong> Award given to</strong><br>{{this.studentData.email}}</p>
       <p><strong> Provided by</strong><br> {{this.companyData.email}}</p>    
       <p><strong> Description</strong><br><span v-html="this.awardData.description"></span></p>
@@ -59,7 +63,8 @@
         awardData: '',
         awardId: '',
         companyData: '',
-        studentData: ''
+        studentData: '',
+        showAward: false
       }
     },
     created () {
@@ -73,6 +78,7 @@
         }
       })
       .then(function (awardDetails) {
+        secondthis.showAward = true
         console.log('awardData', awardDetails.data)
         secondthis.awardData = awardDetails.data
         secondthis.$http.get('/companies/get?id=' + awardDetails.data.provider, {
@@ -136,5 +142,10 @@
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 5%;
+  }
+  .noProjects {
+    text-align: center;
+    font-weight: bold;
+    // margin-top: 7rem;
   }
 </style>
