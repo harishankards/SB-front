@@ -4,7 +4,11 @@
         <i class="fa fa-caret-left"></i>
         Back
     </button>
-    <vuestic-widget class="col-md-9" :headerText="this.projectData.title">
+    <div class="noProjects" v-show="!showProject">
+      <h4>Project Not found</h4>
+      <img class="col-md-8" src="../../assets/vendor/leaflet/404.png" alt="">
+    </div>
+    <vuestic-widget v-show="showProject" class="col-md-9" :headerText="this.projectData.title">
       <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
       <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
       <p><strong> Author</strong><br> {{this.authorData.email}}</p>
@@ -63,7 +67,8 @@
           upvotes: []
         },
         projectId: '',
-        authorData: ''
+        authorData: '',
+        showProject: false
       }
     },
     created () {
@@ -85,6 +90,7 @@
           }
         })
         .then(function (studentData) {
+          secondthis.showProject = true
           console.log('student data', studentData.data[0])
           secondthis.authorData = studentData.data[0]
           console.log('studet', secondthis.authorData.email)
@@ -121,5 +127,10 @@
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 5%;
+  }
+  .noProjects {
+    text-align: center;
+    font-weight: bold;
+    // margin-top: 7rem;
   }
 </style>
