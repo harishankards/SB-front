@@ -27,7 +27,7 @@
               <span class="ellipsis">{{notification.text}}</span>
             </a>
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="">{{'notifications.all' | translate}}</a>
+              <a class="plain-link" href="" @click.prevent="takeToNotiHome()">{{'notifications.all' | translate}}</a>
             </div>
           </div>
         </div>
@@ -92,6 +92,13 @@
       },
       takeHome () {
         this.$router.push('/student/newsfeed')
+      },
+      takeToNotiHome () {
+        if (this.$route.path.match('company')) {
+          this.$router.push('/company/notifications')
+        } else if (this.$route.path.match('student')) {
+          this.$router.push('/student/notifications')
+        }
       }
     },
     created () {
