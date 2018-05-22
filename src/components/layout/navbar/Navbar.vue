@@ -153,7 +153,13 @@
       const self = this
       eventBus.$on('notificationData', (data) => {
         console.log('notifications data')
-        self.notifications = data.reverse().slice(0, 3)
+        const filteredNotifications = []
+        data.map((notification) => {
+          if (notification.read === false) {
+            filteredNotifications.push(notification)
+            self.notifications = filteredNotifications.reverse().slice(0, 3)
+          }
+        })
       })
     }
   }
