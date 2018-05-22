@@ -102,11 +102,15 @@
           console.log('studentData', studentData.data[0])
           const student = studentData.data[0]
           student.notifications.map((notificationItem) => {
-            if (notificationItem.link === notification.link) {
-              notificationItem.read = true
-            }
+            console.log('notifications map')
+            return new Promise((resolve, reject) => {
+              if (notificationItem.link === notification.link) {
+                notificationItem.read = true
+                resolve()
+              }
+            })
           })
-          .done(() => {
+          .then(() => {
             console.log('student details from notification', student)
             self.$http.put('/students/update', {
               headers: {
