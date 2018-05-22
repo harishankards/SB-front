@@ -89,15 +89,50 @@
         this.$router.push('/')
       },
       takeToNoti (notification) {
-        if (notification.type === 'project') {
-          this.$router.push('/student/project/' + notification.link)
-        } else if (notification.type === 'award') {
-          this.$router.push('/student/award/' + notification.link)
-        } else if (notification.type === 'contest') {
-          this.$router.push('/student/contest/' + notification.link)
-        } else if (notification.type === 'companyproject') {
-          this.$router.push('/student/companyproject/' + notification.link)
-        }
+        console.log('notification clicked', notification)
+        const email = this.$ls.get('email')
+        const token = this.$ls.get('token')
+        const self = this
+        this.$http.get('/students/get?email=' + email, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then(function (studentData) {
+          console.log('studentData', studentData.data[0])
+          const student = studentData.data[0]
+          student.notifications.map((notificationItem) => {
+            if (notificationItem.link === notification.link) {
+              notificationItem.read = true
+            }
+          })
+          .done(() => {
+            console.log('student details from notification', student)
+            self.$http.put('/students/update', {
+              headers: {
+                'Authorization': 'Bearer ' + token
+              }
+            }, student)
+            .then(function (notificationUpdated) {
+              console.log('notification updated', notificationUpdated)
+              if (notification.type === 'project') {
+                this.$router.push('/student/project/' + notification.link)
+              } else if (notification.type === 'award') {
+                this.$router.push('/student/award/' + notification.link)
+              } else if (notification.type === 'contest') {
+                this.$router.push('/student/contest/' + notification.link)
+              } else if (notification.type === 'companyproject') {
+                this.$router.push('/student/companyproject/' + notification.link)
+              }
+            })
+            .catch(function (notificationUpdateErr) {
+              console.log('notification update err', notificationUpdateErr)
+            })
+          })
+        })
+        .catch(function (studentDataErr) {
+          console.log('studentDataErr', studentDataErr)
+        })
       },
       takeHome () {
         this.$router.push('/student/newsfeed')
@@ -114,7 +149,7 @@
       const self = this
       eventBus.$on('notificationData', (data) => {
         console.log('notifications data')
-        self.notifications = data.slice(0, 3)
+        self.notifications = data.reverse().slice(0, 3)
       })
     }
   }
