@@ -92,7 +92,7 @@
           console.log('company', secondthis.companyData.email)
         })
         .catch(function (companyDataErr) {
-          secondthis.showContest = false
+          secondthis.showAward = false
           console.log('company data err', companyDataErr)
         })
 
@@ -107,7 +107,7 @@
           console.log('student', secondthis.studentData.email)
         })
         .catch(function (studentDataErr) {
-          secondthis.showContest = false
+          secondthis.showAward = false
           console.log('student data err', studentDataErr)
         })
       })

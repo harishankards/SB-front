@@ -104,7 +104,7 @@
           console.log('company', secondthis.hostData.email)
         })
         .catch(function (companyDataErr) {
-          secondthis.showProject = false
+          secondthis.showContest = false
           console.log('company data err', companyDataErr)
         })
       })
