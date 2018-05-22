@@ -109,28 +109,28 @@
                 resolve()
               }
             })
-          })
-          .then(() => {
-            console.log('student details from notification', student)
-            self.$http.put('/students/update', {
-              headers: {
-                'Authorization': 'Bearer ' + token
-              }
-            }, student)
-            .then(function (notificationUpdated) {
-              console.log('notification updated', notificationUpdated)
-              if (notification.type === 'project') {
-                this.$router.push('/student/project/' + notification.link)
-              } else if (notification.type === 'award') {
-                this.$router.push('/student/award/' + notification.link)
-              } else if (notification.type === 'contest') {
-                this.$router.push('/student/contest/' + notification.link)
-              } else if (notification.type === 'companyproject') {
-                this.$router.push('/student/companyproject/' + notification.link)
-              }
-            })
-            .catch(function (notificationUpdateErr) {
-              console.log('notification update err', notificationUpdateErr)
+            .then(() => {
+              console.log('student details from notification', student, token)
+              self.$http.put('/students/update', student, {
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
+              .then(function (notificationUpdated) {
+                console.log('notification updated', notificationUpdated)
+                if (notification.type === 'project') {
+                  self.$router.push('/student/project/' + notification.link)
+                } else if (notification.type === 'award') {
+                  self.$router.push('/student/award/' + notification.link)
+                } else if (notification.type === 'contest') {
+                  self.$router.push('/student/contest/' + notification.link)
+                } else if (notification.type === 'companyproject') {
+                  self.$router.push('/student/companyproject/' + notification.link)
+                }
+              })
+              .catch(function (notificationUpdateErr) {
+                console.log('notification update err', notificationUpdateErr)
+              })
             })
           })
         })
