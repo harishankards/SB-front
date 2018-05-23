@@ -25,46 +25,38 @@
         <div class="comment-section">
         <i class="fa fa-child"></i> {{this.contestData.registrations.length}} people registered
         </div>
-        <div class="comment-section">
-          <v-popover offset="16">
-            <button class="tooltip-target b3">Click me</button>
-
-            <template slot="popover">
-              <input class="tooltip-content" placeholder="Tooltip content" />
-              <p>
-                hello
-              </p>
-              <a v-close-popover>Close</a>
-            </template>
-          </v-popover>
-
-          <i class="fa fa-share"></i> Share
-           <social-sharing url="https://studentburger.com/"
+        <div class="comment-section" style="cursor:pointer;">   
+          <button type="button" class="btn-style"  @click="showShareDiv()">         
+          <span class="glyphicon glyphicon-share-alt"></span> Share </button>
+           </div>
+           <social-sharing url="https://studentburger.com/" v-if="shareIcons"
                     title="Student Burger"
                     description="The Social Network for Students and Companies"
                     quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
                     hashtags="studentburger,socialnetwork,student,company"
                     twitter-user="_studentburger"
                     inline-template>
-              <div>
-                <network class="share-icon" network="email">
-                    <i class="fa fa-envelope"></i> Email
+                <div id="icon-style">
+                <network network="email">
+                    <i class="fa fa-envelope" style="color:red;cursor:pointer;"></i> Email
                 </network>
-                <network network="facebook">
-                  <i class="fa fa-facebook"></i> Facebook
+                <network style="padding-left:12px;" network="facebook">
+                  <i class="fa fa-facebook" style="color:#3B5998;cursor:pointer;"></i> Facebook
                 </network>
-                <network network="googleplus">
-                  <i class="fa fa-google-plus"></i> Google +
+                <network network="googleplus" style="padding-left:12px;">
+                  <i class="fa fa-google-plus" style="color:#DB4437;cursor:pointer;"></i> Google +
                 </network>
-                <network network="linkedin">
-                  <i class="fa fa-linkedin"></i> LinkedIn
+                <network network="linkedin" style="padding-left:12px;">
+                  <i class="fa fa-linkedin" style="color:#0077B5;cursor:pointer;"></i> LinkedIn
                 </network>
-                <network network="twitter">
-                  <i class="fa fa-twitter"></i> Twitter
+                <network network="twitter" style="padding-left:12px;">
+                  <i class="fa fa-twitter" style="color:#1DA1F2;cursor:pointer;"></i> Twitter
                 </network>
+                
             </div>
+           
           </social-sharing>
-        </div>
+       
       </div>
       <!-- <vue-disqus shortname="student-burger"></vue-disqus> -->
     </vuestic-widget>
@@ -103,7 +95,8 @@
         hostData: '',
         isNotRegistered: null,
         isRegistered: null,
-        showContest: null
+        showContest: null,
+        shareIcons: false
       }
     },
     methods: {
@@ -236,6 +229,9 @@
             )
           }
         })
+      },
+      showShareDiv: function () {
+        this.shareIcons = !this.shareIcons
       }
     },
     created () {
@@ -305,11 +301,21 @@
   @import "../../sass/_variables.scss";
   .comment-section {
     display: inline-block;
-    padding-right: 1rem;
+    margin-left: 5%;
   }
   #tagDiv {
     display: inline-block;
     margin-top: 1rem;
+  }
+  .btn-style{
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    background: white;
+  }
+  .btn-style:hover{
+    background:  #f2f2f2;
+    border: none;
   }
   .tagNames {
     padding: 0.2rem 0.5rem;
@@ -317,6 +323,14 @@
     background: $tagcolor;
     color: white;
     border-radius: 5%;
+  }
+  #icon-style{
+    margin-top: 2%;
+    margin-left: 12%; 
+    cursor: pointer;
+  }
+  .btn-outline-primary{
+    margin-left: 50%;
   }
   .published {
     color: gray;
@@ -326,9 +340,6 @@
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 5%;
-  }
-  .share-icon {
-    cursor: pointer;
   }
 
   .tooltip {
