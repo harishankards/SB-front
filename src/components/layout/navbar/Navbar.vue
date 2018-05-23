@@ -26,8 +26,8 @@
             <a v-for="notification in notifications" :key="notification.id" class="dropdown-item" href="" @click.prevent="takeToNoti(notification)">
               <span class="ellipsis">{{notification.text}}</span>
             </a>
-            <div class="dropdown-item plain-link-item">
-              <span class="dropdown-item2" v-show="!hasUnread"> <i class="fa fa-bell-slash-o"></i> No new notifications!</span>
+            <div class="dropdown-item plain-link-item" v-if="!hasUnread">
+              <span class="dropdown-item2"> <i class="fa fa-bell-slash-o"></i> No new notifications!</span>
             </div>
             <div class="dropdown-item plain-link-item">
               <a class="plain-link" href="" @click.prevent="takeToNotiHome()">{{'notifications.all' | translate}}</a>
@@ -157,9 +157,11 @@
       eventBus.$on('notificationData', (data) => {
         console.log('notifications data')
         const filteredNotifications = []
+        self.notifications = filteredNotifications
         data.map((notification) => {
           if (notification.read === false) {
             filteredNotifications.push(notification)
+            console.log('-------------filtered notifications', filteredNotifications)
             self.notifications = filteredNotifications.reverse().slice(0, 3)
           }
         })
