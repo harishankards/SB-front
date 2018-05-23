@@ -19,7 +19,7 @@
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="" @click.prevent="closeMenu">
-          <span v-show="!isRead" class="i-nav-notification notify"></span>
+          <span class="i-nav-notification" :class="{notify: hasUnread}"></span>
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-menu-content">
@@ -65,7 +65,7 @@
     data () {
       return {
         notifications: [],
-        isRead: false
+        hasUnread: false
       }
     },
 
@@ -160,6 +160,11 @@
             self.notifications = filteredNotifications.reverse().slice(0, 3)
           }
         })
+        if (this.notifications.length === 0) {
+          this.hasUnread = false
+        } else {
+          this.hasUnread = true
+        }
       })
     }
   }
