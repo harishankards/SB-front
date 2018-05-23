@@ -19,13 +19,16 @@
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="" @click.prevent="closeMenu">
-          <span v-show="!isRead" class="i-nav-notification notify"></span>
+          <span class="i-nav-notification" :class="{notify: hasUnread}"></span>
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-menu-content">
             <a v-for="notification in notifications" :key="notification.id" class="dropdown-item" href="" @click.prevent="takeToNoti(notification)">
               <span class="ellipsis">{{notification.text}}</span>
             </a>
+            <div class="dropdown-item plain-link-item" v-if="!hasUnread">
+              <span class="dropdown-item2"> <i class="fa fa-bell-slash-o"></i> No new notifications!</span>
+            </div>
             <div class="dropdown-item plain-link-item">
               <a class="plain-link" href="" @click.prevent="takeToNotiHome()">{{'notifications.all' | translate}}</a>
             </div>
@@ -65,7 +68,7 @@
     data () {
       return {
         notifications: [],
-        isRead: false
+        hasUnread: false
       }
     },
 
@@ -102,31 +105,35 @@
           console.log('studentData', studentData.data[0])
           const student = studentData.data[0]
           student.notifications.map((notificationItem) => {
-            if (notificationItem.link === notification.link) {
-              notificationItem.read = true
-            }
-          })
-          .done(() => {
-            console.log('student details from notification', student)
-            self.$http.put('/students/update', {
-              headers: {
-                'Authorization': 'Bearer ' + token
-              }
-            }, student)
-            .then(function (notificationUpdated) {
-              console.log('notification updated', notificationUpdated)
-              if (notification.type === 'project') {
-                this.$router.push('/student/project/' + notification.link)
-              } else if (notification.type === 'award') {
-                this.$router.push('/student/award/' + notification.link)
-              } else if (notification.type === 'contest') {
-                this.$router.push('/student/contest/' + notification.link)
-              } else if (notification.type === 'companyproject') {
-                this.$router.push('/student/companyproject/' + notification.link)
+            console.log('notifications map')
+            return new Promise((resolve, reject) => {
+              if (notificationItem.link === notification.link) {
+                notificationItem.read = true
+                resolve()
               }
             })
-            .catch(function (notificationUpdateErr) {
-              console.log('notification update err', notificationUpdateErr)
+            .then(() => {
+              console.log('student details from notification', student, token)
+              self.$http.put('/students/update', student, {
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
+              .then(function (notificationUpdated) {
+                console.log('notification updated', notificationUpdated)
+                if (notification.type === 'project') {
+                  self.$router.push('/student/project/' + notification.link)
+                } else if (notification.type === 'award') {
+                  self.$router.push('/student/award/' + notification.link)
+                } else if (notification.type === 'contest') {
+                  self.$router.push('/student/contest/' + notification.link)
+                } else if (notification.type === 'companyproject') {
+                  self.$router.push('/student/companyproject/' + notification.link)
+                }
+              })
+              .catch(function (notificationUpdateErr) {
+                console.log('notification update err', notificationUpdateErr)
+              })
             })
           })
         })
@@ -149,7 +156,20 @@
       const self = this
       eventBus.$on('notificationData', (data) => {
         console.log('notifications data')
-        self.notifications = data.reverse().slice(0, 3)
+        const filteredNotifications = []
+        self.notifications = filteredNotifications
+        data.map((notification) => {
+          if (notification.read === false) {
+            filteredNotifications.push(notification)
+            console.log('-------------filtered notifications', filteredNotifications)
+            self.notifications = filteredNotifications.reverse().slice(0, 3)
+          }
+        })
+        if (this.notifications.length === 0) {
+          this.hasUnread = false
+        } else {
+          this.hasUnread = true
+        }
       })
     }
   }
@@ -318,6 +338,13 @@
           }
         }
       }
+    }
+  }
+  .dropdown-item2 {
+    color: #fff;
+    // padding: 3rem;
+    i {
+      margin-right: 0.5rem;
     }
   }
 </style>
