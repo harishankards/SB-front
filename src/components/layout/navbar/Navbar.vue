@@ -27,6 +27,9 @@
               <span class="ellipsis">{{notification.text}}</span>
             </a>
             <div class="dropdown-item plain-link-item">
+              <span class="dropdown-item2" v-show="!hasUnread"> <i class="fa fa-bell-slash-o"></i> No new notifications!</span>
+            </div>
+            <div class="dropdown-item plain-link-item">
               <a class="plain-link" href="" @click.prevent="takeToNotiHome()">{{'notifications.all' | translate}}</a>
             </div>
           </div>
@@ -333,6 +336,13 @@
           }
         }
       }
+    }
+  }
+  .dropdown-item2 {
+    color: #fff;
+    // padding: 3rem;
+    i {
+      margin-right: 0.5rem;
     }
   }
 </style>
