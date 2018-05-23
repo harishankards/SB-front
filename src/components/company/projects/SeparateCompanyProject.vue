@@ -19,7 +19,7 @@
         <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
         </div>
         <div class="comment-section">
-          <i class="fa fa-share"></i> Share
+          <i class="fa fa-share"></i> SHARE
         </div>
       </div>
       <!-- <vue-disqus shortname="student-burger"></vue-disqus> -->
