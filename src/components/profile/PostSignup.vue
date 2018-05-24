@@ -1,17 +1,17 @@
 <template>
   <vuestic-widget class="col-md-11">
-    <form-wizard @on-complete="onComplete" title="" subtitle="" >
+    <form-wizard @on-complete="onComplete" title="" subtitle="" color="#4ae387">
      <tab-content title="Personal details"
-                  icon="ti-user"
+                  icon="fa fa-user"
                   :before-change="validateAsync">
        My first tab content
      </tab-content>
-     <tab-content title="Additional Info"
-                  icon="ti-settings">
+     <tab-content title="Academic details"
+                  icon="fa fa-mortar-board">
        My second tab content
      </tab-content>
-     <tab-content title="Last step"
-                  icon="ti-check">
+     <tab-content title="Interests"
+                  icon="fa fa-lightbulb-o">
        Yuhuuu! This seems pretty damn simple
      </tab-content>
     </form-wizard>
