@@ -1,105 +1,100 @@
 <template>
-  <vuestic-widget>
-    <vuestic-wizard 
-      :steps="vrSteps" 
-      wizard-layout="vertical" 
-      wizard-type="simple">
-
-      <div slot="page1" class="form-wizard-tab-content">
-      <div class="form-group">
-        <div class="input-group">
-        <input id="simple-input" required/>
-        <label class="control-label" for="simple-input">First Name</label><i class="bar"></i>
-        </div>
-      </div> 
-      <div class="form-group">
-        <div class="input-group">
-        <input id="simple-input" required/>
-        <label class="control-label" for="simple-input">Last Name</label><i class="bar"></i>
-        </div>
-      </div> 
-      <div class="form-group">
-        <div class="input-group">
-        <input id="simple-input" required/>
-        <label class="control-label" for="simple-input">Username</label><i class="bar"></i>
-        </div>
-      </div> 
-      <div class="form-group align-gender">
-        <div class="input-group">
-          <div class="radio abc-radio abc-radio-primary">
-            <input type="radio" name="male" id="male" value="male" checked>
-            <label for="male">
-              <span class="abc-label-text">Male</span>
-            </label>
-            <input type="radio" name="female" id="female" value="female">
-            <label for="female">
-              <span class="abc-label-text">Female</span>
-            </label>
-            <input type="radio" name="others" id="others" value="others">
-            <label for="others">
-              <span class="abc-label-text">Others</span>
-            </label>
-          </div>
-        </div>
-      </div>
-      </div>
-      <div slot="page2" class="form-wizard-tab-content">
-        <div class="form-group">
-          <div class="input-group">
-            <input id="simple-input" required/>
-            <label class="control-label" for="simple-input">College Name</label><i class="bar"></i>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <input id="simple-input" required/>
-            <label class="control-label" for="simple-input">University</label><i class="bar"></i>
-          </div>
-        </div> 
-      </div>
-      <div slot="wizardCompleted" class="form-wizard-tab-content">
-            <h4>Add slot="wizardCompleted" to your wizard's last step,
-            to show this step after wizard completed!</h4>
-      </div>
-    </vuestic-wizard>
+  <vuestic-widget class="col-md-11">
+    <form-wizard @on-complete="onComplete" title="" subtitle="" >
+     <tab-content title="Personal details"
+                  icon="ti-user"
+                  :before-change="validateAsync">
+       My first tab content
+     </tab-content>
+     <tab-content title="Additional Info"
+                  icon="ti-settings">
+       My second tab content
+     </tab-content>
+     <tab-content title="Last step"
+                  icon="ti-check">
+       Yuhuuu! This seems pretty damn simple
+     </tab-content>
+    </form-wizard>
   </vuestic-widget>
 </template>
 
 <script>
+  import {FormWizard, TabContent} from 'vue-form-wizard'
+  import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
   export default {
     name: 'postSignup',
+    components: {
+      FormWizard,
+      TabContent
+    },
     data () {
       return {
-          // how your steps should look like:
-        isMale: '',
-        vrSteps: [
-          {
-            label: 'Personal details',
-            slot: 'page1', // the same name as in attribute "slot" of wizard's step
-            onNext: () => {
-              // method is called when moving to the next step
-            },
-            isValid: () => {
-              // condition for moving to the next step
-              return true
-            }
-          },
-          {
-            label: 'Almameter',
-            slot: 'page2', // the same name as in attribute "slot" of wizard's step
-            onNext: () => {
-              // method is called when moving to the next step
-            },
-            isValid: () => {
-              // condition for moving to the next step
-              return true
-            },
-            onBack: () => {
-              // method is called when moving to the previous step
-            }
-          }
-        ]
+        counter: 0,
+        studentId: '',
+        studentData: {
+          tags: []
+        }
       }
+    },
+    methods: {
+      onComplete: function () {
+        alert('Yay. Done!')
+      },
+      validateAsync: function () {
+        if (this.counter === 0) {
+          this.counter ++
+          console.log('its false')
+          return false
+        } else {
+          return true
+        }
+      },
+      updateStudent: function () {
+        const authToken = this.$ls.get('token')
+        this.studentData.tags = [
+          '5afce716bd80c12133c8d443',
+          '5afce69ebd80c12133c8d43a'
+        ]
+        console.log('this student data from update student', this.studentData)
+        this.$http.put('/students/update', this.studentData, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + authToken
+          }
+        })
+        .then(function (studentDataUpdated) {
+          console.log('student data updated', studentDataUpdated)
+        })
+        .catch(function (studentDataUpdateErr) {
+          console.log('student data update err', studentDataUpdateErr)
+        })
+      }
+    },
+    mounted () {
+      // const self = this
+      // setTimeout(() => {
+      //   self.updateStudent()
+      // }, 3000)
+    },
+    created () {
+      const self = this
+      const authToken = this.$ls.get('token')
+      const email = this.$ls.get('email')
+      this.$http.get('/students/get?email=' + email, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + authToken
+        }
+      })
+      .then(function (studentData) {
+        console.log('student data', studentData)
+        self.studentData = studentData.data[0]
+        console.log('student data main', self.studentData)
+      })
+      .catch(function (studentDataErr) {
+        console.log('student data err', studentDataErr)
+      })
     }
   }
 </script>
@@ -115,12 +110,11 @@
     padding-right: 15px;
     padding-left: 15px;
   }
-
-  .form-wizard-tab-content{
-    .form-group {
-      min-width: 200px;
-      max-width: 360px;
-      width: 80%;
-    }
+  span.error{
+    color:#e74c3c;
+    font-size:20px;
+    display:flex;
+    justify-content:center;
   }
+
 </style>
