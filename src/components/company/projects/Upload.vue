@@ -1,10 +1,10 @@
 <template>
   <vue-dropzone ref="myVueDropzone" :destroyDropzone="false" 
     @vdropzone-success="vsuccess" @vdropzone-removed-file="vremoved"
-    id="dropzone" :options="dropzoneOptions"
-    :awss3="awss3"
+    id="dropzone" :options="dropzoneOptions" @vdropzone-files-added="filesAdded">
+    <!-- :awss3="awss3"
     v-on:vdropzone-s3-upload-error="s3UploadError"
-    v-on:vdropzone-s3-upload-success="s3UploadSuccess">
+    v-on:vdropzone-s3-upload-success="s3UploadSuccess"> -->
   </vue-dropzone>
 </template>
 
@@ -28,13 +28,14 @@
           headers: { 'Authorization': 'Bearer ' + this.token },
           addRemoveLinks: true,
           dictDefaultMessage: "<i class='fa fa-cloud-upload'></i>UPLOAD ME",
-          awss3: {
-            signingURL: 'http://localhost:3000/attachments/signedUrlPut', // Where you will get signed url
-            headers: { 'Authorization': 'Bearer ' + this.token },
-            params: {},
-            sendFileToServer: false // If you want to upload file to your server along with s3
-          }
+          autoQueue: false
         }
+        // awss3: {
+        //   signingURL: 'http://localhost:3000/attachments/signedUrlPut', // Where you will get signed url
+        //   headers: { 'Authorization': 'Bearer ' + this.token },
+        //   params: {},
+        //   sendFileToServer: false // If you want to upload file to your server along with s3
+        // }
       }
     },
     methods: {
@@ -47,6 +48,30 @@
         console.log('this store filepath', this.$store.state.projectUploadedFile)
         eventBus.$emit('uploadedFile', {
           projectUploadedFiles: this.$store.state.projectUploadedFile
+        })
+      },
+      filesAdded (file) {
+        console.log('added files', file)
+        this.enqueueFile(file)
+      },
+      enqueueFile (file) {
+        console.log('enqueuee file', file)
+        this.$http.post('/attachments/signedUrlPut', {
+          headers: {
+            'Authorization': 'Bearer ' + this.token
+          }
+        },
+          {
+            data: {
+              file: file[0].name,
+              key: file[0].name
+            }
+          })
+        .then(function (signedUrl) {
+          console.log('signedUrl', signedUrl)
+        })
+        .catch(function (signedUrlErr) {
+          console.log('signedurl err', signedUrlErr)
         })
       },
       vremoved (file, error, xhr) {
