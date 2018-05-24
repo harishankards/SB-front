@@ -1,19 +1,69 @@
 <template>
   <vuestic-widget class="col-md-11">
     <form-wizard @on-complete="onComplete" title="" subtitle="" color="#4ae387">
-     <tab-content title="Personal details"
+      <tab-content title="Personal details"
                   icon="fa fa-user"
-                  :before-change="validateAsync">
-       My first tab content
-     </tab-content>
-     <tab-content title="Academic details"
-                  icon="fa fa-mortar-board">
-       My second tab content
-     </tab-content>
-     <tab-content title="Interests"
-                  icon="fa fa-lightbulb-o">
-       Yuhuuu! This seems pretty damn simple
-     </tab-content>
+                  :before-change="personalCheck">
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="personalData.fname" id="fname" required/>
+            <label class="control-label" for="fname">First name</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="personalData.lname" id="lname" required/>
+            <label class="control-label" for="lname">Last name</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="personalData.uname" id="uname" required/>
+            <label class="control-label" for="uname">User name</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="personalData.dob" type="date" id="dob" required/>
+            <label class="control-label" for="dob">Date of Birth</label><i class="bar"></i>
+          </div>
+        </div> 
+        <div class="form-group col-md-4">
+          Gender
+          <div class="input-group">
+            <label for="male">
+              <input type="radio" id="male" name="gender">Male
+            </label>
+            <label for="female">
+              <input type="radio" id="female" name="gender">Female              
+            </label>
+            <label for="others">
+              <input type="radio" id="others" name="gender">Others              
+            </label>
+          </div>
+        </div> 
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="personalData.city" id="city" required/>
+            <label class="control-label" for="city">City</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="personalData.country" id="country" required/>
+            <label class="control-label" for="country">Country</label><i class="bar"></i>
+          </div>
+        </div>
+      </tab-content>
+      
+      <tab-content title="Academic details"
+                    icon="fa fa-mortar-board">
+        My second tab content
+      </tab-content>
+      <tab-content title="Interests"
+                    icon="fa fa-lightbulb-o">
+        Yuhuuu! This seems pretty damn simple
+      </tab-content>
     </form-wizard>
   </vuestic-widget>
 </template>
@@ -30,10 +80,17 @@
     },
     data () {
       return {
-        counter: 0,
         studentId: '',
         studentData: {
           tags: []
+        },
+        personalData: {
+          fname: '',
+          lname: '',
+          dob: null,
+          uname: '',
+          city: '',
+          country: ''
         }
       }
     },
@@ -41,14 +98,11 @@
       onComplete: function () {
         alert('Yay. Done!')
       },
-      validateAsync: function () {
-        if (this.counter === 0) {
-          this.counter ++
-          console.log('its false')
+      personalCheck: function () {
+        if (this.personalData.fname === '') {
           return false
-        } else {
-          return true
         }
+        return true
       },
       updateStudent: function () {
         const authToken = this.$ls.get('token')
