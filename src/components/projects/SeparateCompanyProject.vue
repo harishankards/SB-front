@@ -16,7 +16,8 @@
       <hr>
       <div>
         <div class="comment-section">
-        <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
+          <button type="button" class="btn-style" @click="togglelike">
+          <i class="fa fa-thumbs-up" :class="{likebutton: liked}"></i> {{this.projectData.upvotes.length}} {{this.upvoteContent}} </button>
         </div>
         <div class="comment-section">
            <button type="button" class="btn-style"  @click="showShareDiv()">         
@@ -70,12 +71,18 @@
         projectId: '',
         authorData: '',
         showProject: null,
-        shareIcons: false
+        shareIcons: false,
+        liked: false,
+        upvoteContent: ''
       }
     },
     methods: {
       showShareDiv: function () {
         this.shareIcons = !this.shareIcons
+      },
+      togglelike: function () {
+        this.liked = !this.liked
+        this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
       }
     },
     created () {
@@ -111,6 +118,13 @@
         secondthis.showProject = false
         console.log('projectdataerr', projectDataErr)
       })
+    },
+    updated () {
+      if (this.projectData.upvotes.length < 2) {
+        this.upvoteContent = 'upvote'
+      } else {
+        this.upvoteContent = 'upvotes'
+      }
     }
   }
 </script>
@@ -130,10 +144,12 @@
     width: 100px;
     cursor: pointer;
     background: white;
+    outline: none;
   }
   .btn-style:hover{
     background:  #f2f2f2;
     border: none;
+    outline: none;
   }
   #icon-style{
     margin-top: 2%;
@@ -156,5 +172,8 @@
     text-align: center;
     font-weight: bold;
     // margin-top: 7rem;
+  }
+  .likebutton{
+    color:#3385ff;
   }
 </style>
