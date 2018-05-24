@@ -55,7 +55,8 @@
         this.enqueueFile(file)
       },
       enqueueFile (file) {
-        console.log('enqueuee file', file)
+        const self = this
+        console.log('enqueuee file', file[0])
         this.$http.post('/attachments/signedUrlPut', {
           headers: {
             'Authorization': 'Bearer ' + this.token
@@ -68,7 +69,14 @@
             }
           })
         .then(function (signedUrl) {
-          console.log('signedUrl', signedUrl)
+          console.log('signedUrl', signedUrl.data.url)
+          self.$http.put(signedUrl.data.url, file[0].dataURL)
+          .then(function (uploaded) {
+            console.log('file uploaded', uploaded)
+          })
+          .catch(function (uploadErr) {
+            console.log('file uplaod er', uploadErr)
+          })
         })
         .catch(function (signedUrlErr) {
           console.log('signedurl err', signedUrlErr)
