@@ -16,11 +16,37 @@
       <hr>
       <div>
         <div v-if="this.projectData.upvotes" class="comment-section">
-        <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
+        <button type="button" class="btn-style" @click="togglelike">
+          <i class="fa fa-thumbs-up" :class="{likebutton: liked}"></i> {{this.projectData.upvotes.length}} {{this.upvoteContent}} </button>
         </div>
         <div class="comment-section">
-          <i class="fa fa-share"></i> Share
-        </div>
+           <button type="button" class="btn-style"  @click="showShareDiv()">         
+          <span class="glyphicon glyphicon-share-alt"></span> Share </button></div>
+           <social-sharing url="https://studentburger.com/" v-if="shareIcons"
+                    title="Student Burger"
+                    description="The Social Network for Students and Companies"
+                    quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+                    hashtags="studentburger,socialnetwork,student,company"
+                    twitter-user="_studentburger"
+                    inline-template>
+              <div id="icon-style">
+                <network network="email">
+                    <i class="fa fa-envelope" style="color:red;cursor:pointer;"></i> Email
+                </network>
+                <network style="padding-left:12px;" network="facebook">
+                  <i class="fa fa-facebook" style="color:#3B5998;cursor:pointer;"></i> Facebook
+                </network>
+                <network network="googleplus" style="padding-left:12px;">
+                  <i class="fa fa-google-plus" style="color:#DB4437;cursor:pointer;"></i> Google +
+                </network>
+                <network network="linkedin" style="padding-left:12px;">
+                  <i class="fa fa-linkedin" style="color:#0077B5;cursor:pointer;"></i> LinkedIn
+                </network>
+                <network network="twitter" style="padding-left:12px;">
+                  <i class="fa fa-twitter" style="color:#1DA1F2;cursor:pointer;"></i> Twitter
+                </network>
+            </div>
+          </social-sharing>
       </div>
       <!-- <vue-disqus shortname="student-burger"></vue-disqus> -->
       
@@ -41,7 +67,19 @@
         projectData: '',
         projectId: '',
         authorData: '',
-        showProject: null
+        showProject: null,
+        shareIcons: false,
+        liked: false,
+        upvoteContent: ''
+      }
+    },
+    methods: {
+      showShareDiv: function () {
+        this.shareIcons = !this.shareIcons
+      },
+      togglelike: function () {
+        this.liked = !this.liked
+        this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
       }
     },
     created () {
@@ -77,6 +115,13 @@
         secondthis.showProject = false
         console.log('projectdataerr', projectDataErr)
       })
+    },
+    updated () {
+      if (this.projectData.upvotes.length < 2) {
+        this.upvoteContent = 'upvote'
+      } else {
+        this.upvoteContent = 'upvotes'
+      }
     }
   }
 </script>
@@ -107,5 +152,25 @@
     text-align: center;
     font-weight: bold;
     // margin-top: 7rem;
+  }
+   .btn-style{
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    background: white;
+    outline: none;
+  }
+  .btn-style:hover{
+    background:  #f2f2f2;
+    border: none;
+    outline: none;
+  }
+  #icon-style{
+    margin-top: 2%;
+    margin-left: 12%; 
+    cursor: pointer;
+  }
+  .likebutton{
+    color:#3385ff;
   }
 </style>

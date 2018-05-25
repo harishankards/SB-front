@@ -16,7 +16,8 @@
       <hr>
       <div>
         <div v-if="this.projectData.upvotes" class="comment-section">
-        <i class="fa fa-thumbs-up"></i> {{this.projectData.upvotes.length}} upvotes
+        <button type="button" class="btn-style" @click="togglelike">
+          <i class="fa fa-thumbs-up" :class="{likebutton: liked}"></i> {{this.projectData.upvotes.length}} {{this.upvoteContent}} </button>
         </div>
         <div class="comment-section" style="cursor:pointer;">
           <button type="button" class="btn-style"  @click="showShareDiv()">         
@@ -70,7 +71,9 @@
         projectId: '',
         authorData: '',
         showProject: null,
-        shareIcons: false
+        shareIcons: false,
+        liked: false,
+        upvoteContent: ''
       }
     },
     methods: {
@@ -111,6 +114,13 @@
         secondthis.showProject = false
         console.log('projectdataerr', projectDataErr)
       })
+    },
+    updated () {
+      if (this.projectData.upvotes.length < 2) {
+        this.upvoteContent = 'upvote'
+      } else {
+        this.upvoteContent = 'upvotes'
+      }
     }
   }
 </script>
