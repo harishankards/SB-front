@@ -15,7 +15,7 @@
       <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <hr>
       <div>
-        <div class="comment-section">
+        <div v-if="this.projectData.upvotes" class="comment-section">
           <button type="button" class="btn-style" @click="togglelike">
           <i class="fa fa-thumbs-up" :class="{likebutton: liked}"></i> {{this.projectData.upvotes.length}} {{this.upvoteContent}} </button>
         </div>
