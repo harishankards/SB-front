@@ -81,8 +81,34 @@
         this.shareIcons = !this.shareIcons
       },
       togglelike: function () {
+        const self = this
         this.liked = !this.liked
         this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
+        const authToken = this.$ls.get('token')
+        const email = this.$ls.get('email')
+        const headers = {
+          headers: {
+            'Authorization': 'Bearer ' + authToken
+          }
+        }
+        this.$http.get('/students/get?email=' + email, headers)
+        .then(function (studentData) {
+          console.log('student Data', studentData.data[0])
+          const studentId = studentData.data[0]._id
+          self.$http.post('/companyprojects/upvotes', {
+            student: studentId,
+            project: self.projectId
+          }, headers)
+          .then(function (studentData) {
+            console.log('success')
+          })
+          .catch(function (studentsDataErr) {
+            console.log('error')
+          })
+        })
+        .catch(function (studentsDataErr) {
+          console.log('student data err', studentsDataErr)
+        })
       }
     },
     created () {
