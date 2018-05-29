@@ -50,6 +50,8 @@ const store = new Vuex.Store({
       localStorage.removeItem('vuejs_student')
       localStorage.removeItem('vuejs_company')
       localStorage.removeItem('vuejs_email')
+      localStorage.removeItem('vuejs_logged_student_id')
+      localStorage.removeItem('vuejs_imageData')
       context.commit(LOGOUT)
     }
   }
