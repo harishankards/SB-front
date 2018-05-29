@@ -82,37 +82,45 @@
       },
       togglelike: function () {
         const self = this
-        this.liked = !this.liked
-        this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
         const authToken = this.$ls.get('token')
-        const email = this.$ls.get('email')
         const headers = {
           headers: {
             'Authorization': 'Bearer ' + authToken
           }
         }
-        this.$http.get('/students/get?email=' + email, headers)
-        .then(function (studentData) {
-          console.log('student Data', studentData.data[0])
-          const studentId = studentData.data[0]._id
-          self.$http.post('/companyprojects/upvotes', {
+        const studentId = this.$ls.get('logged_student_id')
+        if (!this.liked) {
+          console.log('not liked', this.liked)
+          this.$http.post('/companyprojects/upvotes', {
             student: studentId,
             project: self.projectId
           }, headers)
-          .then(function (studentData) {
-            console.log('success')
+          .then(function (upvoteSuccess) {
+            console.log('success', upvoteSuccess)
           })
-          .catch(function (studentsDataErr) {
-            console.log('error')
+          .catch(function (upvoteError) {
+            console.log('error', upvoteError)
           })
-        })
-        .catch(function (studentsDataErr) {
-          console.log('student data err', studentsDataErr)
-        })
+        } else if (this.liked) {
+          console.log('liked', this.liked)
+          this.$http.post('/companyprojects/upvotes/remove', {
+            student: studentId,
+            project: self.projectId
+          }, headers)
+          .then(function (upvoteDeleteSuccess) {
+            console.log('success', upvoteDeleteSuccess)
+          })
+          .catch(function (upvoteDeleteErr) {
+            console.log('error', upvoteDeleteErr)
+          })
+        }
+        this.liked = !this.liked
+        this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
       }
     },
     created () {
-      var secondthis = this
+      const secondthis = this
+      const loggedStudent = this.$ls.get('logged_student_id')
       const projectId = this.$route.params.id
       const authToken = this.$ls.get('token')
       this.projectId = projectId
@@ -124,6 +132,9 @@
       .then(function (projectDetails) {
         secondthis.showProject = true
         console.log('projectData', projectDetails.data)
+        if (projectDetails.data.upvotes.includes(loggedStudent)) {
+          secondthis.liked = true
+        }
         secondthis.projectData = projectDetails.data
         secondthis.$http.get('/companies/get?id=' + projectDetails.data.author, {
           headers: {
