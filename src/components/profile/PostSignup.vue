@@ -139,6 +139,7 @@
         return true
       },
       updateStudent: function () {
+        const self = this
         const authToken = this.$ls.get('token')
         this.studentData.profile = this.personalData
         this.studentData.academic = this.academicData
@@ -150,7 +151,14 @@
           }
         })
         .then(function (studentDataUpdated) {
-          console.log('student data updated', studentDataUpdated)
+          self.$swal('Success!',
+          'Your details are updated!',
+          'success'
+          ).then((result) => {
+            if (result.value) {
+              self.$router.push('/student/newsfeed')
+            }
+          })
         })
         .catch(function (studentDataUpdateErr) {
           console.log('student data update err', studentDataUpdateErr)
