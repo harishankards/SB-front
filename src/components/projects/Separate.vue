@@ -181,6 +181,7 @@
     width: 100px;
     cursor: pointer;
     background: white;
+    outline: none;
   }
   .btn-style:hover{
     background:  #f2f2f2;
