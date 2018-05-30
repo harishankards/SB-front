@@ -85,7 +85,9 @@
       </tab-content>
       <tab-content title="Interests"
                     icon="fa fa-lightbulb-o">
-        Yuhuuu! This seems pretty damn simple
+        <div class="col-md-8">
+          <multiselect></multiselect>
+        </div>
       </tab-content>
     </form-wizard>
   </vuestic-widget>
@@ -94,12 +96,14 @@
 <script>
   import {FormWizard, TabContent} from 'vue-form-wizard'
   import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+  import multiselect from './Multiselect'
 
   export default {
     name: 'postSignup',
     components: {
       FormWizard,
-      TabContent
+      TabContent,
+      multiselect
     },
     data () {
       return {
