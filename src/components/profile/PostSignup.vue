@@ -97,6 +97,7 @@
   import {FormWizard, TabContent} from 'vue-form-wizard'
   import 'vue-form-wizard/dist/vue-form-wizard.min.css'
   import multiselect from './Multiselect'
+  import { eventBus } from '../../main.js'
 
   export default {
     name: 'postSignup',
@@ -129,7 +130,7 @@
     },
     methods: {
       onComplete: function () {
-        alert('Yay. Done!')
+        this.updateStudent()
       },
       personalCheck: function () {
         // if (this.personalData.fname === '') {
@@ -139,11 +140,9 @@
       },
       updateStudent: function () {
         const authToken = this.$ls.get('token')
-        this.studentData.tags = [
-          '5afce716bd80c12133c8d443',
-          '5afce69ebd80c12133c8d43a'
-        ]
-        console.log('this student data from update student', this.studentData)
+        this.studentData.profile = this.personalData
+        this.studentData.academic = this.academicData
+        console.log('this student data from update student', this.studentData, this.personalData, this.academicData)
         this.$http.put('/students/update', this.studentData, {
           headers: {
             'Content-Type': 'application/json',
@@ -181,6 +180,11 @@
       })
       .catch(function (studentDataErr) {
         console.log('student data err', studentDataErr)
+      })
+      eventBus.$on('multiselectorproject', (data) => {
+        data.map(tag => {
+          self.studentData.tags.push(tag.id)
+        })
       })
     }
   }
