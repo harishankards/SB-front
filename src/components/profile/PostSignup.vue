@@ -58,7 +58,30 @@
       
       <tab-content title="Academic details"
                     icon="fa fa-mortar-board">
-        My second tab content
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="academicData.collegeName" id="collegeName" required/>
+            <label class="control-label" for="collegeName">College name</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="academicData.degree" id="degree" required/>
+            <label class="control-label" for="degree">Degree</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="academicData.branch" id="branch" required/>
+            <label class="control-label" for="branch">Branch</label><i class="bar"></i>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <div class="input-group">
+            <input v-model="academicData.yearofstudy" type="number" id="yearofstudy" required/>
+            <label class="control-label" for="yearofstudy">Year of Study</label><i class="bar"></i>
+          </div>
+        </div>
       </tab-content>
       <tab-content title="Interests"
                     icon="fa fa-lightbulb-o">
@@ -91,6 +114,12 @@
           uname: '',
           city: '',
           country: ''
+        },
+        academicData: {
+          collegeName: '',
+          degree: '',
+          branch: '',
+          yearofstudy: ''
         }
       }
     },
@@ -99,9 +128,9 @@
         alert('Yay. Done!')
       },
       personalCheck: function () {
-        if (this.personalData.fname === '') {
-          return false
-        }
+        // if (this.personalData.fname === '') {
+        //   return false
+        // }
         return true
       },
       updateStudent: function () {
