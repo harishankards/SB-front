@@ -79,11 +79,49 @@
     methods: {
       showShareDiv: function () {
         this.shareIcons = !this.shareIcons
+      },
+      togglelike: function () {
+        const self = this
+        const authToken = this.$ls.get('token')
+        const headers = {
+          headers: {
+            'Authorization': 'Bearer ' + authToken
+          }
+        }
+        const studentId = this.$ls.get('logged_student_id')
+        if (!this.liked) {
+          console.log('not liked', this.liked)
+          this.$http.post('/projects/upvotes', {
+            student: studentId,
+            project: self.projectId
+          }, headers)
+          .then(function (upvoteSuccess) {
+            console.log('success', upvoteSuccess)
+          })
+          .catch(function (upvoteError) {
+            console.log('error', upvoteError)
+          })
+        } else if (this.liked) {
+          console.log('liked', this.liked)
+          this.$http.post('/projects/upvotes/remove', {
+            student: studentId,
+            project: self.projectId
+          }, headers)
+          .then(function (upvoteDeleteSuccess) {
+            console.log('success', upvoteDeleteSuccess)
+          })
+          .catch(function (upvoteDeleteErr) {
+            console.log('error', upvoteDeleteErr)
+          })
+        }
+        this.liked = !this.liked
+        this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
       }
     },
     created () {
       var secondthis = this
       const projectId = this.$route.params.id
+      const loggedStudent = this.$ls.get('logged_student_id')
       const authToken = this.$ls.get('token')
       this.projectId = projectId
       this.$http.get('projects/get?id=' + projectId, {
@@ -94,6 +132,9 @@
       .then(function (projectDetails) {
         secondthis.showProject = true
         console.log('projectData', projectDetails.data)
+        if (projectDetails.data.upvotes.includes(loggedStudent)) {
+          secondthis.liked = true
+        }
         secondthis.projectData = projectDetails.data
         secondthis.$http.get('/students/get?id=' + projectDetails.data.author, {
           headers: {
@@ -166,5 +207,8 @@
     text-align: center;
     font-weight: bold;
     // margin-top: 7rem;
+  }
+  .likebutton{
+    color:#3385ff;
   }
 </style>
