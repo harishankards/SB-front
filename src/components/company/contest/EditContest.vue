@@ -242,8 +242,8 @@
       this.contestData.about = eventBus.contestToBeEdited.about
       this.contestData.files = eventBus.contestToBeEdited.files
       this.contestData.rulesFormat = eventBus.contestToBeEdited.rulesFormat
-      this.contestData.date.start = eventBus.contestToBeEdited.date.start
-      this.contestData.date.end = eventBus.contestToBeEdited.date.end
+      this.contestData.date.start = new Date(eventBus.contestToBeEdited.date.start)
+      this.contestData.date.end = new Date(eventBus.contestToBeEdited.date.end)
       this.contestData.tags = eventBus.contestToBeEdited.tags
       this.contestData._id = eventBus.contestToBeEdited._id
       this.contestData.host = eventBus.contestToBeEdited.host
