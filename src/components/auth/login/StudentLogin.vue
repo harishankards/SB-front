@@ -29,7 +29,7 @@
     </form>
     <div class="col-md-12">
       <h2 class="ortext">or</h2>
-      <button class="btn btn-info fbbtn"><i class="fa fa-facebook-official"></i>  Sign in with Facebook</button>
+      <button class="btn btn-info fbbtn" @click.prevent="fbLogin"><i class="fa fa-facebook-official"></i>  Sign in with Facebook</button>
       <!-- <button class="btn btn-dark ghbtn"><i class="fa fa-github"></i> Sign in with  Github</button> -->
       <button class="btn btn-danger libtn" @click.prevent="linkedinLogin"><i class="fa fa-linkedin-square"></i> Sign in with Linkedin</button>
     </div>
@@ -52,20 +52,20 @@
     methods: {
       sendLoginData: function () {
         const secondThis = this
-        console.log('data da:', this.loginData)
+        // console.log('data da:', this.loginData)
         this.$http.post('/student/login', this.loginData)
         .then(function (loginSuccess) {
-          console.log('login success', loginSuccess.data)
+          // console.log('login success', loginSuccess.data)
           const authToken = loginSuccess.data.token
-          console.log('auth token', authToken)
+          // console.log('auth token', authToken)
           secondThis.$ls.set('token', authToken)
           secondThis.$ls.set('logged_student_id', loginSuccess.data.id)
           secondThis.$ls.set('student', 'true')
           secondThis.$ls.set('email', secondThis.loginData.email)
-          const lsToken = secondThis.$ls.get('token')
+          // const lsToken = secondThis.$ls.get('token')
           secondThis.$store.dispatch('login')
           secondThis.$router.push('/student/newsfeed')
-          console.log('ls token', lsToken)
+          // console.log('ls token', lsToken)
         })
         .catch(function (loginErr) {
           console.log('login err', loginErr)
@@ -84,6 +84,19 @@
         })
         .catch(function (linkedinErr) {
           console.log('linkedin err', linkedinErr)
+        })
+      },
+      fbLogin: function () {
+        this.$http.get('/auth/facebook', {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
+        .then(function (facebookData) {
+          console.log('facebookData', facebookData)
+        })
+        .catch(function (facebookErr) {
+          console.log('facebookErr', facebookErr)
         })
       },
       showError (nudge) {
