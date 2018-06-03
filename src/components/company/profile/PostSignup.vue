@@ -83,6 +83,7 @@
           about: '',
           city: '',
           country: '',
+          website: '',
           zip: ''
         }
       }
