@@ -82,7 +82,7 @@
           description: '',
           files: [],
           tags: [],
-          author: 'hs@spritle.com'
+          author: this.$ls.get('email')
         },
         counter: 0,
         errorMessage: '',
