@@ -66,7 +66,7 @@
         </div>
         <div class="form-inline">
         <div class="col-md-6"> 
-            <h6 class="labelStyle">Degree:</h6>
+            <h6 class="labelStyle">Branch:</h6>
             <input type="text" class="inputboxStyle" v-model="academicData.branch" id="branch" required/>
           </div>
         </div>
