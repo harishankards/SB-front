@@ -27,11 +27,18 @@ import VueAuthenticate from 'vue-authenticate'
 // For authentication
 Vue.use(VueAuthenticate, {
   baseUrl: 'http://localhost:3000', // Your API domain
-  
   providers: {
-    github: {
-      clientId: '',
-      redirectUri: 'http://localhost:8080/auth/callback' // Your client app URL
+    facebook: {
+      name: 'facebook',
+      url: '/auth/facebook',
+      authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+      redirectUri: getRedirectUri('/'),
+      requiredUrlParams: ['display', 'scope'],
+      scope: ['email'],
+      scopeDelimiter: ',',
+      display: 'popup',
+      oauthType: '2.0',
+      popupOptions: { width: 580, height: 400 }
     }
   }
 })
@@ -146,6 +153,16 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+export function getRedirectUri (uri) {
+  try {
+    return (typeof uri !== 'undefined')
+      ? `${window.location.origin}${uri}`
+      : window.location.origin
+  } catch (e) {}
+
+  return uri || null
+}
 
 router.afterEach((to, from) => {
   mediaHandler()
