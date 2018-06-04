@@ -4,82 +4,76 @@
       <tab-content title="Personal details"
                   icon="fa fa-user"
                   :before-change="personalCheck">
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.fname" id="fname" required/>
-            <label class="control-label" for="fname">First name</label><i class="bar"></i>
+      <div class="form-inline">
+          <div class="col-md-6">   
+            <h6 class="labelStyle">First Name:</h6>           
+            <input type="text" class="inputboxStyle" v-model="personalData.fname" id="fname" required/>            
           </div>
+          <div class="col-md-6">
+             <h6 class="labelStyle">Last Name:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.lname" id="lname" required/>
+          </div>
+          </div>
+          <div class="form-inline">
+        <div class="col-md-6">
+          <h6 class="labelStyle">Username:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.uname" id="uname" required/>
+        </div></div>
+        <div class="form-inline">
+         <div class="col-md-6">      
+         <h6 class="labelStyle">Date Of Birth:</h6>
+         <input type="text" class="inputboxStyle" id="dob" v-model="personalData.dob" placeholder="DD-MM-YYYY" required/>
+       </div></div>
+       <div class="form-inline">
+        <div class="col-md-6"> 
+          <h6 class="labelStyle">Gender:</h6>
+          <label class="radio inline">
+          <input type="radio" name="gender" value="male" id="gender-male"/>
+          <span>Male</span></label>
+          <label class="radio inline">
+          <input type="radio" name="gender" value="female" id="gender-female"/>
+          <span>Female</span></label>
+          <label class="radio inline">
+          <input type="radio" name="gender" value="others" id="gender-others"/>
+          <span>Others</span></label>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.lname" id="lname" required/>
-            <label class="control-label" for="lname">Last name</label><i class="bar"></i>
-          </div>
-        </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.uname" id="uname" required/>
-            <label class="control-label" for="uname">User name</label><i class="bar"></i>
-          </div>
-        </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.dob" type="date" id="dob" required/>
-            <label class="control-label" for="dob">Date of Birth</label><i class="bar"></i>
-          </div>
         </div> 
-        <div class="form-group col-md-4">
-          Gender
-          <div class="input-group">
-            <label for="male">
-              <input type="radio" id="male" name="gender">Male
-            </label>
-            <label for="female">
-              <input type="radio" id="female" name="gender">Female              
-            </label>
-            <label for="others">
-              <input type="radio" id="others" name="gender">Others              
-            </label>
-          </div>
-        </div> 
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.city" id="city" required/>
-            <label class="control-label" for="city">City</label><i class="bar"></i>
-          </div>
-        </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.country" id="country" required/>
-            <label class="control-label" for="country">Country</label><i class="bar"></i>
-          </div>
-        </div>
+        <div class="form-inline">
+        <div class="col-md-6">
+          <h6 class="labelStyle">City:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.city" id="city" required/>
+        </div></div>
+        <div class="form-inline">
+        <div class="col-md-6">
+          <h6 class="labelStyle">Country:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.country" id="country" required/>          
+        </div></div>
       </tab-content>
       
       <tab-content title="Academic details"
                     icon="fa fa-mortar-board">
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="academicData.collegeName" id="collegeName" required/>
-            <label class="control-label" for="collegeName">College name</label><i class="bar"></i>
+        <div class="form-inline">
+        <div class="col-md-6">
+            <h6 class="labelStyle">College Name:</h6>
+            <input type="text" class="inputboxStyle" v-model="academicData.collegeName" id="collegeName" required/>
           </div>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="academicData.degree" id="degree" required/>
-            <label class="control-label" for="degree">Degree</label><i class="bar"></i>
+        <div class="form-inline">
+        <div class="col-md-6">
+          <h6 class="labelStyle">Degree:</h6>
+            <input type="text" class="inputboxStyle" v-model="academicData.degree" id="degree" required/>
           </div>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="academicData.branch" id="branch" required/>
-            <label class="control-label" for="branch">Branch</label><i class="bar"></i>
+        <div class="form-inline">
+        <div class="col-md-6"> 
+            <h6 class="labelStyle">Degree:</h6>
+            <input type="text" class="inputboxStyle" v-model="academicData.branch" id="branch" required/>
           </div>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="academicData.yearofstudy" type="number" id="yearofstudy" required/>
-            <label class="control-label" for="yearofstudy">Year of Study</label><i class="bar"></i>
+        <div class="form-inline">
+        <div class="col-md-6">
+             <h6 class="labelStyle">Year Of Study:</h6>         
+            <input type="text" class="inputboxStyle" v-model="academicData.yearofstudy" id="yearofstudy" required/>
           </div>
         </div>
       </tab-content>
@@ -200,6 +194,7 @@
 
 
 <style lang="scss" scoped>
+ @import "../../sass/_variables.scss";
   .align-gender {
     padding-left: 1rem;
   }
@@ -215,5 +210,75 @@
     display:flex;
     justify-content:center;
   }
-
+  .inputboxStyle{
+    margin-top: 3%;
+    font-size: 15px;
+    width: 16rem;
+    padding: 8px 25px;
+    border: 1px solid #bdc7d8;
+    border-radius: 5px;
+    color:#333;
+  }
+  .labelStyle{
+    color: $vue-green;
+    margin-top: 3%;
+    text-align: left;
+  }
+  .inline{
+  display: inline-block;
+  }
+  .inline + .inline{
+  margin-left:10px;
+  }
+  .radio{
+  font-size:17px;
+  position:relative;
+}
+.radio span{
+  position:relative;
+  padding-left:20px;
+}
+.radio span:after{
+  content:'';
+  width:15px;
+  height:15px;
+  border:3px solid;
+  position:absolute;
+  left:0;
+  top:1px;
+  border-radius:100%;
+  -ms-border-radius:100%;
+  -moz-border-radius:100%;
+  -webkit-border-radius:100%;
+  box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+.radio input[type="radio"]{
+   cursor: pointer; 
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index: 1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+}
+.radio input[type="radio"]:checked + span{
+  color: $vue-green;  
+}
+.radio input[type="radio"]:checked + span:before{
+  content:'';
+  width:5px;
+  height:5px;
+  position:absolute;
+  background: $vue-green;
+  left:5px;
+  top:6px;
+  border-radius:100%;
+  -ms-border-radius:100%;
+  -moz-border-radius:100%;
+  -webkit-border-radius:100%;
+}
 </style>
