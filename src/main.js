@@ -22,6 +22,19 @@ import VTooltip from 'v-tooltip'
 import VueSocketio from 'vue-socket.io-extended'
 import io from 'socket.io-client'
 import Toasted from 'vue-toasted'
+import VueAuthenticate from 'vue-authenticate'
+
+// For authentication
+Vue.use(VueAuthenticate, {
+  baseUrl: 'http://localhost:3000', // Your API domain
+  
+  providers: {
+    github: {
+      clientId: '',
+      redirectUri: 'http://localhost:8080/auth/callback' // Your client app URL
+    }
+  }
+})
 
 // For http requests
 Vue.use(VueAxios, axios)
