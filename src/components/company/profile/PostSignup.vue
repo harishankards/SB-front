@@ -4,46 +4,46 @@
       <tab-content title="Basic details"
                   icon="fa fa-user"
                   :before-change="personalCheck">
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.fname" id="fname" required/>
-            <label class="control-label" for="fname">Company name</label><i class="bar"></i>
+        <div class="form-inline">
+          <div class="col-md-6">  
+          <h6 class="labelStyle">Company Name:</h6>  
+            <input type="text" class="inputboxStyle" v-model="personalData.fname" id="fname" required/>
           </div>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.about" id="about" required/>
-            <label class="control-label" for="about">About the company</label><i class="bar"></i>
+        <div class="form-inline">
+          <div class="col-md-6">  
+            <h6 class="labelStyle">About Company:</h6>        
+            <input type="text" class="inputboxStyle" v-model="personalData.about" id="about" required/>
           </div>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.uname" id="uname" required/>
-            <label class="control-label" for="uname">User name</label><i class="bar"></i>
+        <div class="form-inline">
+          <div class="col-md-6">
+            <h6 class="labelStyle">Username:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.uname" id="uname" required/>
           </div>
         </div> 
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.website" id="website" required/>
-            <label class="control-label" for="website">Website</label><i class="bar"></i>
+        <div class="form-inline">
+          <div class="col-md-6">
+            <h6 class="labelStyle">Website:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.website" id="website" required/>
           </div>
         </div> 
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.city" id="city" required/>
-            <label class="control-label" for="city">City</label><i class="bar"></i>
+        <div class="form-inline">
+          <div class="col-md-6">
+            <h6 class="labelStyle">City:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.city" id="city" required/>
           </div>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.country" id="country" required/>
-            <label class="control-label" for="country">Country</label><i class="bar"></i>
+        <div class="form-inline">
+          <div class="col-md-6">
+            <h6 class="labelStyle">Country:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.country" id="country" required/>
           </div>
         </div>
-        <div class="form-group col-md-4">
-          <div class="input-group">
-            <input v-model="personalData.zip" id="zip" type="number" required/>
-            <label class="control-label" for="zip">ZIP code</label><i class="bar"></i>
+        <div class="form-inline">
+          <div class="col-md-6">
+            <h6 class="labelStyle">Zip Code:</h6>
+            <input type="text" class="inputboxStyle" v-model="personalData.zip" id="zip" required/>
           </div>
         </div>
       </tab-content>
@@ -152,6 +152,7 @@
 
 
 <style lang="scss" scoped>
+@import "../../../sass/_variables.scss";
   .align-gender {
     padding-left: 1rem;
   }
@@ -167,5 +168,18 @@
     display:flex;
     justify-content:center;
   }
-
+  .inputboxStyle{
+    margin-top: 3%;
+    font-size: 15px;
+    width: 16rem;
+    padding: 8px 25px;
+    border: 1px solid #bdc7d8;
+    border-radius: 5px;
+    color:#333;
+  }
+  .labelStyle{
+    color: $vue-green;
+    margin-top: 3%;
+    text-align: left;
+  }
 </style>
