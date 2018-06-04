@@ -87,17 +87,7 @@
         })
       },
       fbLogin: function () {
-        this.$http.get('/auth/facebook', {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
-        .then(function (facebookData) {
-          console.log('facebookData', facebookData)
-        })
-        .catch(function (facebookErr) {
-          console.log('facebookErr', facebookErr)
-        })
+        this.authenticate('facebook')
       },
       showError (nudge) {
         if (nudge === 'show') {
@@ -106,6 +96,11 @@
         } else {
           console.log('this is not show')
         }
+      },
+      authenticate: function (provider) {
+        this.$auth.authenticate(provider).then((data) => {
+          console.log('data from facebook', data)
+        })
       }
     },
     computed: {
