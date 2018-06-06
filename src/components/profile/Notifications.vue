@@ -1,9 +1,11 @@
 <template>
-  <vuestic-widget class="col-md-8">
-    <h5 class="headingStyle">Your Notifications</h5>
-    <div v-for="notification in this.notificationsData" :key="notification.id" @click.prevent="takeToNoti(notification)" class="notificationStyle">
-      <div class="iconStyle">{{firstletter(notification.text)}}</div>
-      <a href="" class="textStyle">{{notification.text}}</a>      
+  <vuestic-widget class="col-md-8 widgetAdjust">
+    <h5 class="headerStyle">Your Notifications</h5>
+    <div v-show="notificationAvailable" v-for="notification in this.notificationsData" :key="notification.id" @click.prevent="takeToNoti(notification)" class="notificationStyle">
+     <div class="iconStyle">{{firstletter(notification.text)}} </div>
+     <a href="" class="textStyle">{{notification.text}}</a> </div>   
+     <div v-show="!notificationAvailable" class="headingStyle">
+      You have no notifications to view!!
     </div>
   </vuestic-widget>
 </template>
@@ -13,7 +15,8 @@
     name: 'student-notifications',
     data () {
       return {
-        notificationsData: ''
+        notificationsData: '',
+        notificationAvailable: false
       }
     },
     methods: {
@@ -37,6 +40,10 @@
       .then(function (studentData) {
         console.log('notifications data', studentData.data[0].notifications)
         self.notificationsData = studentData.data[0].notifications
+        if (self.notificationsData.length > 0) {
+          console.log('success')
+          self.notificationAvailable = true
+        }
       })
       .catch(function (studentDataErr) {
         console.log('student data err', studentDataErr)
@@ -44,7 +51,7 @@
     }
   }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .notificationStyle{
   border-top: 1px solid lightgray;
   padding-top: 1%;
@@ -66,6 +73,7 @@
 .textStyle{
    padding-bottom: 1%;
    padding-left: 5%;
+   width: auto;
    display: inline-block;
 }
 .notificationStyle:hover{
@@ -73,7 +81,12 @@
 }
 .headingStyle{
   margin-left: 4%;
+  padding-left: 25%;
   padding-bottom: 1%;
+}
+.headerStyle{
+  margin-left: 3%;
+  padding-bottom: 2%; 
 }
 </style>
 
