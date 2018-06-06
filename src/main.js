@@ -22,26 +22,7 @@ import VTooltip from 'v-tooltip'
 import VueSocketio from 'vue-socket.io-extended'
 import io from 'socket.io-client'
 import Toasted from 'vue-toasted'
-import VueAuthenticate from 'vue-authenticate'
 
-// For authentication
-Vue.use(VueAuthenticate, {
-  baseUrl: 'http://localhost:3000', // Your API domain
-  providers: {
-    facebook: {
-      name: 'facebook',
-      url: '/auth/facebook',
-      authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
-      redirectUri: getRedirectUri('/'),
-      requiredUrlParams: ['display', 'scope'],
-      scope: ['email'],
-      scopeDelimiter: ',',
-      display: 'popup',
-      oauthType: '2.0',
-      popupOptions: { width: 580, height: 400 }
-    }
-  }
-})
 
 // For http requests
 Vue.use(VueAxios, axios)

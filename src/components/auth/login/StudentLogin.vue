@@ -74,7 +74,7 @@
         })
       },
       linkedinLogin: function () {
-        this.$http.get('/auth/linkedin', {
+        this.$http.get('/auth/linkedin/student', {
           headers: {
             'Access-Control-Allow-Origin': '*'
           }
