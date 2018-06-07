@@ -1,9 +1,10 @@
 <template>
-  <vuestic-widget class="col-md-8">
-    <h5 class="headingStyle">Your Notifications</h5>
-    <div v-for="notification in this.notificationsData" :key="notification.id" class="notificationStyle" @click.prevent="takeToNoti(notification)">
+  <vuestic-widget class="col-md-8" headerText="Your Notifications">
+    <div v-show="notificationAvailable" v-for="notification in this.notificationsData" :key="notification.id" class="notificationStyle" @click.prevent="takeToNoti(notification)">
       <div class="iconStyle">{{firstletter(notification.text)}}</div>
-      <a href="" class="textStyle">{{notification.text}}</a>
+      <a href="" class="textStyle">{{notification.text}}</a></div>
+      <div v-show="!notificationAvailable" class="headingStyle">
+      You have no notifications to view!!
     </div>
   </vuestic-widget>
 </template>
@@ -13,7 +14,8 @@
     name: 'company-notifications',
     data () {
       return {
-        notificationsData: ''
+        notificationsData: '',
+        notificationAvailable: false
       }
     },
     methods: {
@@ -37,6 +39,10 @@
       .then(function (companyData) {
         console.log('notifications data', companyData.data[0].notifications)
         self.notificationsData = companyData.data[0].notifications
+        if (self.notificationsData.length > 0) {
+          console.log('success')
+          self.notificationAvailable = true
+        }
       })
       .catch(function (companyDataErr) {
         console.log('company data err', companyDataErr)
@@ -73,6 +79,7 @@
 }
 .headingStyle{
   margin-left: 4%;
+  padding-left: 25%;
   padding-bottom: 1%;
 }
 </style>

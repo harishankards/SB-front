@@ -25,7 +25,7 @@
           </div>
           <hr>
           <div v-if="project.upvotes" class="userInteractionDiv">
-            <i class="fa fa-thumbs-up">{{project.upvotes.length}} Upvotes</i>
+            <i id="spacingStyle" class="fa fa-thumbs-up">{{project.upvotes.length}}</i>{{upvoteContent(project.upvotes.length)}}
           </div>
         </vuestic-widget>
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
@@ -44,7 +44,7 @@
           </div>
           <hr>
           <div class="userInteractionDiv">
-            <i class="fa fa-thumbs-up">{{project.upvotes.length}} Upvotes</i>
+            <i id="spacingStyle" class="fa fa-thumbs-up">{{project.upvotes.length}}</i>{{upvoteContent(project.upvotes.length)}}
           </div>
         </vuestic-widget>
         
@@ -144,6 +144,13 @@
       },
       viewContest: function (contestId) {
         this.$router.push('/student/contest/' + contestId)
+      },
+      upvoteContent: function (len) {
+        if (len < 2) {
+          return 'upvote'
+        } else {
+          return 'upvotes'
+        }
       }
     },
     created () {
@@ -282,5 +289,18 @@
 
   .viewMoreBtn {
     display: block;
+  }
+  .likebutton{
+    color:#3385ff;
+  }
+  .btn-style{
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    background: white;
+    outline: none;
+  }
+  #spacingStyle{
+    letter-spacing: 5px;
   }
 </style>
