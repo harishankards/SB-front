@@ -87,7 +87,17 @@
         })
       },
       fbLogin: function () {
-        this.authenticate('facebook')
+        this.$http.get('/auth/facebook/student', {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
+        .then(function (linkedindata) {
+          console.log('linkedindata', linkedindata)
+        })
+        .catch(function (linkedinErr) {
+          console.log('linkedin err', linkedinErr)
+        })
       },
       showError (nudge) {
         if (nudge === 'show') {
