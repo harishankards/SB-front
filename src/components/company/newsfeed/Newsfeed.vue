@@ -19,6 +19,10 @@
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
+          <hr>
+          <div class="userInteractionDiv">
+            <i id="spacingStyle" class="fa fa-thumbs-up">{{project.upvotes.length}}</i>{{upvoteContent(project.upvotes.length)}}
+          </div>
         </vuestic-widget>
       </div>
       <div class="col-md-4">
@@ -89,6 +93,13 @@
       },
       viewProject: function (projectId) {
         this.$router.push('/company/project/' + projectId)
+      },
+      upvoteContent: function (len) {
+        if (len < 2) {
+          return 'upvote'
+        } else {
+          return 'upvotes'
+        }
       }
     },
     created () {
@@ -199,5 +210,7 @@
   .viewMoreBtn {
     display: block;
   }
-   
+  #spacingStyle{
+    letter-spacing: 5px;
+  } 
 </style>

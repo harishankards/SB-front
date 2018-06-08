@@ -1,6 +1,6 @@
 <template>
-  <div class="row dashboard-info-widgets">
-    <div class="col-md-8 col-xl-4"> 
+  <div class="row dashboard-info-widgets ">
+    <div class="col-md-6"> 
       <vuestic-widget class="info-widget">
         <div class="uv-project-header">
           <span class="uv-project-header-title"> Most upvoted project today </span>
@@ -12,7 +12,7 @@
         </div>
       </vuestic-widget>
     </div>
-    <div class="col-md-8 col-xl-4">
+    <div class="col-md-6">
       <vuestic-widget class="info-widget">
         <div class="searched-contest-header">
           <span class="searched-contest-header-title"> Most searched contest today </span>
@@ -22,18 +22,6 @@
           <div class="searched-contest-title"><a href="#">Google summer of code 2018</a></div>
           
         </div>
-      </vuestic-widget>
-    </div>
-    <div class="col-md-8 col-xl-4">
-      <vuestic-widget class="info-widget">
-        <div class="ad-header">
-          <span class="ad-header-title"> Hot topic around internet </span>
-          <i class="fa fa-fire ad-header-icon"></i>
-        </div>
-        <div class="ad-content">
-          <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
-        </div>        
-
       </vuestic-widget>
     </div>
   </div>
@@ -147,5 +135,4 @@
       }
     }
   }
-
 </style>
