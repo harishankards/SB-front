@@ -1,5 +1,10 @@
 <template>
-  <vuestic-widget class="col-md-8 widgetAdjust">
+<div>
+  <button class="button" @click="$router.go(-1)">
+        <i class="fa fa-caret-left"></i>
+        Back
+    </button>
+  <vuestic-widget class="col-md-8">
     <h5 class="headerStyle">Your Notifications</h5>
     <div v-show="notificationAvailable" v-for="notification in this.notificationsData" :key="notification.id" @click.prevent="takeToNoti(notification)" class="notificationStyle">
      <div class="iconStyle">{{firstletter(notification.text)}} </div>
@@ -7,7 +12,7 @@
      <div v-show="!notificationAvailable" class="headingStyle">
       You have no notifications to view!!
     </div>
-  </vuestic-widget>
+  </vuestic-widget></div>
 </template>
 
 <script>
@@ -52,6 +57,7 @@
   }
 </script>
 <style lang="scss" scoped>
+@import "../../sass/_variables.scss";
 .notificationStyle{
   border-top: 1px solid lightgray;
   padding-top: 1%;
@@ -87,6 +93,25 @@
 .headerStyle{
   margin-left: 3%;
   padding-bottom: 2%; 
+}
+.button{
+  background-color: $vue-green;
+  border: none;
+  width: 10%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-bottom: 2%;
+}
+@media screen and (max-width: 650px)
+  {
+   .button{
+  background-color: $vue-green;
+  border: none;
+  width: 21% !important;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-bottom: 5% !important;
+  } 
 }
 </style>
 

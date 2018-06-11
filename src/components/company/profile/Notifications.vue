@@ -1,12 +1,18 @@
 <template>
-  <vuestic-widget class="col-md-8" headerText="Your Notifications">
+   <div>
+     <button class="btn btn-danger backbtn" @click="$router.go(-1)">
+        <i class="fa fa-caret-left"></i>
+        Back
+    </button>
+  <vuestic-widget class="col-md-8 widgetAdjust">
+    <h5 class="headerStyle">Your Notifications</h5>
     <div v-show="notificationAvailable" v-for="notification in this.notificationsData" :key="notification.id" class="notificationStyle" @click.prevent="takeToNoti(notification)">
       <div class="iconStyle">{{firstletter(notification.text)}}</div>
       <a href="" class="textStyle">{{notification.text}}</a></div>
       <div v-show="!notificationAvailable" class="headingStyle">
       You have no notifications to view!!
     </div>
-  </vuestic-widget>
+  </vuestic-widget></div>
 </template>
 
 <script>
@@ -81,5 +87,9 @@
   margin-left: 4%;
   padding-left: 25%;
   padding-bottom: 1%;
+}
+.headerStyle{
+  margin-left: 3%;
+  padding-bottom: 2%; 
 }
 </style>

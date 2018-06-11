@@ -27,7 +27,7 @@
         
       </vuestic-widget>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-12 sidenav">
       <vuestic-widget class="createproject-div">
         <div class="col-md-offset-6 col-md-12">
           <h5 class="gotnew">Got something new?</h5>
@@ -204,7 +204,20 @@
   #projects-content-div{
     margin-top: 0.5rem;
   }
-
+  .sidenav{
+    position: fixed;
+    margin-left: 678px;
+    width: 26%;
+    top: 12.5%;
+  }
+  @media screen and (max-width: 650px)
+  {
+    .sidenav{
+    position: relative !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    }
+  }
   .gotnew{
     margin-bottom: 1.5rem;
   }
