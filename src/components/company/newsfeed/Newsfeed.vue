@@ -25,7 +25,17 @@
           </div>
         </vuestic-widget>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12 sidenav">
+         <vuestic-widget class="info-widget">
+        <div class="ad-header">
+          <span class="ad-header-title"> Hot topic around internet </span>
+          <i class="fa fa-fire ad-header-icon"></i>
+        </div>
+        <div class="ad-content">
+          <div class="ad-title"><a href="#">70% companies in Chennai are using Freshsales as their Customer Relationship software</a></div>
+        </div>        
+
+      </vuestic-widget>
         <vuestic-widget class="live-feed" headerText="Live feeds">
           <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
         </vuestic-widget>
@@ -168,7 +178,20 @@
     color: #e8dfdf;
     vertical-align: top;
   }
-
+  .sidenav{
+    position: fixed;
+    margin-left: 678px;
+    width: 26%;
+    top: 12.5%;
+  }
+  @media screen and (max-width: 650px)
+  {
+    .sidenav{
+    position: relative !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    }
+  }
   #feed-card-user-name-div{
     display: inline-block;
     margin-left: 0.4rem;
@@ -213,4 +236,61 @@
   #spacingStyle{
     letter-spacing: 5px;
   } 
+  .ad-header-title{
+    display: inline-block;
+    font-size: 1em; 
+  }
+  .ad-header-icon{
+    font-size: 2em;
+    float: right;
+  }
+
+  .ad-header{
+    padding-bottom: 2%;
+  }
+
+  .ad-title{
+    font-size: 1.1em;
+  }
+  .info-widget-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    &.has-chart {
+      justify-content: space-between;
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
+
+  .stats-number {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.625rem;
+    margin-bottom: 0.5rem;
+
+    .stats-icon {
+      font-size: 1.5625rem;
+      position: absolute;
+      top: 0.625rem;
+      left: -1.25rem;
+
+      &.icon-wide {
+        left: -1.875rem;
+      }
+    }
+  }
 </style>

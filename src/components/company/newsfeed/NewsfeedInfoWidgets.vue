@@ -26,18 +26,6 @@
         </div>
       </vuestic-widget>
     </div>
-    <div class="col-md-8 col-xl-4">
-      <vuestic-widget class="info-widget">
-        <div class="ad-header">
-          <span class="ad-header-title"> Hot topic around internet </span>
-          <i class="fa fa-fire ad-header-icon"></i>
-        </div>
-        <div class="ad-content">
-          <div class="ad-title"><a href="#">70% companies in Chennai are using Freshsales as their Customer Relationship software</a></div>
-        </div>        
-
-      </vuestic-widget>
-    </div>
   </div>
 </template>
 
