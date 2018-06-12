@@ -8,7 +8,7 @@
     <h5 class="headerStyle">Your Notifications</h5>
     <div v-show="notificationAvailable" v-for="notification in this.notificationsData" :key="notification.id" @click.prevent="takeToNoti(notification)" class="notificationStyle">
      <div class="iconStyle">{{firstletter(notification.text)}} </div>
-     <a href="" class="textStyle">{{notification.text}}</a> 
+     <a href="" class="textStyle">{{notification.text}} - {{notification.title}}</a> 
      <div class="iconPosition" v-if="isProject(notification.type)"><i class="fa fa-flag"></i></div>
      <div class="iconPosition" v-if="isContest(notification.type)"><i class="fa fa-rocket"></i></div>
      </div>   
@@ -61,7 +61,7 @@
       })
       .then(function (studentData) {
         console.log('notifications data', studentData.data[0].notifications)
-        self.notificationsData = studentData.data[0].notifications
+        self.notificationsData = studentData.data[0].notifications.reverse()
         if (self.notificationsData.length > 0) {
           console.log('success')
           self.notificationAvailable = true
