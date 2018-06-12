@@ -1,6 +1,6 @@
 <template>
    <div>
-     <button class="btn btn-danger backbtn" @click="$router.go(-1)">
+     <button class="button" @click="$router.go(-1)">
         <i class="fa fa-caret-left"></i>
         Back
     </button>
@@ -8,7 +8,10 @@
     <h5 class="headerStyle">Your Notifications</h5>
     <div v-show="notificationAvailable" v-for="notification in this.notificationsData" :key="notification.id" class="notificationStyle" @click.prevent="takeToNoti(notification)">
       <div class="iconStyle">{{firstletter(notification.text)}}</div>
-      <a href="" class="textStyle">{{notification.text}}</a></div>
+      <a href="" class="textStyle">{{notification.text}}</a>
+      <div class="iconPosition" v-if="isProject(notification.type)"><i class="fa fa-flag"></i></div>
+     <div class="iconPosition" v-if="isContest(notification.type)"><i class="fa fa-rocket"></i></div>
+      </div>
       <div v-show="!notificationAvailable" class="headingStyle">
       You have no notifications to view!!
     </div>
@@ -33,6 +36,20 @@
       firstletter: function (text) {
         console.log('inside first letter function', text)
         return text.charAt(0).toUpperCase()
+      },
+      isProject: function (type) {
+        if (type === 'project' || type === 'companyproject') {
+          return true
+        } else {
+          return false
+        }
+      },
+      isContest: function (type) {
+        if (type === 'contest') {
+          return true
+        } else {
+          return false
+        }
       }
     },
     created () {
@@ -91,5 +108,29 @@
 .headerStyle{
   margin-left: 3%;
   padding-bottom: 2%; 
+}
+.button{
+  background-color: #4ae387;
+  border: none;
+  width: 10%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-bottom: 2%;
+}
+@media screen and (max-width: 650px)
+  {
+   .button{
+  background-color: #4ae387;
+  border: none;
+  width: 21% !important;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-bottom: 5% !important;
+  } 
+}
+.iconPosition{
+  display: inline;
+  float: right;
+  padding-right: 5%;
 }
 </style>

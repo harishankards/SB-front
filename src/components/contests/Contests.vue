@@ -196,9 +196,9 @@
   }
   .sidenav{
     position: fixed;
-    margin-left: 678px;
+    margin-left: 720px;
     width: 26%;
-    top: 12.5%;
+    top: 13.7%;
   }
   @media screen and (max-width: 650px)
   {
