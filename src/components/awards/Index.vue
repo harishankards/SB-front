@@ -25,17 +25,6 @@
           </div>
         </vuestic-widget>
       </div>
-      <div class="col-md-4">
-        <vuestic-widget class="createproject-div">
-          <div class="col-md-offset-6 col-md-12">
-            <h5 class="gotnew">Want more Awards?</h5>
-            <h6>Read more about our tips..</h6>
-          </div>
-        </vuestic-widget>
-        <vuestic-widget class="live-feed" headerText="Live feeds">
-          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-        </vuestic-widget>
-      </div>
     </div>
     <div class="row" v-show="showGeneral">
       <div class="col-md-8">
@@ -55,24 +44,26 @@
           </div>
         </vuestic-widget>
       </div>
-      <div class="col-md-4">
-        <vuestic-widget class="createproject-div">
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <vuestic-widget class="createproject-div sidenav1">
           <div class="col-md-offset-6 col-md-12">
             <h5 class="gotnew">Want more Awards?</h5>
             <h6>Read more about our tips..</h6>
           </div>
         </vuestic-widget>
-        <vuestic-widget class="live-feed" headerText="Live feeds">
-          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-        </vuestic-widget>
+        <Livefeeds></Livefeeds>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
+  import Livefeeds from '../rightsidebar/Livefeeds'
   export default {
     name: 'companyawards',
+    components: {
+      Livefeeds
+    },
     data () {
       return {
         awardArray: [],
@@ -80,30 +71,7 @@
         noAwards: false,
         isGeneral: true,
         showGeneral: true,
-        showYours: false,
-        posts: [
-          {
-            id: 0,
-            photoURL: 'https://goo.gl/KnVxVY',
-            name: 'Harishankar',
-            text: 'registered for your contest SpriteXtreme',
-            action: 'upvoted'
-          },
-          {
-            id: 1,
-            photoURL: 'https://goo.gl/1nKusR',
-            name: 'Balaji D Loganathan',
-            text: 'was given an award by a company',
-            action: 'commented'
-          },
-          {
-            id: 2,
-            photoURL: 'https://goo.gl/Ckaexc',
-            name: 'Surendran S',
-            text: 'has the most upvoted project which you upvoted',
-            action: 'upvoted'
-          }
-        ]
+        showYours: false
       }
     },
     methods: {
@@ -175,7 +143,20 @@
     margin-top: 3px;
     color: #a29e9e;
   }
-
+  .sidenav1{
+    position: fixed;
+    margin-left: 720px;
+    width: 26%;
+    top: 13.7%;
+  }
+  @media screen and (max-width: 650px)
+  {
+    .sidenav1{
+    position: relative !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    }
+  }
   #projects-name-div{
     display: inline-block;
     // margin-left: 0.4rem;
