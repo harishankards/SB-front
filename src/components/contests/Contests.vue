@@ -1,16 +1,13 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <div class="noProjects" v-show="noContests">
-          <h4> Oops! You have no Contests to view. </h4>
-      </div>
       <vuestic-switch class="col-md-4 switch" v-model="isUpcoming">
         <span slot="trueTitle">Upcoming</span>
         <span slot="falseTitle">History</span>
     </vuestic-switch>
       <div v-show="showUpcoming">
         <div class="noProjects" v-if="noUpcomingContests">
-          <h4>You have no Previous Contests to view. </h4>
+          <h4>You have no upcoming Contests to view. </h4>
         </div>
 
         <vuestic-widget class="" v-for="contest in upcomingContestArray" :key="contest.id">
