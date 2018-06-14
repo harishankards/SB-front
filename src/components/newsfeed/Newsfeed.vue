@@ -67,22 +67,19 @@
           </div>
         </vuestic-widget>
       </div> 
-        <div class="col-md-4 col-sm-12 sidenav">
-      <vuestic-widget class="info-widget">
+      <div class="col-md-8 col-sm-12">
+       
+         <vuestic-widget class="info-widget sidenav1">
         <div class="ad-header">
           <span class="ad-header-title"> Hot topic around internet </span>
           <i class="fa fa-fire ad-header-icon"></i>
         </div>
         <div class="ad-content">
           <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
-        </div>        
-
+        </div>
       </vuestic-widget>
-      <vuestic-widget class="live-feed" headerText="Live feeds">
-          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-        </vuestic-widget>
-    </div>  
-      
+        <Livefeeds></Livefeeds>
+      </div>
     </div>
 
 
@@ -92,11 +89,13 @@
 <script>
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
   import Swal2 from 'sweetalert2'
+  import Livefeeds from '../rightsidebar/Livefeeds'
 
   export default {
     name: 'dashboard',
     components: {
-      NewsfeedInfoWidgets
+      NewsfeedInfoWidgets,
+      Livefeeds
     },
     data () {
       return {
@@ -106,39 +105,7 @@
         companyprojectsArray: '',
         isProjects: true,
         showProjects: true,
-        showContests: false,
-        posts: [
-          {
-            id: 0,
-            photoURL: 'https://goo.gl/KnVxVY',
-            name: 'Harishankar',
-            text: 'is going for a contest',
-            action: 'upvoted',
-            by: 'Balaji',
-            calender: '32m',
-            post_desc: 'Happy to upload my final year project'
-          },
-          {
-            id: 1,
-            photoURL: 'https://goo.gl/1nKusR',
-            name: 'Balaji D Loganathan',
-            text: 'upvoted for a project',
-            action: 'commented',
-            by: 'Surendran',
-            calender: '3h',
-            post_desc: 'Uploaded my dream project'
-          },
-          {
-            id: 2,
-            photoURL: 'https://goo.gl/Ckaexc',
-            name: 'Surendran S',
-            text: 'upvoted for a project',
-            action: 'upvoted',
-            by: 'HS',
-            calender: '2d',
-            post_desc: 'Woohoo!!!! Finally uploaded the project ^_^'
-          }
-        ]
+        showContests: false
       }
     },
 
@@ -256,20 +223,7 @@
     color: #e8dfdf;
     vertical-align: top;
   }
-  .sidenav{
-    position: fixed;
-    margin-left: 720px;
-    width: 26%;
-    top: 13.7%;
-  }
-  @media screen and (max-width: 650px)
-  {
-    .sidenav{
-    position: relative !important;
-    margin-left: 0px !important;
-    width: 100% !important;
-    }
-  }
+
   #feed-card-user-name-div{
     display: inline-block;
     margin-left: 0.4rem;
@@ -282,7 +236,20 @@
   .switch {
     margin-bottom: 1rem;
   }
-
+  .sidenav1{
+    position: fixed;
+    margin-left: 720px;
+    width: 26%;
+    top: 13.7%;
+}
+ @media screen and (max-width: 650px){
+   .sidenav1{
+     position: relative !important;
+     margin-left: 0px !important;
+     width: 100% !important;
+     top: 2.5% !important;
+    }
+}
   #tagDiv {
     display: inline-block;
     margin-top: 1rem;

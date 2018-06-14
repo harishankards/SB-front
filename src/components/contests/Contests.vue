@@ -52,24 +52,23 @@
         </vuestic-widget>
       </div>
     </div>
-    <div class="col-md-4 col-sm-12 sidenav">
-      <vuestic-widget class="createproject-div">
+    <div class="col-md-8 col-sm-12">
+      <vuestic-widget class="createproject-div sidenav1">
         <div class="col-md-offset-6 col-md-12">
           <h5 class="gotnew">Google's GSOC is here!</h5>
           <button class="btn btn-primary btn-micro"> Join now</button>    
         </div>
       </vuestic-widget>
-      <vuestic-widget class="live-feed" headerText="Live feeds">
-        <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-      </vuestic-widget>
+      <Livefeeds></Livefeeds>
     </div>
   </div>
 </template>
 
 <script>
+  import Livefeeds from '../rightsidebar/Livefeeds'
   export default {
     name: 'projectList',
-    component: {},
+    components: {Livefeeds},
     data () {
       return {
         contestArray: [],
@@ -81,27 +80,7 @@
         isUpcoming: true,
         showUpcoming: true,
         showHistory: false,
-        authToken: this.$ls.get('token'),
-        posts: [
-          {
-            id: 0,
-            photoURL: 'https://goo.gl/KnVxVY',
-            name: 'Harishankar',
-            text: 'is going for a contest'
-          },
-          {
-            id: 1,
-            photoURL: 'https://goo.gl/1nKusR',
-            name: 'Balaji D Loganathan',
-            text: 'upvoted for a project'
-          },
-          {
-            id: 2,
-            photoURL: 'https://goo.gl/Ckaexc',
-            name: 'Surendran S',
-            text: 'upvoted for a project'
-          }
-        ]
+        authToken: this.$ls.get('token')
       }
     },
 
@@ -194,7 +173,7 @@
   #projects-content-div{
     margin-top: 0.5rem;
   }
-  .sidenav{
+  .sidenav1{
     position: fixed;
     margin-left: 720px;
     width: 26%;
@@ -202,7 +181,7 @@
   }
   @media screen and (max-width: 650px)
   {
-    .sidenav{
+    .sidenav1{
     position: relative !important;
     margin-left: 0px !important;
     width: 100% !important;
