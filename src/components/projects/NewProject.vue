@@ -4,8 +4,7 @@
         <i class="fa fa-caret-left"></i>
         Back
     </button>
-    <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
-      <span class="badge badge-pill badge-danger">Error</span>
+  <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
       {{this.errorMessage}}
     </vuestic-alert> 
     <vuestic-alert type="info" :withCloseBtn="true" v-show="infoAlert">
@@ -21,16 +20,20 @@
      <div slot="page1" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-              <input id="simple-input" v-model="projectData.title" required/>
+              <input id="simple-input" name="title" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('title') }"  v-model="projectData.title" />
               <label class="control-label" for="simple-input">Name of the project</label><i class="bar"></i>
+              <i v-show="errors.has('title')" class="fa fa-warning"></i>
+          <span v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</span>
           </div>
         </div> 
      </div>
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <textarea type="text" id="simple-textarea" v-model="projectData.abstract" required></textarea>
+            <textarea type="text" id="simple-textarea" name="abstract" v-validate="'required'" v-model="projectData.abstract" :class="{'input': true, 'is-danger': errors.has('abstract') }" ></textarea>
             <label class="control-label" for="simple-textarea">Abstract (2-3 lines max)</label><i class="bar"></i>
+            <i v-show="errors.has('abstract')" class="fa fa-warning"></i>
+          <span v-show="errors.has('abstract')" class="help is-danger">{{ errors.first('abstract') }}</span>
           </div>
         </div>    
      </div>
@@ -76,6 +79,7 @@
     },
     data () {
       return {
+        // errors: [],
         projectData: {
           title: '',
           abstract: '',
@@ -95,11 +99,20 @@
             onNext: () => {
             },
             isValid: () => {
-              if (this.projectData.title === '') {
-                this.showError('show')
-                this.errorMessage = 'The Title field can\'t be empty'
+              // if (this.projectData.title === '') {
+              //   // this.showError('show')
+              //   // this.errorMessage = 'The Title field can\'t be empty'
+              //   return false
+              // } else {
+              //   return true
+              // }
+              this.$validator.validateAll()
+              if (this.errors.any()) {
+                console.log('Inside validate function', this.errors)
+                alert('Error in submitting form')
                 return false
               } else {
+                alert('Form Submitted!')
                 return true
               }
             },
@@ -111,12 +124,21 @@
             slot: 'page2',
             onNext: () => {
             },
-            isValid: () => {
-              if (this.projectData.abstract === '') {
-                this.showError('show')
-                this.errorMessage = 'The Abstract field can\'t be empty'
+            isValid: (e) => {
+              // if (this.projectData.abstract === '') {
+              //   this.showError('show')
+              //   this.errorMessage = 'The Abstract field can\'t be empty'
+              //   return false
+              // } else {
+              //   return true
+              // }
+              this.$validator.validateAll()
+              if (this.errors.any()) {
+                console.log('Inside abstract validate function', this.errors)
+                alert('Error in submitting form')
                 return false
               } else {
+                alert('Form Submitted!')
                 return true
               }
             },

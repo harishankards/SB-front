@@ -9,7 +9,7 @@
             <h6 class="labelStyle">First Name:</h6>           
             <input type="text" class="inputboxStyle" v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('Firstname') }" name="Firstname" v-model="personalData.fname" id="fname"/><br>            
             <i v-show="errors.has('first.Firstname')" class="fa fa-warning"></i>
-            <span v-show="errors.has('first.Firstname')" class="help is-danger">{{ errors.first('Firstname') }}</span>
+            <span v-show="errors.has('first.Firstname')" class="help is-danger">{{ errors.first('first.Firstname') }}</span>
           </div>
           <div class="col-md-6">
              <h6 class="labelStyle">Last Name:</h6>
