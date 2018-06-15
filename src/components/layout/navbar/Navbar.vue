@@ -44,7 +44,7 @@
         <div class="dropdown-menu last">
           <div class="dropdown-menu-content">
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="">{{'user.profile' | translate}}</a>
+              <a class="plain-link" href="" @click.prevent="takeToProfile">{{'user.profile' | translate}}</a>
             </div>
             <div class="dropdown-item plain-link-item">
               <a class="plain-link" href="" @click.prevent="logout" >{{'user.logout' | translate}}</a>
@@ -90,6 +90,9 @@
         console.log('logout clicked')
         this.$store.dispatch('logout')
         this.$router.push('/')
+      },
+      takeToProfile () {
+        this.$router.push('/student/profile')
       },
       takeToNoti (notification) {
         console.log('notification clicked', notification)

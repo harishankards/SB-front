@@ -8,6 +8,7 @@ import CompanyLogin from 'components/auth/login/CompanyLogin'
 import CompanySignup from 'components/auth/signup/CompanySignup'
 import StudentLogin from 'components/auth/login/StudentLogin'
 import StudentSignup from 'components/auth/signup/StudentSignup'
+import StudentProfile from 'components/profile/Profile'
 
 import NewProject from 'components/projects/NewProject'
 import EditProject from 'components/projects/EditProject'
@@ -56,6 +57,7 @@ export default new Router({
     {path: '/student/projects/edit/:id', component: EditProject, name: 'editproject', meta: { requiresAuth: true }},
     {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
     {path: '/student/notifications', component: StudentNotification, name: 'Student Notifications', meta: { requiresAuth: true }},
+    {path: '/student/profile', component: StudentProfile, name: 'studentprofile', meta: { requiresAuth: true }},
     // Project
     {path: '/company/project/:id', component: SeparateStudentProjectCompany, name: 'SeparateStudentProjectViewCompany', meta: { requiresAuth: true }},
     {path: '/company/companyproject/:id', component: SeparateCompanyProjectCompany, name: 'SeparateCompanyProjectViewCompany', meta: { requiresAuth: true }},

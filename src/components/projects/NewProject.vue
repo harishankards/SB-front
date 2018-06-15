@@ -109,10 +109,8 @@
               this.$validator.validateAll()
               if (this.errors.any()) {
                 console.log('Inside validate function', this.errors)
-                alert('Error in submitting form')
                 return false
               } else {
-                alert('Form Submitted!')
                 return true
               }
             },
@@ -135,10 +133,8 @@
               this.$validator.validateAll()
               if (this.errors.any()) {
                 console.log('Inside abstract validate function', this.errors)
-                alert('Error in submitting form')
                 return false
               } else {
-                alert('Form Submitted!')
                 return true
               }
             },

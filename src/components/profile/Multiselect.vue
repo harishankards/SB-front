@@ -34,8 +34,8 @@ export default {
     eventBus.$emit('multiselectorproject', this.value)
   },
   created () {
-    if (this.$route.path.match('edit')) {
-      this.value = eventBus.projectToBeEdited.tags
+    if (this.$route.path.match('profile')) {
+      this.value = eventBus.studentData.tags
     }
     const token = this.$ls.get('token')
     const self = this

@@ -61,33 +61,25 @@
         <div class="form-inline">
         <div class="col-md-6">
             <h6 class="labelStyle">College Name:</h6>
-            <input type="text" class="inputboxStyle" v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('CollegeName') }" name="CollegeName" v-model="academicData.collegeName" id="collegeName" required/>
-            <i v-show="errors.has('CollegeName')" class="fa fa-warning"></i>
-            <span v-show="errors.has('CollegeName')" class="help is-danger">{{ errors.first('CollegeName') }}</span>
+            <input type="text" class="inputboxStyle" name="CollegeName" v-model="academicData.collegeName" id="collegeName" required/>
           </div>
         </div>
         <div class="form-inline">
         <div class="col-md-6">
           <h6 class="labelStyle">Degree:</h6>
-            <input type="text" class="inputboxStyle" v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('Degree') }" name="Degree" v-model="academicData.degree" id="degree" required/>
-          <i v-show="errors.has('Degree')" class="fa fa-warning"></i>
-            <span v-show="errors.has('Degree')" class="help is-danger">{{ errors.first('Degree') }}</span>
+            <input type="text" class="inputboxStyle" name="Degree" v-model="academicData.degree" id="degree" required/>
           </div>
         </div>
         <div class="form-inline">
         <div class="col-md-6"> 
             <h6 class="labelStyle">Branch:</h6>
-            <input type="text" class="inputboxStyle" v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('Branch') }" name="Branch" v-model="academicData.branch" id="branch" required/>
-          <i v-show="errors.has('Branch')" class="fa fa-warning"></i>
-            <span v-show="errors.has('Branch')" class="help is-danger">{{ errors.first('Branch') }}</span>
+            <input type="text" class="inputboxStyle" name="Branch" v-model="academicData.branch" id="branch" required/>
           </div>
         </div>
         <div class="form-inline">
         <div class="col-md-6"> 
              <h6 class="labelStyle">Year Of Study:</h6>         
-            <input type="text" class="inputboxStyle" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('YearOfStudy') }" name="YearOfStudy" v-model="academicData.yearofstudy" id="yearofstudy" required/>
-          <i v-show="errors.has('YearOfStudy')" class="fa fa-warning"></i>
-            <span v-show="errors.has('YearOfStudy')" class="help is-danger">{{ errors.first('YearOfStudy') }}</span>
+            <input type="text" class="inputboxStyle" name="YearOfStudy" v-model="academicData.yearofstudy" id="yearofstudy" required/>
           </div>
         </div>
       </tab-content>
@@ -195,7 +187,18 @@
       .then(function (studentData) {
         console.log('student data', studentData)
         self.studentData = studentData.data[0]
+        eventBus.studentData = studentData.data[0]
         console.log('student data main', self.studentData)
+        self.personalData.fname = self.studentData.profile.fname
+        self.personalData.lname = self.studentData.profile.lname
+        self.personalData.uname = self.studentData.profile.uname
+        self.personalData.dob = self.studentData.profile.dob
+        self.personalData.city = self.studentData.profile.city
+        self.personalData.country = self.studentData.profile.country
+        self.academicData.collegeName = self.studentData.academic.collegeName
+        self.academicData.degree = self.studentData.academic.degree
+        self.academicData.branch = self.studentData.academic.branch
+        self.academicData.yearofstudy = self.studentData.academic.yearofstudy
       })
       .catch(function (studentDataErr) {
         console.log('student data err', studentDataErr)
