@@ -16,7 +16,7 @@
 			<input class="inputboxStyle" type="password" id="cpswrd">
 		</div>
 		<div class="divStyle">
-			<button class="button"><b>Next</b></button>
+			<button class="button"><b>Change</b></button>
 		</div>
   </div>
 	</div>
@@ -38,6 +38,7 @@
 
 <style scoped>
 .inputboxStyle{
+	  right: 5%;
 	  top: 4%;
 		float: right;
     font-size: 15px;
@@ -48,7 +49,8 @@
     color:#333;
   }
 	.divStyle{
-		padding-top: 4%;
+		margin-top: 4%;
+		padding-top: 8%;
 	}
 	.labelStyle{
 		margin-top: 1.6% !important;
@@ -84,6 +86,53 @@
   }
 	.vuestic-tabs .tab-content{
 		padding-top: 0.125rem !important;
+		width: 120%;
 	}
+}
+@media screen and (max-width: 1024px){
+   .formStyle{
+     margin-left: 10px !important;
+     width: 100% !important;
+     top: 2.5% !important;
+    }
+		.inputboxStyle{
+	  margin-top: 2%;
+		width: 13rem !important;
+		float: left;
+		margin-left: 1% !important;
+		border: 1px solid #bdc7d8;
+  }
+	.vuestic-tabs .tab-content{
+		padding-top: 0.125rem !important;
+		width: 120%;
+	}
+	.button{
+  background-color: #4ae387;
+	border: none;
+	margin-top: 8%;
+  width: 24%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+	margin-left: 40%;
+}
+.justify-content-center {
+    -webkit-box-pack: left !important;
+    justify-content: left !important;
+		margin-left: 10% !important;
+}
+}
+.justify-content-center {
+    -webkit-box-pack: left !important;
+    justify-content: left !important;
+		margin-left: 10% !important;
+}
+label {
+    width:200px;
+    clear:left;
+    text-align:right;
+    padding-right:40px;
+}
+input, label {
+    float:left;
 }
 </style>
