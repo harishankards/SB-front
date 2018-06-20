@@ -22,7 +22,7 @@ import VTooltip from 'v-tooltip'
 import VueSocketio from 'vue-socket.io-extended'
 import io from 'socket.io-client'
 import Toasted from 'vue-toasted'
-
+import VueCharts from 'vue-chartjs'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -85,6 +85,8 @@ Vue.use(VueSocketio, io('http://localhost:3000'))
 
 // For toasted notifications
 Vue.use(Toasted)
+
+Vue.use(VueCharts)
 
 sync(store, router)
 
