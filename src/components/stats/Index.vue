@@ -7,13 +7,13 @@
       <div class="showProjects" v-for="project in projectArray" :key="project.id">
             <span class="projects-name"><strong>{{project.title}}</strong></span>	
             <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
-            <button class="button" @click="showStats()">Show stats</button>
+            <button class="button" @click="showStats(project)">Show stats</button>
       </div>
     </div>
     <vuestic-widget class="col-md-6">
       <div class="Chart">
       <h1 style="text-align:center;">Doughnutchart</h1>
-      <Chart :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
+      <Chart v-if="showChart" :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
     </div>
     </vuestic-widget>
 </div>
@@ -31,19 +31,29 @@ export default {
     return {
       projectArray: [],
       noProjects: false,
+      showChart: false,
       chartData: {
         labels: ['Upvotes', 'Shares', 'Views'],
         datasets: [
-        {
-          backgroundColor: [
-            '#41B883',
-            '#E46651',
-            'blue'
-          ],
-          data: [60, 20, 80]
-        }
-      ]
+          {
+            backgroundColor: [
+              '#41B883',
+              '#E46651',
+              'blue'
+            ],
+            data: []
+          }
+        ]
       }
+    }
+  },
+  methods: {
+    showStats (project) {
+      this.showChart = true
+      console.log('Inside showStats function', this.chartData.datasets[0].data)
+      this.chartData.datasets[0].data = []
+      this.chartData.datasets[0].data = [project.upvotes.length, 2, 2]
+      console.log('Assigned', this.chartData.datasets[0].data)
     }
   },
   created () {
