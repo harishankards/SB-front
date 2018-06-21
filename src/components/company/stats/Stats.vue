@@ -1,21 +1,44 @@
 <template>
-<div class="row">
-    <div class="col-md-6">
-      <div class="noProjects" v-show="noProjects">
+  <div>
+    <vuestic-switch class="col-md-4 switch" v-model="isProjects">
+      <span slot="trueTitle">Upcoming</span>
+      <span slot="falseTitle">History</span>
+    </vuestic-switch>
+    <div class="row" v-if="showProjects">
+      <div class="col-md-7">
+        <div class="noProjects" v-show="noProjects">
           <h4> Oops! You have no Projects to view. </h4>              
+        </div>
+        <div class="showProjects" v-for="project in projectArray" :key="project.id">
+          <span class="projects-name"><strong>{{project.title}}</strong></span>	
+          <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
+          <button class="button" @click="showStats(project)">Show stats</button>
+        </div>
       </div>
-      <div class="showProjects" v-for="project in projectArray" :key="project.id">
-            <span class="projects-name"><strong>{{project.title}}</strong></span>	
-            <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
-            <button class="button" @click="showStats(project)">Show stats</button>
+      <vuestic-widget class="col-md-5">
+        <div class="Chart">
+          <Chart v-if="showChart" :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
+        </div>
+      </vuestic-widget>
+    </div>
+    <div class="row" v-if="showContests">
+      <div class="col-md-7">
+        <div class="noProjects" v-show="noContests">
+          <h4> Oops! You have no Contests to view. </h4>              
+        </div>
+        <div class="showProjects" v-for="contest in contestArray" :key="contest.id">
+          <span class="projects-name"><strong>{{contest.title}}</strong></span>	
+          <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
+          <button class="button" @click="showStatsContest(contest)">Show stats</button>
+        </div>
       </div>
+      <vuestic-widget class="col-md-5">
+        <div class="Chart">
+          <Chart v-if="showChart" :data="chartDataContest" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
+        </div>
+      </vuestic-widget>
     </div>
-    <vuestic-widget class="col-md-6">
-      <div class="Chart">
-      <Chart v-if="showChart" :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
-    </div>
-    </vuestic-widget>
-</div>
+  </div>
 </template>
 
 <script>
@@ -29,10 +52,28 @@ export default {
   data () {
     return {
       projectArray: [],
+      contestArray: [],
       noProjects: false,
+      noContests: false,
       showChart: false,
+      isProjects: true,
+      showProjects: true,
+      showContests: false,
       chartData: {
         labels: ['Upvotes', 'Shares', 'Views'],
+        datasets: [
+          {
+            backgroundColor: [
+              '#41B883',
+              '#E46651',
+              'blue'
+            ],
+            data: []
+          }
+        ]
+      },
+      chartDataContest: {
+        labels: ['Registrations', 'Shares', 'Views'],
         datasets: [
           {
             backgroundColor: [
@@ -51,6 +92,11 @@ export default {
       this.showChart = true
       this.chartData.datasets[0].data = []
       this.chartData.datasets[0].data = [project.upvotes.length, 2, 2]
+    },
+    showStatsContest (contest) {
+      this.showChart = true
+      this.chartDataContest.datasets[0].data = []
+      this.chartDataContest.datasets[0].data = [contest.registrations.length, 2, 2]
     }
   },
   created () {
@@ -64,26 +110,55 @@ export default {
     .then((companyData) => {
       console.log('company Data', companyData.data)
       const projectArr = companyData.data[0].projects
+      const contestArr = companyData.data[0].contests
       if (projectArr.length === 0) {
         this.noProjects = true
+      } else {
+        projectArr.map(project => {
+          // console.log('single project', project)
+          this.$http.get('/companyprojects?id=' + project, {
+            headers: {
+              'Authorization': 'Bearer ' + lsToken
+            }
+          })
+          .then((projectData) => {
+            this.projectArray.push(projectData.data)
+          })
+          .catch((projectErr) => {
+            console.log('project err', projectErr)
+          })
+        })
       }
-      projectArr.map(project => {
-        console.log('single project', project)
-        this.$http.get('/companyprojects?id=' + project, {
-          headers: {
-            'Authorization': 'Bearer ' + lsToken
-          }
+      if (contestArr.length === 0) {
+        this.noContests = true
+      } else {
+        contestArr.map(contest => {
+          // console.log('single project', project)
+          this.$http.get('/contests/get?id=' + contest, {
+            headers: {
+              'Authorization': 'Bearer ' + lsToken
+            }
+          })
+          .then((contestData) => {
+            this.contestArray.push(contestData.data)
+          })
+          .catch((contestErr) => {
+            console.log('contest err', contestErr)
+          })
         })
-        .then((projectData) => {
-          this.projectArray.push(projectData.data)
-        })
-        .catch((projectErr) => {
-          console.log('project err', projectErr)
-        })
-      })
+      }
     }).catch((studentErr) => {
       console.log('student err', studentErr)
     })
+  },
+  updated () {
+    if (this.isProjects) {
+      this.showContests = false
+      this.showProjects = true
+    } else {
+      this.showProjects = false
+      this.showContests = true
+    }
   }
 }
 </script>
