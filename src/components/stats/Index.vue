@@ -12,7 +12,6 @@
     </div>
     <vuestic-widget class="col-md-6">
       <div class="Chart">
-      <h1 style="text-align:center;">Doughnutchart</h1>
       <Chart v-if="showChart" :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
     </div>
     </vuestic-widget>
