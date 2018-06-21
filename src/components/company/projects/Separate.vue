@@ -13,6 +13,10 @@
       <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
       <p><strong> Author</strong><br> {{this.authorData.email}}</p>
       <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+      <p class="published">Published: <timeago :since="this.projectData.createdAt" :auto-update="60"></timeago></p>      
+      <div>
+        <button class="btn btn-info backbtn" @click="showContactModal()">Contact Student</button>
+      </div>
       <hr>
       <div>
         <div v-if="this.projectData.upvotes" class="comment-section">
@@ -80,6 +84,28 @@
       togglelike: function () {
         this.liked = !this.liked
         this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
+      },
+      showContactModal: function (author) {
+        console.log('author', author)
+        const name = this.authorData.profile.fname + ' ' + this.authorData.profile.lname
+        const {value: formValues} = this.$swal({
+          title: 'Multiple inputs',
+          html:
+            '<label>To: </label>' +
+            '<input id="toBox" class="swal2-input" value="' + name + '" disabled>' +
+            '<input id="contentBox" class="swal2-input">',
+          focusConfirm: false,
+          preConfirm: () => {
+            return [
+              document.getElementById('swal-input1').value,
+              document.getElementById('swal-input2').value
+            ]
+          }
+        })
+
+        if (formValues) {
+          this.$swal(JSON.stringify(formValues))
+        }
       }
     },
     created () {
@@ -172,5 +198,9 @@
   }
   .likebutton{
     color:#3385ff;
+  }
+  .published {
+    color: gray;
+    margin-top: 1rem;
   }
 </style>
