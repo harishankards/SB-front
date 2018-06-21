@@ -11,37 +11,26 @@
       </div>
     </div>
     <vuestic-widget class="col-md-6">
-      <my-chart></my-chart>
+      <div class="Chart">
+      <h1 style="text-align:center;">Doughnutchart</h1>
+      <Chart></Chart>
+    </div>
     </vuestic-widget>
 </div>
 </template>
 
 <script>
-import MyChart from './Chart'
+import Chart from './Chart'
 
 export default {
   name: 'stats',
   components: {
-    MyChart
+    Chart
   },
   data () {
     return {
       projectArray: [],
-      noProjects: false,
-      datacollection: {
-        labels: ['January', 'February'],
-        datasets: [
-          {
-            label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [40, 20]
-          }
-        ]
-      },
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
+      noProjects: false
     }
   },
   created () {
