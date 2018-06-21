@@ -13,7 +13,7 @@
     <vuestic-widget class="col-md-6">
       <div class="Chart">
       <h1 style="text-align:center;">Doughnutchart</h1>
-      <Chart></Chart>
+      <Chart :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
     </div>
     </vuestic-widget>
 </div>
@@ -30,7 +30,20 @@ export default {
   data () {
     return {
       projectArray: [],
-      noProjects: false
+      noProjects: false,
+      chartData: {
+        labels: ['Upvotes', 'Shares', 'Views'],
+        datasets: [
+        {
+          backgroundColor: [
+            '#41B883',
+            '#E46651',
+            'blue'
+          ],
+          data: [60, 20, 80]
+        }
+      ]
+      }
     }
   },
   created () {
