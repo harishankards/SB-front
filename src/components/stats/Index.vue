@@ -16,9 +16,9 @@
       </div>
       </vuestic-widget>
     </div>
-    <vuestic-widget class="col-md-6" v-if="showChart">
-      <div class="Chart" style="align:center;">
-      <Chart :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
+    <vuestic-widget class="col-md-6">
+      <div class="Chart">
+      <Chart v-if="showChart" :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
     </div>
     </vuestic-widget>
 </div>
@@ -95,18 +95,6 @@ export default {
       }).catch((studentErr) => {
         console.log('student err', studentErr)
       })
-  },
-  mounted () {
-    this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      datasets: [
-        {
-          label: 'GitHub Commits',
-          backgroundColor: '#f87979',
-          data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-        }
-      ]
-    })
   }
 }
 </script>
