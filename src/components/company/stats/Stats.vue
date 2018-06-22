@@ -1,40 +1,44 @@
 <template>
   <div>
-    <vuestic-switch class="col-md-4 switch" v-model="isProjects">
+    <vuestic-switch class="col-md-6 switch" v-model="isProjects">
       <span slot="trueTitle">Upcoming</span>
       <span slot="falseTitle">History</span>
     </vuestic-switch>
     <div class="row" v-if="showProjects">
-      <div class="col-md-7">
+      <div class="col-md-6">
         <div class="noProjects" v-show="noProjects">
           <h4> Oops! You have no Projects to view. </h4>              
         </div>
+        
         <div class="showProjects" v-for="project in projectArray" :key="project.id">
-          <span class="projects-name"><strong>{{project.title}}</strong></span>	
+          <div class="projects-name"><strong>{{project.title}}</strong></div>	
           <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
           <button class="button" @click="showStats(project)">Show stats</button>
         </div>
+        
       </div>
-      <vuestic-widget class="col-md-5">
+      <vuestic-widget class="col-md-6">
         <div class="Chart">
-          <Chart v-if="showChart" :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
+          <Chart v-if="showChart" :data="chartData" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
+          <h3 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h3>
         </div>
       </vuestic-widget>
     </div>
     <div class="row" v-if="showContests">
-      <div class="col-md-7">
+      <div class="col-md-6">
         <div class="noProjects" v-show="noContests">
           <h4> Oops! You have no Contests to view. </h4>              
         </div>
         <div class="showProjects" v-for="contest in contestArray" :key="contest.id">
-          <span class="projects-name"><strong>{{contest.title}}</strong></span>	
+          <div class="projects-name"><strong>{{contest.title}}</strong></div>	
           <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
           <button class="button" @click="showStatsContest(contest)">Show stats</button>
         </div>
       </div>
-      <vuestic-widget class="col-md-5">
+      <vuestic-widget class="col-md-6">
         <div class="Chart">
-          <Chart v-if="showChart" :data="chartDataContest" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
+          <Chart v-if="showChart" :data="chartDataContest" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
+          <h3 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h3>
         </div>
       </vuestic-widget>
     </div>
@@ -169,10 +173,12 @@ export default {
   }
   .showProjects{
     margin-left: 5%;
-    margin-top: 3%;
+    border-bottom: 1px solid lightgray;
+    padding-top: 2%;
+    padding-bottom: 2%;
   }
   .projects-time{
-    margin-left: 5%;
+    margin-top: 3%;
   }
   .button{
     background-color: #4ae387;
@@ -180,8 +186,14 @@ export default {
     border: 3px;
     font-size: 12px;
     margin-left: 3%;
-    width: 15%;
+    width: 20%;
     padding-top: 1%;
     padding-bottom: 1%;
+    float: right;
   }
+  h3, .h3 {
+    margin-bottom: 1.5rem;
+    margin-top: 18% !important;
+    margin-left: 6% !important;
+}
 </style>
