@@ -4,16 +4,21 @@
       <div class="noProjects" v-show="noProjects">
           <h4> Oops! You have no Projects to view. </h4>              
       </div>
-      <div class="showProjects" v-for="project in projectArray" :key="project.id">
-            <span class="projects-name"><strong>{{project.title}}</strong></span>	
-            <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
-            <button class="button" @click="showStats(project)">Show stats</button>
+      <vuestic-widget>
+      <div class="showProjects col-md-12" v-for="project in projectArray" :key="project.id">
+        
+          <div class="projects-name"><strong>{{project.title}}</strong></div>	
+          <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span> 
+        
+          <button class="button" @click="showStats(project)">Show stats</button> 
+        
+        <hr>
       </div>
+      </vuestic-widget>
     </div>
-    <vuestic-widget class="col-md-6">
-      <div class="Chart">
-      <h1 style="text-align:center;">Doughnutchart</h1>
-      <Chart v-if="showChart" :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
+    <vuestic-widget class="col-md-6" v-if="showChart">
+      <div class="Chart" style="align:center;">
+      <Chart :data="chartData" :options="{responsive: false, maintainAspectRatio: false}"></Chart>
     </div>
     </vuestic-widget>
 </div>
@@ -112,10 +117,10 @@ export default {
   }
   .showProjects{
     margin-left: 5%;
-    margin-top: 3%;
+    margin-top: 0%;
   }
   .projects-time{
-    margin-left: 5%;
+    margin-top: 3%;
   }
   .button{
     background-color: #4ae387;
@@ -123,9 +128,10 @@ export default {
     border: 3px;
     font-size: 12px;
     margin-left: 3%;
-    width: 15%;
+    width: 20%;
     padding-top: 1%;
     padding-bottom: 1%;
+    float: right;
   }
 </style>
 
