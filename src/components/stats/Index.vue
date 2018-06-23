@@ -15,7 +15,7 @@
     </div>
     <vuestic-widget class="col-md-6">
       <div class="Chart">
-      <Chart v-if="showChart" :data="chartData" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
+      <Chart v-if="showChart" :chartData="chartData" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
       <h3 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h3>
     </div>
     </vuestic-widget>
