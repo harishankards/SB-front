@@ -118,7 +118,6 @@
       return {
         studentId: '',
         studentData: {
-          tags: []
         },
         personalData: {
           fname: '',
@@ -133,7 +132,8 @@
           degree: '',
           branch: '',
           yearofstudy: ''
-        }
+        },
+        tags: []
       }
     },
     methods: {
@@ -154,6 +154,7 @@
         const authToken = this.$ls.get('token')
         this.studentData.profile = this.personalData
         this.studentData.academic = this.academicData
+        this.studentData.tags = this.tags
         console.log('this student data from update student', this.studentData, this.personalData, this.academicData)
         this.$http.put('/students/update', this.studentData, {
           headers: {
@@ -202,7 +203,7 @@
       })
       eventBus.$on('multiselectorproject', (data) => {
         data.map(tag => {
-          self.studentData.tags.push(tag.id)
+          self.tags.push(tag.id)
         })
       })
     }

@@ -1,39 +1,56 @@
 <template>
-<div class="col-md-8">
-  <vuestic-tabs class="tabs" :names="['Password', 'SecondTab', 'ThirdTab']">
-  <div slot="Password" class="d-flex justify-content-center">
-		<div class="formStyle">
-			<div class="divStyle">
-			<label class="labelStyle" for="opswrd">Current Password:</label>
-			<input class="inputboxStyle" type="password" id="opswrd">
-		</div>
-		<div class="divStyle">
-			<label class="labelStyle" for="npswrd">New Password:</label>
-			<input class="inputboxStyle" type="password" id="npswrd">
-		</div>
-		<div class="divStyle">
-			<label class="labelStyle" for="cpswrd">Confirm Password:</label>
-			<input class="inputboxStyle" type="password" id="cpswrd">
-		</div>
-		<div class="divStyle">
-			<button class="button"><b>Change</b></button>
-		</div>
-  </div>
+  <div class="col-md-8">
+    <vuestic-tabs class="tabs" :names="['Password', 'SecondTab', 'ThirdTab']">
+			<div slot="Password" class="d-flex justify-content-center">
+				<div class="formStyle">
+					<div class="divStyle">
+						<label class="labelStyle" for="currentPassword">Current Password:</label>
+						<input class="inputboxStyle" v-model="currentPassword" name="currentPassword" type="password" id="currentPassword">
+					</div>
+					<div class="divStyle">
+						<label class="labelStyle" for="newPassword">New Password:</label>
+						<input class="inputboxStyle" v-model="newPassword" name="newPassword" type="password" id="newPassword">
+					</div>
+					<div class="divStyle">
+						<label class="labelStyle" for="confirmNewPassword">Confirm Password:</label>
+						<input class="inputboxStyle" v-model="confirmNewPassword" name="confirmNewPassword" type="password" id="confirmNewPassword">
+					</div>
+					<div class="divStyle">
+						<button class="buttonSave" @click="savePassword()"><b>Save</b></button>
+						<button class="buttonReset" @click="resetPassword()"><b>Reset</b></button>
+					</div>
+				</div>
+			</div>
+			<div slot="SecondTab" class="d-flex justify-content-center">
+  		</div>
+			<div slot="ThirdTab" class="d-flex justify-content-center">
+  		</div>
+		</vuestic-tabs>
 	</div>
-	<div slot="SecondTab" class="d-flex justify-content-center">
-		
-  </div>
-	<div slot="ThirdTab" class="d-flex justify-content-center">
-   
-  </div>
-</vuestic-tabs>
-</div>
 </template>
 
 <script>
-	export default {
-	  name: 'settings'
-	}
+export default {
+  name: 'settings',
+  data () {
+    return {
+      newPassword: '',
+      currentPassword: '',
+      confirmNewPassword: ''
+    }
+  },
+  methods: {
+    savePassword: function () {
+      console.log('Inside Save password function')
+    },
+    resetPassword: function () {
+      console.log('Inside reset password function')
+      this.newPassword = ''
+      this.currentPassword = ''
+      this.confirmNewPassword = ''
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -57,15 +74,25 @@
 		color: #4ae387;
 		top: 4%;
   }
-	.button{
+	.buttonSave{
   background-color: #4ae387;
-	border: none;
+	align-content: center;
+	border: 3px;
 	margin-top: 5%;
 	margin-left: 1%;
   width: 20%;
   padding-top: 1%;
   padding-bottom: 1%;
 	margin-left: 50%;
+	display: inline-block;
+}
+.buttonReset{
+  background-color: #4ae387;
+	align-content: center;
+	border: 3px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+	width: 20%;
 }
 .formStyle{
 	margin-left: 0% !important;
