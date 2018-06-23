@@ -41,6 +41,8 @@ import PostSignup from 'components/profile/PostSignup'
 import PostSignupCompany from 'components/company/profile/PostSignup'
 import StudentNotification from 'components/profile/Notifications'
 import CompanyNotification from 'components/company/profile/Notifications'
+import Upload from 'components/projects/Upload'
+
 
 Vue.use(Router)
 
@@ -48,45 +50,277 @@ export default new Router({
   routes: [
     ...generateRoutesFromMenu(menuModule.state.items),
     // {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }},
-    {path: '/', component: landing, name: 'landing'},
-    {path: '/auth/company/login', component: CompanyLogin, name: 'companylogin'},
-    {path: '/auth/company/signup', component: CompanySignup, name: 'companysignup'},
-    {path: '/auth/student/login', component: StudentLogin, name: 'studentlogin'},
-    {path: '/auth/student/signup', component: StudentSignup, name: 'studentsignup'},
-    {path: '/student/projects/new', component: NewProject, name: 'newproject', meta: { requiresAuth: true }},
-    {path: '/student/projects/edit/:id', component: EditProject, name: 'editproject', meta: { requiresAuth: true }},
-    {path: '/student/postsignup', component: PostSignup, name: 'postsignup', meta: { requiresAuth: true }},
-    {path: '/student/notifications', component: StudentNotification, name: 'Student Notifications', meta: { requiresAuth: true }},
-    {path: '/student/profile', component: StudentProfile, name: 'studentprofile', meta: { requiresAuth: true }},
+    {
+      path: '/',
+      component: landing,
+      name: 'landing'
+    },
+    {
+      path: '/upload',
+      component: Upload,
+      name: 'upload'
+    },
+    {
+      path: '/auth/company/login',
+      component: CompanyLogin,
+      name: 'companylogin'
+    },
+    {
+      path: '/auth/company/signup',
+      component: CompanySignup,
+      name: 'companysignup'
+    },
+    {
+      path: '/auth/student/login',
+      component: StudentLogin,
+      name: 'studentlogin'
+    },
+    {
+      path: '/auth/student/signup',
+      component: StudentSignup,
+      name: 'studentsignup'
+    },
+    {
+      path: '/student/projects/new',
+      component: NewProject,
+      name: 'newproject',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/projects/edit/:id',
+      component: EditProject,
+      name: 'editproject',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/postsignup',
+      component: PostSignup,
+      name: 'postsignup',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/notifications',
+      component: StudentNotification,
+      name: 'Student Notifications',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/profile',
+      component: StudentProfile,
+      name: 'studentprofile',
+      meta: {
+        requiresAuth: true
+      }
+    },
     // Project
-    {path: '/company/project/:id', component: SeparateStudentProjectCompany, name: 'SeparateStudentProjectViewCompany', meta: { requiresAuth: true }},
-    {path: '/company/companyproject/:id', component: SeparateCompanyProjectCompany, name: 'SeparateCompanyProjectViewCompany', meta: { requiresAuth: true }},
-    {path: '/student/project/:id', component: SeparateStudentProjectStudent, name: 'SeparateStudentProjectViewStudent', meta: { requiresAuth: true }},
-    {path: '/student/companyproject/:id', component: SeparateCompanyProjectStudent, name: 'SeparateCompanyProjectViewStudent', meta: { requiresAuth: true }},
+    {
+      path: '/company/project/:id',
+      component: SeparateStudentProjectCompany,
+      name: 'SeparateStudentProjectViewCompany',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/companyproject/:id',
+      component: SeparateCompanyProjectCompany,
+      name: 'SeparateCompanyProjectViewCompany',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/project/:id',
+      component: SeparateStudentProjectStudent,
+      name: 'SeparateStudentProjectViewStudent',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/companyproject/:id',
+      component: SeparateCompanyProjectStudent,
+      name: 'SeparateCompanyProjectViewStudent',
+      meta: {
+        requiresAuth: true
+      }
+    },
     // Contest
-    {path: '/company/contest/:id', component: SeparateContestCompany, name: 'SeparateContestViewCompany', meta: { requiresAuth: true }},
-    {path: '/student/contest/:id', component: SeparateStudentContest, name: 'SeparateContestViewStudent', meta: { requiresAuth: true }},
+    {
+      path: '/company/contest/:id',
+      component: SeparateContestCompany,
+      name: 'SeparateContestViewCompany',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/contest/:id',
+      component: SeparateStudentContest,
+      name: 'SeparateContestViewStudent',
+      meta: {
+        requiresAuth: true
+      }
+    },
     // Award
-    {path: '/company/award/:id', component: SeparateAwardCompany, name: 'SeparateAwardViewCompany', meta: { requiresAuth: true }},
-    {path: '/student/award/:id', component: SeparateAwardStudent, name: 'SeparateAwardViewStudent', meta: { requiresAuth: true }},
+    {
+      path: '/company/award/:id',
+      component: SeparateAwardCompany,
+      name: 'SeparateAwardViewCompany',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/student/award/:id',
+      component: SeparateAwardStudent,
+      name: 'SeparateAwardViewStudent',
+      meta: {
+        requiresAuth: true
+      }
+    },
     // Company things
-    {path: '/company/newsfeed', component: CompanyNewsfeed, name: 'Company Newsfeed', meta: { requiresAuth: true }},
-    {path: '/company/contests', component: CompanyContest, name: 'Company Contests', meta: { requiresAuth: true }},
-    {path: '/company/projects', component: CompanyProjects, name: 'Company Project List', meta: { requiresAuth: true }},
-    {path: '/company/projects/new', component: CompanyProjectNew, name: 'Company Project New', meta: { requiresAuth: true }},
-    {path: '/company/projects/edit/:id', component: CompanyProjectEdit, name: 'Company Project Edit', meta: { requiresAuth: true }},
-    {path: '/company/awards', component: CompanyAwards, name: 'Company Awards', meta: { requiresAuth: true }},
-    {path: '/company/messages', component: CompanyMessages, name: 'Company Messages', meta: { requiresAuth: true }},
-    {path: '/company/favorites', component: CompanyFavorites, name: 'Company Favorites', meta: { requiresAuth: true }},
-    {path: '/company/stats', component: CompanyStats, name: 'Company Stats', meta: { requiresAuth: true }},
-    {path: '/company/settings', component: CompanySettings, name: 'Company Settings', meta: { requiresAuth: true }},
-    {path: '/company/contests/new', component: CompanyNewContest, name: 'Company new contest', meta: { requiresAuth: true }},
-    {path: '/company/contests/edit/:id', component: CompanyEditContest, name: 'Company edit contest', meta: { requiresAuth: true }},
-    {path: '/company/awards/new', component: CompanyNewAward, name: 'Company new award', meta: { requiresAuth: true }},
-    {path: '/company/awards/edit/:id', component: CompanyEditAward, name: 'Company edit award', meta: { requiresAuth: true }},
-    {path: '/company/notifications', component: CompanyNotification, name: 'Company Notifications', meta: { requiresAuth: true }},
-    {path: '/company/postsignup', component: PostSignupCompany, name: 'postsignupcompany', meta: { requiresAuth: true }},
-    {path: '*', component: NotFound, name: '404'}
+    {
+      path: '/company/newsfeed',
+      component: CompanyNewsfeed,
+      name: 'Company Newsfeed',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/contests',
+      component: CompanyContest,
+      name: 'Company Contests',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/projects',
+      component: CompanyProjects,
+      name: 'Company Project List',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/projects/new',
+      component: CompanyProjectNew,
+      name: 'Company Project New',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/projects/edit/:id',
+      component: CompanyProjectEdit,
+      name: 'Company Project Edit',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/awards',
+      component: CompanyAwards,
+      name: 'Company Awards',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/messages',
+      component: CompanyMessages,
+      name: 'Company Messages',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/favorites',
+      component: CompanyFavorites,
+      name: 'Company Favorites',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/stats',
+      component: CompanyStats,
+      name: 'Company Stats',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/settings',
+      component: CompanySettings,
+      name: 'Company Settings',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/contests/new',
+      component: CompanyNewContest,
+      name: 'Company new contest',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/contests/edit/:id',
+      component: CompanyEditContest,
+      name: 'Company edit contest',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/awards/new',
+      component: CompanyNewAward,
+      name: 'Company new award',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/awards/edit/:id',
+      component: CompanyEditAward,
+      name: 'Company edit award',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/notifications',
+      component: CompanyNotification,
+      name: 'Company Notifications',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/company/postsignup',
+      component: PostSignupCompany,
+      name: 'postsignupcompany',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '*',
+      component: NotFound,
+      name: '404'
+    }
   ],
   mode: 'history'
 })

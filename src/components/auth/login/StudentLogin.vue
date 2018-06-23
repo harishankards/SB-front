@@ -62,9 +62,10 @@
           secondThis.$ls.set('logged_student_id', loginSuccess.data.id)
           secondThis.$ls.set('student', 'true')
           secondThis.$ls.set('email', secondThis.loginData.email)
+          // console.log(secondThis.$ls)
           // const lsToken = secondThis.$ls.get('token')
           secondThis.$store.dispatch('login')
-          secondThis.$router.push('/student/newsfeed')
+          // secondThis.$router.push('/student/newsfeed')
           // console.log('ls token', lsToken)
         })
         .catch(function (loginErr) {
@@ -121,6 +122,7 @@
     created () {
       if (this.$store.getters.isLoggedIn) {
         console.log('loggedin', this.$store.getters.isLoggedIn)
+        this.$router.push('/student/newsfeed')
       } else {
         console.log('not logged in')
       }
