@@ -55,10 +55,10 @@ export default {
         data: file
       }).then(
         function (res) {
-          console.log(res)
+          console.log('sucess function upload', res.config.url)
         },
         err => {
-          console.log(err)
+          console.log('error function upload', err)
         }
       )
     },
