@@ -116,6 +116,24 @@
         }
         this.liked = !this.liked
         this.liked ? this.projectData.upvotes.length ++ : this.projectData.upvotes.length --
+      },
+      studentViewUpdate: function (projectId) {
+        const studentId = this.$ls.get('logged_student_id')
+        const authToken = this.$ls.get('token')
+        this.$http.post('/projects/addStudentView', {
+          student: studentId,
+          project: projectId
+        }, {
+          headers: {
+            'Authorization': 'Bearer ' + authToken
+          }
+        })
+        .then(function (studentViewUpdated) {
+          console.log('success', studentViewUpdated)
+        })
+        .catch(function (studentViewUpdateErr) {
+          console.log('error', studentViewUpdateErr)
+        })
       }
     },
     created () {
@@ -131,6 +149,7 @@
       })
       .then(function (projectDetails) {
         secondthis.showProject = true
+        secondthis.studentViewUpdate(projectId)
         console.log('projectData', projectDetails.data)
         if (projectDetails.data.upvotes.includes(loggedStudent)) {
           secondthis.liked = true
