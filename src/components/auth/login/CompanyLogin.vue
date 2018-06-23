@@ -55,6 +55,7 @@
           secondThis.$ls.set('token', authToken)
           secondThis.$ls.set('company', 'true')
           secondThis.$ls.set('email', secondThis.loginData.email)
+          secondThis.$ls.set('logged_company_id', loginSuccess.data.id)
           console.log('set the tokens for company')
           secondThis.$store.dispatch('login')
           secondThis.$router.push('/company/newsfeed')
