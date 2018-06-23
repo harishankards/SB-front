@@ -55,7 +55,10 @@ export default {
       this.showChart = true
       console.log('Inside showStats function', this.chartData.datasets[0].data)
       this.chartData.datasets[0].data = []
-      this.chartData.datasets[0].data = [project.upvotes.length, 2, 2]
+      // this.chartData.datasets[0].data = [project.upvotes.length, 2, 3]
+      this.chartData.datasets[0].data.splice(0, 1, project.upvotes.length)
+      this.chartData.datasets[0].data.splice(1, 1, 1)
+      this.chartData.datasets[0].data.splice(2, 1, 2)
       console.log('Assigned', this.chartData.datasets[0].data)
     }
   },
