@@ -13,7 +13,7 @@
       </vuestic-widget>
     </div>
     <div class="col-md-6">
-      <vuestic-widget class="info-widget">
+      <vuestic-widget class="info-widget centrenav">
         <div class="searched-contest-header">
           <span class="searched-contest-header-title"> Most searched contest today </span>
           <i class="fa fa-bolt searched-contest-header-icon"></i>
@@ -60,6 +60,9 @@
     font-size: 1.5em;
   }
 
+  .centrenav{
+    height: 210px;
+  }
 
   .searched-contest-header-title{
     display: inline-block;

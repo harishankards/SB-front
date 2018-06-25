@@ -10,6 +10,7 @@
       <div class="col-md-8 col-sm-12">
         <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
           <div>
+            <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewCompanyProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
@@ -30,6 +31,7 @@
         </vuestic-widget>
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
           <div>
+            <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
@@ -78,7 +80,9 @@
           <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
         </div>
       </vuestic-widget>
+      
         <Livefeeds></Livefeeds>
+     
       </div>
     </div>
 
@@ -241,6 +245,7 @@
     margin-left: 720px;
     width: 26%;
     top: 13.7%;
+    height: 191px;
 }
  @media screen and (max-width: 650px){
    .sidenav1{
@@ -266,6 +271,11 @@
     color: #a29e9e;
   }
   
+  #imgStyle{
+    width: 100%;
+    margin-bottom: 3%;
+  }
+
   #projects-name-div{
     display: inline-block;
     // margin-left: 0.4rem;

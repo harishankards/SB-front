@@ -4,14 +4,12 @@
       <div class="noProjects" v-show="noProjects">
           <h4> Oops! You have no Projects to view. </h4>              
       </div>
-      <vuestic-widget>
       <div class="showProjects col-md-12" v-for="project in projectArray" :key="project.id">        
           <div class="projects-name"><strong>{{project.title}}</strong></div>	
           <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span> 
           <button class="button" @click="showStats(project)">Show stats</button>        
         
       </div>
-      </vuestic-widget>
     </div>
     <vuestic-widget class="col-md-6">
       <div class="Chart">
@@ -24,6 +22,7 @@
 
 <script>
 import Chart from './Chart'
+import Vue from 'vue'
 
 export default {
   name: 'stats',
@@ -55,7 +54,13 @@ export default {
       this.showChart = true
       console.log('Inside showStats function', this.chartData.datasets[0].data)
       this.chartData.datasets[0].data = []
-      this.chartData.datasets[0].data = [project.upvotes.length, 2, 2]
+      // this.chartData.datasets[0].data = [project.upvotes.length, 2, 3]
+      Vue.set(this.chartData.datasets[0].data, 0, project.upvotes.length)
+      Vue.set(this.chartData.datasets[0].data, 1, 2)
+      Vue.set(this.chartData.datasets[0].data, 2, 3)
+      // this.chartData.datasets[0].data.splice(0, 1, project.upvotes.length)
+      // this.chartData.datasets[0].data.splice(1, 1, 1)
+      // this.chartData.datasets[0].data.splice(2, 1, 2)
       console.log('Assigned', this.chartData.datasets[0].data)
     }
   },
@@ -102,7 +107,6 @@ export default {
     color: #4ae387;
   }
   .showProjects{
-    margin-left: 5%;
     border-bottom: 1px solid lightgray;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -120,10 +124,11 @@ export default {
     padding-top: 1%;
     padding-bottom: 1%;
     float: right;
+    cursor: pointer;
   }
   h3, .h3 {
     margin-bottom: 1.5rem;
-    margin-top: 18% !important;
+    margin-top: 10% !important;
     margin-left: 6% !important;
 }
 </style>
