@@ -52,7 +52,7 @@ export default {
     position: fixed;
     margin-left: 705px;
     width: 28%;
-    top: 45%;
+    top: 52%;
     overflow: auto;
 }
  @media screen and (max-width: 650px){

@@ -78,7 +78,9 @@
           <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
         </div>
       </vuestic-widget>
+      
         <Livefeeds></Livefeeds>
+     
       </div>
     </div>
 
@@ -241,6 +243,7 @@
     margin-left: 720px;
     width: 26%;
     top: 13.7%;
+    height: 191px;
 }
  @media screen and (max-width: 650px){
    .sidenav1{
