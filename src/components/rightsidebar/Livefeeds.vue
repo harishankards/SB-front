@@ -53,6 +53,7 @@ export default {
     margin-left: 705px;
     width: 28%;
     top: 45%;
+    overflow: auto;
 }
  @media screen and (max-width: 650px){
    .sidenav{

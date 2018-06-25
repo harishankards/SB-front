@@ -1,8 +1,8 @@
 <template>
   <div>
     <vuestic-switch class="col-md-6 switch" v-model="isProjects">
-      <span slot="trueTitle">Upcoming</span>
-      <span slot="falseTitle">History</span>
+      <span slot="trueTitle">Projects</span>
+      <span slot="falseTitle">Contests</span>
     </vuestic-switch>
     <div class="row" v-if="showProjects">
       <div class="col-md-6">
@@ -20,7 +20,7 @@
       <vuestic-widget class="col-md-6">
         <div class="Chart">
           <Chart v-if="showChart" :data="chartData" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
-          <h3 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h3>
+          <h4 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h4>
         </div>
       </vuestic-widget>
     </div>
@@ -38,7 +38,7 @@
       <vuestic-widget class="col-md-6">
         <div class="Chart">
           <Chart v-if="showChart" :data="chartDataContest" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
-          <h3 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h3>
+          <h4 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h4>
         </div>
       </vuestic-widget>
     </div>
@@ -190,10 +190,9 @@ export default {
     padding-top: 1%;
     padding-bottom: 1%;
     float: right;
+    right: 3%;
   }
-  h3, .h3 {
-    margin-bottom: 1.5rem;
-    margin-top: 18% !important;
-    margin-left: 6% !important;
-}
+  h4, .h4 {
+    text-align: center !important;
+  }
 </style>
