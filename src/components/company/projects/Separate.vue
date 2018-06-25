@@ -106,6 +106,24 @@
         if (formValues) {
           this.$swal(JSON.stringify(formValues))
         }
+      },
+      companyViewUpdate: function (projectId) {
+        const companyId = this.$ls.get('logged_company_id')
+        const authToken = this.$ls.get('token')
+        this.$http.post('/projects/addCompanyView', {
+          company: companyId,
+          project: projectId
+        }, {
+          headers: {
+            'Authorization': 'Bearer ' + authToken
+          }
+        })
+        .then(function (companyViewUpdated) {
+          console.log('success', companyViewUpdated)
+        })
+        .catch(function (companyViewUpdateErr) {
+          console.log('error', companyViewUpdateErr)
+        })
       }
     },
     created () {
@@ -120,6 +138,7 @@
       })
       .then(function (projectDetails) {
         secondthis.showProject = true
+        secondthis.companyViewUpdate(projectId)
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
         secondthis.$http.get('/students/get?id=' + projectDetails.data.author, {
