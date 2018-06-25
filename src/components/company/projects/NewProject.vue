@@ -144,6 +144,19 @@
             label: 'File upload',
             slot: 'page4',
             onNext: () => {
+              let fileData = this.$store.getters.uploadedFiles
+              this.projectData.files = []
+              if (fileData) {
+                console.log(fileData)
+                fileData.map((data) => {
+                  var json = {}
+                  json.key = data.key
+                  json.path = data.path
+                  json.filePath = data.filepath
+                  this.projectData.files.push(json)
+                })
+              }
+              console.log(this.projectData.files)
             },
             isValid: () => {
               if (this.projectData.files.length === 0) {
@@ -227,6 +240,7 @@
       }
     },
     created () {
+      this.$store.commit('clearUploadArray')
       eventBus.$on('editorContentproject', (data) => {
         this.projectData.description = data
       })

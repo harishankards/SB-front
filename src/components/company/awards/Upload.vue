@@ -6,7 +6,6 @@
 <script>
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.css'
-import { eventBus } from '../../../main.js'
 import axios from 'axios'
 
 export default {
@@ -34,24 +33,16 @@ export default {
   methods: {
     vsuccess (file, response) {
       console.log('it is success', response)
-      this.$store.state.awardUploadedFile = []
-      this.$store.state.awardUploadedFile.push({
-        filename: file.name,
-        filepath: response.url.slice(0, response.url.indexOf('?')),
-        key: response.key,
-        path: '/company/awards'
-      })
-      console.log(
-        'this store filepath',
-        this.$store.state.awardUploadedFile[0].filepath
-      )
-      eventBus.$emit('uploadedFileAwards', {
-        response: response
-      })
+      var fileData = {}
+      fileData.fileInfo = file
+      fileData.filepath = response.url.slice(0, response.url.indexOf('?'))
+      fileData.key = response.key
+      fileData.path = '/company/awards'
+      this.$store.commit('addUploadedFiles', fileData)
+      console.log(this.$store.getters.uploadedFiles)
       axios({
         url: response.url,
         method: 'PUT',
-        ContentType: 'image/png',
         data: file
       }).then(
         function (res) {
@@ -66,30 +57,33 @@ export default {
       console.log(err)
     },
     vremoved (file, error, xhr) {
-      const filename = file.name
-      const item = this.$store.state.awardUploadedFile.map(item => {
-        if (item.filename === filename) {
-          return item
-        }
-      })
-      console.log('removed filepath', item[0])
-      axios({
-        method: 'delete',
-        url: '/attachments',
-        data: {
-          key: item[0].key
-        },
-        headers: {
-          Authorization: 'Bearer ' + this.token,
-          path: item[0].path
-        }
-      })
-        .then(function (attachmentDeleted) {
-          console.log('attachment deleted', attachmentDeleted)
+      const fileArray = this.$store.getters.uploadedFiles
+      if (fileArray.length > 0) {
+        console.log(fileArray)
+        const removedFile = fileArray.find(function (fileData) {
+          return fileData.fileInfo === file
         })
-        .catch(function (attachmentDeleteErr) {
-          console.log('unable to delete attachment', attachmentDeleteErr)
+        console.log(removedFile)
+        this.$store.commit('removeUploadedFiles', removedFile)
+        console.log('removed filepath', removedFile)
+        axios({
+          method: 'delete',
+          url: '/attachments',
+          data: {
+            key: removedFile.key
+          },
+          headers: {
+            Authorization: 'Bearer ' + this.token,
+            path: removedFile.path
+          }
         })
+          .then(function (attachmentDeleted) {
+            console.log('attachment deleted', attachmentDeleted)
+          })
+          .catch(function (attachmentDeleteErr) {
+            console.log('unable to delete attachment', attachmentDeleteErr)
+          })
+      }
     }
   }
 }

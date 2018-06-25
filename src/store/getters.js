@@ -20,6 +20,11 @@ const student = state => {
 const company = state => {
   return state.company
 }
+
+const uploadedFiles = state => {
+  return state.uploadedFiles
+}
+
 export {
   menuItems,
   toggleWithoutAnimation,
@@ -30,5 +35,6 @@ export {
   breadcrumbs,
   isLoggedIn,
   student,
-  company
+  company,
+  uploadedFiles
 }

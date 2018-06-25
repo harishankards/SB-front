@@ -23,7 +23,8 @@ const store = new Vuex.Store({
   state: {
     isLoggedIn: !!localStorage.getItem('vuejs_token'),
     student: !!localStorage.getItem('vuejs_student'),
-    company: !!localStorage.getItem('vuejs_company')
+    company: !!localStorage.getItem('vuejs_company'),
+    uploadedFiles: []
   },
   mutations: {
     [LOGIN] (state) {
@@ -37,6 +38,15 @@ const store = new Vuex.Store({
       state.isLoggedIn = false
       state.student = false
       state.company = false
+    },
+    addUploadedFiles (state, fileData) {
+      state.uploadedFiles.push(fileData)
+    },
+    removeUploadedFiles (state, fileData) {
+      state.uploadedFiles.splice(state.uploadedFiles.indexOf(fileData), 1)
+    },
+    clearUploadArray (state) {
+      state.uploadedFiles = []
     }
   },
   actions: {
