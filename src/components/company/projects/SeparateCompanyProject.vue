@@ -9,6 +9,7 @@
       <img class="col-md-8" src="../../../assets/vendor/leaflet/404.png" alt="">
     </div>
     <vuestic-widget v-show="showProject" class="col-md-9" :headerText="this.projectData.title">
+      <p><strong>Published </strong><br><timeago :since="this.projectData.createdAt" :auto-update="60"></timeago></p>
       <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
       <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
       <p><strong> Author</strong><br> {{this.authorData.email}}</p>
@@ -197,4 +198,5 @@
   .likebutton{
     color:#3385ff;
   }
+  
 </style>
