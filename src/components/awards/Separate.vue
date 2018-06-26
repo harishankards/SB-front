@@ -22,10 +22,10 @@
         <div class="comment-section">
           <button type="button" class="btn-style"  @click="showShareDiv()">
             <span class="glyphicon glyphicon-share-alt"></span> Share </button></div>
-           <social-sharing url="https://studentburger.com/" v-if="shareIcons"
-                    title="Student Burger"
-                    description="The Social Network for Students and Companies"
-                    quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+           <social-sharing :url="url" v-if="shareIcons"
+                    :title="awardData.title"
+                    description="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+                    :quote="awardData.description"
                     hashtags="studentburger,socialnetwork,student,company"
                     twitter-user="_studentburger"
                     inline-template>
@@ -65,7 +65,8 @@
         companyData: '',
         studentData: '',
         shareIcons: false,
-        showAward: null
+        showAward: null,
+        url: 'https://studentburger.com' + this.$route.fullPath
       }
     },
     methods: {
