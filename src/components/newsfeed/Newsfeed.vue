@@ -12,11 +12,16 @@
           <div>
             <!-- <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"> -->
             <div class="slideStyle">
-                <slider animation="fade">
-              <slider-item v-for="(i, index) in list" :key="index">
-                <div :style="i">
+                <slider>
+              <!-- <slider-item v-for="(i, index) in list" :key="index"> -->
+                <slider-item>
+                <!-- <div :style="i">
                   <p style="line-height: 280px; font-size: 5rem; text-align: center;">Page{{ index + 1 }}</p>
-                </div>
+                </div> -->
+                <img src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
+              </slider-item>
+              <slider-item>
+              <img src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
               </slider-item>
             </slider>
             </div>
@@ -41,7 +46,21 @@
         </vuestic-widget>
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
           <div>
-            <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
+            <!-- <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"> -->
+            <div class="slideStyle">
+                <slider>
+              <!-- <slider-item v-for="(i, index) in list" :key="index"> -->
+                <slider-item>
+                <!-- <div :style="i">
+                  <p style="line-height: 280px; font-size: 5rem; text-align: center;">Page{{ index + 1 }}</p>
+                </div> -->
+                <img src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
+              </slider-item>
+              <slider-item>
+              <img src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
+              </slider-item>
+            </slider>
+            </div>
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
@@ -122,12 +141,12 @@
         companyprojectsArray: '',
         isProjects: true,
         showProjects: true,
-        showContests: false,
-        list: [
-        { src: 'https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg', width: '100%', height: '100%' },
-        { backgroundColor: '#eee', width: '100%', height: '100%' },
-        { backgroundColor: '#f44336', width: '100%', height: '100%' },
-      ]
+        showContests: false
+      //   list: [
+      //   { src: 'https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg', width: '100%', height: '100%' },
+      //   { backgroundColor: '#eee', width: '100%', height: '100%' },
+      //   { backgroundColor: '#f44336', width: '100%', height: '100%' }
+      // ]
       }
     },
 
