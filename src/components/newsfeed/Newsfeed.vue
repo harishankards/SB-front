@@ -124,10 +124,10 @@
         showProjects: true,
         showContests: false,
         list: [
-        { src: 'https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg', width: '100%', height: '100%' },
-        { backgroundColor: '#eee', width: '100%', height: '100%' },
-        { backgroundColor: '#f44336', width: '100%', height: '100%' },
-      ]
+          { src: 'https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg', width: '100%', height: '100%' },
+          { backgroundColor: '#eee', width: '100%', height: '100%' },
+          { backgroundColor: '#f44336', width: '100%', height: '100%' }
+        ]
       }
     },
 
