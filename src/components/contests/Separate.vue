@@ -29,10 +29,10 @@
           <button type="button" class="btn-style"  @click="showShareDiv()">         
           <span class="glyphicon glyphicon-share-alt"></span> Share </button>
            </div>
-           <social-sharing url="https://studentburger.com/" v-if="shareIcons"
-                    title="Student Burger"
-                    description="The Social Network for Students and Companies"
-                    quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+           <social-sharing :url="url" v-if="shareIcons"
+                    :title="contestData.title"
+                    description="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+                    :quote="contestData.about"
                     hashtags="studentburger,socialnetwork,student,company"
                     twitter-user="_studentburger"
                     inline-template>
@@ -96,7 +96,8 @@
         isNotRegistered: null,
         isRegistered: null,
         showContest: null,
-        shareIcons: false
+        shareIcons: false,
+        url: 'https://studentburger.com' + this.$route.fullPath
       }
     },
     methods: {
