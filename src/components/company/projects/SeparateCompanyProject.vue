@@ -13,6 +13,11 @@
       <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
       <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
       <p><strong> Author</strong><br> {{this.authorData.email}}</p>
+       <div class='row' v-show="projectFiles">
+        <div v-for="data in projectFiles" :key="data.key" class="col-md-8 image-container" >
+            <img :src="data.filePath" />
+        </div>
+      </div>
       <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <hr>
       <div>
@@ -68,6 +73,7 @@
         projectData: '',
         projectId: '',
         authorData: '',
+        projectFiles: [],
         showProject: null,
         shareIcons: false,
         liked: false,
@@ -123,6 +129,7 @@
         secondthis.showProject = true
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
+        secondthis.projectFiles = projectDetails.data.files
         secondthis.$http.get('/companies/get?id=' + projectDetails.data.author, {
           headers: {
             'Authorization': 'Bearer ' + authToken
@@ -198,5 +205,10 @@
   .likebutton{
     color:#3385ff;
   }
-  
+  .image-container{
+    margin: 10px 0px;
+  }
+  .image-container img{
+    width : 100%;
+  }
 </style>

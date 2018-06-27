@@ -14,12 +14,7 @@ export default {
   data () {
     return {
       value: [],
-      options: [
-        {name: 'Computer Science', code: 'cse'},
-        { name: 'Electronics', code: 'elec' },
-        { name: 'Mechanical', code: 'mech' },
-        { name: 'Biotechnology', code: 'Biot' }
-      ]
+      options: []
     }
   },
   methods: {

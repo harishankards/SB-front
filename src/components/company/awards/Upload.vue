@@ -35,6 +35,7 @@ export default {
       console.log('it is success', response)
       var fileData = {}
       fileData.fileInfo = file
+      fileData.type = file.type
       fileData.filepath = response.url.slice(0, response.url.indexOf('?'))
       fileData.key = response.key
       fileData.path = '/company/awards'
@@ -43,7 +44,8 @@ export default {
       axios({
         url: response.url,
         method: 'PUT',
-        data: file
+        data: file,
+        contentType: fileData.type
       }).then(
         function (res) {
           console.log('sucess function upload', res.config.url)

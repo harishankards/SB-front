@@ -14,7 +14,6 @@
   import Landing from 'components/landing/Landing.vue'
   import NotFound from 'components/404/NotFound'
   import { eventBus } from './main.js'
-
   export default {
     name: 'app',
     components: {
@@ -36,7 +35,23 @@
         return this.$route.name === '404'
       }
     },
-    created () {
+    methods: {
+      checkState () {
+        if (this.$store.state.isLoggedIn) {
+          if (this.$store.state.student) {
+            this.$router.push('/student/newsfeed')
+          }
+          if (this.$store.state.company) {
+            this.$router.push('/company/newsfeed')
+          }
+        }
+      }
+    },
+    beforeMount: function () {
+      this.checkState()
+    },
+    created: function () {
+      console.log('store', this.$store.state)
       const self = this
       this.$store.state.loginToastCounter = 0
       let counter = 1
