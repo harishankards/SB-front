@@ -27,10 +27,10 @@
          <div class="comment-section" style="cursor:pointer;">
           <button type="button" class="btn-style"  @click="showShareDiv()">         
           <span class="glyphicon glyphicon-share-alt"></span> Share </button> </div>
-           <social-sharing url="https://studentburger.com/" v-if="shareIcons"
-                    title="Student Burger"
-                    description="The Social Network for Students and Companies"
-                    quote="Student Burger is a progressive social network for building interfaces between the Students and the Companies"
+           <social-sharing :url="url" v-if="shareIcons"
+                    :title="contestData.title"
+                    :description="contestData.about"
+                    quote="Student Burger - The social network of Students and Companies"
                     hashtags="studentburger,socialnetwork,student,company"
                     twitter-user="_studentburger"
                     inline-template>
@@ -79,6 +79,7 @@
           tags: [],
           registrations: []
         },
+        url: 'https://studentburger.com' + this.$route.fullPath,
         contestId: '',
         hostData: '',
         showContest: null,
@@ -102,6 +103,7 @@
       }
     },
     created () {
+      console.log('this route', this.$route)
       var secondthis = this
       const contestId = this.$route.params.id
       const authToken = this.$ls.get('token')

@@ -10,7 +10,17 @@
       <div class="col-md-8 col-sm-12">
         <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
           <div>
-            <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
+            <!-- <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"> -->
+            <div class="slideStyle">
+                <slider animation="fade">
+              <slider-item v-for="(i, index) in list" :key="index">
+                <div :style="i">
+                  <p style="line-height: 280px; font-size: 5rem; text-align: center;">Page{{ index + 1 }}</p>
+                </div>
+              </slider-item>
+            </slider>
+            </div>
+
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewCompanyProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
@@ -94,12 +104,15 @@
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
   import Swal2 from 'sweetalert2'
   import Livefeeds from '../rightsidebar/Livefeeds'
+  import { Slider, SliderItem } from 'vue-easy-slider'
 
   export default {
     name: 'dashboard',
     components: {
       NewsfeedInfoWidgets,
-      Livefeeds
+      Livefeeds,
+      Slider,
+      SliderItem
     },
     data () {
       return {
@@ -109,7 +122,12 @@
         companyprojectsArray: '',
         isProjects: true,
         showProjects: true,
-        showContests: false
+        showContests: false,
+        list: [
+          { src: 'https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg', width: '100%', height: '100%' },
+          { backgroundColor: '#eee', width: '100%', height: '100%' },
+          { backgroundColor: '#f44336', width: '100%', height: '100%' }
+        ]
       }
     },
 
@@ -206,6 +224,7 @@
 </script>
 
 <style lang="scss" scoped>
+ 
   @import "../../sass/_variables.scss";
   .newsfeed-page{
     padding-left: 0rem !important;
@@ -271,8 +290,7 @@
     color: #a29e9e;
   }
   
-  #imgStyle{
-    width: 100%;
+  .slideStyle{
     margin-bottom: 3%;
   }
 

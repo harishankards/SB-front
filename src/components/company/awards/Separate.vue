@@ -12,6 +12,7 @@
       <p><strong> Award given to</strong><br>{{this.studentData.email}}</p>
       <p><strong> Provided by</strong><br> {{this.companyData.email}}</p>    
       <p><strong> Description</strong><br><span v-html="this.awardData.description"></span></p>
+      <p v-show="awardFiles"><strong> Certificate</strong></p>
       <div class='row' v-show="awardFiles">
       <div v-for="data in awardFiles" :key="data.key" class="col-md-8 image-container" >
           <img :src="data.filePath" />
