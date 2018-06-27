@@ -12,11 +12,11 @@
       <p><strong> Award given to</strong><br>{{this.studentData.email}}</p>
       <p><strong> Provided by</strong><br> {{this.companyData.email}}</p>    
       <p><strong> Description</strong><br><span v-html="this.awardData.description"></span></p>
-      <div>
-        <!-- <img v-img v-for="file in this.awardData.files" :key="file.id" :src="'http://localhost:3000/'+file" /> -->
-        <viewer :images="awardData.files">
-          <img v-for="src in awardData.files" :src="'http://localhost:3000/'+src" :key="src">
-        </viewer>
+      <p v-show="awardFiles"><strong> Certificate</strong></p>
+      <div class='row' v-show="awardFiles">
+      <div v-for="data in awardFiles" :key="data.key" class="col-md-8 image-container" >
+          <img :src="data.filePath" />
+      </div>
       </div>
 
       <strong>Tags:</strong><span v-for="tag in awardData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
@@ -56,6 +56,7 @@
         awardId: '',
         companyData: '',
         studentData: '',
+        awardFiles: [],
         showAward: null
       }
     },
@@ -81,6 +82,7 @@
         secondthis.showAward = true
         console.log('awardData', awardDetails.data)
         secondthis.awardData = awardDetails.data
+        secondthis.awardFiles = awardDetails.data.files
         secondthis.$http.get('/companies/get?id=' + awardDetails.data.provider, {
           headers: {
             'Authorization': 'Bearer ' + authToken
@@ -111,19 +113,19 @@
           console.log('student data err', studentDataErr)
         })
 
-        secondthis.$http.get('/attachments?filepath=/' + awardDetails.data.files[0], {
-          headers: {
-            'Authorization': 'Bearer ' + authToken
-          }
-        })
-        .then(function (fileData) {
-          console.log('filedata came', fileData)
-          secondthis.$ls.set('imageData', fileData.data)
-        })
-        .catch(function (fileDataErr) {
-          secondthis.showAward = false
-          console.log('fileDataerr', fileDataErr)
-        })
+        // secondthis.$http.get('/attachments?filepath=/' + awardDetails.data.files[0], {
+        //   headers: {
+        //     'Authorization': 'Bearer ' + authToken
+        //   }
+        // })
+        // .then(function (fileData) {
+        //   console.log('filedata came', fileData)
+        //   secondthis.$ls.set('imageData', fileData.data)
+        // })
+        // .catch(function (fileDataErr) {
+        //   secondthis.showAward = false
+        //   console.log('fileDataerr', fileDataErr)
+        // })
       })
       .catch(function (awardDataErr) {
         secondthis.showAward = false
@@ -164,5 +166,11 @@
     text-align: center;
     font-weight: bold;
     // margin-top: 7rem;
+  }
+  .image-container{
+    margin: 10px 0px;
+  }
+  .image-container img{
+    width : 100%;
   }
 </style>

@@ -1,127 +1,90 @@
 <template>
-  <vue-dropzone ref="myVueDropzone" :destroyDropzone="false" 
-    @vdropzone-success="vsuccess" @vdropzone-removed-file="vremoved"
-    id="dropzone" :options="dropzoneOptions" @vdropzone-files-added="filesAdded">
-    <!-- :awss3="awss3"
-    v-on:vdropzone-s3-upload-error="s3UploadError"
-    v-on:vdropzone-s3-upload-success="s3UploadSuccess"> -->
+  <vue-dropzone ref="myVueDropzone" :destroyDropzone="false" @vdropzone-success="vsuccess" @vdropzone-error="verror" id="dropzone" @vdropzone-removed-file="vremoved" :options="dropzoneOptions">
   </vue-dropzone>
 </template>
 
 <script>
-  import vue2Dropzone from 'vue2-dropzone'
-  import 'vue2-dropzone/dist/vue2Dropzone.css'
-  import { eventBus } from '../../../main.js'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.css'
+import axios from 'axios'
 
-  export default {
-    name: 'upload',
-    components: {
-      vueDropzone: vue2Dropzone
-    },
-    data: function () {
-      return {
-        token: this.$ls.get('token'),
-        dropzoneOptions: {
-          url: 'http://localhost:3000/attachments',
-          thumbnailWidth: 150,
-          maxFilesize: 0.5,
-          headers: { 'Authorization': 'Bearer ' + this.token },
-          addRemoveLinks: true,
-          dictDefaultMessage: "<i class='fa fa-cloud-upload'></i>UPLOAD ME",
-          autoQueue: false
-        }
-        // awss3: {
-        //   signingURL: 'http://localhost:3000/attachments/signedUrlPut', // Where you will get signed url
-        //   headers: { 'Authorization': 'Bearer ' + this.token },
-        //   params: {},
-        //   sendFileToServer: false // If you want to upload file to your server along with s3
-        // }
-      }
-    },
-    methods: {
-      vsuccess (file, response) {
-        console.log('it is success', file, response)
-        this.$store.state.projectUploadedFile.push({
-          filename: file.name,
-          signedUrl: response.url
-        })
-        console.log('this store filepath', this.$store.state.projectUploadedFile)
-        eventBus.$emit('uploadedFile', {
-          projectUploadedFiles: this.$store.state.projectUploadedFile
-        })
-      },
-      filesAdded (file) {
-        console.log('added files', file)
-        this.enqueueFile(file)
-      },
-      enqueueFile (file) {
-        const self = this
-        console.log('enqueuee file', file[0])
-        this.$http.post('/attachments/signedUrlPut', {
-          headers: {
-            'Authorization': 'Bearer ' + this.token
-          }
+export default {
+  name: 'upload',
+  components: {
+    vueDropzone: vue2Dropzone
+  },
+  data: function () {
+    return {
+      token: this.$ls.get('token'),
+      dropzoneOptions: {
+        url: 'http://localhost:3000/attachments',
+        thumbnailWidth: 150,
+        maxFilesize: 0.5,
+        headers:
+        {
+          Authorization: 'Bearer ' + this.token,
+          path: 'company/projects'
         },
-          {
-            data: {
-              file: file[0].name,
-              key: file[0].name
-            }
-          })
-        .then(function (signedUrl) {
-          console.log('signedUrl', signedUrl.data.url)
-          self.$http.put(signedUrl.data.url, file[0].dataURL)
-          .then(function (uploaded) {
-            console.log('file uploaded', uploaded)
-          })
-          .catch(function (uploadErr) {
-            console.log('file uplaod er', uploadErr)
-          })
+        addRemoveLinks: true,
+        dictDefaultMessage: '<i class="fa fa-cloud-upload"></i>UPLOAD ME'
+      }
+    }
+  },
+  methods: {
+    vsuccess (file, response) {
+      console.log('it is success', response)
+      var fileData = {}
+      fileData.fileInfo = file
+      fileData.filepath = response.url.slice(0, response.url.indexOf('?'))
+      fileData.key = response.key
+      fileData.path = '/company/projects'
+      this.$store.commit('addUploadedFiles', fileData)
+      console.log(this.$store.getters.uploadedFiles)
+      axios({
+        url: response.url,
+        method: 'PUT',
+        data: file
+      }).then(
+        function (res) {
+          console.log(res)
+        },
+        err => {
+          console.log(err)
+        }
+      )
+    },
+    verror (err) {
+      console.log(err)
+    },
+    vremoved (file, error, xhr) {
+      const fileArray = this.$store.getters.uploadedFiles
+      if (fileArray.length > 0) {
+        console.log(fileArray)
+        const removedFile = fileArray.find(function (fileData) {
+          return fileData.fileInfo === file
         })
-        .catch(function (signedUrlErr) {
-          console.log('signedurl err', signedUrlErr)
-        })
-      },
-      vremoved (file, error, xhr) {
-        // const self = this
-        console.log('file removed', file)
-        const filename = file.name
-        const signedUrl = this.$store.state.projectUploadedFile.map(item => {
-          if (item.filename === filename) {
-            console.log('item filname', item)
-            const index = this.$store.state.projectUploadedFile.indexOf(item)
-            this.$store.state.projectUploadedFile.splice(index, 1)
-            return item.signedUrl
-          }
-        })
-        console.log('removed signedUrl', signedUrl)
-        this.$http({
+        console.log(removedFile)
+        this.$store.commit('removeUploadedFiles', removedFile)
+        console.log('removed filepath', removedFile)
+        axios({
           method: 'delete',
           url: '/attachments',
           data: {
-            // filepath: filepath
+            key: removedFile.key
           },
           headers: {
-            'Authorization': 'Bearer ' + this.token
+            Authorization: 'Bearer ' + this.token,
+            path: removedFile.path
           }
         })
-        .then(function (attachmentDeleted) {
-          console.log('attachment deleted', attachmentDeleted)
-          // self.
-        })
-        .catch(function (attachmentDeleteErr) {
-          console.log('unable to delete attachment', attachmentDeleteErr)
-        })
-      },
-      s3UploadError (err) {
-        console.log('s3UploadError', err)
-      },
-      s3UploadSuccess () {
-        console.log('s3UploadSuccess')
+          .then(function (attachmentDeleted) {
+            console.log('attachment deleted', attachmentDeleted)
+          })
+          .catch(function (attachmentDeleteErr) {
+            console.log('unable to delete attachment', attachmentDeleteErr)
+          })
       }
-    },
-    created () {
-      this.$store.state.projectUploadedFile = []
     }
   }
+}
 </script>
