@@ -142,11 +142,6 @@
         isProjects: true,
         showProjects: true,
         showContests: false
-      //   list: [
-      //   { src: 'https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg', width: '100%', height: '100%' },
-      //   { backgroundColor: '#eee', width: '100%', height: '100%' },
-      //   { backgroundColor: '#f44336', width: '100%', height: '100%' }
-      // ]
       }
     },
 
@@ -397,5 +392,18 @@
         left: -1.875rem;
       }
     }
+  }
+  .slideStyle{
+    .slider{
+      button .btn .btn-left{
+        box-shadow: none !important;
+      }
+      .btn-right{
+        box-shadow: none !important;
+      }
+    }
+  }
+  .slider-item{
+    transform: none !important;
   }
 </style>
