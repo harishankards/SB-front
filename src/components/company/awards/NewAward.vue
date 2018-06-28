@@ -179,6 +179,7 @@
                   json.key = data.key
                   json.path = data.path
                   json.filePath = data.filepath
+                  json.type = data.type
                   this.awardData.files.push(json)
                 })
               }

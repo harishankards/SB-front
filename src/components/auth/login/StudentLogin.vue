@@ -50,6 +50,16 @@
       }
     },
     methods: {
+      checkState () {
+        if (this.$store.state.isLoggedIn) {
+          if (this.$store.state.student) {
+            this.$router.push('/student/newsfeed')
+          }
+          if (this.$store.state.company) {
+            this.$router.push('/company/newsfeed')
+          }
+        }
+      },
       sendLoginData: function () {
         const secondThis = this
         // console.log('data da:', this.loginData)
@@ -126,7 +136,10 @@
       } else {
         console.log('not logged in')
       }
-    }
+    },
+    beforeMount: function () {
+      this.checkState()
+    },
   }
 </script>
 

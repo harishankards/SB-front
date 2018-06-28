@@ -37,13 +37,15 @@ export default {
       fileData.fileInfo = file
       fileData.filepath = response.url.slice(0, response.url.indexOf('?'))
       fileData.key = response.key
+      fileData.type = file.type
       fileData.path = '/company/projects'
       this.$store.commit('addUploadedFiles', fileData)
       console.log(this.$store.getters.uploadedFiles)
       axios({
         url: response.url,
         method: 'PUT',
-        data: file
+        data: file,
+        'Content-Type': file.type
       }).then(
         function (res) {
           console.log(res)

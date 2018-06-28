@@ -63,7 +63,20 @@
         .catch(function (loginErr) {
           console.log('login err', loginErr)
         })
+      },
+      checkState () {
+        if (this.$store.state.isLoggedIn) {
+          if (this.$store.state.student) {
+            this.$router.push('/student/newsfeed')
+          }
+          if (this.$store.state.company) {
+            this.$router.push('/company/newsfeed')
+          }
+        }
       }
+    },
+    beforeMount: function () {
+      this.checkState()
     }
 
   }

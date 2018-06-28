@@ -51,6 +51,16 @@
     },
 
     methods: {
+      checkState () {
+        if (this.$store.state.isLoggedIn) {
+          if (this.$store.state.student) {
+            this.$router.push('/student/newsfeed')
+          }
+          if (this.$store.state.company) {
+            this.$router.push('/company/newsfeed')
+          }
+        }
+      },
       sendSignupData: function () {
         const secondThis = this
         console.log('data:', this.signupData)
@@ -68,6 +78,9 @@
           console.log('signuperror', signupError)
         })
       }
+    },
+    beforeMount: function () {
+      this.checkState()
     }
   }
 </script>
