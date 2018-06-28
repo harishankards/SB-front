@@ -75,7 +75,7 @@
           // console.log(secondThis.$ls)
           // const lsToken = secondThis.$ls.get('token')
           secondThis.$store.dispatch('login')
-          // secondThis.$router.push('/student/newsfeed')
+          secondThis.$router.push('/student/newsfeed')
           // console.log('ls token', lsToken)
         })
         .catch(function (loginErr) {
@@ -139,7 +139,7 @@
     },
     beforeMount: function () {
       this.checkState()
-    },
+    }
   }
 </script>
 

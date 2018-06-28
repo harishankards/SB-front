@@ -1,11 +1,16 @@
 <template>
     <div class="row">
       <div class="col-md-8">
-        <div class="noContests" v-show="noContests">
-          <h4> Oops! You have no Contests to view. </h4>
-          <button class="btn btn-primary btn-micro" @click="createNew"> New Contests</button>              
-      </div>
-        <vuestic-widget class="" v-for="contest in contestArray" :key="contest.id">
+        <vuestic-switch class="col-md-13 switch" v-model="isUpcoming">
+        <span slot="trueTitle">Upcoming</span>
+        <span slot="falseTitle">History</span>
+    </vuestic-switch>
+      <div v-show="showUpcoming">
+        <div class="noContests" v-if="noUpcomingContests">
+          <h4>You have no upcoming Contests to view. </h4>
+          <button class="btn btn-primary btn-micro" @click="createNew"> New Contest</button> 
+        </div>
+        <vuestic-widget class="" v-for="contest in upcomingContestArray" :key="contest.id">
           <div>
             
             <div id="projects-name-div">
@@ -27,6 +32,34 @@
             <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
         </vuestic-widget>
+      </div>
+      <div v-show="showHistory">
+        <div class="noProjects" v-if="noPreviousContests">
+          <h4>You have no Previous Contests to view. </h4>
+        </div>
+        <vuestic-widget class="" v-for="contest in previousContestArray" :key="contest.id">
+          <div>
+            
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
+            </div>
+            <div class="deleteIconDiv">
+              <i class="fa fa-edit editIcon" @click="takeToEdit(contest)"></i>                          
+              <i class="fa fa-trash deleteIcon" @click="showDeleteModal(contest._id)"></i>
+            </div>
+          </div>
+          <div id="projects-content-div">
+            <p id="projects-description">{{contest.about}}</p>
+            <p v-if="contest"><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
+            <p v-if="contest"><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
+          </div>
+          <!-- <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
+          <div id="tagDiv">
+            <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
+          </div>
+        </vuestic-widget>
+        </div>
       </div>
       <div class="col-md-4 col-sm-12 sidenav">
         <vuestic-widget class="createproject-div">
@@ -50,7 +83,14 @@
     data () {
       return {
         contestArray: [],
+        upcomingContestArray: [],
+        previousContestArray: [],
         noContests: false,
+        isUpcoming: true,
+        showHistory: false,
+        showUpcoming: true,
+        noPreviousContests: false,
+        noUpcomingContests: false,
         posts: [
           {
             id: 0,
@@ -143,8 +183,21 @@
       }
     },
     updated () {
-      if (this.contestArray.length === 0) {
+      if (this.upcomingContestArray.length === 0) {
         this.noContests = true
+      }
+      if (this.previousContestArray.length === 0) {
+        this.noPreviousContests = true
+      }
+      if (this.upcomingContestArray.length === 0) {
+        this.noUpcomingContests = true
+      }
+      if (this.isUpcoming) {
+        this.showUpcoming = true
+        this.showHistory = false
+      } else {
+        this.showUpcoming = false
+        this.showHistory = true
       }
     },
     created () {
@@ -171,8 +224,16 @@
           })
           .then((contestData) => {
             console.log('contest data', contestData)
-            this.contestArray.push(contestData.data)
-            console.log('contest array', this.contestArray)
+            console.log('contest date', Date.parse(contestData.data.date.end))
+            console.log('new date', Date.parse(new Date()))
+            if (Date.parse(contestData.data.date.end) < Date.parse(new Date())) {
+              console.log('project ended')
+              this.previousContestArray.push(contestData.data)
+              console.log('prev', this.previousContestArray)
+            } else {
+              this.upcomingContestArray.push(contestData.data)
+              console.log('upcoming', this.upcomingContestArray)
+            }
           })
           .catch((contestErr) => {
             console.log('contestErr', contestErr)
@@ -253,5 +314,11 @@
     font-size: 1.1rem;
     margin-right: 0.5rem;
     cursor: pointer;
+  }
+  .noContests{
+    text-align: center;
+  }
+  .switch{
+    margin-bottom: 4%;
   }
 </style>
