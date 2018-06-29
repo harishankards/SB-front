@@ -137,7 +137,7 @@
               this.previousContestArray.push(contestData.data)
             } else {
               this.upcomingContestArray.push(contestData.data)
-              this.upcomingContestArray.sort((a, b) => new Date(a.date.start)-new Date(b.date.start))
+              this.upcomingContestArray.sort((a, b) => new Date(a.date.start) - new Date(b.date.start))
               console.log('upcomingContestArray', this.upcomingContestArray)
             }
             // this.contestArray.push(contestData.data)
