@@ -57,7 +57,7 @@
   }
 
   .uv-project-title{
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 
   .centrenav{
@@ -67,7 +67,8 @@
 
   .firstnav{
     height: 172px;
-    overflow: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .searched-contest-header-title{
@@ -84,7 +85,7 @@
   }
 
   .searched-contest-title{
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 
   .ad-header-title{

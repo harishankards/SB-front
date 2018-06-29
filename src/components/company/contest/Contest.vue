@@ -191,6 +191,8 @@
       }
       if (this.upcomingContestArray.length === 0) {
         this.noUpcomingContests = true
+      } else {
+        this.noUpcomingContests = false
       }
       if (this.isUpcoming) {
         this.showUpcoming = true

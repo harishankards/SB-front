@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <vuestic-switch class="col-md-4 switch" v-model="isUpcoming">
+      <vuestic-switch class="col-md-13 switch" v-model="isUpcoming">
         <span slot="trueTitle">Upcoming</span>
         <span slot="falseTitle">History</span>
     </vuestic-switch>
@@ -92,9 +92,13 @@
       }
       if (this.previousContestArray.length === 0) {
         this.noPreviousContests = true
+      } else {
+        this.noPreviousContests = false
       }
       if (this.upcomingContestArray.length === 0) {
         this.noUpcomingContests = true
+      } else {
+        this.noUpcomingContests = false
       }
       if (this.isUpcoming) {
         this.showUpcoming = true
@@ -128,11 +132,13 @@
           })
           .then((contestData) => {
             // console.log('project data', projectData)
-            if (contestData.data.date.end < new Date()) {
+            if (Date.parse(contestData.data.date.end) < Date.parse(new Date())) {
               console.log('project ended')
               this.previousContestArray.push(contestData.data)
             } else {
               this.upcomingContestArray.push(contestData.data)
+              this.upcomingContestArray.sort((a, b) => new Date(a.date.start)-new Date(b.date.start))
+              console.log('upcomingContestArray', this.upcomingContestArray)
             }
             // this.contestArray.push(contestData.data)
             // console.log('contest array', this.contestArray)
@@ -204,6 +210,6 @@
     border-radius: 5%;
   }
   .switch {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 </style>
