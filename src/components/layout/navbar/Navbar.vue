@@ -185,7 +185,7 @@
   @import "../../../../node_modules/bootstrap/scss/variables";
 
   .navbar.app-navbar {
-    position: fixed; top: 0; width: 100%; z-index: 1;
+    position: fixed; top: 0; width: 100%; z-index: 5;
     .navbar-container {
       width: 100%;
       height: 100%;
