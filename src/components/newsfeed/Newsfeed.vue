@@ -278,7 +278,7 @@
     margin-left: 720px;
     width: 26%;
     top: 13.7%;
-    height: 191px;
+    height: 160px;
 }
  @media screen and (max-width: 650px){
    .sidenav1{
@@ -306,6 +306,7 @@
   
   .slideStyle{
     margin-bottom: 3%;
+    box-shadow: none !important;
   }
 
   #projects-name-div{
@@ -392,18 +393,5 @@
         left: -1.875rem;
       }
     }
-  }
-  .slideStyle{
-    .slider{
-      button .btn .btn-left{
-        box-shadow: none !important;
-      }
-      .btn-right{
-        box-shadow: none !important;
-      }
-    }
-  }
-  .slider-item{
-    transform: none !important;
   }
 </style>
