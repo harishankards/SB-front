@@ -8,6 +8,7 @@ export default {
     default: false,
     title: 'menu.messages',
     iconClass: 'fa fa-paper-plane',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }

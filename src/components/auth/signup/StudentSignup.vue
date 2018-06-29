@@ -73,12 +73,13 @@
         this.$http.post('/student/signup', this.signupData)
         .then(function (signupSuccess) {
           console.log('signup success', signupSuccess.data)
-          const authToken = signupSuccess.data.token
-          secondThis.$ls.set('token', authToken)
+          secondThis.$ls.set('token', signupSuccess.data.token)
+          secondThis.$ls.set('verified', signupSuccess.data.verified)
+          secondThis.$ls.set('logged_student_id', signupSuccess.data.id)
           secondThis.$ls.set('student', 'true')
           secondThis.$ls.set('email', secondThis.signupData.email)
           secondThis.$store.dispatch('login')
-          secondThis.$router.push('/student/postsignup')
+          secondThis.$router.push('/unverified')
         })
         .catch(function (signupError) {
           console.log('signuperror', signupError)
