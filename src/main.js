@@ -23,6 +23,8 @@ import VueSocketio from 'vue-socket.io-extended'
 import io from 'socket.io-client'
 import Toasted from 'vue-toasted'
 import VueCharts from 'vue-chartjs'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -87,6 +89,8 @@ Vue.use(VueSocketio, io('http://localhost:3000'))
 Vue.use(Toasted)
 
 Vue.use(VueCharts)
+
+Vue.use(VueAwesomeSwiper)
 
 sync(store, router)
 

@@ -10,17 +10,15 @@
       <div class="col-md-8 col-sm-12">
         <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
           <div>
-            <!-- <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"> -->
-            <div class="slideStyle">
-                <slider animation="fade">
-              <slider-item v-for="(i, index) in list" :key="index">
-                <div :style="i">
-                  <p style="line-height: 280px; font-size: 5rem; text-align: center;">Page{{ index + 1 }}</p>
-                </div>
-              </slider-item>
-            </slider>
-            </div>
-
+            <swiper :options="swiperOption" class="sliderStyle">
+              <swiper-slide> <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <div class="swiper-button-prev" slot="button-prev"></div>
+              <div class="swiper-button-next" slot="button-next"></div>
+            </swiper>
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewCompanyProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
@@ -41,7 +39,17 @@
         </vuestic-widget>
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
           <div>
-            <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg">
+            
+        <swiper :options="swiperOption" class="sliderStyle">
+          <swiper-slide> <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+          <div class="swiper-button-prev" slot="button-prev"></div>
+          <div class="swiper-button-next" slot="button-next"></div>
+      </swiper>
+
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
@@ -102,17 +110,13 @@
 
 <script>
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
-  import Swal2 from 'sweetalert2'
   import Livefeeds from '../rightsidebar/Livefeeds'
-  import { Slider, SliderItem } from 'vue-easy-slider'
 
   export default {
     name: 'dashboard',
     components: {
       NewsfeedInfoWidgets,
-      Livefeeds,
-      Slider,
-      SliderItem
+      Livefeeds
     },
     data () {
       return {
@@ -123,11 +127,12 @@
         isProjects: true,
         showProjects: true,
         showContests: false,
-        list: [
-          { src: 'https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg', width: '100%', height: '100%' },
-          { backgroundColor: '#eee', width: '100%', height: '100%' },
-          { backgroundColor: '#f44336', width: '100%', height: '100%' }
-        ]
+        swiperOption: {
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }
+        }
       }
     },
 
@@ -202,24 +207,7 @@
         this.showProjects = false
         this.showContests = true
       }
-    },
-    mounted () {
-      if (this.$store.state.loginToastCounter === 0) {
-        const toast = Swal2.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000
-        })
-
-        toast({
-          type: 'success',
-          title: 'Signed in successfully'
-        })
-        this.$store.state.loginToastCounter++
-      }
     }
-
   }
 </script>
 
@@ -264,7 +252,7 @@
     margin-left: 720px;
     width: 26%;
     top: 13.7%;
-    height: 191px;
+    height: 160px;
 }
  @media screen and (max-width: 650px){
    .sidenav1{
@@ -290,8 +278,11 @@
     color: #a29e9e;
   }
   
-  .slideStyle{
+  .sliderStyle{
     margin-bottom: 3%;
+    height: 300px;
+    width: 100%;
+    z-index: 1;
   }
 
   #projects-name-div{

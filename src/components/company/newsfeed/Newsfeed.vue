@@ -7,6 +7,15 @@
       <div class="col-md-8">
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id">
           <div>
+            <swiper :options="swiperOption" class="sliderStyle">
+              <swiper-slide> <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <div class="swiper-button-prev" slot="button-prev"></div>
+              <div class="swiper-button-next" slot="button-next"></div>
+            </swiper>
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
@@ -49,7 +58,6 @@
 <script>
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
-  import Swal2 from 'sweetalert2'
 
   export default {
     name: 'dashboard',
@@ -61,6 +69,12 @@
       return {
         companyData: '',
         projectsData: '',
+        swiperOption: {
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }
+        },
         posts: [
           {
             id: 0,
@@ -136,22 +150,6 @@
       }).catch((companyErr) => {
         console.log('company err', companyErr)
       })
-    },
-    mounted () {
-      if (this.$store.state.loginToastCounter === 0) {
-        const toast = Swal2.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000
-        })
-
-        toast({
-          type: 'success',
-          title: 'Signed in successfully'
-        })
-        this.$store.state.loginToastCounter++
-      }
     }
   }
 </script>
@@ -292,5 +290,11 @@
         left: -1.875rem;
       }
     }
+  }
+  .sliderStyle{
+    margin-bottom: 3%;
+    height: 300px;
+    width: 100%;
+    z-index: 1;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="row dashboard-info-widgets ">
     <div class="col-md-6"> 
-      <vuestic-widget class="info-widget">
+      <vuestic-widget class="info-widget firstnav">
         <div class="uv-project-header">
           <span class="uv-project-header-title"> Most upvoted project today </span>
           <i class="fa fa-thumbs-up uv-project-header-icon"></i>
@@ -57,11 +57,18 @@
   }
 
   .uv-project-title{
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 
   .centrenav{
-    height: 210px;
+    height: 172px;
+    overflow: auto;
+  }
+
+  .firstnav{
+    height: 172px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .searched-contest-header-title{
@@ -78,7 +85,7 @@
   }
 
   .searched-contest-title{
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 
   .ad-header-title{

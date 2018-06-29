@@ -86,7 +86,6 @@
         'isToggleWithoutAnimation'
       ]),
       logout () {
-        this.$store.state.loginToastCounter = 0
         console.log('logout clicked')
         this.$store.dispatch('logout')
         this.$router.push('/')
@@ -185,7 +184,7 @@
   @import "../../../../node_modules/bootstrap/scss/variables";
 
   .navbar.app-navbar {
-    position: fixed; top: 0; width: 100%; z-index: 1;
+    position: fixed; top: 0; width: 100%; z-index: 5;
     .navbar-container {
       width: 100%;
       height: 100%;
