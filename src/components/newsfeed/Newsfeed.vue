@@ -110,7 +110,6 @@
 
 <script>
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
-  import Swal2 from 'sweetalert2'
   import Livefeeds from '../rightsidebar/Livefeeds'
 
   export default {
@@ -208,24 +207,7 @@
         this.showProjects = false
         this.showContests = true
       }
-    },
-    mounted () {
-      if (this.$store.state.loginToastCounter === 0) {
-        const toast = Swal2.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000
-        })
-
-        toast({
-          type: 'success',
-          title: 'Signed in successfully'
-        })
-        this.$store.state.loginToastCounter++
-      }
     }
-
   }
 </script>
 

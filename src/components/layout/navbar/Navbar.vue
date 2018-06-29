@@ -86,7 +86,6 @@
         'isToggleWithoutAnimation'
       ]),
       logout () {
-        this.$store.state.loginToastCounter = 0
         console.log('logout clicked')
         this.$store.dispatch('logout')
         this.$router.push('/')
