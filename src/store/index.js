@@ -32,6 +32,8 @@ const store = new Vuex.Store({
     },
     [LOGIN_SUCCESS] (state) {
       state.isLoggedIn = true
+      state.student = !!localStorage.getItem('vuejs_student')
+      state.company = !!localStorage.getItem('vuejs_company')
       state.pending = false
     },
     [LOGOUT] (state) {

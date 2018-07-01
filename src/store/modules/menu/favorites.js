@@ -8,6 +8,7 @@ export default {
     default: false,
     title: 'menu.favorites',
     iconClass: 'fa fa-heart',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }

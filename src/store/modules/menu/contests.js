@@ -8,6 +8,7 @@ export default {
     expanded: false,
     title: 'menu.contests.parent',
     iconClass: 'fa fa-flag',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }

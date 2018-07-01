@@ -191,6 +191,8 @@
       }
       if (this.upcomingContestArray.length === 0) {
         this.noUpcomingContests = true
+      } else {
+        this.noUpcomingContests = false
       }
       if (this.isUpcoming) {
         this.showUpcoming = true
@@ -211,7 +213,7 @@
       .then((companyData) => {
         // console.log('company Data', companyData.data)
         const contestArr = companyData.data[0].contests
-        // console.log('contestArr', contestArr)
+        console.log('contestArr', contestArr)
         if (contestArr.length === 0) {
           this.noContests = true
         }
@@ -224,15 +226,15 @@
           })
           .then((contestData) => {
             console.log('contest data', contestData)
-            console.log('contest date', Date.parse(contestData.data.date.end))
-            console.log('new date', Date.parse(new Date()))
+            // console.log('contest date', Date.parse(contestData.data.date.end))
+            // console.log('new date', Date.parse(new Date()))
             if (Date.parse(contestData.data.date.end) < Date.parse(new Date())) {
-              console.log('project ended')
+              // console.log('project ended')
               this.previousContestArray.push(contestData.data)
-              console.log('prev', this.previousContestArray)
+              // console.log('prev', this.previousContestArray)
             } else {
               this.upcomingContestArray.push(contestData.data)
-              console.log('upcoming', this.upcomingContestArray)
+              // console.log('upcoming', this.upcomingContestArray)
             }
           })
           .catch((contestErr) => {

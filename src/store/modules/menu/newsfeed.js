@@ -8,6 +8,7 @@ export default {
     default: false,
     title: 'menu.newsfeed',
     iconClass: 'fa fa-newspaper-o',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }

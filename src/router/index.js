@@ -42,7 +42,7 @@ import PostSignupCompany from 'components/company/profile/PostSignup'
 import StudentNotification from 'components/profile/Notifications'
 import CompanyNotification from 'components/company/profile/Notifications'
 import Upload from 'components/projects/Upload'
-
+import Unverified from '../components/unverified/index.vue'
 
 Vue.use(Router)
 
@@ -81,11 +81,20 @@ export default new Router({
       name: 'studentsignup'
     },
     {
+      path: '/unverified',
+      component: Unverified,
+      name: 'unverified',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/student/projects/new',
       component: NewProject,
       name: 'newproject',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     {
@@ -93,7 +102,8 @@ export default new Router({
       component: EditProject,
       name: 'editproject',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     {
@@ -101,7 +111,8 @@ export default new Router({
       component: PostSignup,
       name: 'postsignup',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     {
@@ -109,7 +120,8 @@ export default new Router({
       component: StudentNotification,
       name: 'Student Notifications',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     {
@@ -117,7 +129,8 @@ export default new Router({
       component: StudentProfile,
       name: 'studentprofile',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     // Project
@@ -142,7 +155,8 @@ export default new Router({
       component: SeparateStudentProjectStudent,
       name: 'SeparateStudentProjectViewStudent',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     {
@@ -150,7 +164,8 @@ export default new Router({
       component: SeparateCompanyProjectStudent,
       name: 'SeparateCompanyProjectViewStudent',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     // Contest
@@ -167,7 +182,8 @@ export default new Router({
       component: SeparateStudentContest,
       name: 'SeparateContestViewStudent',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     // Award
@@ -184,7 +200,8 @@ export default new Router({
       component: SeparateAwardStudent,
       name: 'SeparateAwardViewStudent',
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        accountAuth: true
       }
     },
     // Company things

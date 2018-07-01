@@ -23,6 +23,8 @@ import VueSocketio from 'vue-socket.io-extended'
 import io from 'socket.io-client'
 import Toasted from 'vue-toasted'
 import VueCharts from 'vue-chartjs'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 
 // For http requests
 Vue.use(VueAxios, axios)
@@ -88,6 +90,8 @@ Vue.use(Toasted)
 
 Vue.use(VueCharts)
 
+Vue.use(VueAwesomeSwiper)
+
 sync(store, router)
 
 // For passing data between components
@@ -102,15 +106,32 @@ let mediaHandler = () => {
 }
 
 router.beforeEach((to, from, next) => {
+  // store.commit('setLoading', true)
+  if (to.matched.some(record => record.meta.accountAuth)) {
+    console.log('Checking verification', Vue.ls.get('verified'))
+    if (Vue.ls.get('verified')) {
+      console.log('I am verified')
+      next()
+    } else {
+      console.log('I am not verified')
+      next({name: 'unverified'})
+    }
+  } else {
+    next()
+  }
+})
+
+router.beforeEach((to, from, next) => {
   store.commit('setLoading', true)
+  console.log(to)
   // console.log('to matched some', to.matched.some(record => record.meta.requiresAuth))
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.meta.accountAuth) {
     if (!store.getters.isLoggedIn) {
       console.log('not logged from router beforeeach')
       next({path: '/', query: { redirect: to.fullPath }})
-    } else {
-      console.log('logged in from beforeach')
-      if (store.getters.student) {
+    } else if (store.getters.isLoggedIn) {
+      console.log('logged in from beforeach', store.getters.student)
+      if (store.getters.student && Vue.ls.get('verified')) {
         console.log('to location inside student', to.fullPath)
         if (to.matched.some(record => record.meta.shared)) {
           next()
@@ -129,13 +150,23 @@ router.beforeEach((to, from, next) => {
           next({path: '/company/newsfeed', query: { redirect: to.fullPath }})
         }
       } else {
-        next()
+        console.log(('I am uncaught'))
+        next('/unverified')
       }
+    } else {
+      next()
+    }
+  } else if (to.meta.requiresAuth) {
+    if (store.getters.isLoggedIn) {
+      next()
+    } else {
+      next({path: '/', query: { redirect: to.fullPath }})
     }
   } else {
     next()
   }
 })
+
 
 export function getRedirectUri (uri) {
   try {
