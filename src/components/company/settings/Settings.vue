@@ -96,7 +96,7 @@ export default {
 }
 .formStyle{
 	margin-left: 0% !important;
-	top: 2.5% !important;
+	top: 1.5% !important;
 }
 @media screen and (max-width: 650px){
    .formStyle{
