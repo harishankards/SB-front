@@ -20,20 +20,16 @@
      <div slot="page1" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-              <input id="simple-input" name="title" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('title') }"  v-model="projectData.title" />
+              <input id="simple-input" name="title" v-model="projectData.title" />
               <label class="control-label" for="simple-input">Name of the project</label><i class="bar"></i>
-              <i v-show="errors.has('title')" class="fa fa-warning"></i>
-          <span v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</span>
           </div>
         </div> 
      </div>
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <textarea type="text" id="simple-textarea" name="abstract" v-validate="'required'" v-model="projectData.abstract" :class="{'input': true, 'is-danger': errors.has('abstract') }" ></textarea>
+            <textarea type="text" id="simple-textarea" name="abstract"></textarea>
             <label class="control-label" for="simple-textarea">Abstract (2-3 lines max)</label><i class="bar"></i>
-            <i v-show="errors.has('abstract')" class="fa fa-warning"></i>
-          <span v-show="errors.has('abstract')" class="help is-danger">{{ errors.first('abstract') }}</span>
           </div>
         </div>    
      </div>
@@ -162,19 +158,20 @@
             label: 'File upload',
             slot: 'page4',
             onNext: () => {
+              const self = this
               let fileData = this.$store.getters.uploadedFiles
-              this.awardData.files = []
+              this.projectData.files = []
               if (fileData) {
-                console.log(fileData)
+                console.log('filedata', fileData)
                 fileData.map((data) => {
                   var json = {}
                   json.key = data.key
                   json.path = data.path
                   json.filePath = data.filepath
-                  this.awardData.files.push(json)
+                  self.projectData.files.push(json)
                 })
               }
-              console.log(this.awardData.files)
+              console.log(self.projectData.files)
             },
             isValid: () => {
               if (this.projectData.files.length === 0) {
@@ -258,7 +255,7 @@
       }
     },
     created () {
-      this.$state.commit('clearUploadArray')
+      this.$store.dispatch('clearUploadArray')
       eventBus.$on('editorContentproject', (data) => {
         this.projectData.description = data
       })

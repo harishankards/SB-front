@@ -6,10 +6,10 @@ import app from './modules/app'
 import menu from './modules/menu'
 
 import * as getters from './getters'
-
 const LOGIN = 'LOGIN'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const LOGOUT = 'LOGOUT'
+const clearUploadArray = 'clearUploadArray'
 
 Vue.use(Vuex)
 
@@ -66,6 +66,9 @@ const store = new Vuex.Store({
       localStorage.removeItem('vuejs_logged_company_id')
       localStorage.removeItem('vuejs_imageData')
       context.commit(LOGOUT)
+    },
+    clearUploadArray: context => {
+      context.commit(clearUploadArray)
     }
   }
 })

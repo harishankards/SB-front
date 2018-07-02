@@ -23,13 +23,13 @@
         </a>
         <div class="dropdown-menu">
           <div class="dropdown-menu-content">
-            <a v-for="notification in notifications" :key="notification.id" class="dropdown-item" href="" @click.prevent="takeToNoti(notification)">
+            <a v-for="notification in notifications" :key="notification.id" class="dropdown-item divStyle" href="" @click.prevent="takeToNoti(notification)">
               <span class="ellipsis">{{notification.text}}</span>
             </a>
-            <div class="dropdown-item plain-link-item" v-if="!hasUnread">
+            <div class="dropdown-item plain-link-item divStyle" v-if="!hasUnread">
               <span class="dropdown-item2"> <i class="fa fa-bell-slash-o"></i> No new notifications!</span>
             </div>
-            <div class="dropdown-item plain-link-item">
+            <div class="dropdown-item plain-link-item divStyle">
               <a class="plain-link" href="" @click.prevent="takeToNotiHome()">{{'notifications.all' | translate}}</a>
             </div>
           </div>
@@ -43,11 +43,11 @@
         </a>
         <div class="dropdown-menu last">
           <div class="dropdown-menu-content">
-            <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="" @click.prevent="takeToProfile">{{'user.profile' | translate}}</a>
+            <div class="dropdown-item plain-link-item divStyle" @click.prevent="takeToProfile">
+              <a class="plain-link" href="" >{{'user.profile' | translate}}</a>
             </div>
-            <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="" @click.prevent="logout" >{{'user.logout' | translate}}</a>
+            <div class="dropdown-item plain-link-item divStyle"  @click.prevent="logout">
+              <a class="plain-link" href="">{{'user.logout' | translate}}</a>
             </div>
           </div>
         </div>
@@ -270,8 +270,12 @@
         cursor: pointer;
         font-size: $font-size-base;
 
-        &:hover, &:active, &:focus, &.active {
+        &:active, &:focus, &.active {
           outline: none;
+        }
+
+        &:hover {
+          background-color: #fff;
         }
 
         &.plain-link-item {
@@ -348,5 +352,8 @@
     i {
       margin-right: 0.5rem;
     }
+  }
+  .divStyle:hover{
+    background-color: black !important;
   }
 </style>

@@ -1,12 +1,25 @@
 <template>
   <div class="dashboard">
-    <div class="col-md-8 col-sm-12">
-    <newsfeed-info-widgets></newsfeed-info-widgets></div>
-    <vuestic-switch class="col-md-4 switch" v-model="isProjects">
-      <span slot="trueTitle">Projects</span>
-      <span slot="falseTitle">Contests</span>
-    </vuestic-switch>
+    <div class="col-md-8 col-sm-12 side"> 
+      <vuestic-widget class="info-widget sidenav1">
+        <div class="ad-header">
+          <span class="ad-header-title"> Hot topic around internet </span>
+          <i class="fa fa-fire ad-header-icon"></i>
+        </div>
+        <div class="ad-content">
+          <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
+        </div>
+      </vuestic-widget>
+      <Livefeeds></Livefeeds>
+    </div>    
+    <div class="col-md-8 col-sm-12 scrollingNews"> 
+      <newsfeed-info-widgets></newsfeed-info-widgets>
+    </div>
     <div class="row">
+      <vuestic-switch class="col-md-4 switch" v-model="isProjects">
+        <span slot="trueTitle">Projects</span>
+        <span slot="falseTitle">Contests</span>
+      </vuestic-switch>
       <div class="col-md-8 col-sm-12">
         <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
           <div>
@@ -38,8 +51,7 @@
           </div>
         </vuestic-widget>
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
-          <div>
-            
+        <div>     
         <swiper :options="swiperOption" class="sliderStyle">
           <swiper-slide> <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
           <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
@@ -48,13 +60,12 @@
           <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
           <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div>
-      </swiper>
-
-            <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
-              <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
-            </div>
-          </div>
+        </swiper>
+        <div id="projects-name-div">
+          <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+          <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
+        </div>
+      </div>
           <div id="projects-content-div">
             <span id="projects-description">{{project.abstract}}</span>
             <!-- <a href="" class="viewMoreBtn" @click="viewProject(project._id)"> Read More <i class="fa fa-arrow-right"></i> </a>           -->
@@ -66,11 +77,9 @@
           <div class="userInteractionDiv">
             <i id="spacingStyle" class="fa fa-thumbs-up">{{project.upvotes.length}}</i>{{upvoteContent(project.upvotes.length)}}
           </div>
-        </vuestic-widget>
-        
+        </vuestic-widget>    
         <vuestic-widget class="" v-for="contest in contestsData" :key="contest.id" v-show="showContests">
-          <div>
-            
+          <div>      
             <div id="projects-name-div">
               <span class="projects-name"><strong><a href="#" @click.prevent="viewContest(contest._id)">{{contest.title}}</a> </strong></span><br>
               <span class="projects-time"><timeago :since="contest.createdAt" :auto-update="60"></timeago></span>
@@ -81,30 +90,13 @@
             <p><strong>Starts on:</strong>  {{contest.date.start | moment("dddd, MMMM Do YYYY, h:mm a")}}</p>
             <p><strong>Ends on: </strong> {{contest.date.end | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>            
           </div>
-          <!-- <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
+            <!-- <div><a href="" class="viewMoreBtn" @click="viewContest(contest._id)"> Read More <i class="fa fa-arrow-right"></i> </a></div> -->
           <div id="tagDiv">
             <strong>Tags:</strong><span v-for="tag in contest.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
           </div>
         </vuestic-widget>
-      </div> 
-      <div class="col-md-8 col-sm-12">
-       
-         <vuestic-widget class="info-widget sidenav1">
-        <div class="ad-header">
-          <span class="ad-header-title"> Hot topic around internet </span>
-          <i class="fa fa-fire ad-header-icon"></i>
-        </div>
-        <div class="ad-content">
-          <div class="ad-title"><a href="#">Freshworks launches a new product for students. Check it out now!</a></div>
-        </div>
-      </vuestic-widget>
-      
-        <Livefeeds></Livefeeds>
-     
-      </div>
+      </div>       
     </div>
-
-
   </div>
 </template>
 
@@ -246,14 +238,15 @@
    
   .switch {
     margin-bottom: 1rem;
+    margin-left: 1.3%;
   }
   .sidenav1{
-    position: fixed;
+    // position: fixed;
     margin-left: 720px;
-    width: 26%;
-    top: 13.7%;
-    height: 160px;
-}
+    width: 40%;
+    // margin-top: -30% !important;
+    height: 161px;
+  }
  @media screen and (max-width: 650px){
    .sidenav1{
      position: relative !important;
@@ -262,6 +255,14 @@
      top: 2.5% !important;
     }
 }
+  @media screen and (max-width: 650px){
+    .side{
+      position: relative !important;
+      margin-left: 0px !important;
+      width: auto !important;
+      top: 10% !important;
+    }
+  }
   #tagDiv {
     display: inline-block;
     margin-top: 1rem;
@@ -321,7 +322,6 @@
     font-size: 2em;
     float: right;
   }
-
   .ad-header{
     padding-bottom: 2%;
   }
@@ -370,4 +370,8 @@
       }
     }
   }
+  .side{
+    position: fixed;
+  }
+
 </style>
