@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 col-sm-12 sidenav">
+  <div class="col-md-8 col-sm-12 sidenav">
       <vuestic-widget class="live-feed" headerText="Live feeds">
           <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
         </vuestic-widget>
@@ -49,10 +49,10 @@ export default {
 </script>
 <style scoped>
  .sidenav{
-    position: fixed;
+    position: absolute;
     margin-left: 705px;
-    width: 28%;
-    top: 52%;
+    width: 42%;
+    /* top: 52%; */
     overflow: auto;
 }
  @media screen and (max-width: 650px){
