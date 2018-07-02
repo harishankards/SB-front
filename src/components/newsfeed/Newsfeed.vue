@@ -255,6 +255,14 @@
      top: 2.5% !important;
     }
 }
+  @media screen and (max-width: 650px){
+    .side{
+      position: relative !important;
+      margin-left: 0px !important;
+      width: auto !important;
+      top: 10% !important;
+    }
+  }
   #tagDiv {
     display: inline-block;
     margin-top: 1rem;

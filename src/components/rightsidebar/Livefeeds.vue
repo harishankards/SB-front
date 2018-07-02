@@ -57,10 +57,11 @@ export default {
 }
  @media screen and (max-width: 650px){
    .sidenav{
-     position: relative !important;
+     /* position: relative !important;
      margin-left: 0px !important;
      width: 100% !important;
-     top: 2.5% !important;
+     top: 2.5% !important; */
+     display: none;
     }
 }
 </style>
