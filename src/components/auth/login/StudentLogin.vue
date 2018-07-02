@@ -126,9 +126,33 @@ export default {
         console.log('this is not show')
       }
     },
+<<<<<<< HEAD
     beforeMount: function () {
       this.checkState()
     }
+=======
+    authenticate: function (provider) {
+      this.$auth.authenticate(provider).then((data) => {
+        console.log('data from facebook', data)
+      })
+    }
+  },
+  computed: {
+    isLoggedin () {
+      return this.$store.getters.isLoggedIn
+    }
+  },
+  created () {
+    if (this.$store.getters.isLoggedIn) {
+      console.log('loggedin', this.$store.getters.isLoggedIn)
+      this.$router.push('/student/newsfeed')
+    } else {
+      console.log('not logged in')
+    }
+  },
+  beforeMount: function () {
+    this.checkState()
+>>>>>>> 1aa2481c3067ce795e1d59351be738f0ef858a8b
   }
 }
 </script>

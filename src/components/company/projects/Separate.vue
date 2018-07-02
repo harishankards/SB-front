@@ -129,7 +129,7 @@
           console.log('success', companyViewUpdated)
         })
         .catch(function (companyViewUpdateErr) {
-          console.log('error', companyViewUpdateErr)
+          console.log('company view update error', companyViewUpdateErr)
         })
       }
     },
