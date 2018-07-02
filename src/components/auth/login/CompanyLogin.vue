@@ -1,6 +1,10 @@
 <template>
   <div class="login">
     <h2>{{'auth.welcome' | translate}} Company</h2>
+     <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
+      <span class="badge badge-pill badge-danger">Error</span>
+      {{this.errorMessage}}
+    </vuestic-alert>
     <form method="post" @submit.prevent="sendLoginData" name="companylogin">
       <div class="form-group">
         <div class="input-group">
@@ -33,6 +37,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'companyLogin',
     data () {
@@ -40,14 +45,21 @@
         loginData: {
           email: '',
           password: ''
-        }
+        },
+        errorAlert: false,
+        errorMessage: ''
       }
     },
     methods: {
       sendLoginData: function () {
         const secondThis = this
-        console.log('company data da:', this.loginData)
-        this.$http.post('/company/login', this.loginData)
+        console.log('company data :', this.loginData)
+        axios({
+          url: '/company/login',
+          method: 'POST',
+          data: this.loginData,
+          responseType: 'json'
+        })
         .then(function (loginSuccess) {
           console.log('login success', loginSuccess.data)
           const authToken = loginSuccess.data.token
@@ -56,13 +68,24 @@
           secondThis.$ls.set('company', 'true')
           secondThis.$ls.set('email', secondThis.loginData.email)
           secondThis.$ls.set('logged_company_id', loginSuccess.data.id)
+          secondThis.$ls.set('verified', loginSuccess.data.verified)
           console.log('set the tokens for company')
           secondThis.$store.dispatch('login')
           secondThis.$router.push('/company/newsfeed')
         })
         .catch(function (loginErr) {
+          secondThis.errorMessage = 'Invalid email or password'
+          secondThis.showError('show')
           console.log('login err', loginErr)
         })
+      },
+      showError (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.errorAlert = true
+        } else {
+          console.log('this is not show')
+        }
       },
       checkState () {
         if (this.$store.state.isLoggedIn) {

@@ -126,33 +126,9 @@ export default {
         console.log('this is not show')
       }
     },
-<<<<<<< HEAD
-    authenticate: function (provider) {
-      this.$auth.authenticate(provider).then((data) => {
-        console.log('data from facebook', data)
-      })
-    }
-  },
-  computed: {
-    isLoggedin () {
-      return this.$store.getters.isLoggedIn
-    }
-  },
-  created () {
-    if (this.$store.getters.isLoggedIn) {
-      console.log('loggedin', this.$store.getters.isLoggedIn)
-      this.$router.push('/student/newsfeed')
-    } else {
-      console.log('not logged in')
-    }
-  },
-  beforeMount: function () {
-    this.checkState()
-=======
     beforeMount: function () {
       this.checkState()
     }
->>>>>>> 0721a2438eb83caeaf291a8912fe0100e08a0bb5
   }
 }
 </script>
