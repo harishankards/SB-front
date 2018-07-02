@@ -158,19 +158,19 @@
             label: 'File upload',
             slot: 'page4',
             onNext: () => {
+              const self = this
               let fileData = this.$store.getters.uploadedFiles
-              this.awardData.files = []
+              this.projectData.files = []
               if (fileData) {
-                console.log(fileData)
                 fileData.map((data) => {
                   var json = {}
                   json.key = data.key
                   json.path = data.path
                   json.filePath = data.filepath
-                  this.awardData.files.push(json)
+                  self.projectData.files.push(json)
                 })
               }
-              console.log(this.awardData.files)
+              console.log(self.projectData.files)
             },
             isValid: () => {
               if (this.projectData.files.length === 0) {
