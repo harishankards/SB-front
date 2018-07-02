@@ -139,6 +139,7 @@ export default new Router({
       component: SeparateStudentProjectCompany,
       name: 'SeparateStudentProjectViewCompany',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -147,6 +148,7 @@ export default new Router({
       component: SeparateCompanyProjectCompany,
       name: 'SeparateCompanyProjectViewCompany',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -174,6 +176,7 @@ export default new Router({
       component: SeparateContestCompany,
       name: 'SeparateContestViewCompany',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -192,6 +195,7 @@ export default new Router({
       component: SeparateAwardCompany,
       name: 'SeparateAwardViewCompany',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -210,6 +214,7 @@ export default new Router({
       component: CompanyNewsfeed,
       name: 'Company Newsfeed',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -218,6 +223,7 @@ export default new Router({
       component: CompanyContest,
       name: 'Company Contests',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -226,6 +232,7 @@ export default new Router({
       component: CompanyProjects,
       name: 'Company Project List',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -234,6 +241,7 @@ export default new Router({
       component: CompanyProjectNew,
       name: 'Company Project New',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -242,6 +250,7 @@ export default new Router({
       component: CompanyProjectEdit,
       name: 'Company Project Edit',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -250,6 +259,7 @@ export default new Router({
       component: CompanyAwards,
       name: 'Company Awards',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -258,6 +268,7 @@ export default new Router({
       component: CompanyMessages,
       name: 'Company Messages',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -266,6 +277,7 @@ export default new Router({
       component: CompanyFavorites,
       name: 'Company Favorites',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -274,6 +286,7 @@ export default new Router({
       component: CompanyStats,
       name: 'Company Stats',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -282,6 +295,7 @@ export default new Router({
       component: CompanySettings,
       name: 'Company Settings',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -290,6 +304,7 @@ export default new Router({
       component: CompanyNewContest,
       name: 'Company new contest',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -298,6 +313,7 @@ export default new Router({
       component: CompanyEditContest,
       name: 'Company edit contest',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -306,6 +322,7 @@ export default new Router({
       component: CompanyNewAward,
       name: 'Company new award',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -314,6 +331,7 @@ export default new Router({
       component: CompanyEditAward,
       name: 'Company edit award',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -322,6 +340,7 @@ export default new Router({
       component: CompanyNotification,
       name: 'Company Notifications',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },
@@ -330,6 +349,7 @@ export default new Router({
       component: PostSignupCompany,
       name: 'postsignupcompany',
       meta: {
+        accountAuth: true,
         requiresAuth: true
       }
     },

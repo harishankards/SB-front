@@ -140,7 +140,7 @@ router.beforeEach((to, from, next) => {
         } else {
           next({path: '/student/newsfeed', query: { redirect: to.fullPath }})
         }
-      } else if (store.getters.company) {
+      } else if (store.getters.company && Vue.ls.get('verified')) {
         console.log('to location inside company', to.fullPath)
         if (to.matched.some(record => record.meta.shared)) {
           next()

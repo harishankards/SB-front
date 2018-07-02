@@ -1,6 +1,10 @@
 <template>
   <div class="signup">
     <h2>{{'auth.createNewAccount' | translate}}</h2>
+     <vuestic-alert type="danger" :withCloseBtn="true" v-show="errorAlert">
+      <span class="badge badge-pill badge-danger">Error</span>
+      {{this.errorMessage}}
+    </vuestic-alert>
     <form method="post" name="companysignup" @submit.prevent="sendSignupData">
       <div class="form-group">
         <div class="input-group">
@@ -23,7 +27,7 @@
         </label>
       </div>
       <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between down-container">
-        <button class="btn btn-primary" type="submit" @submit="sendSignup">
+        <button class="btn btn-primary" type="submit" >
           {{'auth.signUp' | translate}}
         </button>
         <router-link class='link' :to="{name: 'companylogin'}">{{'auth.alreadyJoined' | translate}}</router-link>
@@ -46,7 +50,9 @@
         signupData: {
           email: '',
           password: ''
-        }
+        },
+        errorAlert: false,
+        errorMessage: ''
       }
     },
 
@@ -61,6 +67,14 @@
           }
         }
       },
+      showError (nudge) {
+        if (nudge === 'show') {
+          console.log('yes show')
+          this.errorAlert = true
+        } else {
+          console.log('this is not show')
+        }
+      },
       sendSignupData: function () {
         const secondThis = this
         console.log('data:', this.signupData)
@@ -68,14 +82,17 @@
         this.$http.post('/company/signup', this.signupData)
         .then(function (signupSuccess) {
           console.log('something else', signupSuccess.data)
-          const authToken = signupSuccess.data.token
-          console.log('auth token', authToken)
-          secondThis.$ls.set('token', authToken)
+          secondThis.$ls.set('token', signupSuccess.data.token)
+          secondThis.$ls.set('verified', signupSuccess.data.verified)
           secondThis.$ls.set('company', 'true')
-          this.$store.dispatch('login')
+          secondThis.$ls.set('email', secondThis.signupData.email)
+          secondThis.$store.dispatch('login')
+          secondThis.$router.push('/unverified')
         })
         .catch(function (signupError) {
-          console.log('signuperror', signupError)
+          secondThis.errorMessage = signupError.response.data || 'Error during signup'
+          secondThis.showError('show')
+          console.log('signuperror', signupError.response)
         })
       }
     },
