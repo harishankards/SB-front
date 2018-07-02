@@ -160,7 +160,7 @@
             onNext: () => {
               const self = this
               let fileData = this.$store.getters.uploadedFiles
-              this.awardData.files = []
+              this.projectData.files = []
               if (fileData) {
                 console.log('filedata', fileData)
                 fileData.map((data) => {
@@ -168,10 +168,10 @@
                   json.key = data.key
                   json.path = data.path
                   json.filePath = data.filepath
-                  self.awardData.files.push(json)
+                  self.projectData.files.push(json)
                 })
               }
-              console.log(this.awardData.files)
+              console.log(self.projectData.files)
             },
             isValid: () => {
               if (this.projectData.files.length === 0) {
