@@ -126,11 +126,6 @@ export default {
         console.log('this is not show')
       }
     },
-<<<<<<< HEAD
-    beforeMount: function () {
-      this.checkState()
-    }
-=======
     authenticate: function (provider) {
       this.$auth.authenticate(provider).then((data) => {
         console.log('data from facebook', data)
@@ -152,7 +147,6 @@ export default {
   },
   beforeMount: function () {
     this.checkState()
->>>>>>> 1aa2481c3067ce795e1d59351be738f0ef858a8b
   }
 }
 </script>
