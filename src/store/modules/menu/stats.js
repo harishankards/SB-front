@@ -8,6 +8,7 @@ export default {
     default: false,
     title: 'menu.stats',
     iconClass: 'fa fa-pie-chart',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }

@@ -24,6 +24,7 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
+    useEslint: false,
     env: require('./dev.env'),
     port: process.env.PORT || 8080,
     autoOpenBrowser: true,

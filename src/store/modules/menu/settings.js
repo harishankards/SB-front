@@ -8,6 +8,7 @@ export default {
     default: false,
     title: 'menu.settings',
     iconClass: 'fa fa-gear',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }

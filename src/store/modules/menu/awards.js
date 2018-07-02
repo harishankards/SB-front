@@ -8,6 +8,7 @@ export default {
     default: false,
     title: 'menu.awards',
     iconClass: 'fa fa-trophy',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }

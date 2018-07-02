@@ -37,110 +37,118 @@
 </template>
 
 <script>
-  export default {
-    name: 'studentlogin',
-    data () {
-      return {
-        loginData: {
-          email: '',
-          password: ''
-        },
-        errorAlert: false,
-        errorMessage: ''
-      }
-    },
-    methods: {
-      checkState () {
-        if (this.$store.state.isLoggedIn) {
-          if (this.$store.state.student) {
-            this.$router.push('/student/newsfeed')
-          }
-          if (this.$store.state.company) {
-            this.$router.push('/company/newsfeed')
-          }
-        }
+import axois from 'axios'
+
+export default {
+  name: 'studentlogin',
+  data () {
+    return {
+      loginData: {
+        email: '',
+        password: ''
       },
-      sendLoginData: function () {
-        const secondThis = this
-        // console.log('data da:', this.loginData)
-        this.$http.post('/student/login', this.loginData)
-        .then(function (loginSuccess) {
-          // console.log('login success', loginSuccess.data)
-          const authToken = loginSuccess.data.token
-          // console.log('auth token', authToken)
-          secondThis.$ls.set('token', authToken)
-          secondThis.$ls.set('logged_student_id', loginSuccess.data.id)
-          secondThis.$ls.set('student', 'true')
-          secondThis.$ls.set('email', secondThis.loginData.email)
-          // console.log(secondThis.$ls)
-          // const lsToken = secondThis.$ls.get('token')
-          secondThis.$store.dispatch('login')
-          secondThis.$router.push('/student/newsfeed')
-          // console.log('ls token', lsToken)
-        })
-        .catch(function (loginErr) {
-          console.log('login err', loginErr)
-          secondThis.errorMessage = 'Invalid email or password'
-          secondThis.showError('show')
-        })
-      },
-      linkedinLogin: function () {
-        this.$http.get('/auth/linkedin/student', {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
-        .then(function (linkedindata) {
-          console.log('linkedindata', linkedindata)
-        })
-        .catch(function (linkedinErr) {
-          console.log('linkedin err', linkedinErr)
-        })
-      },
-      fbLogin: function () {
-        this.$http.get('/auth/facebook/student', {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
-        .then(function (linkedindata) {
-          console.log('linkedindata', linkedindata)
-        })
-        .catch(function (linkedinErr) {
-          console.log('linkedin err', linkedinErr)
-        })
-      },
-      showError (nudge) {
-        if (nudge === 'show') {
-          console.log('yes show')
-          this.errorAlert = true
-        } else {
-          console.log('this is not show')
-        }
-      },
-      authenticate: function (provider) {
-        this.$auth.authenticate(provider).then((data) => {
-          console.log('data from facebook', data)
-        })
-      }
-    },
-    computed: {
-      isLoggedin () {
-        return this.$store.getters.isLoggedIn
-      }
-    },
-    created () {
-      if (this.$store.getters.isLoggedIn) {
-        console.log('loggedin', this.$store.getters.isLoggedIn)
-        this.$router.push('/student/newsfeed')
-      } else {
-        console.log('not logged in')
-      }
-    },
-    beforeMount: function () {
-      this.checkState()
+      errorAlert: false,
+      errorMessage: ''
     }
+  },
+  methods: {
+    checkState () {
+      if (this.$store.state.isLoggedIn) {
+        if (this.$store.state.student) {
+          this.$router.push('/student/newsfeed')
+        }
+        if (this.$store.state.company) {
+          this.$router.push('/company/newsfeed')
+        }
+      }
+    },
+    sendLoginData: function () {
+      const secondThis = this
+      // console.log('data da:', this.loginData)
+      axois({
+        url: '/student/login',
+        method: 'POST',
+        data: this.loginData,
+        responseType: 'json'
+      })
+      .then(function (loginSuccess) {
+        // console.log('login success', loginSuccess.data)
+        const authToken = loginSuccess.data.token
+        // console.log('auth token', authToken)
+        secondThis.$ls.set('token', authToken)
+        secondThis.$ls.set('logged_student_id', loginSuccess.data.id)
+        secondThis.$ls.set('student', 'true')
+        secondThis.$ls.set('email', secondThis.loginData.email)
+        secondThis.$ls.set('verified', loginSuccess.data.verified)
+        // console.log(secondThis.$ls)
+        // const lsToken = secondThis.$ls.get('token')
+        secondThis.$store.dispatch('login')
+        secondThis.$router.push('/student/newsfeed')
+        // console.log('ls token', lsToken)
+      })
+      .catch(function (loginErr) {
+        console.log('login err', loginErr.response)
+        secondThis.errorMessage = 'Invalid email or password'
+        secondThis.showError('show')
+      })
+    },
+    linkedinLogin: function () {
+      this.$http.get('/auth/linkedin/student', {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
+      .then(function (linkedindata) {
+        console.log('linkedindata', linkedindata)
+      })
+      .catch(function (linkedinErr) {
+        console.log('linkedin err', linkedinErr)
+      })
+    },
+    fbLogin: function () {
+      this.$http.get('/auth/facebook/student', {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
+      .then(function (linkedindata) {
+        console.log('linkedindata', linkedindata)
+      })
+      .catch(function (linkedinErr) {
+        console.log('linkedin err', linkedinErr)
+      })
+    },
+    showError (nudge) {
+      if (nudge === 'show') {
+        console.log('yes show')
+        this.errorAlert = true
+      } else {
+        console.log('this is not show')
+      }
+    },
+    authenticate: function (provider) {
+      this.$auth.authenticate(provider).then((data) => {
+        console.log('data from facebook', data)
+      })
+    }
+  },
+  computed: {
+    isLoggedin () {
+      return this.$store.getters.isLoggedIn
+    }
+  },
+  created () {
+    if (this.$store.getters.isLoggedIn) {
+      console.log('loggedin', this.$store.getters.isLoggedIn)
+      this.$router.push('/student/newsfeed')
+    } else {
+      console.log('not logged in')
+    }
+  },
+  beforeMount: function () {
+    this.checkState()
   }
+}
 </script>
 
 <style lang="scss" scoped>

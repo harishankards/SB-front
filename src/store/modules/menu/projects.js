@@ -8,6 +8,7 @@ export default {
     default: false,
     title: 'menu.projects.parent',
     iconClass: 'fa fa-rocket',
-    requiresAuth: true
+    requiresAuth: true,
+    accountAuth: true
   }
 }
