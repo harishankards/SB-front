@@ -7,14 +7,13 @@
       <div class="showProjects col-md-12" v-for="project in projectArray" :key="project.id">        
           <div class="projects-name"><strong>{{project.title}}</strong></div>	
           <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span> 
-          <button class="button" @click="showStats(project)">Show stats</button>        
-        
+          <button class="button" @click="showStats(project)">Show stats</button>          
       </div>
     </div>
-    <vuestic-widget class="col-md-6">
+    <vuestic-widget class="col-md-6" v-if="!noProjects">
       <div class="Chart">
       <Chart v-if="showChart" :chartData="chartData" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
-      <h3 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h3>
+      <h3 class="ChartStyle">Click your project to view the stats!!</h3>
     </div>
     </vuestic-widget>
 </div>
@@ -54,13 +53,9 @@ export default {
       this.showChart = true
       console.log('Inside showStats function', this.chartData.datasets[0].data)
       this.chartData.datasets[0].data = []
-      // this.chartData.datasets[0].data = [project.upvotes.length, 2, 3]
       Vue.set(this.chartData.datasets[0].data, 0, project.upvotes.length)
       Vue.set(this.chartData.datasets[0].data, 1, 2)
       Vue.set(this.chartData.datasets[0].data, 2, 3)
-      // this.chartData.datasets[0].data.splice(0, 1, project.upvotes.length)
-      // this.chartData.datasets[0].data.splice(1, 1, 1)
-      // this.chartData.datasets[0].data.splice(2, 1, 2)
       console.log('Assigned', this.chartData.datasets[0].data)
     }
   },
