@@ -1,5 +1,14 @@
 <template>
   <div class="row">
+     <div class="col-md-8 col-sm-12 side">
+      <vuestic-widget class="createproject-div sidenav1">
+        <div class="col-md-offset-6 col-md-12">
+          <h5 class="gotnew">Google's GSOC is here!</h5>
+          <button class="btn btn-primary btn-micro"> Join now</button>    
+        </div>
+      </vuestic-widget>
+      <Livefeeds></Livefeeds>
+    </div>
     <div class="col-md-8">
       <vuestic-switch class="col-md-13 switch" v-model="isUpcoming">
         <span slot="trueTitle">Upcoming</span>
@@ -48,15 +57,6 @@
           </div>
         </vuestic-widget>
       </div>
-    </div>
-    <div class="col-md-8 col-sm-12 side">
-      <vuestic-widget class="createproject-div sidenav1">
-        <div class="col-md-offset-6 col-md-12">
-          <h5 class="gotnew">Google's GSOC is here!</h5>
-          <button class="btn btn-primary btn-micro"> Join now</button>    
-        </div>
-      </vuestic-widget>
-      <Livefeeds></Livefeeds>
     </div>
   </div>
 </template>

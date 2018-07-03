@@ -1,5 +1,14 @@
 <template>
   <div class="row">
+     <div class="col-md-8 col-sm-12 side">
+      <vuestic-widget class="createproject-div sidenav1">
+        <div class="col-md-offset-6 col-md-12">
+          <h5 class="gotnew">Got something new?</h5>
+          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>    
+        </div>
+      </vuestic-widget>
+      <Livefeeds></Livefeeds>
+    </div>
     <div class="col-md-8">
       <div class="noProjects" v-show="noProjects">
           <h4> Oops! You have no Projects to view. </h4>
@@ -27,15 +36,7 @@
         
       </vuestic-widget>
     </div>
-    <div class="col-md-8 col-sm-12 side">
-      <vuestic-widget class="createproject-div sidenav1">
-        <div class="col-md-offset-6 col-md-12">
-          <h5 class="gotnew">Got something new?</h5>
-          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>    
-        </div>
-      </vuestic-widget>
-      <Livefeeds></Livefeeds>
-    </div>
+   
   </div>
 </template>
 
