@@ -150,6 +150,11 @@
       }).catch((studentErr) => {
         console.log('student err', studentErr)
       })
+      if (this.upcomingContestArray.length === 0) {
+        this.noUpcomingContests = true
+      } else {
+        this.noUpcomingContests = false
+      }
     }
   }
 </script>
