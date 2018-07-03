@@ -14,15 +14,16 @@ export default {
     vueDropzone: vue2Dropzone
   },
   data: function () {
+    let sencondThis = this
     return {
-      token: this.$ls.get('token'),
+      token: sencondThis.$ls.get('token'),
       dropzoneOptions: {
         url: 'http://localhost:3000/attachments',
         thumbnailWidth: 150,
         maxFilesize: 0.5,
         headers:
         {
-          Authorization: 'Bearer ' + this.token,
+          'Authorization': 'Bearer ' + sencondThis.$ls.get('token'),
           path: 'company/awards'
         },
         addRemoveLinks: true,

@@ -28,7 +28,7 @@
      <div slot="page2" class="form-wizard-tab-content">
         <div class="form-group col-md-8">
           <div class="input-group">
-            <textarea type="text" id="simple-textarea" name="abstract"></textarea>
+            <textarea type="text" id="simple-textarea" v-model="projectData.abstract" name="abstract"></textarea>
             <label class="control-label" for="simple-textarea">Abstract (2-3 lines max)</label><i class="bar"></i>
           </div>
         </div>    

@@ -14,6 +14,7 @@ export default {
     vueDropzone: vue2Dropzone
   },
   data: function () {
+    let sencondThis = this
     return {
       token: this.$ls.get('token'),
       dropzoneOptions: {
@@ -22,7 +23,7 @@ export default {
         maxFilesize: 0.5,
         headers:
         {
-          Authorization: 'Bearer ' + this.token,
+          'Authorization': 'Bearer ' + sencondThis.$ls.get('token'),
           path: 'company/projects'
         },
         addRemoveLinks: true,
@@ -45,6 +46,7 @@ export default {
         url: response.url,
         method: 'PUT',
         data: file,
+        'content-length': file.size,
         'Content-Type': file.type
       }).then(
         function (res) {
