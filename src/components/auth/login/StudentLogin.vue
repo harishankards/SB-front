@@ -72,7 +72,7 @@ export default {
         responseType: 'json'
       })
       .then(function (loginSuccess) {
-        // console.log('login success', loginSuccess.data)
+        console.log('login success', loginSuccess.data)
         const authToken = loginSuccess.data.token
         // console.log('auth token', authToken)
         secondThis.$ls.set('token', authToken)
@@ -83,7 +83,11 @@ export default {
         // console.log(secondThis.$ls)
         // const lsToken = secondThis.$ls.get('token')
         secondThis.$store.dispatch('login')
-        secondThis.$router.push('/student/newsfeed')
+        if (!loginSuccess.data.student.profile) {
+          secondThis.$router.push('/student/postsignup')
+        } else {
+          secondThis.$router.push('/student/newsfeed')
+        }
         // console.log('ls token', lsToken)
       })
       .catch(function (loginErr) {
@@ -120,7 +124,6 @@ export default {
     },
     showError (nudge) {
       if (nudge === 'show') {
-        console.log('yes show')
         this.errorAlert = true
       } else {
         console.log('this is not show')
