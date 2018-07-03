@@ -24,11 +24,7 @@
         <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
           <div>
             <swiper :options="swiperOption" class="sliderStyle">
-              <swiper-slide> <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-              <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+              <swiper-slide v-for="file in project.files" :key="file.id"><img :src="file.filePath"></swiper-slide>
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
@@ -53,11 +49,7 @@
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
         <div>     
         <swiper :options="swiperOption" class="sliderStyle">
-          <swiper-slide> <img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
-          <swiper-slide><img id="imgStyle" src="https://www.register.com/imgs/productDetail/custom-website-design-v2.jpg"></swiper-slide>
+          <swiper-slide v-for="file in project.files" :key="file.id"><img :src="file.filePath"></swiper-slide>
           <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>

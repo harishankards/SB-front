@@ -187,7 +187,7 @@
     // position: absolute;
     margin-left: 720px;
     width: 40%;
-    height: 161px;
+    height: 169px;
     // top: 13.7%;
   }
   @media screen and (max-width: 650px)
@@ -200,12 +200,14 @@
     }
   }
   .gotnew{
+    margin-top: 1.4rem;
     margin-bottom: 1.5rem;
   }
   .noProjects {
     text-align: center;
     font-weight: bold;
-    margin-top: 7rem;
+    margin-left: 25%;
+    margin-top: 10rem;
   }
   #tagDiv {
     display: inline-block;
