@@ -69,7 +69,6 @@
       sendSignupData: function () {
         var secondThis = this
         console.log('data:', this.signupData.email, this.signupData.password)
-        console.log('going to send post request')
         this.$http.post('/student/signup', this.signupData)
         .then(function (signupSuccess) {
           console.log('signup success', signupSuccess.data)
