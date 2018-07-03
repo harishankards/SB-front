@@ -45,7 +45,7 @@
         </vuestic-widget>
       </div>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 side">
         <vuestic-widget class="createproject-div sidenav1">
           <div class="col-md-offset-6 col-md-12">
             <h5 class="gotnew">Want more Awards?</h5>
@@ -144,10 +144,11 @@
     color: #a29e9e;
   }
   .sidenav1{
-    position: fixed;
+    // position: fixed;
     margin-left: 720px;
-    width: 26%;
-    top: 13.7%;
+    width: 40%;
+    // height: 150px;
+    // top: 13.7%;
   }
   @media screen and (max-width: 650px)
   {
@@ -156,6 +157,9 @@
     margin-left: 0px !important;
     width: 100% !important;
     }
+  }
+  .side{
+    position: fixed;
   }
   #projects-name-div{
     display: inline-block;

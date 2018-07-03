@@ -49,7 +49,7 @@
         </vuestic-widget>
       </div>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 side">
       <vuestic-widget class="createproject-div sidenav1">
         <div class="col-md-offset-6 col-md-12">
           <h5 class="gotnew">Google's GSOC is here!</h5>
@@ -177,10 +177,10 @@
     margin-top: 0.5rem;
   }
   .sidenav1{
-    position: fixed;
+    // position: fixed;
     margin-left: 720px;
-    width: 26%;
-    top: 13.7%;
+    width: 40%;
+    // top: 13.7%;
   }
   @media screen and (max-width: 650px)
   {
@@ -189,6 +189,9 @@
     margin-left: 0px !important;
     width: 100% !important;
     }
+  }
+  .side{
+    position: fixed;
   }
   .gotnew{
     margin-bottom: 1.5rem;
