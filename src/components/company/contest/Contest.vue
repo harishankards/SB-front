@@ -1,6 +1,15 @@
 <template>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-12 side">
+        <vuestic-widget class="createproject-div sidenav1">
+          <div class="col-md-offset-6 col-md-12">
+            <h5 class="gotnew">Got something new?</h5>
+            <button class="btn btn-primary btn-micro" @click="createNew"> New Contest</button>    
+          </div>
+        </vuestic-widget>
+        <CompanyLivefeeds></CompanyLivefeeds>
+      </div>
+      <div class="col-md-8 col-sm-12 displayContent">
         <vuestic-switch class="col-md-13 switch" v-model="isUpcoming">
         <span slot="trueTitle">Upcoming</span>
         <span slot="falseTitle">History</span>
@@ -34,7 +43,7 @@
         </vuestic-widget>
       </div>
       <div v-show="showHistory">
-        <div class="noProjects" v-if="noPreviousContests">
+        <div class="noContests" v-if="noPreviousContests">
           <h4>You have no Previous Contests to view. </h4>
         </div>
         <vuestic-widget class="" v-for="contest in previousContestArray" :key="contest.id">
@@ -61,25 +70,15 @@
         </vuestic-widget>
         </div>
       </div>
-      <div class="col-md-4 col-sm-12 sidenav">
-        <vuestic-widget class="createproject-div">
-          <div class="col-md-offset-6 col-md-12">
-            <h5 class="gotnew">Got something new?</h5>
-            <button class="btn btn-primary btn-micro" @click="createNew"> New Contest</button>    
-          </div>
-        </vuestic-widget>
-        <vuestic-widget class="live-feed" headerText="Live feeds">
-          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-        </vuestic-widget>
-      </div>
     </div>
 </template>
 
 <script>
   import { eventBus } from '../../../main.js'
+  import CompanyLivefeeds from '../rightsidebar/CompanyLivefeeds'
   export default {
     name: 'Contest',
-    component: {},
+    components: {CompanyLivefeeds},
     data () {
       return {
         contestArray: [],
@@ -90,30 +89,7 @@
         showHistory: false,
         showUpcoming: true,
         noPreviousContests: false,
-        noUpcomingContests: false,
-        posts: [
-          {
-            id: 0,
-            photoURL: 'https://goo.gl/KnVxVY',
-            name: 'Harishankar',
-            text: 'registered for your contest SpriteXtreme',
-            action: 'upvoted'
-          },
-          {
-            id: 1,
-            photoURL: 'https://goo.gl/1nKusR',
-            name: 'Balaji D Loganathan',
-            text: 'was given an award by a company',
-            action: 'commented'
-          },
-          {
-            id: 2,
-            photoURL: 'https://goo.gl/Ckaexc',
-            name: 'Surendran S',
-            text: 'has the most upvoted project which you upvoted',
-            action: 'upvoted'
-          }
-        ]
+        noUpcomingContests: false
       }
     },
 
@@ -244,6 +220,11 @@
       }).catch((companyErr) => {
         console.log('company err', companyErr)
       })
+      if (this.upcomingContestArray.length === 0) {
+        this.noUpcomingContests = true
+      } else {
+        this.noUpcomingContests = false
+      }
     }
   }
 </script>
@@ -257,19 +238,22 @@
   .newsfeed-page{
     padding-left: 0rem !important;
   }
-  .sidenav{
-    position: fixed;
+  .sidenav1{
+    // position: fixed;
     margin-left: 720px;
-    width: 26%;
-    top: 13.7%;
+    width: 40%;
+    // top: 13.7%;
   }
   @media screen and (max-width: 650px)
   {
-    .sidenav{
+    .sidenav1{
     position: relative !important;
     margin-left: 0px !important;
     width: 100% !important;
     }
+  }
+  .side{
+    position: fixed;
   }
   .projects-time{
     margin-top: 3px;
@@ -323,4 +307,9 @@
   .switch{
     margin-bottom: 4%;
   }
+   @media screen and (max-width: 650px){
+    .displayContent{
+      margin-top: 40%;
+    }
+   }
 </style>

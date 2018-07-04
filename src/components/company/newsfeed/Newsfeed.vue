@@ -1,10 +1,20 @@
 <template>
   <div class="dashboard">
-
+    <div class="col-md-8 col-sm-12 side"> 
+      <vuestic-widget class="info-widget sidenav1">
+        <div class="ad-header">
+          <span class="ad-header-title"> Hot topic around internet </span>
+          <i class="fa fa-fire ad-header-icon"></i>
+        </div>
+        <div class="ad-content">
+          <div class="ad-title"><a href="#">70% companies in Chennai are using Freshsales as their Customer Relationship software</a></div>
+        </div>
+      </vuestic-widget>
+      <CompanyLivefeeds></CompanyLivefeeds>
+    </div>    
     <newsfeed-info-widgets></newsfeed-info-widgets>
-
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-12">
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id">
           <div>
             <swiper :options="swiperOption" class="sliderStyle">
@@ -34,21 +44,6 @@
           </div>
         </vuestic-widget>
       </div>
-      <div class="col-md-4 col-sm-12 sidenav">
-         <vuestic-widget class="info-widget">
-        <div class="ad-header">
-          <span class="ad-header-title"> Hot topic around internet </span>
-          <i class="fa fa-fire ad-header-icon"></i>
-        </div>
-        <div class="ad-content">
-          <div class="ad-title"><a href="#">70% companies in Chennai are using Freshsales as their Customer Relationship software</a></div>
-        </div>        
-
-      </vuestic-widget>
-        <vuestic-widget class="live-feed" headerText="Live feeds">
-          <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-        </vuestic-widget>
-      </div>
     </div>
 
 
@@ -58,12 +53,14 @@
 <script>
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
   import NewsfeedInfoWidgets from './NewsfeedInfoWidgets'
+  import CompanyLivefeeds from '../rightsidebar/CompanyLivefeeds'
 
   export default {
     name: 'dashboard',
     components: {
       NewsfeedInfoWidgets,
-      VueDisqus
+      VueDisqus,
+      CompanyLivefeeds
     },
     data () {
       return {
@@ -74,42 +71,9 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           }
-        },
-        posts: [
-          {
-            id: 0,
-            photoURL: 'https://goo.gl/KnVxVY',
-            name: 'Harishankar',
-            text: 'registered for your contest SpriteXtreme',
-            action: 'upvoted',
-            by: 'Balaji',
-            calender: '32m',
-            post_desc: 'Happy to upload my final year project'
-          },
-          {
-            id: 1,
-            photoURL: 'https://goo.gl/1nKusR',
-            name: 'Balaji D Loganathan',
-            text: 'was given an award by a company',
-            action: 'commented',
-            by: 'Surendran',
-            calender: '3h',
-            post_desc: 'Uploaded my dream project'
-          },
-          {
-            id: 2,
-            photoURL: 'https://goo.gl/Ckaexc',
-            name: 'Surendran S',
-            text: 'has the most upvoted project which you upvoted',
-            action: 'upvoted',
-            by: 'HS',
-            calender: '2d',
-            post_desc: 'Woohoo!!!! Finally uploaded the project ^_^'
-          }
-        ]
+        }
       }
     },
-
     methods: {
       giveInitial: function (post) {
         let initial = post.name.charAt(0)
@@ -176,18 +140,31 @@
     color: #e8dfdf;
     vertical-align: top;
   }
-  .sidenav{
-    position: fixed;
+  .sidenav1{
+    // position: fixed;
     margin-left: 720px;
-    width: 26%;
-    top: 13.7%;
+    width: 40%;
+    // margin-top: -30% !important;
+    height: 161px;
   }
-  @media screen and (max-width: 650px)
-  {
-    .sidenav{
-    position: relative !important;
-    margin-left: 0px !important;
-    width: 100% !important;
+  .side{
+    position: fixed;
+    margin-left: -2%;
+  }
+ @media screen and (max-width: 650px){
+   .sidenav1{
+     position: relative !important;
+     margin-left: 0px !important;
+     width: 100% !important;
+     top: 2.5% !important;
+    }
+}
+  @media screen and (max-width: 650px){
+    .side{
+      position: relative !important;
+      margin-left: 0px !important;
+      width: auto !important;
+      top: 10% !important;
     }
   }
   #feed-card-user-name-div{

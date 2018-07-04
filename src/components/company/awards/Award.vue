@@ -1,6 +1,15 @@
 <template>
   <div class="row">
-    <div class="col-md-8">
+     <div class="col-md-8 col-sm-12 side">
+      <vuestic-widget class="createproject-div sidenav1">
+        <div class="col-md-offset-6 col-md-12">
+          <h5 class="gotnew">Saw someone great?</h5>
+          <button class="btn btn-primary btn-micro" @click="createNew"> Announce award</button>    
+        </div>
+      </vuestic-widget>
+      <CompanyLivefeeds></CompanyLivefeeds>
+    </div>
+    <div class="col-md-8 displayContent">
       <div class="noContests" v-show="noAwards">
         <h4> Oops! You have no Awards to view. </h4>
         <button class="btn btn-primary btn-micro" @click="createNew"> New Award</button>              
@@ -25,51 +34,19 @@
         </div>
       </vuestic-widget>
     </div>
-    <div class="col-md-4">
-      <vuestic-widget class="createproject-div">
-        <div class="col-md-offset-6 col-md-12">
-          <h5 class="gotnew">Saw someone great?</h5>
-          <button class="btn btn-primary btn-micro" @click="createNew"> Announce award</button>    
-        </div>
-      </vuestic-widget>
-      <vuestic-widget class="live-feed" headerText="Live feeds">
-        <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-      </vuestic-widget>
-    </div>
   </div>
 </template>
 
 <script>
   import { eventBus } from '../../../main.js'
+  import CompanyLivefeeds from '../rightsidebar/CompanyLivefeeds'
   export default {
     name: 'companyawards',
+    components: {CompanyLivefeeds},
     data () {
       return {
         awardArray: [],
-        noAwards: false,
-        posts: [
-          {
-            id: 0,
-            photoURL: 'https://goo.gl/KnVxVY',
-            name: 'Harishankar',
-            text: 'registered for your contest SpriteXtreme',
-            action: 'upvoted'
-          },
-          {
-            id: 1,
-            photoURL: 'https://goo.gl/1nKusR',
-            name: 'Balaji D Loganathan',
-            text: 'was given an award by a company',
-            action: 'commented'
-          },
-          {
-            id: 2,
-            photoURL: 'https://goo.gl/Ckaexc',
-            name: 'Surendran S',
-            text: 'has the most upvoted project which you upvoted',
-            action: 'upvoted'
-          }
-        ]
+        noAwards: false
       }
     },
     methods: {
@@ -227,4 +204,27 @@
     margin-right: 0.5rem;
     cursor: pointer;
   }
+   .sidenav1{
+    // position: fixed;
+    margin-left: 720px;
+    width: 40%;
+    // height: 150px;
+    // top: 13.7%;
+  }
+  @media screen and (max-width: 650px)
+  {
+    .sidenav1{
+    position: relative !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    }
+  }
+  .side{
+    position: fixed;
+  }
+   @media screen and (max-width: 650px){
+    .displayContent{
+      margin-top: 40%;
+    }
+   }
 </style>

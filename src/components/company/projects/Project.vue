@@ -1,6 +1,15 @@
 <template>
   <div class="row">
-    <div class="col-md-8">
+     <div class="col-md-8 col-sm-12 side">
+      <vuestic-widget class="createproject-div sidenav1">
+        <div class="col-md-offset-6 col-md-12">
+          <h5 class="gotnew">Got something new?</h5>
+          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>    
+        </div>
+      </vuestic-widget>
+      <CompanyLivefeeds></CompanyLivefeeds>
+    </div>
+    <div class="col-md-8 displayContent">
       <div class="noProjects" v-show="noProjects">
           <h4> Oops! You have no Projects to view. </h4>
           <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>              
@@ -27,25 +36,15 @@
         
       </vuestic-widget>
     </div>
-    <div class="col-md-4 col-sm-12 sidenav">
-      <vuestic-widget class="createproject-div">
-        <div class="col-md-offset-6 col-md-12">
-          <h5 class="gotnew">Got something new?</h5>
-          <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>    
-        </div>
-      </vuestic-widget>
-      <vuestic-widget class="live-feed" headerText="Live feeds">
-        <vuestic-feed class="newsfeed-page" :initialPosts="posts"></vuestic-feed>
-      </vuestic-widget>
-    </div>
   </div>
 </template>
 
 <script>
   import { eventBus } from '../../../main.js'
+  import CompanyLivefeeds from '../rightsidebar/CompanyLivefeeds'
   export default {
     name: 'companyProjectList',
-    component: {},
+    components: {CompanyLivefeeds},
     data () {
       return {
         projectArray: [],
@@ -204,27 +203,15 @@
   #projects-content-div{
     margin-top: 0.5rem;
   }
-  .sidenav{
-    position: fixed;
-    margin-left: 720px;
-    width: 26%;
-    top: 13.7%;
-  }
-  @media screen and (max-width: 650px)
-  {
-    .sidenav{
-    position: relative !important;
-    margin-left: 0px !important;
-    width: 100% !important;
-    }
-  }
+  
   .gotnew{
+    margin-top: 1.4rem;
     margin-bottom: 1.5rem;
   }
   .noProjects {
     text-align: center;
     font-weight: bold;
-    margin-top: 7rem;
+    // margin-top: 7rem;
   }
   #tagDiv {
     display: inline-block;
@@ -253,4 +240,25 @@
     margin-right: 0.5rem;
     cursor: pointer;
   }
+   .sidenav1{
+    // position: absolute;
+    margin-left: 720px;
+    width: 40%;
+    height: 169px;
+    // top: 13.7%;
+  }
+  @media screen and (max-width: 650px)
+  {
+    .sidenav1{
+    position: relative !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    top: 5% !important;
+    }
+  }
+   @media screen and (max-width: 650px){
+    .displayContent{
+      margin-top: 40%;
+    }
+   }
 </style>

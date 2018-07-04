@@ -9,7 +9,7 @@
       </vuestic-widget>
       <Livefeeds></Livefeeds>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 displayContent">
       <vuestic-switch class="col-md-13 switch" v-model="isUpcoming">
         <span slot="trueTitle">Upcoming</span>
         <span slot="falseTitle">History</span>
@@ -220,4 +220,9 @@
   .switch {
     margin-bottom: 2rem;
   }
+   @media screen and (max-width: 650px){
+    .displayContent{
+      margin-top: 40%;
+    }
+   }
 </style>

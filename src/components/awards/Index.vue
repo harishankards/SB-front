@@ -1,11 +1,21 @@
 <template>
-  <div>
-    <vuestic-switch class="col-md-4 switch" v-model="isGeneral">
+  <div class="row">
+    <div class="col-md-8 col-sm-12 side">
+        <vuestic-widget class="createproject-div sidenav1">
+          <div class="col-md-offset-6 col-md-12">
+            <h5 class="gotnew">Want more Awards?</h5>
+            <h6>Read more about our tips..</h6>
+          </div>
+        </vuestic-widget>
+        <Livefeeds></Livefeeds>
+      </div>
+      <div class="col-md-8 col-sm-12 displayContent">
+    <vuestic-switch class="col-md-12 switch" v-model="isGeneral">
       <span slot="trueTitle">All awards</span>
       <span slot="falseTitle">Your awards</span>
     </vuestic-switch>
-    <div class="row" v-show="showYours">
-      <div class="col-md-8">
+    <div v-show="showYours">
+      <div class="col-md-8 col-sm-12">
         <div class="noContests" v-show="noAwards">
           <h4>Make yourself more harder and get awards</h4>             
         </div>
@@ -27,7 +37,7 @@
       </div>
     </div>
     <div class="row" v-show="showGeneral">
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-12">
         <vuestic-widget class="" v-for="award in totalAwardArray" :key="award.id">
           <div>
             <div id="projects-name-div">
@@ -45,15 +55,7 @@
         </vuestic-widget>
       </div>
     </div>
-    <div class="col-md-8 col-sm-12 side">
-        <vuestic-widget class="createproject-div sidenav1">
-          <div class="col-md-offset-6 col-md-12">
-            <h5 class="gotnew">Want more Awards?</h5>
-            <h6>Read more about our tips..</h6>
-          </div>
-        </vuestic-widget>
-        <Livefeeds></Livefeeds>
-      </div>
+  </div>
   </div>
 </template>
 
@@ -192,4 +194,9 @@
   .switch {
     margin-bottom: 1rem;
   }
+   @media screen and (max-width: 650px){
+    .displayContent{
+      margin-top: 40%;
+    }
+   }
 </style>

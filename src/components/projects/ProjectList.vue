@@ -9,7 +9,7 @@
       </vuestic-widget>
       <Livefeeds></Livefeeds>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 displayContent">
       <div class="noProjects" v-show="noProjects">
           <h4> Oops! You have no Projects to view. </h4>
           <button class="btn btn-primary btn-micro" @click="createNew"> New project</button>              
@@ -32,8 +32,7 @@
         </div>
         <div id="tagDiv">
           <strong>Tags:</strong><span v-for="tag in project.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
-        </div>
-        
+        </div>  
       </vuestic-widget>
     </div>
    
@@ -240,4 +239,9 @@
   .side{
     position: fixed;
   }
+   @media screen and (max-width: 650px){
+    .displayContent{
+      margin-top: 55%;
+    }
+   }
 </style>
