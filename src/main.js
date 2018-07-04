@@ -28,7 +28,7 @@ import 'swiper/dist/css/swiper.css'
 
 // For http requests
 Vue.use(VueAxios, axios)
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://localhost:3000/api/v1'
 axios.defaults.headers = {
   'Content-Type': 'application/json'
 }
