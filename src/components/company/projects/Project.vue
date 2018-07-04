@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row"> 
      <div class="col-md-8 col-sm-12 side">
       <vuestic-widget class="createproject-div sidenav1">
         <div class="col-md-offset-6 col-md-12">
@@ -255,6 +255,9 @@
     width: 100% !important;
     top: 5% !important;
     }
+  }
+  .side{
+    position: fixed;
   }
    @media screen and (max-width: 650px){
     .displayContent{
