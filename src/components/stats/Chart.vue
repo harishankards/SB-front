@@ -1,13 +1,17 @@
 <script>
 import { Doughnut, mixins } from 'vue-chartjs'
+const { reactiveProp, reactiveData } = mixins
 
 export default {
   extends: Doughnut,
-  mixins: [mixins.reactiveProp],
+  mixins: [reactiveProp, reactiveData],
   props: ['chartData', 'options'],
   watch: {
-    chartData () {
-      this.renderChart(this.chartData, this.options)
+    chartData: {
+      deep: true,
+      handler: function () {
+        this.renderChart(this.chartData, this.options)
+      }
     }
   },
   mounted () {
