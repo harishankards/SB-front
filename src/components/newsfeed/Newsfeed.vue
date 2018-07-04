@@ -23,15 +23,15 @@
       <div class="col-md-8 col-sm-12">
         <vuestic-widget class="" v-for="project in companyprojectsArray" :key="project.id" v-show="showProjects">
           <div>
+            <div id="projects-name-div">
+              <span class="projects-name"><strong><a href="" @click.prevent="viewCompanyProject(project._id)">{{project.title}}</a> </strong></span><br>
+              <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
+            </div>
             <swiper :options="swiperOption" class="sliderStyle">
               <swiper-slide v-for="file in project.files" :key="file.id"><img :src="file.filePath"></swiper-slide>
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
-            <div id="projects-name-div">
-              <span class="projects-name"><strong><a href="" @click.prevent="viewCompanyProject(project._id)">{{project.title}}</a> </strong></span><br>
-              <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
-            </div>
           </div>
           <div id="projects-content-div">
             <!-- <span id="projects-description"><strong>Posted by:</strong>  {{project.author}}</span> -->
@@ -47,16 +47,16 @@
           </div>
         </vuestic-widget>
         <vuestic-widget class="" v-for="project in projectsData" :key="project.id" v-show="showProjects">
-        <div>     
+        <div>  
+          <div id="projects-name-div">
+          <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
+          <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
+        </div>   
         <swiper :options="swiperOption" class="sliderStyle">
           <swiper-slide v-for="file in project.files" :key="file.id"><img :src="file.filePath"></swiper-slide>
           <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
-        <div id="projects-name-div">
-          <span class="projects-name"><strong><a href="" @click.prevent="viewProject(project._id)">{{project.title}}</a> </strong></span><br>
-          <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
-        </div>
       </div>
           <div id="projects-content-div">
             <span id="projects-description">{{project.abstract}}</span>
@@ -277,6 +277,7 @@
   
   .sliderStyle{
     margin-bottom: 3%;
+    margin-top: 3%;
     height: 300px;
     width: 100%;
     z-index: 1;

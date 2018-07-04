@@ -19,7 +19,7 @@
       </div>
       <vuestic-widget class="col-md-6">
         <div class="Chart">
-          <Chart v-if="showChart" :data="chartData" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
+          <Chart v-if="showChart" :chartData="chartDataProject" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
           <h4 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h4>
         </div>
       </vuestic-widget>
@@ -37,8 +37,8 @@
       </div>
       <vuestic-widget class="col-md-6">
         <div class="Chart">
-          <Chart v-if="showChart" :data="chartDataContest" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
-          <h4 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h4>
+          <Chart v-if="showChart" :chartData="chartDataContest" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
+          <h4 class="ChartStyle" v-if="!showChart">Click any contest to view the stats!!</h4>
         </div>
       </vuestic-widget>
     </div>
@@ -63,7 +63,7 @@ export default {
       isProjects: true,
       showProjects: true,
       showContests: false,
-      chartData: {
+      chartDataProject: {
         labels: ['Upvotes', 'Shares', 'Views'],
         datasets: [
           {
@@ -93,14 +93,22 @@ export default {
   },
   methods: {
     showStats (project) {
-      this.showChart = true
-      this.chartData.datasets[0].data = []
-      this.chartData.datasets[0].data = [project.upvotes.length, 2, 2]
+      this.showChart = false
+      const self = this
+      this.chartDataProject.datasets[0].data = []
+      this.chartDataProject.datasets[0].data = [project.upvotes.length, 2, 2]
+      this.$nextTick(() => {
+        self.showChart = true
+      })
     },
     showStatsContest (contest) {
-      this.showChart = true
+      this.showChart = false
+      const self = this
       this.chartDataContest.datasets[0].data = []
       this.chartDataContest.datasets[0].data = [contest.registrations.length, 2, 2]
+      this.$nextTick(() => {
+        self.showChart = true
+      })
     }
   },
   created () {
