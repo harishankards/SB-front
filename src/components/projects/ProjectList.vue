@@ -207,7 +207,7 @@
   .noProjects {
     text-align: center;
     font-weight: bold;
-    margin-left: 25%;
+    // margin-left: 5%;
     margin-top: 10rem;
   }
   #tagDiv {

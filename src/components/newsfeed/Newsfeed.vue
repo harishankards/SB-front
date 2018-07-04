@@ -239,6 +239,10 @@
     // margin-top: -30% !important;
     height: 161px;
   }
+  .side{
+    position: fixed;
+    margin-left: -2%;
+  }
  @media screen and (max-width: 650px){
    .sidenav1{
      position: relative !important;
@@ -361,9 +365,6 @@
         left: -1.875rem;
       }
     }
-  }
-  .side{
-    position: fixed;
   }
 
 </style>

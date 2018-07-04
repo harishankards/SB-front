@@ -7,14 +7,13 @@
       <div class="showProjects col-md-12" v-for="project in projectArray" :key="project.id">        
           <div class="projects-name"><strong>{{project.title}}</strong></div>	
           <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span> 
-          <button class="button" @click="showStats(project)">Show stats</button>        
-        
+          <button class="button" @click="showStats(project)">Show stats</button>          
       </div>
     </div>
-    <vuestic-widget class="col-md-6">
+    <vuestic-widget class="col-md-6" v-if="!noProjects">
       <div class="Chart">
       <Chart v-if="showChart" :chartData="chartData" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
-      <h3 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h3>
+      <h3 class="ChartStyle">Click your project to view the stats!!</h3>
     </div>
     </vuestic-widget>
 </div>
