@@ -9,15 +9,22 @@
       <img class="col-md-8" src="../../../assets/vendor/leaflet/404.png" alt="">
     </div>
     <vuestic-widget v-show="showProject" class="col-md-9" :headerText="this.projectData.title">
+      <swiper :options="swiperOption" class="sliderStyle">
+        <swiper-slide v-for="file in projectData.files" :key="file.id">
+          <img :src="file.filePath" class="imageStyle">
+        </swiper-slide>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+      </swiper>
       <p><strong>Published </strong><br><timeago :since="this.projectData.createdAt" :auto-update="60"></timeago></p>
       <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
       <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
       <p><strong> Author</strong><br> {{this.authorData.email}}</p>
-       <div class='row' v-show="projectFiles">
+       <!-- <div class='row' v-show="projectFiles">
         <div v-for="data in projectFiles" :key="data.key" class="col-md-8 image-container" >
             <img :src="data.filePath" />
         </div>
-      </div>
+      </div> -->
       <strong>Tags:</strong><span v-for="tag in projectData.tags" :key="tag.id" class="tagNames">{{tag.name}}</span>
       <hr>
       <div>
@@ -73,12 +80,17 @@
         projectData: '',
         projectId: '',
         authorData: '',
-        projectFiles: [],
         showProject: null,
         shareIcons: false,
         liked: false,
         upvoteContent: '',
-        url: 'https://studentburger.com' + this.$route.fullPath
+        url: 'https://studentburger.com' + this.$route.fullPath,
+        swiperOption: {
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }
+        }
       }
     },
     methods: {
@@ -130,7 +142,6 @@
         secondthis.showProject = true
         console.log('projectData', projectDetails.data)
         secondthis.projectData = projectDetails.data
-        secondthis.projectFiles = projectDetails.data.files
         secondthis.$http.get('/companies/get?id=' + projectDetails.data.author, {
           headers: {
             'Authorization': 'Bearer ' + authToken
@@ -212,4 +223,13 @@
   .image-container img{
     width : 100%;
   }
+  .sliderStyle{
+    margin-bottom: 3%;
+    z-index: 1;
+  }
+  .imageStyle{
+   object-fit: cover;
+   height: 350px;
+   width: 100%;
+ }
 </style>

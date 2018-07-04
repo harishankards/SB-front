@@ -9,6 +9,11 @@
       <img class="col-md-8" src="../../assets/vendor/leaflet/404.png" alt="">
     </div>
     <vuestic-widget v-show="showProject" class="col-md-9" :headerText="this.projectData.title">
+       <swiper :options="swiperOption" class="sliderStyle">
+        <swiper-slide v-for="file in projectData.files" :key="file.id"><img :src="file.filePath" class="imageStyle"></swiper-slide>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+      </swiper>
       <p><strong>Published </strong><br><timeago :since="this.projectData.createdAt" :auto-update="60"></timeago></p>
       <p><strong> Abstract</strong><br>{{this.projectData.abstract}}</p>
       <p><strong> Description</strong><br><span v-html="this.projectData.description"></span></p>
@@ -75,7 +80,13 @@
         shareIcons: false,
         liked: false,
         upvoteContent: '',
-        url: 'https://studentburger.com' + this.$route.fullPath
+        url: 'https://studentburger.com' + this.$route.fullPath,
+        swiperOption: {
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          }
+        }
       }
     },
     methods: {
@@ -215,4 +226,13 @@
   .likebutton{
     color:#3385ff;
   }
+  .sliderStyle{
+    margin-bottom: 3%;
+    z-index: 1;
+  }
+  .imageStyle{
+   object-fit: cover;
+   height: 350px;
+   width: 100%;
+ }
 </style>
