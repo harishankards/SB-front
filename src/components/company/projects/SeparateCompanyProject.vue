@@ -10,7 +10,9 @@
     </div>
     <vuestic-widget v-show="showProject" class="col-md-9" :headerText="this.projectData.title">
       <swiper :options="swiperOption" class="sliderStyle">
-        <swiper-slide v-for="file in projectData.files" :key="file.id"><img :src="file.filePath"></swiper-slide>
+        <swiper-slide v-for="file in projectData.files" :key="file.id">
+          <img :src="file.filePath" class="imageStyle">
+        </swiper-slide>
         <div class="swiper-button-prev" slot="button-prev"></div>
         <div class="swiper-button-next" slot="button-next"></div>
       </swiper>
@@ -223,8 +225,11 @@
   }
   .sliderStyle{
     margin-bottom: 3%;
-    height: 300px;
-    width: 100%;
     z-index: 1;
   }
+  .imageStyle{
+   object-fit: cover;
+   height: 350px;
+   width: 100%;
+ }
 </style>

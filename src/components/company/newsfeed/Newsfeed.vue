@@ -23,7 +23,7 @@
           <div>
             <swiper :options="swiperOption" class="sliderStyle">
               <swiper-slide v-for="file in project.files" :key="file.id">
-                <img :src="file.filePath">
+                <img :src="file.filePath" class="imageStyle">
               </swiper-slide>
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>
@@ -269,8 +269,11 @@
   .sliderStyle{
     margin-bottom: 3%;
     margin-top: 3%;
-    height: 300px;
-    width: 100%;
     z-index: 1;
   }
+  .imageStyle{
+   object-fit: cover;
+   height: 350px;
+   width: 100%;
+ }
 </style>
