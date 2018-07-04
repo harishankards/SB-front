@@ -28,7 +28,7 @@
               <span class="projects-time"><timeago :since="project.createdAt" :auto-update="60"></timeago></span>
             </div>
             <swiper :options="swiperOption" class="sliderStyle">
-              <swiper-slide v-for="file in project.files" :key="file.id"><img :src="file.filePath"></swiper-slide>
+              <swiper-slide v-for="file in project.files" :key="file.id"><img :src="file.filePath" class="imageStyle"></swiper-slide>
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
@@ -278,11 +278,13 @@
   .sliderStyle{
     margin-bottom: 3%;
     margin-top: 3%;
-    height: 300px;
-    width: 100%;
     z-index: 1;
   }
-
+   .imageStyle{
+   object-fit: cover;
+   height: 350px;
+   width: 100%;
+ }
   #projects-name-div{
     display: inline-block;
     // margin-left: 0.4rem;
@@ -367,5 +369,4 @@
       }
     }
   }
-
 </style>
