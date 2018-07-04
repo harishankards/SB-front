@@ -21,7 +21,6 @@
 
 <script>
 import Chart from './Chart'
-import Vue from 'vue'
 
 export default {
   name: 'stats',
@@ -50,13 +49,13 @@ export default {
   },
   methods: {
     showStats (project) {
-      this.showChart = true
-      console.log('Inside showStats function', this.chartData.datasets[0].data)
+      this.showChart = false
+      const self = this
       this.chartData.datasets[0].data = []
-      Vue.set(this.chartData.datasets[0].data, 0, project.upvotes.length)
-      Vue.set(this.chartData.datasets[0].data, 1, 2)
-      Vue.set(this.chartData.datasets[0].data, 2, 3)
-      console.log('Assigned', this.chartData.datasets[0].data)
+      this.chartData.datasets[0].data = [project.upvotes.length, 2, 3]
+      this.$nextTick(() => {
+        self.showChart = true
+      })
     }
   },
   created () {
