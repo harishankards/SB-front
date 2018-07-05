@@ -6,7 +6,7 @@ module.exports = {
   apps : [
       {
       name      : "S-Burger-frontend",
-      script    : "app.js",
+      script    : "src/main.js",
       env: {
         COMMON_VARIABLE: "true"
       },
@@ -28,7 +28,7 @@ module.exports = {
       ref: "origin/frontend-one",
       repo: "git@git.spritle.com:student-burger/webapp.git",
       path: "/home/burger/apps/student-burger-frontend",
-      "post-deploy": "npm install && pm2 startOrRestart ecosystem.config.js --env production"
+      "post-deploy": "npm build && pm2 start npm --name app -- run serve --watch"
     }
   }
 }
