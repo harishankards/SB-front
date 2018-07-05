@@ -17,10 +17,10 @@
         </div>
         
       </div>
-      <vuestic-widget class="col-md-6">
+      <vuestic-widget class="col-md-6" v-if="showChart">
         <div class="Chart">
-          <Chart v-if="showChart" :chartData="chartDataProject" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
-          <h4 class="ChartStyle" v-if="!showChart">Click your project to view the stats!!</h4>
+          <Chart :chartData="chartDataProject" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
+          <h4 class="ChartStyle">Click your project to view the stats!!</h4>
         </div>
       </vuestic-widget>
     </div>
@@ -35,10 +35,10 @@
           <button class="button" @click="showStatsContest(contest)">Show stats</button>
         </div>
       </div>
-      <vuestic-widget class="col-md-6">
+      <vuestic-widget class="col-md-6" v-if="showChart">
         <div class="Chart">
-          <Chart v-if="showChart" :chartData="chartDataContest" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
-          <h4 class="ChartStyle" v-if="!showChart">Click any contest to view the stats!!</h4>
+          <Chart :chartData="chartDataContest" :options="{responsive: true, maintainAspectRatio: false}"></Chart>
+          <h4 class="ChartStyle">Click any contest to view the stats!!</h4>
         </div>
       </vuestic-widget>
     </div>
