@@ -43,6 +43,7 @@ import StudentNotification from 'components/profile/Notifications'
 import CompanyNotification from 'components/company/profile/Notifications'
 import Upload from 'components/projects/Upload'
 import Unverified from '../components/unverified/index.vue'
+import Changelog from 'components/public/Changelog'
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ export default new Router({
       path: '/',
       component: landing,
       name: 'landing'
+    },
+    {
+      path: '/changelog',
+      component: Changelog,
+      name: 'changelog'
     },
     {
       path: '/upload',

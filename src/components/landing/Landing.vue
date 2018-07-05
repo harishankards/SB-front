@@ -26,13 +26,18 @@
         </div>
         
       </div>
+          <a href="" class="linkStyle" @click.prevent="changeLog()">Release Notes</a>
     </div>
   </div>
 </template>
 
 <script>
+  import Changelog from '../public/Changelog'
   export default {
     name: 'landing',
+    components: {
+      Changelog
+    },
     methods: {
       student: function () {
         this.$store.state.category = 'student'
@@ -42,8 +47,10 @@
       company: function () {
         this.$store.state.category = 'company'
         this.$router.push('/auth/company/login')
+      },
+      changeLog: function () {
+        this.$router.push('/Changelog')
       }
-
     }
   }
 </script>
@@ -58,6 +65,9 @@
   .btn.btn-with-icon {
     position: relative;
     padding: 1.1rem 3.8125rem;
+  }
+  .linkStyle{
+    text-align: center;
   }
 </style>
 
