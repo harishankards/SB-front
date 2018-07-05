@@ -3,6 +3,7 @@
     <auth-layout v-if="isAuth"></auth-layout>
     <landing v-else-if="isLanding"></landing>
     <not-found v-else-if="isNotFound"></not-found>
+    <changelog v-else-if="isChangelog"></changelog>
     <layout v-else ></layout>
   </div>
 </template>
@@ -13,6 +14,7 @@
   import VuesticPreLoader from 'vuestic-components/vuestic-preloader/VuesticPreLoader.vue'
   import Landing from 'components/landing/Landing.vue'
   import NotFound from 'components/404/NotFound'
+  import Changelog from 'components/public/Changelog'
   import { eventBus } from './main.js'
   export default {
     name: 'app',
@@ -21,7 +23,8 @@
       AuthLayout,
       Layout,
       Landing,
-      NotFound
+      NotFound,
+      Changelog
     },
     computed: {
       isAuth () {
@@ -33,6 +36,9 @@
       isNotFound () {
         console.log('this route name', this.$route.name)
         return this.$route.name === '404'
+      },
+      isChangelog () {
+        return this.$route.path.match('changelog')
       }
     },
     methods: {

@@ -49,7 +49,7 @@
         this.$router.push('/auth/company/login')
       },
       changeLog: function () {
-        this.$router.push('/Changelog')
+        this.$router.push('/changelog')
       }
     }
   }
