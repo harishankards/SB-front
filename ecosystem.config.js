@@ -28,7 +28,7 @@ module.exports = {
       ref: "origin/frontend-one",
       repo: "git@git.spritle.com:student-burger/webapp.git",
       path: "/home/burger/apps/student-burger-frontend",
-      "post-deploy": "npm build && pm2 start npm --name app -- run serve --watch"
+      "post-deploy": "npm build && pm2 start npm --name sb-frontend -- run serve --watch"
     }
   }
 }
